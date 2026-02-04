@@ -159,7 +159,13 @@ class QualitySkewedPartitionStrategy(DataPartitionStrategy):
 
     @staticmethod
     def generate_partitions(
-        train_data: Dataset, test_data: Dataset, num_partitions: int, alpha_dirichlet: float = -1, percent_for_partitions: Optional[List[float]] = None,  **kwargs
+        train_data: Dataset, 
+        test_data: Dataset, 
+        num_partitions: int, 
+        lable_tag: str = 'label',
+        alpha_quantity: float = 1.0,  # Quantity Skew
+        alpha_label: float = 0.5,
+        **kwargs     # Label Skew (Non-IID)
     ) -> tuple[list[list[int]], list[list[int]]]:
         """
         Generate partitions of the dataset using Quality-Skew.
@@ -176,60 +182,37 @@ class QualitySkewedPartitionStrategy(DataPartitionStrategy):
                 - The second list contains lists of indices for the test data partitions.
 
         """
-        # check len of percent_for_partitions match with num_partitions
+        rng = np.random.default_rng(Settings.general.SEED)
+        
+        proportions = rng.dirichlet([alpha_quantity] * num_partitions)
+        
+        train_labels = np.array(train_data[lable_tag])
+        num_classes = len(np.unique(train_labels))
+        
+        label_distribution = rng.dirichlet([alpha_label] * num_partitions, num_classes)
 
-        if alpha_dirichlet > 0:
-            rng = np.random.default_rng(Settings.general.SEED)
-            min_require_size = 1 
-            while True:
-                proportions = rng.dirichlet(alpha=[alpha_dirichlet] * num_partitions).tolist()
-                sizes = [int(p * len(train_data)) for p in proportions]
-                if all(s >= min_require_size for s in sizes):
-                    break
+        def distribute_indices(labels, dist_matrix, client_proportions):
+            class_indices = [np.where(labels == i)[0] for i in range(num_classes)]
+            partition_indices = [[] for _ in range(num_partitions)]
             
-            final_percent = proportions
-        elif percent_for_partitions is not None:
-            if len(percent_for_partitions) != num_partitions:
-                raise ValueError(
-                    f"Length of percents list ({len(percent_for_partitions)}) "
-                    f"does not match num_partitions ({num_partitions})."
-                )
-            if not math.isclose(sum(percent_for_partitions), 1.0, rel_tol=1e-5):
-                raise ValueError(f"Sum of percents list must equal 1.0, got {sum(percent_for_partitions)}")
+            for k in range(num_classes):
+                rng.shuffle(class_indices[k])
+                combined_probs = dist_matrix[k] * client_proportions
+                combined_probs /= combined_probs.sum()
+                
+                split_points = (np.cumsum(combined_probs) * len(class_indices[k])).astype(int)[:-1]
+                for client_idx, indices in enumerate(np.split(class_indices[k], split_points)):
+                    partition_indices[client_idx].extend(indices.tolist())
             
-            final_percent = percent_for_partitions
-        else:
-            raise ValueError(f"Require parameter alpha_dirichlet (float) and percent_for_partitions(list)!")
+            for p in partition_indices: rng.shuffle(p)
+            return partition_indices
 
-        return (
-            QualitySkewedPartitionStrategy.__partition_data(train_data, num_partitions, final_percent),
-            QualitySkewedPartitionStrategy.__partition_data(test_data, num_partitions, final_percent),
-        )
+        train_partitions = distribute_indices(train_labels, label_distribution, proportions)
+        
+        test_labels = np.array(test_data[lable_tag])
+        test_partitions = distribute_indices(test_labels, label_distribution, proportions)
 
-    @staticmethod
-    def __partition_data(data: Dataset, num_partitions: int, percent_for_partitions: List[float]) -> list[list[int]]:
-        # Shuffle the indices
-        indices = list(range(len(data)))
-        random.Random(Settings.general.SEED).shuffle(indices)
-
-        # Get partition sizes
-        data_size = len(data)
-
-        # Partition the data using list comprehension
-        data_partitions = []
-        current_idx = 0
-
-        for i in range(num_partitions):
-            if i == num_partitions - 1:
-                partition_indices = indices[current_idx:]
-            else:
-                part_len = int(percent_for_partitions[i] * data_size)
-                end_idx = current_idx + part_len
-                partition_indices = indices[current_idx : end_idx]
-                current_idx = end_idx
-            data_partitions.append(partition_indices)
-
-        return data_partitions
+        return train_partitions, test_partitions
 
 class DirichletPartitionStrategy(DataPartitionStrategy):
     """

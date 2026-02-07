@@ -271,6 +271,51 @@ class P2PFLogger:
             message: The message to log.
 
         """
+        # Minimal logging mode - skip non-essential logs
+        if Settings.general.MINIMAL_LOGGING:
+            # Define essential keywords that should be logged even in minimal mode
+            # These take priority over non-essential keywords
+            essential_keywords = [
+                "accuracy", "loss", "precision", "recall", "f1", "auc", "roc",
+                "round", "metric", "broadcasting metrics", "broadcasting global model",
+                "completed", "finished", "training", "test", "validation", "evaluated",
+                "local", "global", "fedavg", "aggregation", "aggregated",
+                "learning rate", "lr=", "final round",
+            ]
+            # Define keywords for messages that should ALWAYS be skipped in minimal mode
+            non_essential_keywords = [
+                # Gossip-related
+                "gossiping", "gossip finished", "sending model to", "direct neighbors",
+                # Model initialization and aggregation
+                "model weights initialized", "weights initialized", "model added", "training done",
+                # Train set selection
+                "train set of", "voting for train set", "vote train set",
+                # Heartbeat-related
+                "heartbeat", "beating", "beat",
+                # Initialization and server startup
+                "initializing", "initialized", "starting gossiper", "inmemoryserver started",
+                # Neighbor discovery
+                "neighbors found", "degree",
+                # Waiting status
+                "waiting initialization",
+                # Connection status
+                "connected nodes", "cannot add duplicates",
+                # Training status
+                "training...",
+                # Evaluation status
+                "evaluating...",
+            ]
+            message_lower = message.lower()
+            # Check if message is essential (essential takes priority)
+            is_essential = any(keyword.lower() in message_lower for keyword in essential_keywords)
+            if is_essential:
+                pass  # Keep essential messages
+            else:
+                # Check if message should be skipped
+                should_skip = any(keyword.lower() in message_lower for keyword in non_essential_keywords)
+                if should_skip:
+                    return  # Skip non-essential messages
+
         # Traditional logging
         if level == logging.DEBUG:
             self._logger.debug(message, extra={"node": node})
@@ -478,36 +523,41 @@ class P2PFLogger:
             additional_info: Additional information as a dictionary.
 
         """
-        # Determine emoji based on direction and package type
-        emoji = ("📫" if package_type == "message" else "📦") if direction == "received" else ("📤" if package_type == "message" else "📬")
-
-        # If round_num is not specified but we're in an experiment, get the current round
-        if round_num is None or round_num < 0:
-            try:
-                # Look for the node in registered nodes
-                if node in self._nodes and "Experiment" in self._nodes[node]:
-                    experiment = self._nodes[node]["Experiment"]
-                    if experiment is not None and hasattr(experiment, "round") and experiment.round is not None:
-                        round_num = experiment.round
-            except Exception:
-                # If we can't get the round, just continue with default round_num (None)
-                pass
-
-        # Create base message
-        message = f"{emoji} {cmd.upper()} {direction} "
-        if direction == "received":
-            message += f"from {source_dest}"
-        else:
-            message += f"to {source_dest}"
-
-        # Add round information if available
-        if round_num is not None and round_num >= 0:
-            message += f" (round {round_num})"
-
-        # Log the message at debug level
-        if cmd != "beat" or (not Settings.heartbeat.EXCLUDE_BEAT_LOGS and cmd == "beat"):
+        # Skip communication logging entirely in minimal mode
+        if Settings.general.MINIMAL_LOGGING:
+            # Only store in message storage, don't log to console
             pass
-            # self.debug(node, message)
+        else:
+            # Determine emoji based on direction and package type
+            emoji = ("📫" if package_type == "message" else "📦") if direction == "received" else ("📤" if package_type == "message" else "📬")
+
+            # If round_num is not specified but we're in an experiment, get the current round
+            if round_num is None or round_num < 0:
+                try:
+                    # Look for the node in registered nodes
+                    if node in self._nodes and "Experiment" in self._nodes[node]:
+                        experiment = self._nodes[node]["Experiment"]
+                        if experiment is not None and hasattr(experiment, "round") and experiment.round is not None:
+                            round_num = experiment.round
+                except Exception:
+                    # If we can't get the round, just continue with default round_num (None)
+                    pass
+
+            # Create base message
+            message = f"{emoji} {cmd.upper()} {direction} "
+            if direction == "received":
+                message += f"from {source_dest}"
+            else:
+                message += f"to {source_dest}"
+
+            # Add round information if available
+            if round_num is not None and round_num >= 0:
+                message += f" (round {round_num})"
+
+            # Log the message at debug level
+            if cmd != "beat" or (not Settings.heartbeat.EXCLUDE_BEAT_LOGS and cmd == "beat"):
+                pass
+                # self.debug(node, message)
 
         # Get actual round number for storage (default to 0 if None)
         storage_round = 0 if round_num is None or round_num < 0 else round_num

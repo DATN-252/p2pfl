@@ -62,6 +62,7 @@ settings:
     log_level: "INFO"
     grpc_timeout: 2
     disable_ray: False
+    MINIMAL_LOGGING: true
 
   SSL:
     use_ssl: false

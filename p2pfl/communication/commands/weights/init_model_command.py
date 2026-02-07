@@ -26,6 +26,7 @@ from p2pfl.learning.frameworks.exceptions import DecodingParamsError, ModelNotMa
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
+from p2pfl.settings import Settings
 
 
 class InitModelCommand(Command):
@@ -79,7 +80,8 @@ class InitModelCommand(Command):
                 # Release lock - wrap in try/except to handle concurrent releases
                 try:
                     self.state.model_initialized_lock.release()
-                    logger.info(self.state.addr, "🤖 Model Weights Initialized")
+                    if not Settings.general.MINIMAL_LOGGING:
+                        logger.info(self.state.addr, "🤖 Model Weights Initialized")
                 except RuntimeError:
                     # This likely means another concurrent INIT_MODEL message already released the lock.
                     logger.debug(

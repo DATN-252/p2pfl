@@ -60,10 +60,11 @@ class VoteTrainSetStage(Stage):
                 state,
                 communication_protocol,
             )
-            logger.info(
-                state.addr,
-                f"🚂 Train set of {len(state.train_set)} nodes: {state.train_set}",
-            )
+            if not Settings.general.MINIMAL_LOGGING:
+                logger.info(
+                    state.addr,
+                    f"🚂 Train set of {len(state.train_set)} nodes: {state.train_set}",
+                )
 
             # Next stage
             return StageFactory.get_stage("TrainStage")
@@ -166,7 +167,8 @@ class VoteTrainSetStage(Stage):
 
                 # Clear votes
                 state.train_set_votes = {}
-                logger.info(state.addr, f"🔢 Computed {len(nc_votes)} votes.")
+                if not Settings.general.MINIMAL_LOGGING:
+                    logger.info(state.addr, f"🔢 Computed {len(nc_votes)} votes.")
                 return [i[0] for i in results_ordered]
 
             # Wait for votes or refresh every 2 seconds

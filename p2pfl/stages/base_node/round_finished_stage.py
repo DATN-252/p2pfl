@@ -24,6 +24,7 @@ from p2pfl.learning.aggregators.aggregator import Aggregator
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
+from p2pfl.settings import Settings
 from p2pfl.stages.stage import Stage
 from p2pfl.stages.stage_factory import StageFactory
 
@@ -72,12 +73,14 @@ class RoundFinishedStage(Stage):
 
     @staticmethod
     def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol) -> None:
-        logger.info(state.addr, "🔬 Evaluating...")
+        if not Settings.general.MINIMAL_LOGGING:
+            logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
         # Send metrics
         if len(results) > 0:
-            logger.info(state.addr, "📢 Broadcasting metrics.")
+            if not Settings.general.MINIMAL_LOGGING:
+                logger.info(state.addr, "📢 Broadcasting metrics.")
             flattened_metrics = [str(item) for pair in results.items() for item in pair]
             communication_protocol.broadcast(
                 communication_protocol.build_msg(

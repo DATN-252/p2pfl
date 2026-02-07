@@ -25,6 +25,7 @@ from p2pfl.learning.aggregators.aggregator import Aggregator
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
+from p2pfl.settings import Settings
 from p2pfl.stages.stage import Stage, check_early_stop
 from p2pfl.stages.stage_factory import StageFactory
 
@@ -58,7 +59,8 @@ class GossipModelStage(Stage):
         communication_protocol: CommunicationProtocol,
         learner: Learner,
     ) -> None:
-        logger.info(state.addr, "🗣️ Gossiping aggregated model.")
+        if not Settings.general.MINIMAL_LOGGING:
+            logger.info(state.addr, "🗣️ Gossiping aggregated model.")
         fixed_round = state.round
         if fixed_round is None:
             raise Exception("Learner not initialized")

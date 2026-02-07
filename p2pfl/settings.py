@@ -47,6 +47,8 @@ class General:
     """Disable Ray for local testing."""
     RESOURCE_MONITOR_PERIOD: int = 10
     """Period (seconds) to send resource monitor information."""
+    MINIMAL_LOGGING: bool = False
+    """When True, only logs essential training metrics (acc, loss, precision, recall, etc.) and skips communication logs, trainset selection, etc."""
 
 
 @dataclass

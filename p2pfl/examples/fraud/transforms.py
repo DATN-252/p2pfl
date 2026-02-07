@@ -16,6 +16,7 @@ from math import radians, sin, cos, sqrt, atan2
 
 # Numeric feature columns for standardization
 NUMERIC_FEATURES = [
+    "trans_date_trans_time",
     "amt",                    # Transaction amount
     "lat", "long",            # Customer location
     "city_pop",               # City population

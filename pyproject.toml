@@ -30,7 +30,8 @@ dependencies = [
     "protobuf>=5.29.1",
     "pyyaml>=6.0.2,<7",
     "click==8.1.8",
-    "seaborn==0.13.2"
+    "seaborn==0.13.2,
+    "kagglehub"
 ]
 
 [project.optional-dependencies]

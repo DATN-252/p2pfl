@@ -256,11 +256,24 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         protocol_class_name,
     )
     for i in range(n):
+        p2pfl_model_instance = model_fn()
+        
+        # Special handling for DSGTAggregator's __init__
+        if aggregator_class_name == "DSGTAggregator":
+            agg_params = aggregator.get("params", {})
+            
+            node_aggregator = aggregator_class(
+                local_nn_model=p2pfl_model_instance.get_model(), # Pass the raw nn.Module
+                **agg_params
+            )
+        else:
+            node_aggregator = aggregator_fn()
+
         node = Node(
-            model_fn(),
+            p2pfl_model_instance,
             partitions[i],
             protocol=protocol(),
-            aggregator=aggregator_fn(),
+            aggregator=node_aggregator,
         )
         node.start()
         nodes.append(node)

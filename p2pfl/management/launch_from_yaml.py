@@ -262,7 +262,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     )
 
     def aggregator_fn() -> Aggregator:
-        return aggregator_class(**aggregator.get("params", {}))
+        aggregator_params = aggregator.get("params") # Get value, might be None
+        if aggregator_params is None: # If 'params' is missing or explicitly null
+            aggregator_params = {} # Default to empty dict
+        elif not isinstance(aggregator_params, dict):
+            raise TypeError(f"Aggregator params must be a dictionary, but got {type(aggregator_params)}")
+        return aggregator_class(**aggregator_params)
 
     ###########
     # Network #

@@ -56,18 +56,18 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dsgt_aggregator"
-    aggregator: "DSGTAggregator"
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
     params: # DSGTAggregator parameters
-      alpha: 0.01
-      # Mixing weights for a 3-node ring topology (doubly stochastic)
-      # The keys are the node addresses, which are assigned by the framework.
-      # This requires the addresses to be known beforehand. For local tests,
-      # they are typically '127.0.0.1:50051', '127.0.0.1:50052', etc.
-      mixing_weights:
-        '127.0.0.1:50051': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
-        '127.0.0.1:50052': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
-        '127.0.0.1:50053': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
+      # alpha: 0.01
+      # # Mixing weights for a 3-node ring topology (doubly stochastic)
+      # # The keys are the node addresses, which are assigned by the framework.
+      # # This requires the addresses to be known beforehand. For local tests,
+      # # they are typically '127.0.0.1:50051', '127.0.0.1:50052', etc.
+      # mixing_weights:
+      #   '127.0.0.1:50051': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
+      #   '127.0.0.1:50052': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
+      #   '127.0.0.1:50053': {'127.0.0.1:50051': 0.3333, '127.0.0.1:50052': 0.3333, '127.0.0.1:50053': 0.3333}
 
 
 # General experiment settings

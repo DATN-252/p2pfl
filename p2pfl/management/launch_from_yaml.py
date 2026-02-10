@@ -21,7 +21,8 @@ import importlib
 import os
 import time
 import uuid
-import shutil # NEW IMPORT
+import shutil
+from datetime import datetime # NEW IMPORT
 from typing import Any
 
 import yaml
@@ -65,17 +66,14 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     # --- Create experiment folder and copy YAML ---
     # Extract details for folder name
     dataset_name_for_folder = config.get("experiment", {}).get("dataset", {}).get("name", "unknown_dataset").replace("/", "_")
-    # Corrected path for partitioning strategy
     partition_strategy_name_for_folder = config.get("experiment", {}).get("dataset", {}).get("partitioning", {}).get("strategy", "unknown_partition")
-    # Corrected path for aggregator name
     aggregator_name_for_folder = config.get("experiment", {}).get("aggregator", {}).get("aggregator", "unknown_aggregator")
-    # Corrected path for model name, extract from package.module if model_build_fn is generic
     model_name_from_package = config.get("experiment", {}).get("model", {}).get("package", "unknown_model").split('.')[-1]
     model_name_for_folder = config.get("experiment", {}).get("model", {}).get("model_build_fn", model_name_from_package)
 
-
-    # Construct folder name
-    experiment_folder_name = f"{dataset_name_for_folder}_{partition_strategy_name_for_folder}_{aggregator_name_for_folder}_{model_name_for_folder}"
+    # Construct folder name with unique timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    experiment_folder_name = f"{dataset_name_for_folder}_{partition_strategy_name_for_folder}_{aggregator_name_for_folder}_{model_name_for_folder}_{timestamp}"
     experiment_folder_path = os.path.join(os.getcwd(), "experiments", experiment_folder_name)
     
     # Create folder

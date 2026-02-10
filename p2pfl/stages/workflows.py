@@ -17,6 +17,7 @@
 #
 """Workflows."""
 
+from p2pfl.management.experiment_logger import ExperimentLogger # NEW IMPORT
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 from p2pfl.stages.stage import Stage, check_early_stop
@@ -32,7 +33,7 @@ class StageWokflow:
         self.history: list[str] = []
         self.finished = False
 
-    def run(self, **kwargs) -> None:
+    def run(self, experiment_logger: ExperimentLogger | None = None, **kwargs) -> None: # NEW param
         """Run the workflow."""
         self.finished = False
         # get state (need info from state)
@@ -41,6 +42,7 @@ class StageWokflow:
             while True:
                 logger.debug(state.addr, f"🏃 Running stage: {(self.current_stage.name())}")
                 self.history.append(self.current_stage.name())
+                kwargs['experiment_logger'] = experiment_logger # NEW: Pass logger to next stage
                 next_stage = self.current_stage.execute(**kwargs)
                 if next_stage is None or check_early_stop(state, raise_exception=False):
                     self.finished = True

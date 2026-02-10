@@ -1,22 +1,3 @@
-#
-# This file is part of the federated_learning_p2p (p2pfl) distribution (see https://github.com/pguijas/p2pfl).
-# Copyright (c) 2022 Pedro Guijas Bravo.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, version 3.
-#
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
-"""P2PFL Node."""
-
 import contextlib
 import os
 import random
@@ -46,6 +27,7 @@ from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.learning.frameworks.learner_factory import LearnerFactory
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.learning.frameworks.simulation import try_init_learner_with_ray
+from p2pfl.management.experiment_logger import ExperimentLogger # NEW IMPORT
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 from p2pfl.settings import Settings
@@ -78,6 +60,7 @@ class Node:
         learner: The learner class to be used.
         aggregator: The aggregator class to be used.
         protocol: The communication protocol to be used.
+        experiment_folder_path: Path to the experiment's logging folder. # NEW
         **kwargs: Additional arguments.
 
     .. todo::
@@ -96,6 +79,7 @@ class Node:
         learner: Learner | None = None,
         aggregator: Aggregator | None = None,
         protocol: CommunicationProtocol | None = None,
+        experiment_folder_path: str = None, # NEW PARAM
         **kwargs,
     ) -> None:
         """Initialize a node."""
@@ -119,6 +103,11 @@ class Node:
         # State
         self.__running = False
         self.state = NodeState(self.addr)
+
+        # Custom Experiment Logger # NEW
+        self.experiment_logger: ExperimentLogger | None = None
+        if experiment_folder_path:
+            self.experiment_logger = ExperimentLogger(experiment_folder_path, self.addr)
 
         # Workflow
         self.learning_workflow = LearningWorkflow()

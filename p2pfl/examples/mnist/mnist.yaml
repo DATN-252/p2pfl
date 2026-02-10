@@ -18,8 +18,8 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 100
-  epochs: 1
+  rounds: 5
+  epochs: 5
   trainset_size: 30
   seed: 666
   wait_timeout: 18000
@@ -28,10 +28,10 @@ experiment:
   dataset:
     source: "huggingface" # Dataset source: "huggingface", "csv", etc.
     name: "p2pfl/MNIST"
-    batch_size: 128
+    batch_size: 512
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitionStrategy"
+      strategy: "RandomIIDPartitionStrategy"
       reduced_dataset: false # For testing purposes
       reduction_factor: 10
 

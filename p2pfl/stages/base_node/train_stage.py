@@ -26,6 +26,7 @@ from p2pfl.communication.commands.weights.partial_model_command import PartialMo
 from p2pfl.communication.protocols.communication_protocol import CommunicationProtocol
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
 from p2pfl.learning.frameworks.learner import Learner
+from p2pfl.management.experiment_logger import ExperimentLogger # NEW IMPORT
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 from p2pfl.stages.stage import EarlyStopException, Stage, check_early_stop
@@ -46,6 +47,7 @@ class TrainStage(Stage):
         communication_protocol: CommunicationProtocol | None = None,
         learner: Learner | None = None,
         aggregator: Aggregator | None = None,
+        experiment_logger: ExperimentLogger | None = None, # NEW PARAM
         **kwargs,
     ) -> type["Stage"] | None:
         """Execute the stage."""
@@ -66,7 +68,7 @@ class TrainStage(Stage):
             # Train
             if state.addr in state.train_set:
                 # Evaluate and send metrics
-                TrainStage.__evaluate(state, learner, communication_protocol)
+                TrainStage.__evaluate(state, learner, communication_protocol, experiment_logger) # NEW: Pass experiment_logger
 
                 check_early_stop(state)
                 logger.info(state.addr, "🏋️‍♀️ Training...")
@@ -78,18 +80,6 @@ class TrainStage(Stage):
             check_early_stop(state)
 
             # Aggregate Model
-            # send model added msg ---->> redundant (a node always owns its model)
-            # TODO: print("Broadcast redundante")
-            # communication_protocol.broadcast(
-            #     communication_protocol.build_msg(
-            #         ModelsAggregatedCommand.get_name(),
-            #         models_added,
-            #         round=state.round,
-            #     )
-            # )
-
-            # check_early_stop(state)
-
             current_model = learner.get_model()
             if state.addr not in state.train_set:
                 n_s = learner.get_data().get_num_samples()
@@ -116,10 +106,15 @@ class TrainStage(Stage):
             return None
 
     @staticmethod
-    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol) -> None:
+    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, experiment_logger: ExperimentLogger | None) -> None: # NEW param
         logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
+        
+        # NEW: Record metrics with experiment_logger
+        if experiment_logger:
+            experiment_logger.record_metrics(state.round, results)
+
         # Send metrics
         if len(results) > 0:
             logger.info(state.addr, "📢 Broadcasting metrics.")

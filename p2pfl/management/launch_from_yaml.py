@@ -61,6 +61,26 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     with open(yaml_path) as file:
         config = yaml.safe_load(file)
 
+    # --- Create experiment folder and copy YAML ---
+    # Extract details for folder name
+    dataset_name_for_folder = config.get("experiment", {}).get("dataset", {}).get("name", "unknown_dataset").replace("/", "_")
+    partition_strategy_name_for_folder = config.get("experiment", {}).get("partitioning", {}).get("strategy", "unknown_partition")
+    aggregator_name_for_folder = config.get("aggregator", {}).get("aggregator", "unknown_aggregator")
+    model_name_for_folder = config.get("model", {}).get("model_build_fn", "unknown_model")
+
+    # Construct folder name
+    experiment_folder_name = f"{dataset_name_for_folder}_{partition_strategy_name_for_folder}_{aggregator_name_for_folder}_{model_name_for_folder}"
+    experiment_folder_path = os.path.join(os.getcwd(), "experiments", experiment_folder_name)
+    
+    # Create folder
+    os.makedirs(experiment_folder_path, exist_ok=True)
+    
+    # Copy YAML file into the new folder
+    import shutil
+    shutil.copy(yaml_path, experiment_folder_path)
+    logger.info(None, f"Created experiment folder: {experiment_folder_path} and copied {os.path.basename(yaml_path)}")
+    # --- End create experiment folder ---
+
     # Update settings
     custom_settings = config.get("settings", {})
     if custom_settings:

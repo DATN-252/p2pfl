@@ -328,7 +328,7 @@ class Node:
     def __start_learning_thread(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str) -> None:
         learning_thread = threading.Thread(
             target=self.__start_learning,
-            args=(rounds, epochs, trainset_size, experiment_name),
+            args=(rounds, epochs, trainset_size, experiment_name, self.experiment_logger), # NEW: Pass experiment_logger
             name="learning_thread-" + self.addr,
         )
         learning_thread.daemon = True
@@ -387,7 +387,7 @@ class Node:
     #         Local Learning         #
     ##################################
 
-    def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str) -> None:
+    def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str, experiment_logger: ExperimentLogger | None) -> None: # NEW param
         # Set seed
         if hasattr(self, 'learner') and self.learner.get_model() is not None:
             neighbors = self.get_neighbors(only_direct=True)
@@ -419,6 +419,7 @@ class Node:
                 communication_protocol=self._communication_protocol,
                 aggregator=self.aggregator,
                 generator=random.Random(Settings.general.SEED),
+                experiment_logger=experiment_logger, # NEW: Pass experiment_logger
             )
 
         except Exception as e:

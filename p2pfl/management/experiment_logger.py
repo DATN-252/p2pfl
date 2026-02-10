@@ -38,4 +38,3 @@ class ExperimentLogger:
         }
         with open(self.log_file_path, 'a') as f:
             f.write(json.dumps(log_entry) + '\n')
-

@@ -37,6 +37,5 @@ class ExperimentLogger:
             "metrics": metrics
         }
         with open(self.log_file_path, 'a') as f:
-            f.write(json.dumps(log_entry) + '
-')
+            f.write(json.dumps(log_entry) + '\n')
 

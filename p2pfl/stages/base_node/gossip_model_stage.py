@@ -64,7 +64,7 @@ class GossipModelStage(Stage):
             raise Exception("Learner not initialized")
 
         def candidate_condition(node: str) -> bool:
-            return state.nei_status[node] < fixed_round
+            return state.nei_status.get(node, -2) < fixed_round
 
         def get_candidates_fn() -> list[str]:
             return [n for n in communication_protocol.get_neighbors(only_direct=True) if candidate_condition(n)]

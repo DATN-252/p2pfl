@@ -222,7 +222,7 @@ experiment:
   name: "my_experiment"
   rounds: 100
   epochs: 1
-  trainset_size: 20
+  trainset_size: 10
   seed: 666
   wait_timeout: 18000
 
@@ -272,7 +272,7 @@ settings:
   general:
     log_level: "INFO" # Logging verbosity: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
     grpc_timeout: 2
-    disable_ray: False
+    disable_ray: true
     MINIMAL_LOGGING: true
 
 
@@ -300,7 +300,7 @@ settings:
     disable_vote: true  # When true, all nodes participate in training (no voting step)
     vote_timeout: 30
     aggregation_timeout: 300
-    ray_actor_pool_size: 20
+    ray_actor_pool_size: 10
     # disable_vote: true
 # Profiling configuration
 profiling:

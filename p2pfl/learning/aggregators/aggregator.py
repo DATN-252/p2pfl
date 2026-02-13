@@ -170,10 +170,11 @@ class Aggregator(NodeComponent):
                     # Aggregate model
                     self.__models.append(model)
                     models_added = str(len(self.get_aggregated_models()))
-                    logger.info(
-                        self.addr,
-                        f"🧩 Model added ({models_added}/{str(len(self.__train_set))}) from {str(model.get_contributors())}",
-                    )
+                    if not Settings.general.MINIMAL_LOGGING:
+                        logger.info(
+                            self.addr,
+                            f"🧩 Model added ({models_added}/{str(len(self.__train_set))}) from {str(model.get_contributors())}",
+                        )
                     # logger.debug(self.addr, f"Models added: {self.get_aggregated_models()}")
 
                     # Check if all models were added
@@ -229,7 +230,8 @@ class Aggregator(NodeComponent):
                     f"❌ Aggregation event set, but missing models:  {missing_models}",
                 )
             else:
-                logger.info(self.addr, "🧠 Aggregating models.")
+                if not Settings.general.MINIMAL_LOGGING:
+                    logger.info(self.addr, "🧠 Aggregating models.")
 
         # Notify node
         return self.aggregate(self.__models)

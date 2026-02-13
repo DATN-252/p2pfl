@@ -206,7 +206,8 @@ class Gossiper(threading.Thread, NodeComponent):
 
             # Determine end of gossip
             if neis == []:
-                logger.info(self.addr, "🤫 Gossip finished.")
+                if not Settings.general.MINIMAL_LOGGING:
+                    logger.info(self.addr, "🤫 Gossip finished.")
                 return
 
             # Save state of neighbors. If nodes are not responding gossip will stop

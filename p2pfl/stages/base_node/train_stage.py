@@ -28,6 +28,7 @@ from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregat
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
+from p2pfl.settings import Settings
 from p2pfl.stages.stage import EarlyStopException, Stage, check_early_stop
 from p2pfl.stages.stage_factory import StageFactory
 
@@ -71,7 +72,8 @@ class TrainStage(Stage):
                 check_early_stop(state)
                 logger.info(state.addr, "🏋️‍♀️ Training...")
                 learner.fit()
-                logger.info(state.addr, "🎓 Training done.")
+                if not Settings.general.MINIMAL_LOGGING:
+                    logger.info(state.addr, "🎓 Training done.")
             else:
                 logger.info(state.addr, "💤 Skipping training...")
 
@@ -117,12 +119,14 @@ class TrainStage(Stage):
 
     @staticmethod
     def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol) -> None:
-        logger.info(state.addr, "🔬 Evaluating...")
+        if not Settings.general.MINIMAL_LOGGING:
+            logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
         # Send metrics
         if len(results) > 0:
-            logger.info(state.addr, "📢 Broadcasting metrics.")
+            if not Settings.general.MINIMAL_LOGGING:
+                logger.info(state.addr, "📢 Broadcasting metrics.")
             flattened_metrics = [str(item) for pair in results.items() for item in pair]
             communication_protocol.broadcast(
                 communication_protocol.build_msg(
@@ -229,7 +233,8 @@ class TrainStage(Stage):
             logger.info(state.addr, "⚠️ No direct neighbors to send model.")
             return
 
-        logger.info(state.addr, f"📤 Sending model to {len(direct_neighbors)} direct neighbors: {list(direct_neighbors.keys())}")
+        if not Settings.general.MINIMAL_LOGGING:
+            logger.info(state.addr, f"📤 Sending model to {len(direct_neighbors)} direct neighbors: {list(direct_neighbors.keys())}")
 
         from p2pfl.communication.commands.weights.partial_model_command import PartialModelCommand
         from p2pfl.communication.commands.message.pre_send_model_command import PreSendModelCommand

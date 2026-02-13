@@ -14,13 +14,13 @@ network:
   nodes: 4
   topology: "ring" # Network topology: "line", "ring", "star", "full"
   additional_connections:
-    - [0, 2]
-    - [1, 3]
+    # - [0, 2]
+    # - [1, 3]
 
 # Defines experiment settings
 experiment:
   name: "fraud_detection_experiment"
-  rounds: 2
+  rounds: 20
   epochs: 1
   trainset_size: 10
   seed: 666
@@ -33,7 +33,13 @@ experiment:
     name:
       train: "fraudTrain.csv"
       test: "fraudTest.csv"
-    batch_size: 32
+    batch_size: 256
+    # Transform setup: computes statistics on full training data BEFORE partitioning
+    transform_setup:
+      package: "p2pfl.examples.fraud.transforms"
+      function: "setup_fraud_transforms"
+      params: {}
+    # Transforms: applied to each partition AFTER partitioning
     transforms:
       package: "p2pfl.examples.fraud.transforms"
       function: "get_fraud_transforms"
@@ -48,7 +54,8 @@ experiment:
   model:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
-    params: {}
+    params:
+      input_size: 20
 
   # Aggregation algorithm
   aggregator:
@@ -62,6 +69,7 @@ settings:
     log_level: "INFO"
     grpc_timeout: 2
     disable_ray: False
+    MINIMAL_LOGGING: true
 
   SSL:
     use_ssl: false
@@ -95,3 +103,4 @@ profiling:
   enabled: false
   measure_time: true
   output_dir: "profile/fraud"
+

@@ -86,7 +86,8 @@ class StartLearningStage(Stage):
         state.model_initialized_lock.acquire()
         # Communicate Initialization
         communication_protocol.broadcast(communication_protocol.build_msg(ModelInitializedCommand.get_name()))
-        logger.info(state.addr, "🗣️ Gossiping model initialization.")
+        if not Settings.general.MINIMAL_LOGGING:
+            logger.info(state.addr, "🗣️ Gossiping model initialization.")
         time.sleep(1.0)
         StartLearningStage.__gossip_model(state, communication_protocol, learner)
 
@@ -107,7 +108,8 @@ class StartLearningStage(Stage):
             if len(all_available_nodes) == 0:
                 all_available_nodes = [state.addr]
             state.train_set = all_available_nodes
-            logger.info(state.addr, f"🚂 Train set of {len(state.train_set)} nodes (all available nodes): {state.train_set}")
+            if not Settings.general.MINIMAL_LOGGING:
+                logger.info(state.addr, f"🚂 Train set of {len(state.train_set)} nodes (all available nodes): {state.train_set}")
             return StageFactory.get_stage("TrainStage")
 
         # Vote

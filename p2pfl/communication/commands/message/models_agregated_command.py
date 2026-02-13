@@ -49,6 +49,7 @@ class ModelsAggregatedCommand(Command):
         self.state.wait_for_initialization()
 
         if round == self.state.round:
+            self.state.wait_for_train_set()
             # TODO: Use the state of the aggregator
             with self.state.models_aggregated_lock:
                 # This is to ensure that gossip order does not matter

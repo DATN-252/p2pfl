@@ -170,6 +170,23 @@ class NodeState:
             time.sleep(0.5)
         return self.round is not None
 
+    def wait_for_train_set(self, timeout: float = 10.0) -> bool:
+        """
+        Wait for the train set to be determined.
+
+        Args:
+            timeout: The maximum time to wait in seconds.
+
+        Returns:
+            True if the train set was determined, False otherwise.
+
+        """
+        import time
+        start_time = time.time()
+        while len(self.train_set) == 0 and (time.time() - start_time) < timeout:
+            time.sleep(0.5)
+        return len(self.train_set) > 0
+
     def __str__(self) -> str:
         """Return a String representation of the node state."""
         return (

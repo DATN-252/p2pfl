@@ -79,6 +79,9 @@ class PartialModelCommand(Command):
                 )
                 return
 
+            # Wait for train set to be determined (voting finished)
+            self.state.wait_for_train_set()
+
             # Check moment (not init and invalid round)
             if len(self.state.train_set) == 0:
                 logger.error(self.state.addr, "Model Reception when there is no trainset")

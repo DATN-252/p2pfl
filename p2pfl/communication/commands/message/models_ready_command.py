@@ -19,7 +19,6 @@
 """ModelsReady command."""
 
 from p2pfl.communication.commands.command import Command
-from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 
 
@@ -45,21 +44,5 @@ class ModelsReadyCommand(Command):
             **kwargs: The command keyword arguments.
 
         """
-        # revisar validación al igual que en VoteTrainSetCommand
-        ########################################################
-        # try to improve clarity in message moment check
-        ########################################################
-        self.state.wait_for_initialization()
-
-        if self.state.round is not None:
-            if round in [self.state.round - 1, self.state.round, self.state.round + 1]:
-                # Record that this neighbor is ready for THAT round
-                self.state.nei_status[source] = round
-            else:
-                # Ignored
-                logger.error(
-                    self.state.addr,
-                    f"Models ready from {source} in a late round. Ignored. {round} " + f"!= {self.state.round} / {self.state.round - 1} / {self.state.round + 1}",
-                )
-        else:
-            logger.warning(self.state.addr, "Models ready received when learning is not running")
+        # Record that this neighbor is ready for THAT round
+        self.state.nei_status[source] = round

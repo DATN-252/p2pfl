@@ -21,7 +21,6 @@
 import contextlib
 
 from p2pfl.communication.commands.command import Command
-from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 
 
@@ -51,27 +50,16 @@ class VoteTrainSetCommand(Command):
         ########################################################
         # try to improve clarity in message moment check
         ########################################################
-        self.state.wait_for_initialization()
-
-        if self.state.round is not None:
-            if round >= self.state.round:
-                # build vote dict
-                votes = args
-                tmp_votes = {}
-                for i in range(0, len(votes), 2):
-                    tmp_votes[votes[i]] = int(votes[i + 1])
-                # set votes
-                with self.state.train_set_votes_lock:
-                    if round not in self.state.train_set_votes:
-                        self.state.train_set_votes[round] = {}
-                    self.state.train_set_votes[round][source] = tmp_votes
-                # Communicate to the training process that a vote has been received
-                with contextlib.suppress(Exception):
-                    self.state.wait_votes_ready_lock.release()
-            else:
-                logger.error(
-                    self.state.addr,
-                    f"Vote received in a late round. Ignored. {round} < {self.state.round}",
-                )
-        else:
-            logger.error(self.state.addr, "Vote received when learning is not running")
+        # build vote dict
+        votes = args
+        tmp_votes = {}
+        for i in range(0, len(votes), 2):
+            tmp_votes[votes[i]] = int(votes[i + 1])
+        # set votes
+        with self.state.train_set_votes_lock:
+            if round not in self.state.train_set_votes:
+                self.state.train_set_votes[round] = {}
+            self.state.train_set_votes[round][source] = tmp_votes
+        # Communicate to the training process that a vote has been received
+        with contextlib.suppress(Exception):
+            self.state.wait_votes_ready_lock.release()

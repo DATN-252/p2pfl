@@ -46,18 +46,9 @@ class ModelsAggregatedCommand(Command):
             **kwargs: The command keyword arguments.
 
         """
-        self.state.wait_for_initialization()
-
-        if round in [self.state.round, self.state.round + 1]:
-            self.state.wait_for_train_set()
-            # TODO: Use the state of the aggregator
-            with self.state.models_aggregated_lock:
-                # This is to ensure that gossip order does not matter
-                current_models = self.state.models_aggregated.get(source, [])
-                current_models.extend(args)
-                self.state.models_aggregated[source] = list(set(current_models))
-        else:
-            logger.debug(
-                self.state.addr,
-                f"Models Aggregated message from {source} in a late/future round. Ignored. {round} not in [{self.state.round}, {self.state.round + 1}]",
-            )
+        # TODO: Use the state of the aggregator
+        with self.state.models_aggregated_lock:
+            # This is to ensure that gossip order does not matter
+            current_models = self.state.models_aggregated.get(source, [])
+            current_models.extend(args)
+            self.state.models_aggregated[source] = list(set(current_models))

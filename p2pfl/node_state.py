@@ -58,7 +58,7 @@ class NodeState:
         self.nei_status: dict[str, int] = {}
 
         # Train Set
-        self.train_set: list[str] = []
+        self._train_set: list[str] = []
         # Round -> Source -> Vote (dict[str, int])
         self.train_set_votes: dict[int, dict[str, dict[str, int]]] = {}
 
@@ -78,6 +78,10 @@ class NodeState:
         self.aggregated_model_event = threading.Event()
         self.aggregated_model_event.set()
 
+        # Conditions for efficient waiting
+        self.round_condition = threading.Condition()
+        self.train_set_condition = threading.Condition()
+
     @property
     def round(self) -> int | None:
         """Get the round."""
@@ -92,6 +96,18 @@ class NodeState:
     def exp_name(self) -> str | None:
         """Get the actual experiment name."""
         return self.experiment.exp_name if self.experiment is not None else None
+
+    @property
+    def train_set(self) -> list[str]:
+        """Get the train set."""
+        return self._train_set
+
+    @train_set.setter
+    def train_set(self, value: list[str]) -> None:
+        """Set the train set and notify waiting threads."""
+        with self.train_set_condition:
+            self._train_set = value
+            self.train_set_condition.notify_all()
 
     def set_experiment(
         self,
@@ -121,18 +137,20 @@ class NodeState:
 
         """
         self.status = "Learning"
-        if self.experiment is None:
-            self.experiment = Experiment(
-                exp_name,
-                total_rounds,
-                dataset_name=dataset_name,
-                model_name=model_name,
-                aggregator_name=aggregator_name,
-                framework_name=framework_name,
-                learning_rate=learning_rate,
-                batch_size=batch_size,
-                epochs_per_round=epochs_per_round,
-            )
+        with self.round_condition:
+            if self.experiment is None:
+                self.experiment = Experiment(
+                    exp_name,
+                    total_rounds,
+                    dataset_name=dataset_name,
+                    model_name=model_name,
+                    aggregator_name=aggregator_name,
+                    framework_name=framework_name,
+                    learning_rate=learning_rate,
+                    batch_size=batch_size,
+                    epochs_per_round=epochs_per_round,
+                )
+            self.round_condition.notify_all()
         logger.experiment_started(self.addr, self.experiment)  # TODO: Improve changes on the experiment
 
     def increase_round(self) -> None:
@@ -153,7 +171,13 @@ class NodeState:
             for r in rounds_to_clear:
                 del self.train_set_votes[r]
 
-        self.experiment.increase_round()
+        with self.round_condition:
+            self.experiment.increase_round()
+            self.round_condition.notify_all()
+        
+        # Reset train set and notify
+        self.train_set = [] 
+        
         self.models_aggregated = {}
         logger.experiment_started(self.addr, self.experiment)  # TODO: Improve changes on the experiment
 
@@ -172,10 +196,9 @@ class NodeState:
             True if the experiment was initialized, False otherwise.
 
         """
-        import time
-        start_time = time.time()
-        while self.round is None and (time.time() - start_time) < timeout:
-            time.sleep(0.5)
+        with self.round_condition:
+            if self.round is None:
+                self.round_condition.wait(timeout=timeout)
         
         if self.round is None:
             logger.warning(self.addr, f"Timeout waiting for initialization ({timeout}s)")
@@ -192,10 +215,9 @@ class NodeState:
             True if the train set was determined, False otherwise.
 
         """
-        import time
-        start_time = time.time()
-        while len(self.train_set) == 0 and (time.time() - start_time) < timeout:
-            time.sleep(0.5)
+        with self.train_set_condition:
+            if len(self.train_set) == 0:
+                self.train_set_condition.wait(timeout=timeout)
         
         if len(self.train_set) == 0:
             logger.warning(self.addr, f"Timeout waiting for train set ({timeout}s)")

@@ -59,7 +59,8 @@ class NodeState:
 
         # Train Set
         self.train_set: list[str] = []
-        self.train_set_votes: dict[str, dict[str, int]] = {}
+        # Round -> Source -> Vote (dict[str, int])
+        self.train_set_votes: dict[int, dict[str, dict[str, int]]] = {}
 
         # Actual experiment
         self.experiment: Experiment | None = None
@@ -144,6 +145,13 @@ class NodeState:
         """
         if self.experiment is None:
             raise ValueError("Experiment not initialized")
+
+        # Clear old votes (older than the new round)
+        new_round = self.experiment.round + 1
+        with self.train_set_votes_lock:
+            rounds_to_clear = [r for r in self.train_set_votes.keys() if r < new_round]
+            for r in rounds_to_clear:
+                del self.train_set_votes[r]
 
         self.experiment.increase_round()
         self.models_aggregated = {}

@@ -92,9 +92,10 @@ class VoteTrainSetStage(Stage):
         votes = list(zip(nodes_voted, weights, strict=False))
 
         # Adding votes
-        state.train_set_votes_lock.acquire()
-        state.train_set_votes[state.addr] = dict(votes)
-        state.train_set_votes_lock.release()
+        with state.train_set_votes_lock:
+            if state.round not in state.train_set_votes:
+                state.train_set_votes[state.round] = {}
+            state.train_set_votes[state.round][state.addr] = dict(votes)
 
         # Send and wait for votes
         logger.info(state.addr, "🗳️ Sending train set vote.")
@@ -125,13 +126,13 @@ class VoteTrainSetStage(Stage):
             timeout = count > Settings.training.VOTE_TIMEOUT
 
             # Clear non candidate votes
-            state.train_set_votes_lock.acquire()
-            nc_votes = {
-                k: v
-                for k, v in state.train_set_votes.items()
-                if k in list(communication_protocol.get_neighbors(only_direct=False)) or k == state.addr
-            }
-            state.train_set_votes_lock.release()
+            with state.train_set_votes_lock:
+                current_round_votes = state.train_set_votes.get(state.round, {})
+                nc_votes = {
+                    k: v
+                    for k, v in current_round_votes.items()
+                    if k in list(communication_protocol.get_neighbors(only_direct=False)) or k == state.addr
+                }
 
             # Determine if all votes are received
             needed_votes = set(list(communication_protocol.get_neighbors(only_direct=False)) + [state.addr])
@@ -163,8 +164,10 @@ class VoteTrainSetStage(Stage):
                 top = min(len(results_ordered), trainset_size)
                 results_ordered = results_ordered[0:top]
 
-                # Clear votes
-                state.train_set_votes = {}
+                # Clear votes for the current round
+                with state.train_set_votes_lock:
+                    if state.round in state.train_set_votes:
+                        del state.train_set_votes[state.round]
                 logger.info(state.addr, f"🔢 Computed {len(nc_votes)} votes.")
                 return [i[0] for i in results_ordered]
 

@@ -48,7 +48,7 @@ class ModelsAggregatedCommand(Command):
         """
         self.state.wait_for_initialization()
 
-        if round == self.state.round:
+        if round in [self.state.round, self.state.round + 1]:
             self.state.wait_for_train_set()
             # TODO: Use the state of the aggregator
             with self.state.models_aggregated_lock:
@@ -59,5 +59,5 @@ class ModelsAggregatedCommand(Command):
         else:
             logger.debug(
                 self.state.addr,
-                f"Models Aggregated message from {source} in a late round. Ignored. {round} != {self.state.round}",
+                f"Models Aggregated message from {source} in a late/future round. Ignored. {round} not in [{self.state.round}, {self.state.round + 1}]",
             )

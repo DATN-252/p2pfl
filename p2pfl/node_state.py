@@ -153,7 +153,7 @@ class NodeState:
         """Clear the state."""
         type(self).__init__(self, self.addr)
 
-    def wait_for_initialization(self, timeout: float = 10.0) -> bool:
+    def wait_for_initialization(self, timeout: float = 60.0) -> bool:
         """
         Wait for the experiment to be initialized.
 
@@ -168,9 +168,12 @@ class NodeState:
         start_time = time.time()
         while self.round is None and (time.time() - start_time) < timeout:
             time.sleep(0.5)
+        
+        if self.round is None:
+            logger.warning(self.addr, f"Timeout waiting for initialization ({timeout}s)")
         return self.round is not None
 
-    def wait_for_train_set(self, timeout: float = 10.0) -> bool:
+    def wait_for_train_set(self, timeout: float = 120.0) -> bool:
         """
         Wait for the train set to be determined.
 
@@ -185,6 +188,9 @@ class NodeState:
         start_time = time.time()
         while len(self.train_set) == 0 and (time.time() - start_time) < timeout:
             time.sleep(0.5)
+        
+        if len(self.train_set) == 0:
+            logger.warning(self.addr, f"Timeout waiting for train set ({timeout}s)")
         return len(self.train_set) > 0
 
     def __str__(self) -> str:

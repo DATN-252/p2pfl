@@ -55,6 +55,8 @@ class InitModelCommand(Command):
             logger.error(self.state.addr, "Invalid InitModelCommand message")
             return
 
+        self.state.wait_for_initialization()
+
         # Check if Learning is running
         if self.state.round is not None:
             # Check source

@@ -153,6 +153,23 @@ class NodeState:
         """Clear the state."""
         type(self).__init__(self, self.addr)
 
+    def wait_for_initialization(self, timeout: float = 10.0) -> bool:
+        """
+        Wait for the experiment to be initialized.
+
+        Args:
+            timeout: The maximum time to wait in seconds.
+
+        Returns:
+            True if the experiment was initialized, False otherwise.
+
+        """
+        import time
+        start_time = time.time()
+        while self.round is None and (time.time() - start_time) < timeout:
+            time.sleep(0.5)
+        return self.round is not None
+
     def __str__(self) -> str:
         """Return a String representation of the node state."""
         return (

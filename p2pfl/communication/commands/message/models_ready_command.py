@@ -49,6 +49,8 @@ class ModelsReadyCommand(Command):
         ########################################################
         # try to improve clarity in message moment check
         ########################################################
+        self.state.wait_for_initialization()
+
         if self.state.round is not None:
             if round in [self.state.round - 1, self.state.round]:
                 self.state.nei_status[source] = self.state.round

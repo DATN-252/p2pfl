@@ -46,6 +46,8 @@ class ModelsAggregatedCommand(Command):
             **kwargs: The command keyword arguments.
 
         """
+        self.state.wait_for_initialization()
+
         if round == self.state.round:
             # TODO: Use the state of the aggregator
             with self.state.models_aggregated_lock:

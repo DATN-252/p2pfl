@@ -54,6 +54,8 @@ class FullModelCommand(Command):
         if weights is None:
             raise ValueError("Weights, contributors and weight are required")
 
+        self.state.wait_for_initialization()
+
         # Check if Learning is running
         if self.state.round is not None:
             # Check source

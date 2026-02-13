@@ -51,6 +51,8 @@ class VoteTrainSetCommand(Command):
         ########################################################
         # try to improve clarity in message moment check
         ########################################################
+        self.state.wait_for_initialization()
+
         if self.state.round is not None:
             if round in [self.state.round, self.state.round + 1]:
                 # build vote dict

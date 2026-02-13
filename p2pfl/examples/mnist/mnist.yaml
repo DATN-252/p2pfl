@@ -222,7 +222,7 @@ experiment:
   name: "my_experiment"
   rounds: 100
   epochs: 1
-  trainset_size: 10
+  trainset_size: 50
   seed: 666
   wait_timeout: 18000
 
@@ -258,14 +258,19 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAVG"
     params: # Aggregator parameters (algorithm-specific)
-      learning_rate: 0.001
-      decay_rate: 0.95 # the reduce learning_rate each round
-      min_learning_rate: 0.0001 # minimum of learning rate after decay
-      alpha: 1.0 #ALPHA for glompetz function
-      # log_dfedadp_params: true # specific log in dfedadp
+      {}
+      
+    # package: "p2pfl.learning.aggregators.dfedadp"
+    # aggregator: "DFedAdp"
+    # params: # Aggregator parameters (algorithm-specific)
+    #   learning_rate: 0.001
+    #   decay_rate: 0.95 # the reduce learning_rate each round
+    #   min_learning_rate: 0.0001 # minimum of learning rate after decay
+    #   alpha: 1.0 #ALPHA for glompetz function
+    #   # log_dfedadp_params: true # specific log in dfedadp
 
 # General experiment settings
 settings:
@@ -300,7 +305,7 @@ settings:
     disable_vote: true  # When true, all nodes participate in training (no voting step)
     vote_timeout: 30
     aggregation_timeout: 300
-    ray_actor_pool_size: 10
+    # ray_actor_pool_size: 10
     # disable_vote: true
 # Profiling configuration
 profiling:

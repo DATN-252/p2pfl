@@ -65,11 +65,18 @@ class DSGT(Aggregator):
         # --- 4. Calculate Metropolis-Hastings Weights (Dynamically) ---
         my_degree = int(self_info["degrees"])
         neighbor_weights = {}
+        valid_neighbors = {}
+        
         for addr, model in model_map.items():
             if addr == self.addr:
                 continue
-            neighbor_degree = int(self._get_and_validate_model_info(model)["degrees"])
-            neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
+            try:
+                neighbor_info = self._get_and_validate_model_info(model)
+                neighbor_degree = int(neighbor_info["degrees"])
+                neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
+                valid_neighbors[addr] = model
+            except (ValueError, KeyError):
+                logger.debug(self.addr, f"Skipping neighbor {addr} in DSGT aggregation: missing metadata.")
         
         self_weight = 1.0 - sum(neighbor_weights.values())
         weights = {**neighbor_weights, self.addr: self_weight}
@@ -78,7 +85,9 @@ class DSGT(Aggregator):
         # x_{k+1} = Σ w_ij * (x_j - α * y_j)
         new_x_params = [np.zeros_like(p) for p in self_model.get_parameters()]
 
-        for addr, model in model_map.items():
+        # Use valid_neighbors + self
+        for addr in list(valid_neighbors.keys()) + [self.addr]:
+            model = model_map[addr]
             w_ij = weights.get(addr, 0.0)
             if w_ij == 0.0:
                 continue
@@ -94,7 +103,8 @@ class DSGT(Aggregator):
         # --- 6. Step 2: Tracker Update (y_{k+1}) ---
         # y_{k+1} = Σ w_ij * y_j + (g_k - g_{k-1})
         consensus_y = [np.zeros_like(p) for p in self.y_tracker]
-        for addr, model in model_map.items():
+        for addr in list(valid_neighbors.keys()) + [self.addr]:
+            model = model_map[addr]
             w_ij = weights.get(addr, 0.0)
             if w_ij == 0.0:
                 continue

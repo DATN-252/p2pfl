@@ -19,13 +19,11 @@
 """PartialModelCommand command."""
 
 from collections.abc import Callable
-
 from p2pfl.communication.commands.command import Command
 from p2pfl.communication.commands.message.models_agregated_command import ModelsAggregatedCommand
 from p2pfl.communication.commands.message.pre_send_model_command import PreSendModelCommand
 from p2pfl.communication.protocols.communication_protocol import CommunicationProtocol
 from p2pfl.learning.aggregators.aggregator import Aggregator
-from p2pfl.learning.frameworks.exceptions import DecodingParamsError, ModelNotMatchingError
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
@@ -34,14 +32,7 @@ from p2pfl.node_state import NodeState
 class PartialModelCommand(Command):
     """PartialModelCommand."""
 
-    def __init__(
-        self,
-        state: NodeState,
-        stop: Callable[[], None],
-        aggregator: Aggregator,
-        comm_proto: CommunicationProtocol,
-        learner: Learner,
-    ) -> None:
+    def __init__(self, state: NodeState, stop: Callable[[], None], aggregator: Aggregator, comm_proto: CommunicationProtocol, learner: Learner) -> None:
         """Initialize PartialModelCommand."""
         self.state = state
         self.stop = stop
@@ -54,60 +45,20 @@ class PartialModelCommand(Command):
         """Get the command name."""
         return "partial_model"
 
-    def execute(
-        self,
-        source: str,
-        round: int,
-        weights: bytes | None = None,
-        contributors: list[str] | None = None,  # TIPO ESTA MAL (NECESARIO CASTEARLO AL LLAMAR)
-        num_samples: int | None = None,
-        **kwargs,
-    ) -> None:
-        """Execute the command."""
+    def execute(self, source: str, round: int, weights: bytes | None = None, contributors: list[str] | None = None, num_samples: int | None = None, **kwargs) -> None:
+        """Execute the command (Non-blocking)."""
         if weights is None or contributors is None or num_samples is None:
-            raise ValueError("Weights, contributors and weight are required")
+            return
 
-        # NON-BLOCKING: Handle rounds
-        # If the round is in the future, the Aggregator will buffer it in __unhandled_models
-        # if we just pass it to add_model().
-        
-        # However, if it is a late round, we ignore it to avoid pollution
         if self.state.round is not None and round < self.state.round:
-            logger.debug(
-                self.state.addr,
-                f"Model reception in a late round ({round} < {self.state.round}).",
-            )
             return
 
         try:
-            # Add model to aggregator
-            # Aggregator handles buffering if it is not ready yet (train_set is empty)
             model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
             models_added = self.aggregator.add_model(model)
-            
-            # If models were actually aggregated (means we are in the correct round and state)
             if models_added != []:
-                # Communicate Aggregation
-                self.communication_protocol.broadcast(
-                    self.communication_protocol.build_msg(
-                        ModelsAggregatedCommand.get_name(),
-                        models_added,
-                        round=self.state.round,
-                    )
-                )
+                self.communication_protocol.broadcast(self.communication_protocol.build_msg(ModelsAggregatedCommand.get_name(), models_added, round=self.state.round))
             else:
-                # Try to remove the model from the node_state.sending_models
                 PreSendModelCommand.remove_hashed(self.state, self.get_name(), contributors, round)
-
-        # Warning: these stops can cause a denegation of service attack
-        except DecodingParamsError:
-            logger.error(self.state.addr, "Error decoding parameters.")
-            self.stop()
-
-        except ModelNotMatchingError:
-            logger.error(self.state.addr, "Models not matching.")
-            self.stop()
-
         except Exception as e:
-            logger.error(self.state.addr, f"Unknown error adding model: {e}")
-            self.stop()
+            logger.error(self.state.addr, f"Error adding model: {e}")

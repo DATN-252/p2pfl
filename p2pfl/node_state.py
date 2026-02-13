@@ -26,23 +26,6 @@ from p2pfl.management.logger import logger
 class NodeState:
     """
     Class to store the main state of a learning node.
-
-    Attributes:
-        addr: The address of the node.
-        status: The status of the node.
-        learner: The learner of the node.
-        models_aggregated: The models aggregated by the node.
-        nei_status: The status of the neighbors.
-        train_set: The train set of the node.
-        train_set_votes: The votes of the train set.
-        train_set_votes_lock: The lock for the train set votes.
-        start_thread_lock: The lock for the start thread.
-        wait_votes_ready_lock: The lock for the wait votes ready.
-        model_initialized_lock: The lock for the model initialized.
-
-    Args:
-        addr: The address of the node.
-
     """
 
     def __init__(self, addr: str) -> None:
@@ -50,7 +33,7 @@ class NodeState:
         self.addr = addr
         self.status = "Idle"
 
-        # Aggregator (move to the aggregator?)
+        # Aggregator
         self.models_aggregated_lock = threading.Lock()
         self.models_aggregated: dict[str, list[str]] = {}
 
@@ -114,58 +97,22 @@ class NodeState:
         self,
         exp_name: str,
         total_rounds: int,
-        dataset_name: str | None = None,
-        model_name: str | None = None,
-        aggregator_name: str | None = None,
-        framework_name: str | None = None,
-        learning_rate: float | None = None,
-        batch_size: int | None = None,
-        epochs_per_round: int | None = None,
+        **kwargs,
     ) -> None:
-        """
-        Start a new experiment.
-
-        Args:
-            exp_name: The name of the experiment.
-            total_rounds: The total rounds of the experiment.
-            dataset_name: The name of the dataset.
-            model_name: The name of the model.
-            aggregator_name: The name of the aggregator.
-            framework_name: The name of the framework.
-            learning_rate: The learning rate.
-            batch_size: The batch size.
-            epochs_per_round: The number of epochs per round.
-
-        """
+        """Start a new experiment."""
         self.status = "Learning"
         with self.round_condition:
             if self.experiment is None:
-                self.experiment = Experiment(
-                    exp_name,
-                    total_rounds,
-                    dataset_name=dataset_name,
-                    model_name=model_name,
-                    aggregator_name=aggregator_name,
-                    framework_name=framework_name,
-                    learning_rate=learning_rate,
-                    batch_size=batch_size,
-                    epochs_per_round=epochs_per_round,
-                )
+                self.experiment = Experiment(exp_name, total_rounds, **kwargs)
             self.round_condition.notify_all()
-        logger.experiment_started(self.addr, self.experiment)  # TODO: Improve changes on the experiment
+        logger.experiment_started(self.addr, self.experiment)
 
     def increase_round(self) -> None:
-        """
-        Increase the round number.
-
-        Raises:
-            ValueError: If the experiment is not initialized.
-
-        """
+        """Increase the round number."""
         if self.experiment is None:
             raise ValueError("Experiment not initialized")
 
-        # Clear old votes (older than the new round)
+        # Clear old votes
         new_round = self.experiment.round + 1
         with self.train_set_votes_lock:
             rounds_to_clear = [r for r in self.train_set_votes.keys() if r < new_round]
@@ -176,60 +123,31 @@ class NodeState:
             self.experiment.increase_round()
             self.round_condition.notify_all()
         
-        # Reset train set and notify
         self.train_set = [] 
-        
         self.models_aggregated = {}
-        logger.experiment_started(self.addr, self.experiment)  # TODO: Improve changes on the experiment
+        logger.experiment_started(self.addr, self.experiment)
 
     def clear(self) -> None:
         """Clear the state."""
         type(self).__init__(self, self.addr)
 
     def wait_for_initialization(self, timeout: float = 60.0) -> bool:
-        """
-        Wait for the experiment to be initialized.
-
-        Args:
-            timeout: The maximum time to wait in seconds.
-
-        Returns:
-            True if the experiment was initialized, False otherwise.
-
-        """
+        """Wait for the experiment to be initialized."""
         with self.round_condition:
             if self.round is None:
                 self.round_condition.wait(timeout=timeout)
-        
-        if self.round is None:
-            logger.warning(self.addr, f"Timeout waiting for initialization ({timeout}s)")
         return self.round is not None
 
     def wait_for_train_set(self, timeout: float = 120.0) -> bool:
-        """
-        Wait for the train set to be determined.
-
-        Args:
-            timeout: The maximum time to wait in seconds.
-
-        Returns:
-            True if the train set was determined, False otherwise.
-
-        """
+        """Wait for the train set to be determined."""
         with self.train_set_condition:
             if len(self.train_set) == 0:
                 self.train_set_condition.wait(timeout=timeout)
-        
-        if len(self.train_set) == 0:
-            logger.warning(self.addr, f"Timeout waiting for train set ({timeout}s)")
         return len(self.train_set) > 0
 
     def __str__(self) -> str:
         """Return a String representation of the node state."""
         return (
             f"NodeState(addr={self.addr}, status={self.status}, exp_name={self.exp_name}, "
-            f"round={self.round}, total_rounds={self.total_rounds}, "
-            f"models_aggregated={self.models_aggregated}, nei_status={self.nei_status}, "
-            f"train_set={self.train_set}, train_set_votes={self.train_set_votes}, "
-            f"sending_models={self.sending_models})"
+            f"round={self.round}, total_rounds={self.total_rounds})"
         )

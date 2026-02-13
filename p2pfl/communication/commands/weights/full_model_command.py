@@ -19,10 +19,8 @@
 """FullModelCommand."""
 
 from collections.abc import Callable
-
 from p2pfl.communication.commands.command import Command
 from p2pfl.learning.aggregators.aggregator import Aggregator
-from p2pfl.learning.frameworks.exceptions import DecodingParamsError, ModelNotMatchingError
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
@@ -43,47 +41,23 @@ class FullModelCommand(Command):
         """Get the command name."""
         return "add_model"
 
-    def execute(
-        self,
-        source: str,
-        round: int,
-        weights: bytes | None = None,
-        **kwargs,
-    ) -> None:
-        """Execute the command."""
+    def execute(self, source: str, round: int, weights: bytes | None = None, **kwargs) -> None:
+        """Execute the command (Non-blocking)."""
         if weights is None:
-            raise ValueError("Weights, contributors and weight are required")
-
-        # NON-BLOCKING round check
-        if self.state.round is not None and round < self.state.round:
-            logger.debug(
-                self.state.addr,
-                f"Model reception in a late round ({round} < {self.state.round}).",
-            )
             return
 
-        # If we are ready for this round's aggregated model
+        if self.state.round is not None and round < self.state.round:
+            return
+
         if self.state.round == round and not self.state.aggregated_model_event.is_set():
             try:
-                logger.info(self.state.addr, f"📦 Aggregated model received for round {round}.")
-                # Decode and set model
                 self.learner.set_model(weights)
-                # Notify learning thread
                 self.state.aggregated_model_event.set()
-            except DecodingParamsError:
-                logger.error(self.state.addr, "❌ Error decoding parameters.")
-                self.stop()
-            except ModelNotMatchingError:
-                logger.error(self.state.addr, "❌ Models not matching.")
-                self.stop()
             except Exception as e:
-                logger.error(self.state.addr, f"❌ Unknown error adding full model: {e}")
-                self.stop()
+                logger.error(self.state.addr, f"Error adding full model: {e}")
         else:
-            # Buffer it in the aggregator for later retrieval if needed
-            logger.debug(self.state.addr, f"Received full model for round {round} while not waiting for it. Adding to aggregator buffer.")
             try:
                 model = self.learner.get_model().build_copy(params=weights, contributors=[source])
                 self.aggregator.add_model(model)
             except Exception as e:
-                logger.error(self.state.addr, f"Error adding early full model to aggregator: {e}")
+                logger.error(self.state.addr, f"Error buffering full model: {e}")

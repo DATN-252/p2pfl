@@ -35,14 +35,6 @@ class ModelsReadyCommand(Command):
         return "models_ready"
 
     def execute(self, source: str, round: int, **kwargs) -> None:
-        """
-        Execute the command.
-
-        Args:
-            source: The source of the command.
-            round: The round of the command.
-            **kwargs: The command keyword arguments.
-
-        """
-        # Record that this neighbor is ready for THAT round
+        """Execute the command."""
+        # Record that neighbor is ready for THAT round (non-blocking)
         self.state.nei_status[source] = round

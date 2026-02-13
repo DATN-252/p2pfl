@@ -19,10 +19,8 @@
 """InitModel command."""
 
 from collections.abc import Callable
-
 from p2pfl.communication.commands.command import Command
 from p2pfl.learning.aggregators.aggregator import Aggregator
-from p2pfl.learning.frameworks.exceptions import DecodingParamsError, ModelNotMatchingError
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
@@ -43,64 +41,23 @@ class InitModelCommand(Command):
         """Get the command name."""
         return "init_model"
 
-    def execute(
-        self,
-        source: str,
-        round: int,
-        weights: bytes | None = None,
-        **kwargs,
-    ) -> None:
+    def execute(self, source: str, round: int, weights: bytes | None = None, **kwargs) -> None:
         """Execute the command."""
         if weights is None:
-            logger.error(self.state.addr, "Invalid InitModelCommand message")
             return
 
-        # Check if Learning is running
         if self.state.round is not None:
-            # Check source
             if round != self.state.round:
-                logger.debug(
-                    self.state.addr,
-                    f"Model initiallization in a late round ({round} != {self.state.round}).",
-                )
                 return
-
-            # Check moment (not init and invalid round)
             if not self.state.model_initialized_lock.locked():
-                logger.info(
-                    self.state.addr,
-                    "🕳  Model initizalization message when the model is already initialized. Ignored.",
-                )
                 return
-
             try:
-                # Set new weights
                 self.learner.set_model(weights)
-                # Release lock - wrap in try/except to handle concurrent releases
                 try:
                     self.state.model_initialized_lock.release()
-                    logger.info(self.state.addr, "🤖 Model Weights Initialized")
                 except RuntimeError:
-                    # This likely means another concurrent INIT_MODEL message already released the lock.
-                    logger.debug(
-                        self.state.addr,
-                        "Attempted to release model_initialized_lock, but it was already unlocked. Likely due to concurrent initialization",
-                    )
-
-            # Warning: these stops can cause a denegation of service attack
-            except DecodingParamsError:
-                logger.error(self.state.addr, "Error decoding parameters.")
-                self.stop()
-
-            except ModelNotMatchingError:
-                logger.error(self.state.addr, "Models not matching.")
-                self.stop()
-
+                    pass
             except Exception as e:
-                logger.error(self.state.addr, f"Unknown error adding initial model: {e}")
-                self.stop()
-
+                logger.error(self.state.addr, f"Error initializing model: {e}")
         else:
-            # Buffer it for when the learning starts
-            logger.debug(self.state.addr, "Buffering initial model as learning hasn't started yet")
             self.state.buffered_initial_weights = weights

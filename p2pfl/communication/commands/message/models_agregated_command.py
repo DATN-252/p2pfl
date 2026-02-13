@@ -19,7 +19,6 @@
 """ModelsAggregated command."""
 
 from p2pfl.communication.commands.command import Command
-from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 
 
@@ -36,19 +35,8 @@ class ModelsAggregatedCommand(Command):
         return "models_aggregated"
 
     def execute(self, source: str, round: int, *args, **kwargs) -> None:
-        """
-        Execute the command.
-
-        Args:
-            source: The source of the command.
-            round: The round of the command.
-            *args: List of models that contribute to the aggregated model.
-            **kwargs: The command keyword arguments.
-
-        """
-        # TODO: Use the state of the aggregator
+        """Execute the command."""
         with self.state.models_aggregated_lock:
-            # This is to ensure that gossip order does not matter
             current_models = self.state.models_aggregated.get(source, [])
             current_models.extend(args)
             self.state.models_aggregated[source] = list(set(current_models))

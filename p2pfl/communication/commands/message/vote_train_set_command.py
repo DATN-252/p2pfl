@@ -19,7 +19,6 @@
 """VoteTrainSetCommand."""
 
 import contextlib
-
 from p2pfl.communication.commands.command import Command
 from p2pfl.node_state import NodeState
 
@@ -37,29 +36,19 @@ class VoteTrainSetCommand(Command):
         return "vote_train_set"
 
     def execute(self, source: str, round: int, *args, **kwargs) -> None:
-        """
-        Execute the command. Start learning thread.
-
-        Args:
-            source: The source of the command.
-            round: The round of the command.
-            *args: Vote values (pairs of key and values).
-            **kwargs: The command keyword arguments.
-
-        """  # check moment: round or round + 1 because of node async
-        ########################################################
-        # try to improve clarity in message moment check
-        ########################################################
+        """Execute the command."""
         # build vote dict
         votes = args
         tmp_votes = {}
         for i in range(0, len(votes), 2):
             tmp_votes[votes[i]] = int(votes[i + 1])
-        # set votes
+        
+        # set votes for specific round (non-blocking)
         with self.state.train_set_votes_lock:
             if round not in self.state.train_set_votes:
                 self.state.train_set_votes[round] = {}
             self.state.train_set_votes[round][source] = tmp_votes
-        # Communicate to the training process that a vote has been received
+            
+        # Notify wait loop
         with contextlib.suppress(Exception):
             self.state.wait_votes_ready_lock.release()

@@ -55,8 +55,6 @@ class InitModelCommand(Command):
             logger.error(self.state.addr, "Invalid InitModelCommand message")
             return
 
-        self.state.wait_for_initialization()
-
         # Check if Learning is running
         if self.state.round is not None:
             # Check source
@@ -103,4 +101,6 @@ class InitModelCommand(Command):
                 self.stop()
 
         else:
-            logger.debug(self.state.addr, "Tried to add a model while learning is not running")
+            # Buffer it for when the learning starts
+            logger.debug(self.state.addr, "Buffering initial model as learning hasn't started yet")
+            self.state.buffered_initial_weights = weights

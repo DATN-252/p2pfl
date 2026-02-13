@@ -64,6 +64,7 @@ class NodeState:
 
         # Actual experiment
         self.experiment: Experiment | None = None
+        self.buffered_initial_weights: bytes | None = None
 
         # For PreSendModelCommand state
         self.sending_models: dict[str, dict[str, float]] = {}

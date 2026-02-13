@@ -54,8 +54,6 @@ class FullModelCommand(Command):
         if weights is None:
             raise ValueError("Weights, contributors and weight are required")
 
-        self.state.wait_for_initialization()
-
         # Check if Learning is running
         if self.state.round is not None:
             # Check source
@@ -65,9 +63,6 @@ class FullModelCommand(Command):
                     f"Model reception in a late round ({round} != {self.state.round}).",
                 )
                 return
-
-            # Wait for train set to be determined
-            self.state.wait_for_train_set()
 
             if self.state.aggregated_model_event.is_set():
                 logger.debug(self.state.addr, "😲 Aggregated model not expected.")
@@ -92,4 +87,12 @@ class FullModelCommand(Command):
                 logger.error(self.state.addr, f"❌ Unknown error adding full model: {e}")
                 self.stop()
         else:
-            logger.debug(self.state.addr, "❌ Tried to add a model while learning is not running")
+            logger.debug(self.state.addr, f"Received full model for round {round} while learning is not running. Adding to aggregator.")
+            try:
+                # We can't set it to learner yet as we don't know the experiment
+                # But we can let aggregator handle it if needed, or just let gossip continue.
+                # Usually FullModelCommand is for round finished gossiping.
+                model = self.learner.get_model().build_copy(params=weights, contributors=[source])
+                self.aggregator.add_model(model)
+            except Exception as e:
+                logger.error(self.state.addr, f"Error adding early full model to aggregator: {e}")

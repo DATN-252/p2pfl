@@ -83,6 +83,16 @@ class StartLearningStage(Stage):
 
         # Wait and gossip model inicialization
         logger.info(state.addr, "⏳ Waiting initialization.")
+        # Check if we already have buffered weights
+        if state.buffered_initial_weights is not None:
+            learner.set_model(state.buffered_initial_weights)
+            state.buffered_initial_weights = None
+            try:
+                state.model_initialized_lock.release()
+                logger.info(state.addr, "🤖 Model Weights Initialized from buffer")
+            except RuntimeError:
+                pass
+        
         state.model_initialized_lock.acquire()
         # Communicate Initialization
         communication_protocol.broadcast(communication_protocol.build_msg(ModelInitializedCommand.get_name()))

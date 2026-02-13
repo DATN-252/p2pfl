@@ -67,8 +67,6 @@ class PartialModelCommand(Command):
         if weights is None or contributors is None or num_samples is None:
             raise ValueError("Weights, contributors and weight are required")
 
-        self.state.wait_for_initialization()
-
         # Check if Learning is running
         if self.state.round is not None:
             # Check source
@@ -79,16 +77,9 @@ class PartialModelCommand(Command):
                 )
                 return
 
-            # Wait for train set to be determined (voting finished)
-            self.state.wait_for_train_set()
-
-            # Check moment (not init and invalid round)
-            if len(self.state.train_set) == 0:
-                logger.error(self.state.addr, "Model Reception when there is no trainset")
-                return
-
             try:
                 # Add model to aggregator
+                # If train_set is not yet set, Aggregator will put it into __unhandled_models
                 model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
                 models_added = self.aggregator.add_model(model)
                 if models_added != []:
@@ -118,4 +109,9 @@ class PartialModelCommand(Command):
                 self.stop()
 
         else:
-            logger.debug(self.state.addr, "Tried to add a model while learning is not running")
+            logger.debug(self.state.addr, f"Received partial model for round {round} while learning is not running. Adding to aggregator (may be handled later).")
+            try:
+                model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
+                self.aggregator.add_model(model)
+            except Exception as e:
+                logger.error(self.state.addr, f"Error adding early partial model to aggregator: {e}")

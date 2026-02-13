@@ -67,51 +67,47 @@ class PartialModelCommand(Command):
         if weights is None or contributors is None or num_samples is None:
             raise ValueError("Weights, contributors and weight are required")
 
-        # Check if Learning is running
-        if self.state.round is not None:
-            # Check source
-            if round != self.state.round:
-                logger.debug(
-                    self.state.addr,
-                    f"Model reception in a late round ({round} != {self.state.round}).",
-                )
-                return
+        # NON-BLOCKING: Handle rounds
+        # If the round is in the future, the Aggregator will buffer it in __unhandled_models
+        # if we just pass it to add_model().
+        
+        # However, if it is a late round, we ignore it to avoid pollution
+        if self.state.round is not None and round < self.state.round:
+            logger.debug(
+                self.state.addr,
+                f"Model reception in a late round ({round} < {self.state.round}).",
+            )
+            return
 
-            try:
-                # Add model to aggregator
-                # If train_set is not yet set, Aggregator will put it into __unhandled_models
-                model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
-                models_added = self.aggregator.add_model(model)
-                if models_added != []:
-                    # Communicate Aggregation
-                    self.communication_protocol.broadcast(
-                        self.communication_protocol.build_msg(
-                            ModelsAggregatedCommand.get_name(),
-                            models_added,
-                            round=self.state.round,
-                        )
+        try:
+            # Add model to aggregator
+            # Aggregator handles buffering if it is not ready yet (train_set is empty)
+            model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
+            models_added = self.aggregator.add_model(model)
+            
+            # If models were actually aggregated (means we are in the correct round and state)
+            if models_added != []:
+                # Communicate Aggregation
+                self.communication_protocol.broadcast(
+                    self.communication_protocol.build_msg(
+                        ModelsAggregatedCommand.get_name(),
+                        models_added,
+                        round=self.state.round,
                     )
-                else:
-                    # Try to remove the model from the node_state.sending_models
-                    PreSendModelCommand.remove_hashed(self.state, self.get_name(), contributors, self.state.round)
+                )
+            else:
+                # Try to remove the model from the node_state.sending_models
+                PreSendModelCommand.remove_hashed(self.state, self.get_name(), contributors, round)
 
-            # Warning: these stops can cause a denegation of service attack
-            except DecodingParamsError:
-                logger.error(self.state.addr, "Error decoding parameters.")
-                self.stop()
+        # Warning: these stops can cause a denegation of service attack
+        except DecodingParamsError:
+            logger.error(self.state.addr, "Error decoding parameters.")
+            self.stop()
 
-            except ModelNotMatchingError:
-                logger.error(self.state.addr, "Models not matching.")
-                self.stop()
+        except ModelNotMatchingError:
+            logger.error(self.state.addr, "Models not matching.")
+            self.stop()
 
-            except Exception as e:
-                logger.error(self.state.addr, f"Unknown error adding model: {e}")
-                self.stop()
-
-        else:
-            logger.debug(self.state.addr, f"Received partial model for round {round} while learning is not running. Adding to aggregator (may be handled later).")
-            try:
-                model = self.laerner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
-                self.aggregator.add_model(model)
-            except Exception as e:
-                logger.error(self.state.addr, f"Error adding early partial model to aggregator: {e}")
+        except Exception as e:
+            logger.error(self.state.addr, f"Unknown error adding model: {e}")
+            self.stop()

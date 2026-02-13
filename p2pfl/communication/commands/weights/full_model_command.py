@@ -54,44 +54,35 @@ class FullModelCommand(Command):
         if weights is None:
             raise ValueError("Weights, contributors and weight are required")
 
-        # Check if Learning is running
-        if self.state.round is not None:
-            # Check source
-            if round != self.state.round:
-                logger.debug(
-                    self.state.addr,
-                    f"Model reception in a late round ({round} != {self.state.round}).",
-                )
-                return
+        # NON-BLOCKING round check
+        if self.state.round is not None and round < self.state.round:
+            logger.debug(
+                self.state.addr,
+                f"Model reception in a late round ({round} < {self.state.round}).",
+            )
+            return
 
-            if self.state.aggregated_model_event.is_set():
-                logger.debug(self.state.addr, "😲 Aggregated model not expected.")
-                return
+        # If we are ready for this round's aggregated model
+        if self.state.round == round and not self.state.aggregated_model_event.is_set():
             try:
-                logger.info(self.state.addr, "📦 Aggregated model received.")
+                logger.info(self.state.addr, f"📦 Aggregated model received for round {round}.")
                 # Decode and set model
                 self.learner.set_model(weights)
-                # Release here caused the simulation to crash before
+                # Notify learning thread
                 self.state.aggregated_model_event.set()
-
-            # Warning: these stops can cause a denegation of service attack
             except DecodingParamsError:
                 logger.error(self.state.addr, "❌ Error decoding parameters.")
                 self.stop()
-
             except ModelNotMatchingError:
                 logger.error(self.state.addr, "❌ Models not matching.")
                 self.stop()
-
             except Exception as e:
                 logger.error(self.state.addr, f"❌ Unknown error adding full model: {e}")
                 self.stop()
         else:
-            logger.debug(self.state.addr, f"Received full model for round {round} while learning is not running. Adding to aggregator.")
+            # Buffer it in the aggregator for later retrieval if needed
+            logger.debug(self.state.addr, f"Received full model for round {round} while not waiting for it. Adding to aggregator buffer.")
             try:
-                # We can't set it to learner yet as we don't know the experiment
-                # But we can let aggregator handle it if needed, or just let gossip continue.
-                # Usually FullModelCommand is for round finished gossiping.
                 model = self.learner.get_model().build_copy(params=weights, contributors=[source])
                 self.aggregator.add_model(model)
             except Exception as e:

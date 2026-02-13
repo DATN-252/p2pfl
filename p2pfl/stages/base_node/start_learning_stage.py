@@ -99,11 +99,12 @@ class StartLearningStage(Stage):
         # If trainset_size is 0 or greater than or equal to the number of available nodes, skip voting and set all nodes as train set
         # When trainset_size is 0, it means skip voting completely
         # When trainset_size is greater than or equal to available nodes, no need to vote
+        # When Settings.training.DISABLE_VOTE is True, skip voting and all nodes participate
         all_available_nodes = list(communication_protocol.get_neighbors(only_direct=False).keys())
         if state.addr not in all_available_nodes:
             all_available_nodes.append(state.addr)
         
-        if trainset_size is not None and (trainset_size == 0 or (nodes is not None and trainset_size >= nodes) or trainset_size >= len(all_available_nodes)):
+        if Settings.training.DISABLE_VOTE or (trainset_size is not None and (trainset_size == 0 or (nodes is not None and trainset_size >= nodes) or trainset_size >= len(all_available_nodes))):
             # Set all available nodes as the training set
             if len(all_available_nodes) == 0:
                 all_available_nodes = [state.addr]

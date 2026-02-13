@@ -222,7 +222,7 @@ experiment:
   name: "my_experiment"
   rounds: 100
   epochs: 1
-  trainset_size: 30
+  trainset_size: 20
   seed: 666
   wait_timeout: 18000
 
@@ -297,10 +297,11 @@ settings:
     models_per_round: 4
     exit_on_x_equal_rounds: 50
   training:
+    disable_vote: true  # When true, all nodes participate in training (no voting step)
     vote_timeout: 30
     aggregation_timeout: 300
-    ray_actor_pool_size: 50
-
+    ray_actor_pool_size: 20
+    # disable_vote: true
 # Profiling configuration
 profiling:
   enabled: false

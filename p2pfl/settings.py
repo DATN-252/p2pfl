@@ -110,6 +110,8 @@ class SSL:
 class Training:
     """Training process settings."""
 
+    DISABLE_VOTE: bool = False
+    """When True, skip voting and all nodes participate in training."""
     VOTE_TIMEOUT: int = 60
     """Timeout (seconds) for a node to wait for a vote."""
     AGGREGATION_TIMEOUT: int = 300

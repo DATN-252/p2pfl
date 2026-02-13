@@ -34,6 +34,7 @@ from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.learning.frameworks.pytorch.lightning_dataset import PyTorchExportStrategy
 from p2pfl.learning.frameworks.pytorch.lightning_logger import FederatedLogger
+from p2pfl.learning.frameworks.pytorch.callbacks.optimizer_control_callback import OptimizerControlCallback
 from p2pfl.management.logger import logger
 from p2pfl.settings import Settings
 from p2pfl.utils.check_ray import ray_installed
@@ -79,20 +80,38 @@ class LightningLearner(Learner):
             raise ValueError("The data must be a PyTorch DataLoader")
         return pt_model, pt_data
 
-    def fit(self) -> P2PFLModel:
+    def fit(self, apply_update: bool = True) -> P2PFLModel:
         """Fit the model."""
         if Settings.general.SEED is not None and not ray_installed():
             raise ValueError("You must use Ray to set a seed with PyTorch Lightning. Not working on a same process. | pip install ray")
         set_seed(Settings.general.SEED, self.get_framework())
         try:
             if self.epochs > 0:
+                # Find the optimizer control callback to configure it
+                opt_ctrl_callback = None
+                for cb in self.callbacks:
+                    if isinstance(cb, OptimizerControlCallback):
+                        opt_ctrl_callback = cb
+                        break
+                
+                # If the callback is present (for CtG algos), configure it.
+                # If not, create a default one that does nothing but apply the update.
+                if opt_ctrl_callback:
+                    opt_ctrl_callback.set_apply_update(apply_update)
+                    all_callbacks = self.callbacks
+                else:
+                    opt_ctrl_callback = OptimizerControlCallback()
+                    opt_ctrl_callback.set_apply_update(apply_update)
+                    all_callbacks = self.callbacks.copy() + [opt_ctrl_callback]
+
                 self.__trainer = Trainer(
                     max_epochs=self.epochs,
                     accelerator="auto",
                     logger=self.logger,  # type: ignore
                     enable_checkpointing=False,
                     enable_model_summary=False,
-                    callbacks=self.callbacks.copy(),  # type: ignore
+                    callbacks=all_callbacks,  # type: ignore
+                    gradient_clip_val=1.0,
                 )
                 pt_model, pt_data = self.__get_pt_model_data()
                 self.__trainer.fit(pt_model, pt_data)

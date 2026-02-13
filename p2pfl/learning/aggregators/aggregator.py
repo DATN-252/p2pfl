@@ -42,6 +42,7 @@ class Aggregator(NodeComponent):
     """
 
     SUPPORTS_PARTIAL_AGGREGATION: bool = False  # Default, subclasses should override
+    requires_gradient_only: bool = False  # Default, subclasses should override
 
     def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.01) -> None:
         """Initialize the aggregator."""

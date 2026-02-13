@@ -45,10 +45,10 @@ class VirtualLearnerActor:
         logger.debug(self.__class__.__name__, f"Manually terminating {self.__class__.__name__}")
         ray.actor.exit_actor()
 
-    def fit(self, addr: str, learner: Learner) -> tuple[str, P2PFLModel]:
+    def fit(self, addr: str, learner: Learner, apply_update: bool = True) -> tuple[str, P2PFLModel]:
         """Fit the model."""
         try:
-            model = learner.fit()
+            model = learner.fit(apply_update=apply_update)
 
         except Exception as ex:
             raise ex

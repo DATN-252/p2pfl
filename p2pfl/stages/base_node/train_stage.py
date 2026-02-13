@@ -71,9 +71,9 @@ class TrainStage(Stage):
                 TrainStage.__evaluate(state, learner, communication_protocol, experiment_logger) # NEW: Pass experiment_logger
 
                 check_early_stop(state)
-                logger.info(state.addr, "🏋️‍♀️ Training...")
-                learner.fit()
-                logger.info(state.addr, "🎓 Training done.")
+                logger.info(state.addr, "🏋️‍♀️ Preparing training...")
+                learner.fit(apply_update=not aggregator.requires_gradient_only)
+                logger.info(state.addr, "🎓 Training step done.")
             else:
                 logger.info(state.addr, "💤 Skipping training...")
 

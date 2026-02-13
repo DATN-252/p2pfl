@@ -57,8 +57,8 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dsgt"
-    aggregator: "DSGT"
+    package: "p2pfl.learning.aggregators.psgd"
+    aggregator: "PSGD"
     params: {}
  
 

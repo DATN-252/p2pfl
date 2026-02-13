@@ -140,17 +140,19 @@ class Learner(ABC, NodeComponent):
         """Update the callbacks with the model additional information."""
         new_info = self.get_model().get_info()
         for callback in self.callbacks:
-            try:
-                callback_name = callback.get_name()
-                callback.set_info(new_info[callback_name])
-            except KeyError:
-                pass
+            if isinstance(callback, P2PFLCallback):
+                try:
+                    callback_name = callback.get_name()
+                    callback.set_info(new_info[callback_name])
+                except KeyError:
+                    pass
 
     @allow_no_addr_check
     def add_callback_info_to_model(self) -> None:
         """Add the additional information from the callbacks to the model."""
         for c in self.callbacks:
-            self.get_model().add_info(c.get_name(), c.get_info())
+            if isinstance(c, P2PFLCallback):
+                self.get_model().add_info(c.get_name(), c.get_info())
 
     @abstractmethod
     def fit(self) -> P2PFLModel:

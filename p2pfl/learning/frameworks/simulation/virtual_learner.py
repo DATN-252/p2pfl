@@ -108,11 +108,11 @@ class VirtualNodeLearner(Learner):
         """Add the additional information from the callbacks to the model."""
         self.learner.add_callback_info_to_model()
 
-    def fit(self) -> P2PFLModel:
+    def fit(self, apply_update: bool = True) -> P2PFLModel:
         """Fit the model."""
         try:
             self.actor_pool.submit_learner_job(
-                lambda actor, addr, learner: actor.fit.remote(addr, learner),
+                lambda actor, addr, learner: actor.fit.remote(addr, learner, apply_update=apply_update),
                 (str(self.addr), self.learner),
             )
             model: P2PFLModel = self.actor_pool.get_learner_result(str(self.addr), None)[1]

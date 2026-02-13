@@ -1,0 +1,522 @@
+[ 2026-02-13 09:28:16 | None | INFO ] Created experiment folder: /mnt/c/Users/thaih/Documents/HK252/DATN/p2pfl/experiments/p2pfl_MNIST_RandomIIDPartitionStrategy_PSGD_model_build_fn_20260213_092816 and copied mnist.yaml
+[ 2026-02-13 09:28:26 | ActorPool | WARNING ] No GPUs available. Actors will run on CPU only.
+[ 2026-02-13 09:28:26 | ActorPool | INFO ] Initialized with 4 actors, 0 GPU per actor
+[ 2026-02-13 09:28:26 | node | INFO ] InMemoryServer started at node
+[ 2026-02-13 09:28:26 | node | INFO ] 🏁 Starting gossiper...
+[ 2026-02-13 09:28:26 | node_1 | INFO ] InMemoryServer started at node_1
+[ 2026-02-13 09:28:26 | node_1 | INFO ] 🏁 Starting gossiper...
+[ 2026-02-13 09:28:26 | node_2 | INFO ] InMemoryServer started at node_2
+[ 2026-02-13 09:28:26 | node_2 | INFO ] 🏁 Starting gossiper...
+[ 2026-02-13 09:28:26 |  | INFO ] Connected nodes node and node_1
+[ 2026-02-13 09:28:26 |  | INFO ] Connected nodes node and node_2
+[ 2026-02-13 09:28:26 |  | INFO ] Connected nodes node_1 and node_2
+[ 2026-02-13 09:28:27 | node | INFO ] 🚀 Broadcasting start learning...
+[ 2026-02-13 09:28:27 | node_1 | INFO ] 🔍 Neighbors found: ['node', 'node_2'] | Degree: 2
+[ 2026-02-13 09:28:27 | node_2 | INFO ] 🔍 Neighbors found: ['node', 'node_1'] | Degree: 2
+[ 2026-02-13 09:28:27 | node_1 | INFO ] ⏳ Waiting initialization.
+[ 2026-02-13 09:28:27 | node_2 | INFO ] ⏳ Waiting initialization.
+[ 2026-02-13 09:28:27 | node | INFO ] 🔍 Neighbors found: ['node_1', 'node_2'] | Degree: 2
+[ 2026-02-13 09:28:27 | node | INFO ] ⏳ Waiting initialization.
+[ 2026-02-13 09:28:27 | node | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-13 09:28:28 | node_1 | INFO ] 🤖 Model Weights Initialized
+[ 2026-02-13 09:28:28 | node_1 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-13 09:28:28 | node_2 | INFO ] 🤖 Model Weights Initialized
+[ 2026-02-13 09:28:28 | node_2 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-13 09:28:29 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:28:29 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:28:29 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:28:31 | node_1 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node', 'node_2', 'node_1']
+[ 2026-02-13 09:28:31 | node_2 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node', 'node_1', 'node_2']
+[ 2026-02-13 09:28:31 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:28:31 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:28:31 | node | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:28:31 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:31:50 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 20.273347854614258, 'test_acc\n': 0.10437912493944168, 'test_precision\n': 0.0401911698281765, 'test_recall\n': 0.10649154335260391, 'test_f1\n': 0.03443405404686928}
+[ 2026-02-13 09:31:50 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:31:51 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:32:05 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:32:05 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:32:10 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:32:10 | node_1 | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:32:10 | node_2 | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:33:20 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 20.379547119140625, 'test_acc\n': 0.09900990128517151, 'test_precision\n': 0.03094317577779293, 'test_recall\n': 0.10292710363864899, 'test_f1\n': 0.02927819825708866}
+[ 2026-02-13 09:33:20 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:33:20 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:33:31 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 20.44426918029785, 'test_acc\n': 0.09210921078920364, 'test_precision\n': 0.02813468500971794, 'test_recall\n': 0.10033738613128662, 'test_f1\n': 0.0251911673694849}
+[ 2026-02-13 09:33:31 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:33:31 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:33:32 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:33:32 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:33:36 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:33:36 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:33:36 | node_1 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:33:38 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:33:38 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:33:43 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:33:43 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:33:43 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:33:43 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:33:43 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:33:43 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2026-02-13 09:33:43 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:33:44 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:33:44 | node | INFO ] 🎉 Round 1 of 10 finished.
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:33:44 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🎉 Round 1 of 10 finished.
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:33:44 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:33:44 | node | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:33:44 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:33:44 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:33:44 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:33:44 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:33:44 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:33:55 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 12.009541511535645, 'test_acc\n': 0.13857229053974152, 'test_precision\n': 0.12848049402236938, 'test_recall\n': 0.1472305953502655, 'test_f1\n': 0.08004876971244812}
+[ 2026-02-13 09:33:55 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:33:56 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:33:56 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 12.86324691772461, 'test_acc\n': 0.1038103774189949, 'test_precision\n': 0.057743750512599945, 'test_recall\n': 0.11486492305994034, 'test_f1\n': 0.04856748506426811}
+[ 2026-02-13 09:33:56 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:33:56 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:33:56 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 13.58331298828125, 'test_acc\n': 0.12391239404678345, 'test_precision\n': 0.057622041553258896, 'test_recall\n': 0.13576723635196686, 'test_f1\n': 0.057476192712783813}
+[ 2026-02-13 09:33:56 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:33:56 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:08 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:08 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:34:09 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:09 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:34:09 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:09 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:34:13 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:34:13 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:34:14 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:34:14 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:34:14 | node | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2026-02-13 09:34:14 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:14 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:34:14 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:14 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:14 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2026-02-13 09:34:14 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🎉 Round 2 of 10 finished.
+[ 2026-02-13 09:34:15 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:15 | node | INFO ] 🎉 Round 2 of 10 finished.
+[ 2026-02-13 09:34:15 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:34:15 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:15 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:15 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:34:15 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:15 | node | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node_2', 'node']
+[ 2026-02-13 09:34:15 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:15 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:19 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 8.524115562438965, 'test_acc\n': 0.18356329202651978, 'test_precision\n': 0.13884533941745758, 'test_recall\n': 0.1856711357831955, 'test_f1\n': 0.13972033560276031}
+[ 2026-02-13 09:34:19 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 8.847437858581543, 'test_acc\n': 0.1515151560306549, 'test_precision\n': 0.1260731816291809, 'test_recall\n': 0.14801260828971863, 'test_f1\n': 0.09760323911905289}
+[ 2026-02-13 09:34:19 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:19 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:19 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:19 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:19 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 9.832959175109863, 'test_acc\n': 0.17311730980873108, 'test_precision\n': 0.14481189846992493, 'test_recall\n': 0.17394688725471497, 'test_f1\n': 0.106976218521595}
+[ 2026-02-13 09:34:19 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:19 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:33 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:33 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:34:34 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:34 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:34:34 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:34:34 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:34:38 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:34:38 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:34:38 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:34:38 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:34:38 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:34:38 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:38 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:34:38 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:34:38 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:38 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2026-02-13 09:34:38 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:39 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:34:39 | node | INFO ] 🎉 Round 3 of 10 finished.
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🎉 Round 3 of 10 finished.
+[ 2026-02-13 09:34:39 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:34:39 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:39 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:39 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:34:39 | node | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:34:39 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:39 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:39 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:34:44 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 5.82517671585083, 'test_acc\n': 0.25112512707710266, 'test_precision\n': 0.166950061917305, 'test_recall\n': 0.25221192836761475, 'test_f1\n': 0.18456031382083893}
+[ 2026-02-13 09:34:44 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:44 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 8.129409790039062, 'test_acc\n': 0.18211820721626282, 'test_precision\n': 0.11714915186166763, 'test_recall\n': 0.17807357013225555, 'test_f1\n': 0.12314184010028839}
+[ 2026-02-13 09:34:44 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:44 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:44 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 5.054490566253662, 'test_acc\n': 0.2546490728855133, 'test_precision\n': 0.2251661717891693, 'test_recall\n': 0.26690858602523804, 'test_f1\n': 0.20107401907444}
+[ 2026-02-13 09:34:44 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:34:44 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:34:44 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:00 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:00 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:35:00 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:00 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:35:00 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:00 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:35:05 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:05 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:35:05 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:35:05 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:35:05 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:35:05 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:05 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:05 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:35:05 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:05 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2026-02-13 09:35:05 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:06 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:06 | node | INFO ] 🎉 Round 4 of 10 finished.
+[ 2026-02-13 09:35:06 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🎉 Round 4 of 10 finished.
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:06 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:06 | node | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:35:06 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:06 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:06 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:35:06 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:35:06 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:12 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 4.02406644821167, 'test_acc\n': 0.27902790904045105, 'test_precision\n': 0.2550337016582489, 'test_recall\n': 0.28152310848236084, 'test_f1\n': 0.23030129075050354}
+[ 2026-02-13 09:35:12 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 4.787471771240234, 'test_acc\n': 0.2099580019712448, 'test_precision\n': 0.22023318707942963, 'test_recall\n': 0.20735687017440796, 'test_f1\n': 0.15819519758224487}
+[ 2026-02-13 09:35:12 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:12 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:12 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:12 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:13 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 5.293218612670898, 'test_acc\n': 0.21572157740592957, 'test_precision\n': 0.2644853889942169, 'test_recall\n': 0.21636144816875458, 'test_f1\n': 0.16328327357769012}
+[ 2026-02-13 09:35:13 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:13 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:26 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:26 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:35:26 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:26 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:35:27 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:27 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:35:31 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:35:31 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:31 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:31 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:35:31 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:35:31 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:35:32 | node | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:35:32 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:32 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:35:32 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:32 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:32 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2026-02-13 09:35:32 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:33 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🎉 Round 5 of 10 finished.
+[ 2026-02-13 09:35:33 | node | INFO ] 🎉 Round 5 of 10 finished.
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:33 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:33 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:33 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_1', 'node_2']
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_1', 'node_2']
+[ 2026-02-13 09:35:33 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:33 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:33 | node | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_1', 'node_2']
+[ 2026-02-13 09:35:33 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:33 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:37 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 5.031654357910156, 'test_acc\n': 0.26064786314964294, 'test_precision\n': 0.31414929032325745, 'test_recall\n': 0.27092236280441284, 'test_f1\n': 0.2233525514602661}
+[ 2026-02-13 09:35:37 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:37 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 3.2215397357940674, 'test_acc\n': 0.345334529876709, 'test_precision\n': 0.3769386112689972, 'test_recall\n': 0.3461405038833618, 'test_f1\n': 0.30642732977867126}
+[ 2026-02-13 09:35:37 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:37 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:37 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:37 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 4.648773193359375, 'test_acc\n': 0.24512451887130737, 'test_precision\n': 0.2453632652759552, 'test_recall\n': 0.24926844239234924, 'test_f1\n': 0.19540710747241974}
+[ 2026-02-13 09:35:37 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:35:37 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:35:52 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:52 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:35:52 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:52 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:35:53 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:35:53 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:35:57 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:35:57 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:57 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:35:57 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:35:57 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:35:57 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:35:58 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:35:58 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:58 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 🎉 Round 6 of 10 finished.
+[ 2026-02-13 09:35:58 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:58 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:59 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:35:59 | node | INFO ] 🎉 Round 6 of 10 finished.
+[ 2026-02-13 09:35:59 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:35:59 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:59 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node_1', 'node']
+[ 2026-02-13 09:35:59 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:59 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:59 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node_1', 'node']
+[ 2026-02-13 09:35:59 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:35:59 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:35:59 | node | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node_1', 'node']
+[ 2026-02-13 09:35:59 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:03 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 3.4711098670959473, 'test_acc\n': 0.31083106994628906, 'test_precision\n': 0.3960137367248535, 'test_recall\n': 0.31474074721336365, 'test_f1\n': 0.2788260579109192}
+[ 2026-02-13 09:36:03 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:03 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 4.0821332931518555, 'test_acc\n': 0.2517251670360565, 'test_precision\n': 0.4448477029800415, 'test_recall\n': 0.2526077926158905, 'test_f1\n': 0.2332705855369568}
+[ 2026-02-13 09:36:03 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:03 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:03 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.9108071327209473, 'test_acc\n': 0.3407318592071533, 'test_precision\n': 0.3959045112133026, 'test_recall\n': 0.3464677333831787, 'test_f1\n': 0.31241375207901}
+[ 2026-02-13 09:36:03 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:03 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:03 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:13 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:13 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:36:13 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:13 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:36:13 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:13 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:36:18 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:36:18 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:36:18 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:36:18 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:36:18 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:36:18 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:36:18 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:36:18 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:36:18 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:36:18 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:18 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:18 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:18 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:18 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:19 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:19 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:19 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:19 | node | INFO ] 🎉 Round 7 of 10 finished.
+[ 2026-02-13 09:36:19 | node_1 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2026-02-13 09:36:19 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:19 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🎉 Round 7 of 10 finished.
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:20 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:20 | node | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_2', 'node_1']
+[ 2026-02-13 09:36:20 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:20 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_2', 'node_1']
+[ 2026-02-13 09:36:20 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node', 'node_2', 'node_1']
+[ 2026-02-13 09:36:20 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:20 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:23 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 3.226011276245117, 'test_acc\n': 0.3360336124897003, 'test_precision\n': 0.42252323031425476, 'test_recall\n': 0.34652578830718994, 'test_f1\n': 0.31673291325569153}
+[ 2026-02-13 09:36:23 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:23 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 3.40924072265625, 'test_acc\n': 0.3119376003742218, 'test_precision\n': 0.4284262955188751, 'test_recall\n': 0.3233968913555145, 'test_f1\n': 0.29444029927253723}
+[ 2026-02-13 09:36:23 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:23 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:23 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:24 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.922004461288452, 'test_acc\n': 0.3663366436958313, 'test_precision\n': 0.3888152539730072, 'test_recall\n': 0.36701536178588867, 'test_f1\n': 0.32696637511253357}
+[ 2026-02-13 09:36:24 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:24 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:35 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:35 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:36:35 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:35 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:36:35 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:35 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:36:40 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:36:40 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:36:40 | node_2 | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:36:40 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:36:40 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:36:40 | node_2 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2026-02-13 09:36:40 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:36:40 | node | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:36:41 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:41 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:41 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:36:41 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:41 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:36:41 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:41 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:36:41 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:41 | node_2 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2026-02-13 09:36:41 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:42 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:42 | node | INFO ] 🎉 Round 8 of 10 finished.
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:36:42 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🎉 Round 8 of 10 finished.
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:36:42 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:42 | node | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:36:42 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:42 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:42 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_1', 'node', 'node_2']
+[ 2026-02-13 09:36:42 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:42 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:36:45 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.7840819358825684, 'test_acc\n': 0.3692261576652527, 'test_precision\n': 0.4291660189628601, 'test_recall\n': 0.3751552402973175, 'test_f1\n': 0.34066686034202576}
+[ 2026-02-13 09:36:45 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:45 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 3.195072650909424, 'test_acc\n': 0.33753374218940735, 'test_precision\n': 0.4976927638053894, 'test_recall\n': 0.34274378418922424, 'test_f1\n': 0.32068300247192383}
+[ 2026-02-13 09:36:45 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:45 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:45 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:45 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.7287228107452393, 'test_acc\n': 0.37533754110336304, 'test_precision\n': 0.4120122790336609, 'test_recall\n': 0.37973251938819885, 'test_f1\n': 0.35443174839019775}
+[ 2026-02-13 09:36:45 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:36:45 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:36:57 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:57 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:36:57 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:57 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:36:57 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:36:57 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:37:02 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:37:02 | node | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:37:02 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🧩 Model added (2/3) from ['node_2']
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🧩 Model added (3/3) from ['node']
+[ 2026-02-13 09:37:02 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:37:02 | node | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:37:02 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:02 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:37:02 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:02 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:02 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2026-02-13 09:37:02 | node_1 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:37:03 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:03 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:03 | node | INFO ] 🎉 Round 9 of 10 finished.
+[ 2026-02-13 09:37:03 | node_2 | INFO ] 🎉 Round 9 of 10 finished.
+[ 2026-02-13 09:37:03 | node | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:37:03 | node_2 | INFO ] 🗳️ Sending train set vote.
+[ 2026-02-13 09:37:03 | node_1 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:37:03 | node | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:37:04 | node_1 | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node', 'node_1']
+[ 2026-02-13 09:37:04 | node | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node', 'node_1']
+[ 2026-02-13 09:37:04 | node_2 | INFO ] 🔢 Computed 3 votes.
+[ 2026-02-13 09:37:04 | node_2 | INFO ] 🚂 Train set of 3 nodes: ['node_2', 'node', 'node_1']
+[ 2026-02-13 09:37:04 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:04 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:04 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:08 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.9449706077575684, 'test_acc\n': 0.3629274070262909, 'test_precision\n': 0.4481150507926941, 'test_recall\n': 0.37338173389434814, 'test_f1\n': 0.3452659547328949}
+[ 2026-02-13 09:37:08 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.7012388706207275, 'test_acc\n': 0.3798379898071289, 'test_precision\n': 0.44275152683258057, 'test_recall\n': 0.38918060064315796, 'test_f1\n': 0.37208089232444763}
+[ 2026-02-13 09:37:08 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:08 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:08 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:37:08 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:37:09 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.5404157638549805, 'test_acc\n': 0.401740163564682, 'test_precision\n': 0.4565752446651459, 'test_recall\n': 0.40288224816322327, 'test_f1\n': 0.37983575463294983}
+[ 2026-02-13 09:37:09 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:09 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-13 09:37:20 | node | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:37:20 | node | INFO ] 🧩 Model added (1/3) from ['node']
+[ 2026-02-13 09:37:20 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:37:20 | node_1 | INFO ] 🧩 Model added (1/3) from ['node_1']
+[ 2026-02-13 09:37:20 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-02-13 09:37:20 | node_2 | INFO ] 🧩 Model added (1/3) from ['node_2']
+[ 2026-02-13 09:37:25 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-02-13 09:37:25 | node_1 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:37:25 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🧩 Model added (2/3) from ['node']
+[ 2026-02-13 09:37:25 | node | INFO ] 🧩 Model added (2/3) from ['node_1']
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🧩 Model added (3/3) from ['node_1']
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-02-13 09:37:25 | node | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:37:25 | node | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:25 | node_1 | INFO ] 🧩 Model added (3/3) from ['node_2']
+[ 2026-02-13 09:37:25 | node_1 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:25 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🧠 Aggregating models.
+[ 2026-02-13 09:37:25 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2026-02-13 09:37:25 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:26 | node | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:26 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-02-13 09:37:26 | node | INFO ] 🎉 Round 10 of 10 finished.
+[ 2026-02-13 09:37:26 | node_1 | INFO ] 🎉 Round 10 of 10 finished.
+[ 2026-02-13 09:37:26 | node | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:26 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-02-13 09:37:30 | node_2 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.8473832607269287, 'test_acc\n': 0.38373836874961853, 'test_precision\n': 0.5164846181869507, 'test_recall\n': 0.39020341634750366, 'test_f1\n': 0.3697919249534607}
+[ 2026-02-13 09:37:30 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:30 | node_2 | INFO ] 😋 Training finished!!
+[ 2026-02-13 09:37:30 | node_1 | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.401926040649414, 'test_acc\n': 0.4251425266265869, 'test_precision\n': 0.4488506019115448, 'test_recall\n': 0.42809048295021057, 'test_f1\n': 0.40862059593200684}
+[ 2026-02-13 09:37:30 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:30 | node | INFO ] 📈 Evaluated. Results: {'\ntest_loss': 2.3909387588500977, 'test_acc\n': 0.4238152503967285, 'test_precision\n': 0.4695766270160675, 'test_recall\n': 0.42959076166152954, 'test_f1\n': 0.4114568829536438}
+[ 2026-02-13 09:37:30 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-13 09:37:30 | node_1 | INFO ] 😋 Training finished!!
+[ 2026-02-13 09:37:30 | node | INFO ] 😋 Training finished!!
+[ 2026-02-13 09:37:31 | node | INFO ] Stopping node...
+[ 2026-02-13 09:37:31 | node | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-13 09:37:31 | node | INFO ] InMemoryServer stopped at node
+[ 2026-02-13 09:37:31 | node_1 | INFO ] Stopping node...
+[ 2026-02-13 09:37:31 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-13 09:37:31 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2026-02-13 09:37:31 | node_2 | INFO ] Stopping node...
+[ 2026-02-13 09:37:31 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-13 09:37:31 | node_2 | INFO ] InMemoryServer stopped at node_2

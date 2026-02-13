@@ -99,9 +99,11 @@ except ImportError:
     pass
 
 try:
-    from p2pfl.learning.frameworks.pytorch.callbacks.dfedadp_callback import DFEDADPCallback as DFEDADPCallbackPT
+    from p2pfl.learning.frameworks.pytorch.callbacks.optimizer_control_callback import (
+        OptimizerControlCallback as OptimizerControlCallbackPT,
+    )
 
-    CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=DFEDADPCallbackPT)
+    CallbackFactory.register_callback(learner=Framework.PYTORCH.value, callback=OptimizerControlCallbackPT)
 except ImportError:
     pass
 

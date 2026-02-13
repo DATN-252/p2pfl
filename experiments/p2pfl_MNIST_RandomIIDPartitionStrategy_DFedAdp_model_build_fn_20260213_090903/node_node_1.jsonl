@@ -1,0 +1,10 @@
+{"round": 0, "metrics": {"\ntest_loss": 12.126504898071289, "test_acc\n": 0.11611161381006241, "test_precision\n": 0.10232565551996231, "test_recall\n": 0.11632870137691498, "test_f1\n": 0.050135865807533264}}
+{"round": 1, "metrics": {"\ntest_loss": 8.913946151733398, "test_acc\n": 0.19711971282958984, "test_precision\n": 0.1866561770439148, "test_recall\n": 0.19508200883865356, "test_f1\n": 0.16871052980422974}}
+{"round": 2, "metrics": {"\ntest_loss": 13.180864334106445, "test_acc\n": 0.17131713032722473, "test_precision\n": 0.14539818465709686, "test_recall\n": 0.17039594054222107, "test_f1\n": 0.10297497361898422}}
+{"round": 3, "metrics": {"\ntest_loss": 6.690281867980957, "test_acc\n": 0.2649264931678772, "test_precision\n": 0.32910317182540894, "test_recall\n": 0.2659384608268738, "test_f1\n": 0.21009553968906403}}
+{"round": 4, "metrics": {"\ntest_loss": 4.851534843444824, "test_acc\n": 0.2211221158504486, "test_precision\n": 0.32868173718452454, "test_recall\n": 0.2139863222837448, "test_f1\n": 0.18107284605503082}}
+{"round": 5, "metrics": {"\ntest_loss": 8.862716674804688, "test_acc\n": 0.17521752417087555, "test_precision\n": 0.1387472152709961, "test_recall\n": 0.17693720757961273, "test_f1\n": 0.08160389959812164}}
+{"round": 6, "metrics": {"\ntest_loss": 7.35441255569458, "test_acc\n": 0.24842484295368195, "test_precision\n": 0.24550485610961914, "test_recall\n": 0.2387622445821762, "test_f1\n": 0.15853630006313324}}
+{"round": 7, "metrics": {"\ntest_loss": 5.612363815307617, "test_acc\n": 0.2565256655216217, "test_precision\n": 0.3602643609046936, "test_recall\n": 0.26261240243911743, "test_f1\n": 0.20616841316223145}}
+{"round": 8, "metrics": {"\ntest_loss": 6.700403690338135, "test_acc\n": 0.2712271213531494, "test_precision\n": 0.27987906336784363, "test_recall\n": 0.259758323431015, "test_f1\n": 0.17159432172775269}}
+{"round": 9, "metrics": {"\ntest_loss": 3.9176383018493652, "test_acc\n": 0.32043203711509705, "test_precision\n": 0.3757809102535248, "test_recall\n": 0.32621365785598755, "test_f1\n": 0.27913910150527954}}

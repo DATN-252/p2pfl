@@ -167,6 +167,23 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     # Batch size
     dataset.set_batch_size(dataset_config.get("batch_size", 1))
 
+    # Transform setup (call BEFORE partitioning to compute statistics on full dataset)
+    transforms_config = dataset_config.get("transforms", None)
+    transform_setup_config = dataset_config.get("transform_setup", None)
+    if transform_setup_config:
+        setup_package = transform_setup_config.get("package")
+        setup_function = transform_setup_config.get("function")
+        if setup_package and setup_function:
+            setup_class = load_by_package_and_name(setup_package, setup_function)
+            # Get the full training split
+            if hasattr(dataset.get(0, train=True), '__getitem__'):
+                # For DatasetDict, get train split
+                full_train_data = dataset._data[dataset._train_split_name] if hasattr(dataset._data, '__getitem__') else None
+            else:
+                full_train_data = dataset._data
+            # Call setup function with full training data
+            setup_class(full_train_data)
+
     # Partitioning (do this BEFORE applying transforms)
     partitioning_config = dataset_config.get("partitioning", {})
     if not partitioning_config:

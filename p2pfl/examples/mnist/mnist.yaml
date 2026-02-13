@@ -162,6 +162,8 @@ settings:
     log_level: "INFO" # Logging verbosity: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
     grpc_timeout: 2
     disable_ray: False
+    MINIMAL_LOGGING: true
+
 
   SSL:
     use_ssl: false

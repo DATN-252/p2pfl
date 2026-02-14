@@ -19,7 +19,7 @@ network:
 experiment:
   name: "my_experiment"
   rounds: 50
-  epochs: 2
+  epochs: 1
   trainset_size: 10
   seed: 666
   wait_timeout: 18000
@@ -62,7 +62,7 @@ experiment:
     params: 
       learning_rate: 0.001
       decay_rate: 0.99
-      alpha: 0.5
+      alpha: 2.0
  
 
 # General experiment settings

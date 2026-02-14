@@ -93,7 +93,6 @@ class MLP(L.LightningModule):
         for layer in self.layers:
             x = layer(x)
 
-        x = torch.log_softmax(x, dim=1)
         return x
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
@@ -117,7 +116,7 @@ class MLP(L.LightningModule):
         x = batch["image"].float()
         y = batch["label"]
         logits = self(x)
-        loss = torch.nn.functional.cross_entropy(self(x), y)
+        loss = torch.nn.functional.cross_entropy(logits, y)
         out = torch.argmax(logits, dim=1)
         
         acc = self.accuracy(out, y)
@@ -125,11 +124,11 @@ class MLP(L.LightningModule):
         rec = self.recall(out, y)
         f1 = self.f1(out, y)
 
-        self.log("\ntest_loss", loss, prog_bar=True)
-        self.log("test_acc\n", acc, prog_bar=True)
-        self.log("test_precision\n", prec, prog_bar=True)
-        self.log("test_recall\n", rec, prog_bar=True)
-        self.log("test_f1\n", f1, prog_bar=True)
+        self.log("test_loss", loss, prog_bar=True)
+        self.log("test_acc", acc, prog_bar=True)
+        self.log("test_precision", prec, prog_bar=True)
+        self.log("test_recall", rec, prog_bar=True)
+        self.log("test_f1", f1, prog_bar=True)
         return loss
 
 

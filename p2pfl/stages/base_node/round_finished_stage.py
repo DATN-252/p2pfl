@@ -62,11 +62,12 @@ class RoundFinishedStage(Stage):
         if state.round is None or state.total_rounds is None:
             raise ValueError("Round or total rounds not set.")
 
+        # Every node computes metrics at the end of each round
+        RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger)
+
         if state.round < state.total_rounds:
             return StageFactory.get_stage("VoteTrainSetStage")
         else:
-            # At end, all nodes compute metrics
-            RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger) # NEW: Pass experiment_logger
             # Finish
             state.clear()
             logger.info(state.addr, "😋 Training finished!!")

@@ -74,15 +74,14 @@ class Neighbors(NodeComponent):
         """
         # Cannot add itself
         if addr == self.addr:
-            logger.info(self.addr, "❌ Cannot add itself")
+            logger.debug(self.addr, "❌ Cannot add itself")
             return False
 
         # Lock
         with self.neis_lock:
             # Cannot add duplicates
             if self.exists(addr, only_direct=True):
-                logger.info(self.addr, f"❌ Cannot add duplicates. {addr} already exists.")
-                logger.debug(self.addr, f"Current neighbors: {self.neis.keys()}")
+                logger.debug(self.addr, f"❌ Cannot add duplicates. {addr} already exists.")
                 return False
 
             # Add

@@ -325,8 +325,10 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         for i in range(len(nodes)):
             for j in range(len(nodes)):
                 if i != j:
-                    # Accessing underlying neighbors list to populate it instantly
-                    nodes[i]._communication_protocol._neighbors.add(nodes[j].addr, non_direct=True)
+                    # Only add if not already present (to avoid duplicate logs)
+                    if nodes[j].addr not in nodes[i].get_neighbors(only_direct=False):
+                        # Accessing underlying neighbors list to populate it instantly
+                        nodes[i]._communication_protocol._neighbors.add(nodes[j].addr, non_direct=True)
         # --- END GLOBAL SIMULATION DISCOVERY ---
 
         # Wait for direct topology connections to stabilize

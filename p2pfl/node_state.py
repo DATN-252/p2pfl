@@ -131,14 +131,14 @@ class NodeState:
         """Clear the state."""
         type(self).__init__(self, self.addr)
 
-    def wait_for_initialization(self, timeout: float = 60.0) -> bool:
+    def wait_for_initialization(self, timeout: float = 10.0) -> bool:
         """Wait for the experiment to be initialized."""
         with self.round_condition:
             if self.round is None:
                 self.round_condition.wait(timeout=timeout)
         return self.round is not None
 
-    def wait_for_train_set(self, timeout: float = 120.0) -> bool:
+    def wait_for_train_set(self, timeout: float = 20.0) -> bool:
         """Wait for the train set to be determined."""
         with self.train_set_condition:
             if len(self.train_set) == 0:

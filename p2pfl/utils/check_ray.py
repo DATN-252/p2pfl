@@ -31,6 +31,7 @@ def ray_installed() -> bool:
 
     # Deactivate deduplication of logs
     os.environ["RAY_DEDUP_LOGS"] = "0"
+    os.environ["RAY_CHITCHAT_LOGS"] = "0"
 
     if importlib.util.find_spec("ray") is not None:
         # Try to initialize ray

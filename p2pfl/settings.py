@@ -112,9 +112,9 @@ class Training:
     """Timeout (seconds) for a node to wait for a vote."""
     AGGREGATION_TIMEOUT: int = 300
     """Timeout (seconds) for a node to wait for other models. Timeout starts when the first model is added."""
-    DEFAULT_BATCH_SIZE: int = 128
+    DEFAULT_BATCH_SIZE: int = 1024
     """Default batch size for training."""
-    RAY_ACTOR_POOL_SIZE: int = 4
+    RAY_ACTOR_POOL_SIZE: int = 50
 
 
 ###################

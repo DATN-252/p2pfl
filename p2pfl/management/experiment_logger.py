@@ -32,9 +32,14 @@ class ExperimentLogger:
             round_num (int): The current training round number.
             metrics (Dict[str, Any]): A dictionary of metrics (e.g., {'test_acc': 0.98}).
         """
+        # Clean up keys and values to remove accidental newlines/whitespace
+        clean_metrics = {
+            str(k).strip(): (v.strip() if isinstance(v, str) else v)
+            for k, v in metrics.items()
+        }
         log_entry = {
             "round": round_num,
-            "metrics": metrics
+            "metrics": clean_metrics
         }
         with open(self.log_file_path, 'a') as f:
             f.write(json.dumps(log_entry) + '\n')

@@ -67,9 +67,6 @@ class TrainStage(Stage):
 
             # Train
             if state.addr in state.train_set:
-                # Evaluate and send metrics
-                TrainStage.__evaluate(state, learner, communication_protocol, experiment_logger)
-
                 check_early_stop(state)
                 logger.info(state.addr, "🏋️‍♀️ Preparing training...")
                 learner.fit(apply_update=not aggregator.requires_gradient_only)

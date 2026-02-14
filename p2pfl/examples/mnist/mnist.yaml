@@ -19,7 +19,7 @@ network:
 experiment:
   name: "my_experiment"
   rounds: 50
-  epochs: 3
+  epochs: 1
   trainset_size: 10
   seed: 666
   wait_timeout: 18000
@@ -36,7 +36,7 @@ experiment:
       reduction_factor: 10
 
       params:
-        alpha: 1
+        alpha: 0.1
         min_partition_size: 10
         self_balancing: false
 

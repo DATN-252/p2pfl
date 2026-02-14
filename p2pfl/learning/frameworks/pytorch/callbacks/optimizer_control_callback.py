@@ -30,16 +30,14 @@ from p2pfl.learning.frameworks.callback import P2PFLCallback
 
 class OptimizerControlCallback(Callback, P2PFLCallback):
     """
-    This callback serves two purposes for Consensus-then-Gradient algorithms:
-    1. When apply_update=False, it calculates the 'delta' (-lr * grad) and
-       stores it in `additional_info`.
-    2. It then calls optimizer.zero_grad() to prevent the optimizer from
-       applying the update, effectively skipping the step.
+    Calculates accumulated delta (weights_start - weights_end) over an epoch.
+    This serves as an accumulated pseudo-gradient for Gradient Tracking algorithms.
     """
 
     def __init__(self):
         self._apply_update = True
         self.additional_info: dict[str, Any] = {}
+        self._weights_start = None
 
     @staticmethod
     def get_name() -> str:
@@ -54,21 +52,27 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
         """Set whether to apply the optimizer update."""
         self._apply_update = apply_update
 
-    def on_before_optimizer_step(self, trainer: L.Trainer, pl_module: L.LightningModule, optimizer: Any):
-        """Hook called before the optimizer step."""
-        if trainer.state.fn == TrainerFn.FITTING and not self._apply_update:
-            # 1. Calculate and store the delta before gradients are cleared.
-            lr = pl_module.lr_rate
-            delta = []
-            for param in pl_module.parameters():
-                if param.grad is not None:
-                    delta.append(-lr * param.grad.cpu())
-                else:
-                    delta.append(torch.zeros_like(param.cpu()))
-            
-            # Store the computed delta for the aggregators to use.
-            self.additional_info["delta"] = [d.detach().cpu().numpy() for d in delta]
+    def on_train_epoch_start(self, trainer: L.Trainer, pl_module: L.LightningModule):
+        """Store weights at the start of the epoch."""
+        self._weights_start = [p.detach().cpu().clone() for p in pl_module.parameters()]
 
-            # 2. Prevent the update by zeroing the gradients before the step.
+    def on_train_epoch_end(self, trainer: L.Trainer, pl_module: L.LightningModule):
+        """Calculate the accumulated delta at the end of the epoch."""
+        if self._weights_start is not None:
+            weights_end = [p.detach().cpu() for p in pl_module.parameters()]
+            
+            # Delta = weights_start - weights_end
+            # (In SGD: w_end = w_start - lr * grad => lr * grad = w_start - w_end)
+            delta = [s - e for s, e in zip(self._weights_start, weights_end)]
+            
+            self.additional_info["delta"] = [d.numpy() for d in delta]
+            self._weights_start = None
+
+    def on_before_optimizer_step(self, trainer: L.Trainer, pl_module: L.LightningModule, optimizer: Any):
+        """
+        Prevent the local update ONLY if explicitly requested.
+        For Accumulated Gradient Tracking, we usually want this to be TRUE.
+        """
+        if trainer.state.fn == TrainerFn.FITTING and not self._apply_update:
             optimizer.zero_grad()
 

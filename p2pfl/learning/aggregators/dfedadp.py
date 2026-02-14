@@ -8,7 +8,7 @@ from p2pfl.management.logger import logger
 
 class DFedAdp(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
-    requires_gradient_only: bool = False
+    requires_gradient_only: bool = True
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     
 
@@ -21,7 +21,7 @@ class DFedAdp(Aggregator):
         self.learning_rate = learning_rate
         self.min_learning_rate = min_learning_rate
         self.decay_rate = decay_rate
-        # Store previous local gradient for Gradient Tracking
+        # Store previous local pseudo-gradient for Gradient Tracking
         self.prev_local_gradient: List[np.ndarray] = []
         # Control logging of dfedadp parameters
         self.log_dfedadp_params = log_dfedadp_params
@@ -43,11 +43,25 @@ class DFedAdp(Aggregator):
         contributors = list(model_map.keys())
         current_round = self.each_trained_round.get(self.addr, 0)
 
+        # Helper to get delta (pseudo-gradient)
+        def get_delta(m):
+            m_info = self._get_and_validate_model_info(m)
+            if "delta" in m_info:
+                return m_info["delta"]
+            return [np.zeros_like(p) for p in m.get_parameters()]
+
+        # Current Local Pseudo-Gradient: g = delta / lr
+        self_delta = get_delta(self_model)
+        curr_local_gradient = [d / self.learning_rate for d in self_delta]
+
         # --- Initial Round (Round 0) ---
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
+            self.prev_local_gradient = [g.copy() for g in curr_local_gradient]
+            # Initialize tracking variable V with initial local gradient
+            self_model.gradients_estimate = [g.copy() for g in curr_local_gradient]
 
-        # --- 3. Calculate Metropolis-Hastings Weights (Robustly) ---
+        # --- 3. Calculate Metropolis-Hastings Weights ---
         my_info = self._get_and_validate_model_info(self_model)
         my_degree = int(my_info.get("degrees", len(model_map) - 1))
         
@@ -59,48 +73,29 @@ class DFedAdp(Aggregator):
             neighbor_degree = int(neighbor_info.get("degrees", len(model_map) - 1))
             neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
         
-        self_weight = 1.0 - sum(neighbor_weights.values())
-        
         metro_weights = neighbor_weights
-        metro_weights[self.addr] = self_weight
+        metro_weights[self.addr] = 1.0 - sum(neighbor_weights.values())
 
-        # --- 4. Compute Pseudo-Gradient (for tracking purpose) ---
-        # If delta is missing (weight aggregation mode), compute it manually: delta = prev_weights - curr_weights
-        def get_delta(m, addr):
-            m_info = self._get_and_validate_model_info(m)
-            if "delta" in m_info:
-                return m_info["delta"]
-            # Manual calculation for weight aggregation mode
-            return [prev - curr for prev, curr in zip(self.global_model_params, m.get_parameters())]
-
-        self_delta = get_delta(self_model, self.addr)
-        curr_local_gradient = [-d / self.learning_rate for d in self_delta]
-
-        # --- 5. Gradient Tracking: Estimate Global Direction ---
-        weighted_neighbor_tracking = [np.zeros_like(p) for p in self.global_model_params]
+        # --- 4. Gradient Tracking: Update Tracking Variable V ---
+        # v_new = sum(w_ij * v_j_old) + g_i_new - g_i_old
+        weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
         for addr, m in model_map.items():
-            if hasattr(m, 'gradients_estimate') and m.gradients_estimate:
-                g_j_prev = m.gradients_estimate
-            else: # Fallback
-                d = get_delta(m, addr)
-                g_j_prev = [-x / self.learning_rate for x in d]
-            
             w_ij = metro_weights.get(addr, 0.0)
-            weighted_neighbor_tracking = [acc + w_ij * g for acc, g in zip(weighted_neighbor_tracking, g_j_prev)]
+            # Use neighbor's previous tracking variable if available
+            v_j_prev = m.gradients_estimate if hasattr(m, 'gradients_estimate') and m.gradients_estimate else curr_local_gradient
+            weighted_v_consensus = [acc + w_ij * v for acc, v in zip(weighted_v_consensus, v_j_prev)]
 
-        if not self.prev_local_gradient:
-            self.prev_local_gradient = [np.zeros_like(p) for p in curr_local_gradient]
-        tracking_gradient = [wn + curr - prev for wn, curr, prev in zip(weighted_neighbor_tracking, curr_local_gradient, self.prev_local_gradient)]
+        tracking_gradient = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, curr_local_gradient, self.prev_local_gradient)]
         self.prev_local_gradient = [g.copy() for g in curr_local_gradient]
 
-        # --- 6. Calculate FedAdp Scores ---
+        # --- 5. Calculate Adaptive FedAdp Scores (using Tracking Gradient) ---
         fedadp_scores = {}
         g_vec = np.concatenate([p.ravel() for p in tracking_gradient])
         g_norm = np.linalg.norm(g_vec)
 
         for addr, m in model_map.items():
-            m_delta = get_delta(m, addr)
-            neigh_local_grad = [-d / self.learning_rate for d in m_delta]
+            m_delta = get_delta(m)
+            neigh_local_grad = [d / self.learning_rate for d in m_delta]
             l_vec = np.concatenate([p.ravel() for p in neigh_local_grad])
             l_norm = np.linalg.norm(l_vec)
 
@@ -114,7 +109,7 @@ class DFedAdp(Aggregator):
             f_val = self._gompertz_function(smoothed_angle)
             fedadp_scores[addr] = m.get_num_samples() * math.exp(f_val)
 
-        # --- 7. Calculate Adaptive Mixing Matrix ---
+        # --- 6. Calculate Adaptive Mixing Matrix ---
         total_score = sum(fedadp_scores.values())
         psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
         
@@ -122,17 +117,18 @@ class DFedAdp(Aggregator):
         sum_mix = sum(unnormalized_mix.values())
         final_mixing_weights = {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
         
-        # --- 8. Aggregation Step (Consensus Average) ---
-        new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
+        # --- 7. Final Update: w_new = consensus_w - lr * v_new ---
+        w_consensus = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():
             w = final_mixing_weights.get(addr, 0.0)
             for i, layer in enumerate(m.get_parameters()):
-                new_weights[i] += layer * w
+                w_consensus[i] += layer * w
 
-        self.global_model_params = new_weights
+        self.global_model_params = [wc - self.learning_rate * tg for wc, tg in zip(w_consensus, tracking_gradient)]
 
         # --- Build and return result ---
         result_model = self_model.build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
+        # Pass the updated tracking variable to neighbors in the next round
         result_model.gradients_estimate = tracking_gradient
         self.learning_rate = max(self.learning_rate*self.decay_rate, self.min_learning_rate)
         return result_model

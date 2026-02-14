@@ -46,6 +46,10 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
         """Get the name of the callback."""
         return "gradient_delta_calculator"
 
+    def get_info(self) -> Any:
+        """Get the additional information."""
+        return self.additional_info
+
     def set_apply_update(self, apply_update: bool):
         """Set whether to apply the optimizer update."""
         self._apply_update = apply_update

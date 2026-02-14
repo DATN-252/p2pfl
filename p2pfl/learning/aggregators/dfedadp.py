@@ -48,13 +48,15 @@ class DFedAdp(Aggregator):
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
 
         # --- 3. Calculate Metropolis-Hastings Weights (Robustly) ---
-        my_degree = int(self._get_and_validate_model_info(self_model)["degrees"])
+        my_info = self._get_and_validate_model_info(self_model)
+        my_degree = int(my_info.get("degrees", len(model_map) - 1))
         
         neighbor_weights = {}
         for addr, model in model_map.items():
             if addr == self.addr:
                 continue
-            neighbor_degree = int(self._get_and_validate_model_info(model)["degrees"])
+            neighbor_info = self._get_and_validate_model_info(model)
+            neighbor_degree = int(neighbor_info.get("degrees", len(model_map) - 1))
             neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
         
         self_weight = 1.0 - sum(neighbor_weights.values())
@@ -63,9 +65,15 @@ class DFedAdp(Aggregator):
         metro_weights[self.addr] = self_weight
 
         # --- 4. Compute Pseudo-Gradient (for tracking purpose) ---
-        # Even with weight aggregation, we use delta to compute adaptive scores
-        self_info = self._get_and_validate_model_info(self_model)
-        self_delta = self_info["delta"]
+        # If delta is missing (weight aggregation mode), compute it manually: delta = prev_weights - curr_weights
+        def get_delta(m, addr):
+            m_info = self._get_and_validate_model_info(m)
+            if "delta" in m_info:
+                return m_info["delta"]
+            # Manual calculation for weight aggregation mode
+            return [prev - curr for prev, curr in zip(self.global_model_params, m.get_parameters())]
+
+        self_delta = get_delta(self_model, self.addr)
         curr_local_gradient = [-d / self.learning_rate for d in self_delta]
 
         # --- 5. Gradient Tracking: Estimate Global Direction ---
@@ -74,7 +82,7 @@ class DFedAdp(Aggregator):
             if hasattr(m, 'gradients_estimate') and m.gradients_estimate:
                 g_j_prev = m.gradients_estimate
             else: # Fallback
-                d = self._get_and_validate_model_info(m)["delta"]
+                d = get_delta(m, addr)
                 g_j_prev = [-x / self.learning_rate for x in d]
             
             w_ij = metro_weights.get(addr, 0.0)
@@ -91,7 +99,7 @@ class DFedAdp(Aggregator):
         g_norm = np.linalg.norm(g_vec)
 
         for addr, m in model_map.items():
-            m_delta = self._get_and_validate_model_info(m)["delta"]
+            m_delta = get_delta(m, addr)
             neigh_local_grad = [-d / self.learning_rate for d in m_delta]
             l_vec = np.concatenate([p.ravel() for p in neigh_local_grad])
             l_norm = np.linalg.norm(l_vec)
@@ -139,8 +147,8 @@ class DFedAdp(Aggregator):
         except KeyError:
             info = model.get_info()
         
-        if "delta" not in info:
-            raise ValueError(f"Model missing 'delta' information required for DFedAdp.")
+        if info is None:
+            return {}
         return info
 
     def get_required_callbacks(self) -> list[str]:

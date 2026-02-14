@@ -53,7 +53,7 @@ class General:
 class Heartbeat:
     """Heartbeat settings."""
 
-    PERIOD: float = 2.0
+    PERIOD: float = 1.0
     """Period (seconds) to send heartbeats."""
     TIMEOUT: float = 300.0
     """Timeout (seconds) for a node to be considered dead."""
@@ -114,7 +114,7 @@ class Training:
     """Timeout (seconds) for a node to wait for other models. Timeout starts when the first model is added."""
     DEFAULT_BATCH_SIZE: int = 1024
     """Default batch size for training."""
-    RAY_ACTOR_POOL_SIZE: int = 32
+    RAY_ACTOR_POOL_SIZE: int = 50
 
 
 ###################

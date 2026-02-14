@@ -44,6 +44,7 @@ class StartLearningCommand(Command):
         learning_epochs: int | None = None,
         trainset_size: int | None = None,
         experiment_name: str | None = None,
+        nodes: int | None = None,
         **kwargs,
     ) -> None:
         """
@@ -56,9 +57,15 @@ class StartLearningCommand(Command):
             learning_rounds: The number of learning rounds.
             learning_epochs: The number of learning epochs.
             experiment_name: The name of the experiment.
+            nodes: The total number of nodes in the simulation.
             **kwargs: The command keyword arguments.
 
         """
         if learning_rounds is None or learning_epochs is None or trainset_size is None or experiment_name is None:
             raise ValueError("Learning rounds and epochs are required")
-        self.__learning_fn(int(learning_rounds), int(learning_epochs), int(trainset_size), experiment_name)
+        
+        # If nodes is provided in args
+        if len(kwargs.get('args', [])) > 4:
+            nodes = int(kwargs['args'][4])
+
+        self.__learning_fn(int(learning_rounds), int(learning_epochs), int(trainset_size), experiment_name, nodes)

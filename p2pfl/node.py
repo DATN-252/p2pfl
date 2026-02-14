@@ -325,10 +325,10 @@ class Node:
     #         Network Learning Management         #
     ###############################################
 
-    def __start_learning_thread(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str) -> None:
+    def __start_learning_thread(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str, nodes: int | None = None) -> None:
         learning_thread = threading.Thread(
             target=self.__start_learning,
-            args=(rounds, epochs, trainset_size, experiment_name, self.experiment_logger), # NEW: Pass experiment_logger
+            args=(rounds, epochs, trainset_size, experiment_name, self.experiment_logger, nodes), # NEW: Pass experiment_logger
             name="learning_thread-" + self.addr,
         )
         learning_thread.daemon = True
@@ -354,12 +354,14 @@ class Node:
             raise ZeroRoundsException("Rounds must be greater than 0.")
 
         if self.state.round is None:
+            # Get total nodes in simulation
+            total_nodes = len(self.get_neighbors(only_direct=False)) + 1
             # Broadcast start Learning
-            logger.info(self.addr, "🚀 Broadcasting start learning...")
+            logger.info(self.addr, f"🚀 Broadcasting start learning to {total_nodes} nodes...")
             experiment_name = f"{experiment_name}-{time.time()}"
             self._communication_protocol.broadcast(
                 self._communication_protocol.build_msg(
-                    StartLearningCommand.get_name(), [str(rounds), str(epochs), str(trainset_size), experiment_name]
+                    StartLearningCommand.get_name(), [str(rounds), str(epochs), str(trainset_size), experiment_name, str(total_nodes)]
                 )
             )
             # Set model initialized
@@ -387,7 +389,7 @@ class Node:
     #         Local Learning         #
     ##################################
 
-    def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str, experiment_logger: ExperimentLogger | None) -> None: # NEW param
+    def __start_learning(self, rounds: int, epochs: int, trainset_size: int, experiment_name: str, experiment_logger: ExperimentLogger | None, nodes: int | None = None) -> None: # NEW param
         # Set seed
         if hasattr(self, 'learner') and self.learner.get_model() is not None:
             neighbors = self.get_neighbors(only_direct=True)
@@ -420,6 +422,7 @@ class Node:
                 aggregator=self.aggregator,
                 generator=random.Random(Settings.general.SEED),
                 experiment_logger=experiment_logger, # NEW: Pass experiment_logger
+                nodes=nodes,
             )
 
         except Exception as e:

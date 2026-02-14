@@ -189,8 +189,6 @@ class P2PFLModel:
 
     def get_num_samples(self) -> int:
         """Get the number of samples used to train this model."""
-        if self.num_samples == 0:
-            raise ValueError("Number of samples required")
         return self.num_samples
 
     def build_copy(self, **kwargs) -> "P2PFLModel":

@@ -19,7 +19,7 @@ network:
 experiment:
   name: "my_experiment"
   rounds: 100
-  epochs: 1
+  epochs: 3
   trainset_size: 50
   seed: 666
   wait_timeout: 18000
@@ -45,7 +45,7 @@ experiment:
     package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.001
+      lr_rate: 0.005
     # Learning algorithm parameters (algorithm-specific)
     #compression:
     #ptq:
@@ -60,7 +60,7 @@ experiment:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
     params: 
-      learning_rate: 0.01
+      learning_rate: 0.005
       decay_rate: 0.99
       alpha: 2.0
  

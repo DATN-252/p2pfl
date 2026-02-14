@@ -36,7 +36,7 @@ experiment:
       reduction_factor: 10
 
       params:
-        alpha: 0.1
+        alpha: 1
         min_partition_size: 10
         self_balancing: false
 

@@ -66,7 +66,7 @@ def set_standalone_settings() -> None:
 
 def wait_convergence(
     nodes: list[Node | CommunicationProtocol],
-    n_neis: int,
+    n_neis: int | list[int],
     wait: int | float = 30,
     only_direct: bool = False,
     debug: bool = False,
@@ -76,7 +76,7 @@ def wait_convergence(
 
     Args:
         nodes: List of nodes.
-        n_neis: Number of neighbors.
+        n_neis: Number of neighbors (int or list of ints).
         wait: Time to wait.
         only_direct: Only direct neighbors.
         debug: Debug mode.
@@ -85,13 +85,29 @@ def wait_convergence(
         AssertionError: If the condition is not met.
 
     """
+    # If n_neis is a single integer, convert it to a list for uniform processing
+    if isinstance(n_neis, int):
+        expected_counts = [n_neis] * len(nodes)
+    else:
+        expected_counts = n_neis
+
     acum = 0.0
     while True:
         begin = time.time()
-        if all(len(n.get_neighbors(only_direct=only_direct)) == n_neis for n in nodes):
+        
+        # Check if every node has reached its specific expected neighbor count
+        converged = True
+        for i, node in enumerate(nodes):
+            current_count = len(node.get_neighbors(only_direct=only_direct))
+            if current_count < expected_counts[i]:
+                converged = False
+                break
+        
+        if converged:
             if debug:
                 _print_connectivity_matrix(nodes, only_direct, final=True)
             break
+            
         if debug:
             _print_connectivity_matrix(nodes, only_direct, final=False)
         time.sleep(1)

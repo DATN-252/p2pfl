@@ -338,9 +338,9 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
 
         # Wait for direct topology connections to stabilize
         import numpy as np
-        expected_neighbors = int(np.min(np.sum(adjacency_matrix, axis=1)))
-        logger.info(None, f"⌛ Waiting for direct topology connections ({expected_neighbors} per node)...")
-        wait_convergence(nodes, expected_neighbors, only_direct=True, wait=120, debug=False)
+        expected_neighbors_list = np.sum(adjacency_matrix, axis=1).astype(int).tolist()
+        logger.info(None, f"⌛ Waiting for direct topology connections ({min(expected_neighbors_list)}-{max(expected_neighbors_list)} per node)...")
+        wait_convergence(nodes, expected_neighbors_list, only_direct=True, wait=120, debug=False)
         logger.info(None, "✅ Network topology ready.")
 
         if additional_connections:

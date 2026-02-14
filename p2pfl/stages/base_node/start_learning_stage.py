@@ -112,6 +112,10 @@ class StartLearningStage(Stage):
         if state.addr not in all_available_nodes:
             all_available_nodes.append(state.addr)
         
+        # Cast nodes to int for safety
+        if nodes is not None:
+            nodes = int(nodes)
+        
         if trainset_size is not None and (trainset_size == 0 or (nodes is not None and trainset_size >= nodes) or trainset_size >= len(all_available_nodes)):
             # Set all available nodes as the training set
             if len(all_available_nodes) == 0:

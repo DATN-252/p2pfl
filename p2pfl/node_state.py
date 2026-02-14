@@ -129,7 +129,7 @@ class NodeState:
 
     def clear(self) -> None:
         """Clear the state."""
-        type(self).__init__(self, self.addr)
+        self.__init__(self.addr)
 
     def wait_for_initialization(self, timeout: float = 10.0) -> bool:
         """Wait for the experiment to be initialized."""

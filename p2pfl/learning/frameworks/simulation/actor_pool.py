@@ -112,12 +112,13 @@ class SuperActorPool(ActorPool):
             # Initialize ActorPool
             num_actors = Settings.training.RAY_ACTOR_POOL_SIZE if amount_actors is None else amount_actors
 
-            # Calculate GPU resources per actor
+            # Calculate resources per actor
             self.gpu_per_actor = self._calculate_gpu_per_actor(num_actors)
+            self.cpu_per_actor = self._calculate_cpu_per_actor(num_actors)
 
             actors = [self.create_actor() for _ in range(num_actors)]
             self.num_actors = len(actors)
-            logger.info("ActorPool", f"Initialized with {self.num_actors} actors, {self.gpu_per_actor} GPU per actor")
+            logger.info("ActorPool", f"Initialized with {self.num_actors} actors, {self.cpu_per_actor:.2f} CPU and {self.gpu_per_actor:.2f} GPU per actor")
             super().__init__(actors)
 
             # A dict that maps addr to another dict containing: a reference to the remote job
@@ -162,6 +163,30 @@ class SuperActorPool(ActorPool):
 
         return gpu_per_actor
 
+    def _calculate_cpu_per_actor(self, num_actors: int) -> float:
+        """
+        Calculate CPU resources per actor based on available CPUs.
+
+        Args:
+            num_actors: Number of actors to create.
+
+        Returns:
+            CPU fraction per actor.
+
+        """
+        available_resources = ray.available_resources()
+        num_cpus = available_resources.get("CPU", 0)
+
+        if num_cpus == 0:
+            return 0
+
+        # Calculate CPU per actor
+        cpu_per_actor = num_cpus / num_actors
+
+        logger.info("ActorPool", f"Ray detected {num_cpus} CPU(s), allocating {cpu_per_actor:.2f} CPU per actor")
+
+        return cpu_per_actor
+
     def create_actor(self) -> VirtualLearnerActor:
         """
         Create a new VirtualLearnerActor instance using provided resources.
@@ -170,9 +195,15 @@ class SuperActorPool(ActorPool):
             New actor instance.
 
         """
-        # Create actor with GPU resources if available
+        # Create actor with resources if available
+        options = {}
         if hasattr(self, "gpu_per_actor") and self.gpu_per_actor > 0:
-            return VirtualLearnerActor.options(num_gpus=self.gpu_per_actor).remote()  # type: ignore
+            options["num_gpus"] = self.gpu_per_actor
+        if hasattr(self, "cpu_per_actor") and self.cpu_per_actor > 0:
+            options["num_cpus"] = self.cpu_per_actor
+
+        if options:
+            return VirtualLearnerActor.options(**options).remote()  # type: ignore
         else:
             return VirtualLearnerActor.options().remote()  # type: ignore
 

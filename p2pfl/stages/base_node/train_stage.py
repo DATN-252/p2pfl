@@ -64,12 +64,11 @@ class TrainStage(Stage):
 
             check_early_stop(state)
 
+            # Evaluate and send metrics (ALL nodes)
+            TrainStage.__evaluate(state, learner, communication_protocol, experiment_logger)
 
             # Train
             if state.addr in state.train_set:
-                # Evaluate and send metrics
-                TrainStage.__evaluate(state, learner, communication_protocol, experiment_logger) # NEW: Pass experiment_logger
-
                 check_early_stop(state)
                 logger.info(state.addr, "🏋️‍♀️ Preparing training...")
                 learner.fit(apply_update=not aggregator.requires_gradient_only)

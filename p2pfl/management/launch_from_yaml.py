@@ -321,7 +321,7 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         # Wait for full network discovery: every node should see all other nodes
         # only_direct=False checks for indirect neighbors discovered via heartbeats
         logger.info(None, f"⌛ Waiting for full network discovery ({len(nodes)} nodes)...")
-        wait_convergence(nodes, len(nodes) - 1, only_direct=False, wait=60, debug=False)
+        wait_convergence(nodes, len(nodes) - 1, only_direct=False, wait=120, debug=False)
         logger.info(None, "✅ Full network discovery achieved.")
 
         if additional_connections:

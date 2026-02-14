@@ -69,7 +69,7 @@ class Gossip:
 
     PERIOD: float = 0.1
     """Period (seconds) for the gossip protocol."""
-    TTL: int = 10
+    TTL: int = 100
     """Time to live (TTL) for a message in the gossip protocol."""
     MESSAGES_PER_PERIOD: int = 100
     """Number of messages to send in each gossip period."""

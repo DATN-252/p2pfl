@@ -12,14 +12,14 @@ network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 10
-  topology: "full"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
+  topology: "ring"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
   additional_connections: []
 
 # Defines experiment settings
 experiment:
   name: "my_experiment"
   rounds: 50
-  epochs: 1
+  epochs: 5
   trainset_size: 10
   seed: 666
   wait_timeout: 18000
@@ -62,7 +62,7 @@ experiment:
     params: 
       learning_rate: 0.001
       decay_rate: 0.99
-      alpha: 2.0
+      alpha: 1.0
  
 
 # General experiment settings

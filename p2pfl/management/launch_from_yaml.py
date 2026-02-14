@@ -317,9 +317,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         
         adjacency_matrix = TopologyFactory.generate_matrix(topology, len(nodes))
         TopologyFactory.connect_nodes(adjacency_matrix, nodes)
-        import numpy as np
-        expected_neighbors = int(np.min(np.sum(adjacency_matrix, axis=1)))
-        wait_convergence(nodes, expected_neighbors, only_direct=True, wait=60, debug=False) # type: ignore
+        
+        # Wait for full network discovery: every node should see all other nodes
+        # only_direct=False checks for indirect neighbors discovered via heartbeats
+        logger.info(None, f"⌛ Waiting for full network discovery ({len(nodes)} nodes)...")
+        wait_convergence(nodes, len(nodes) - 1, only_direct=False, wait=60, debug=False)
+        logger.info(None, "✅ Full network discovery achieved.")
 
         if additional_connections:
             for source, connect_to in additional_connections:

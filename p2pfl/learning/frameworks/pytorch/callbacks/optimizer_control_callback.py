@@ -62,7 +62,6 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
             weights_end = [p.detach().cpu() for p in pl_module.parameters()]
             
             # Delta = weights_start - weights_end
-            # (In SGD: w_end = w_start - lr * grad => lr * grad = w_start - w_end)
             delta = [s - e for s, e in zip(self._weights_start, weights_end)]
             
             self.additional_info["delta"] = [d.numpy() for d in delta]

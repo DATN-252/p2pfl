@@ -8,7 +8,7 @@ from p2pfl.management.logger import logger
 
 class DFedAdp(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
-    requires_gradient_only: bool = True
+    requires_gradient_only: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     
 

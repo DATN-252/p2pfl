@@ -105,12 +105,9 @@ class RandomIIDPartitionStrategy(DataPartitionStrategy):
 
 class LabelSkewedPartitionStrategy(DataPartitionStrategy):
     """
-    Partitions the dataset by grouping samples with the same label, resulting in a non-IID distribution.
-
-    This is generally considered the "worst-case" scenario for federated learning.
+    Partitions the dataset by grouping samples with the same label, 
+    dividing them into shards, and assigning a fixed number of shards to each node.
     """
-
-    # CUANDO SE HAGA LA OTRA (NO-IID GENERALIZARLA)
 
     @staticmethod
     def generate_partitions(
@@ -118,39 +115,56 @@ class LabelSkewedPartitionStrategy(DataPartitionStrategy):
         test_data: Dataset,
         num_partitions: int,
         label_tag: str = "label",
+        shards_per_node: int = 2,
         **kwargs,
     ) -> tuple[list[list[int]], list[list[int]]]:
         """
-        Generate partitions of the dataset by grouping samples with the same label.
+        Generate partitions using shard-based approach.
 
         Args:
-            train_data: The training Dataset object to partition.
-            test_data: The test Dataset object to partition.
-            num_partitions: The number of partitions to create.
-            label_tag: The name of the column containing the labels.
-            **kwargs: Additional keyword arguments that may be required by specific strategies.
-
-        Returns:
-            A tuple containing two lists of lists:
-                - The first list contains lists of indices for the training data partitions.
-                - The second list contains lists of indices for the test data partitions.
-
+            train_data: The training Dataset object.
+            test_data: The test Dataset object.
+            num_partitions: The number of partitions (nodes).
+            label_tag: The column name for labels.
+            shards_per_node: Number of shards each node will receive.
+            **kwargs: Additional arguments.
         """
-        raise NotImplementedError("LabelSkewedPartitionStrategy is not implemented yet. TEST!")
-        train_partitions = []
-        test_partitions = []
+        return (
+            LabelSkewedPartitionStrategy.__partition_data(train_data, num_partitions, label_tag, shards_per_node),
+            LabelSkewedPartitionStrategy.__partition_data(test_data, num_partitions, label_tag, shards_per_node),
+        )
 
-        # Partition the training data
-        sorted_train_indices = train_data.sort("label")
-        random.Random(Settings.general.SEED).shuffle(sorted_train_indices)  # Shuffle within label groups
-        train_partitions = [sorted_train_indices[i::num_partitions].tolist() for i in range(num_partitions)]
+    @staticmethod
+    def __partition_data(data: Dataset, num_partitions: int, label_tag: str, shards_per_node: int) -> list[list[int]]:
+        # 1. Sort indices by label
+        df = data.to_pandas()
+        indices_by_label = df.sort_values(label_tag).index.tolist()
+        
+        # 2. Divide into total shards
+        total_shards = num_partitions * shards_per_node
+        shard_size = len(indices_by_label) // total_shards
+        
+        if shard_size == 0:
+            raise ValueError(f"Dataset too small ({len(indices_by_label)}) to create {total_shards} shards.")
 
-        # Partition the test data
-        sorted_test_indices = test_data.sort("label").indices
-        random.Random(Settings.general.SEED).shuffle(sorted_test_indices)  # Shuffle within label groups
-        test_partitions = [sorted_test_indices[i::num_partitions].tolist() for i in range(num_partitions)]
-
-        return train_partitions, test_partitions
+        shards = [
+            indices_by_label[i * shard_size : (i + 1) * shard_size]
+            for i in range(total_shards)
+        ]
+        
+        # 3. Randomly assign shards to nodes
+        rng = random.Random(Settings.general.SEED)
+        shard_indices = list(range(total_shards))
+        rng.shuffle(shard_indices)
+        
+        node_partitions = [[] for _ in range(num_partitions)]
+        for i in range(num_partitions):
+            # Take 'shards_per_node' shards for this node
+            for _ in range(shards_per_node):
+                shard_idx = shard_indices.pop()
+                node_partitions[i].extend(shards[shard_idx])
+                
+        return node_partitions
 
 
 class DirichletPartitionStrategy(DataPartitionStrategy):

@@ -31,7 +31,7 @@ experiment:
     batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitioner"
+      strategy: "DirichletPartitionStrategy"
       reduced_dataset: false # For testing purposes
       reduction_factor: 10
 

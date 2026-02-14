@@ -369,7 +369,7 @@ class Node:
             # Broadcast initialize model
             self._communication_protocol.broadcast(self._communication_protocol.build_msg(ModelInitializedCommand.get_name()))
             # Learning Thread
-            self.__start_learning_thread(rounds, epochs, trainset_size, experiment_name)
+            self.__start_learning_thread(rounds, epochs, trainset_size, experiment_name, total_nodes)
             return experiment_name
         else:
             logger.info(self.addr, "Learning already started")

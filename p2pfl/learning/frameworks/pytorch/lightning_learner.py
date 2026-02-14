@@ -40,7 +40,7 @@ from p2pfl.settings import Settings
 from p2pfl.utils.check_ray import ray_installed
 from p2pfl.utils.seed import set_seed
 
-torch.set_num_threads(4)
+torch.set_num_threads(2)
 
 
 class LightningLearner(Learner):

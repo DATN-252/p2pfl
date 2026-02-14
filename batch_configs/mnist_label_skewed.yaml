@@ -17,7 +17,9 @@ experiment:
     batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: \"LabelSkewedPartitionStrategy\"`n      params:`n        shards_per_node: 2
+      strategy: "LabelSkewedPartitionStrategy"
+      params:
+        shards_per_node: 2
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
@@ -34,4 +36,3 @@ settings:
   heartbeat:
     timeout: 1200
     period: 5
-

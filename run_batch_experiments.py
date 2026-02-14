@@ -4,47 +4,45 @@ import subprocess
 from datetime import datetime
 
 def run_experiments(config_dir="batch_configs"):
-    # 1. Kiểm tra thư mục chứa configs
+    # 1. Check if config directory exists
     if not os.path.exists(config_dir):
-        print(f"❌ Thư mục '{config_dir}' không tồn tại. Vui lòng tạo và bỏ các file .yaml vào đó.")
+        print(f"❌ Directory '{config_dir}' not found. Please create it and add your .yaml files.")
         return
 
-    # 2. Lấy danh sách các file yaml
+    # 2. Get list of yaml files
     config_files = [f for f in os.listdir(config_dir) if f.endswith('.yaml') or f.endswith('.yml')]
     config_files.sort()
 
     if not config_files:
-        print(f"⚠️ Không tìm thấy file cấu hình nào trong '{config_dir}'.")
+        print(f"⚠️ No configuration files found in '{config_dir}'.")
         return
 
-    print(f"🚀 Tìm thấy {len(config_files)} thí nghiệm. Bắt đầu chạy...")
+    print(f"🚀 Found {len(config_files)} experiments. Starting batch run...")
 
     for i, config_file in enumerate(config_files):
         config_path = os.path.join(config_dir, config_file)
         print("\n" + "="*60)
-        print(f"🧪 [{i+1}/{len(config_files)}] Đang chạy: {config_file}")
-        print(f"⏰ Bắt đầu lúc: {datetime.now().strftime('%H:%M:%S')}")
+        print(f"🧪 [{i+1}/{len(config_files)}] Running: {config_file}")
+        print(f"⏰ Started at: {datetime.now().strftime('%H:%M:%S')}")
         print("="*60)
 
         try:
-            # Sử dụng lệnh p2pfl run đã có sẵn trong dự án
-            # Chúng ta dùng subprocess.run để đợi thí nghiệm này xong mới chạy cái tiếp theo
+            # Run the experiment using p2pfl CLI
             result = subprocess.run(
                 ["p2pfl", "run", config_path],
                 check=True,
                 text=True
             )
-            print(f"✅ Hoàn thành thí nghiệm: {config_file}")
+            print(f"✅ Finished experiment: {config_file}")
         except subprocess.CalledProcessError as e:
-            print(f"❌ Lỗi khi chạy {config_file}: {e}")
+            print(f"❌ Error while running {config_file}: {e}")
         except KeyboardInterrupt:
-            print("\n🛑 Đã dừng bởi người dùng. Thoát...")
+            print("\n🛑 Stopped by user. Exiting...")
             break
 
     print("\n" + "="*60)
-    print("🎉 TẤT CẢ THÍ NGHIỆM ĐÃ HOÀN TẤT!")
+    print("🎉 ALL EXPERIMENTS COMPLETED!")
     print("="*60)
 
 if __name__ == "__main__":
-    # Bạn có thể đổi tên thư mục chứa các file yaml ở đây
     run_experiments("batch_configs")

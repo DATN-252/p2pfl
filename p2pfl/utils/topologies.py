@@ -129,6 +129,5 @@ class TopologyFactory:
                     try:
                         nodes[i].connect(nodes[j].addr)
                         logger.info("", f"Connected nodes {nodes[i].addr} and {nodes[j].addr}")
-                        time.sleep(0.1)
                     except Exception as e:
                         logger.error("", f"Error connecting nodes {nodes[i].addr} and {nodes[j].addr}: {e}")

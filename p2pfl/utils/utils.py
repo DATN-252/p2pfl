@@ -67,7 +67,7 @@ def set_standalone_settings() -> None:
 def wait_convergence(
     nodes: list[Node | CommunicationProtocol],
     n_neis: int,
-    wait: int | float = 5,
+    wait: int | float = 30,
     only_direct: bool = False,
     debug: bool = False,
 ) -> None:

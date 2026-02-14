@@ -33,7 +33,7 @@ class DFedAdp(Aggregator):
         if len(models) == 0:
             raise NoModelsToAggregateError(f"({self.addr}) No models to aggregate")
 
-        # --- Setup: Map models by address for robust access ---
+        # --- Setup ---
         model_map = {m.get_contributors()[0]: m for m in models}
         self_model = model_map.get(self.addr)
         if self_model is None:
@@ -43,22 +43,16 @@ class DFedAdp(Aggregator):
         contributors = list(model_map.keys())
         current_round = self.each_trained_round.get(self.addr, 0)
 
-        # Helper to get delta (accumulated change from the epoch)
         def get_delta(m):
             m_info = self._get_and_validate_model_info(m)
-            if "delta" in m_info:
-                return [np.array(d) for d in m_info["delta"]]
-            return [np.zeros_like(p) for p in m.get_parameters()]
+            return [np.array(d) for d in m_info.get("delta", [np.zeros_like(p) for p in m.get_parameters()])]
 
-        # In this hybrid mode, we treat the accumulated delta as our 'pseudo-gradient'
-        # We don't divide by LR because the delta already represents the optimal step taken by Adam
         self_delta = get_delta(self_model)
 
         # --- Initial Round (Round 0) ---
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
             self.prev_local_gradient = [d.copy() for d in self_delta]
-            # Initialize tracking variable V with initial local delta
             self_model.gradients_estimate = [d.copy() for d in self_delta]
 
         # --- 3. Calculate Metropolis-Hastings Weights ---
@@ -76,8 +70,7 @@ class DFedAdp(Aggregator):
         metro_weights = neighbor_weights
         metro_weights[self.addr] = 1.0 - sum(neighbor_weights.values())
 
-        # --- 4. Gradient Tracking: Update Tracking Variable V ---
-        # This variable now tracks the 'Average Delta' of the network
+        # --- 4. Update Tracking Variable V (tracks Average Delta) ---
         weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
         for addr, m in model_map.items():
             w_ij = metro_weights.get(addr, 0.0)
@@ -87,7 +80,7 @@ class DFedAdp(Aggregator):
         tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]
         self.prev_local_gradient = [d.copy() for d in self_delta]
 
-        # --- 5. Calculate Adaptive FedAdp Scores ---
+        # --- 5. Calculate Adaptive FedAdp Scores (using Tracking Delta) ---
         fedadp_scores = {}
         g_vec = np.concatenate([p.ravel() for p in tracking_delta])
         g_norm = np.linalg.norm(g_vec)
@@ -107,7 +100,7 @@ class DFedAdp(Aggregator):
             f_val = self._gompertz_function(smoothed_angle)
             fedadp_scores[addr] = m.get_num_samples() * math.exp(f_val)
 
-        # --- 6. Calculate Adaptive Mixing Matrix (for Weight Consensus) ---
+        # --- 6. Final Update: Weight Consensus using Adaptive Scores ---
         total_score = sum(fedadp_scores.values())
         psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
         
@@ -115,22 +108,13 @@ class DFedAdp(Aggregator):
         sum_mix = sum(unnormalized_mix.values())
         final_mixing_weights = {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
         
-        # --- 7. Final Update: Weight Consensus + Tracking Correction ---
-        # W_next = Weighted_Avg(W_end) - (Tracking_Delta - Local_Delta)
-        # This corrects the local model towards the global average direction without double-counting local work.
         new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():
             w = final_mixing_weights.get(addr, 0.0)
             for i, layer in enumerate(m.get_parameters()):
                 new_weights[i] += layer * w
 
-        # Apply correction: move the consensus model slightly towards the tracked global direction
-        # We use a small dampening factor (0.1) for the correction to ensure extreme stability in Non-IID
-        correction_factor = 0.1 
-        self.global_model_params = [
-            nw - correction_factor * (td - sd) 
-            for nw, td, sd in zip(new_weights, tracking_delta, self_delta)
-        ]
+        self.global_model_params = new_weights
 
         # --- Build and return result ---
         result_model = self_model.build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)

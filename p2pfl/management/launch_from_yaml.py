@@ -90,6 +90,11 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         Settings.set_from_dict(custom_settings)
         # Refresh (already initialized)
         logger.set_level(Settings.general.LOG_LEVEL)
+    
+    # Increase heartbeat timeout for simulation to avoid false timeouts during heavy load
+    Settings.heartbeat.TIMEOUT = 1200.0  # 20 minutes
+    Settings.heartbeat.PERIOD = 5.0      # 5 seconds
+    logger.info(None, f"Set simulation heartbeat: timeout={Settings.heartbeat.TIMEOUT}s, period={Settings.heartbeat.PERIOD}s")
 
     # Get Amount of Nodes
     network_config = config.get("network", {})

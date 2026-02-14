@@ -33,10 +33,13 @@ class ExperimentLogger:
             metrics (Dict[str, Any]): A dictionary of metrics (e.g., {'test_acc': 0.98}).
         """
         # Clean up keys and values to remove accidental newlines/whitespace
-        clean_metrics = {
-            str(k).strip(): (v.strip() if isinstance(v, str) else v)
-            for k, v in metrics.items()
-        }
+        # .strip() and .replace('\n', '') for extra safety
+        clean_metrics = {}
+        for k, v in metrics.items():
+            clean_key = str(k).replace('\n', '').strip()
+            clean_val = v.strip().replace('\n', '') if isinstance(v, str) else v
+            clean_metrics[clean_key] = clean_val
+
         log_entry = {
             "round": round_num,
             "metrics": clean_metrics

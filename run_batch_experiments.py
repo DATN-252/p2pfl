@@ -21,8 +21,7 @@ def run_experiments(config_dir="batch_configs"):
 
     for i, config_file in enumerate(config_files):
         config_path = os.path.join(config_dir, config_file)
-        print(f"
-" + "="*60)
+        print("\n" + "="*60)
         print(f"🧪 [{i+1}/{len(config_files)}] Đang chạy: {config_file}")
         print(f"⏰ Bắt đầu lúc: {datetime.now().strftime('%H:%M:%S')}")
         print("="*60)
@@ -39,12 +38,10 @@ def run_experiments(config_dir="batch_configs"):
         except subprocess.CalledProcessError as e:
             print(f"❌ Lỗi khi chạy {config_file}: {e}")
         except KeyboardInterrupt:
-            print("
-🛑 Đã dừng bởi người dùng. Thoát...")
+            print("\n🛑 Đã dừng bởi người dùng. Thoát...")
             break
 
-    print("
-" + "="*60)
+    print("\n" + "="*60)
     print("🎉 TẤT CẢ THÍ NGHIỆM ĐÃ HOÀN TẤT!")
     print("="*60)
 

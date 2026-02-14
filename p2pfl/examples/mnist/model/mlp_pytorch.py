@@ -101,7 +101,7 @@ class MLP(L.LightningModule):
 
     def training_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Training step of the MLP."""
-        x = batch["image"].float()
+        x = batch["image"].float() / 255.0
         y = batch["label"]
         loss = torch.nn.functional.cross_entropy(self(x), y)
         self.log("train_loss", loss, prog_bar=True)
@@ -113,7 +113,7 @@ class MLP(L.LightningModule):
 
     def test_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Test step for the MLP."""
-        x = batch["image"].float()
+        x = batch["image"].float() / 255.0
         y = batch["label"]
         logits = self(x)
         loss = torch.nn.functional.cross_entropy(logits, y)

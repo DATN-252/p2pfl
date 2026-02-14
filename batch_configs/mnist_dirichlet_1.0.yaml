@@ -3,7 +3,7 @@ network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 3
-  topology: \"full\"
+  topology: "full"
 experiment:
   name: "mnist_dirichlet_1.0"
   rounds: 1

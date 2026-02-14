@@ -18,7 +18,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 10
+  rounds: 100
   epochs: 1
   trainset_size: 50
   seed: 666

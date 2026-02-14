@@ -12,7 +12,7 @@ network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 50
-  topology: "ring"   # Network topology: "line", "ring", "star", "full", null for custom
+  topology: "custom"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
   additional_connections: []
 
 # Defines experiment settings

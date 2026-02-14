@@ -37,6 +37,8 @@ class TopologyType(Enum):
     RANDOM_2 = "random_2"  # Random graph with average degree 2
     RANDOM_3 = "random_3"  # Random graph with average degree 3
     RANDOM_4 = "random_4"  # Random graph with average degree 4
+    RANDOM_8 = "random_8"  # Random graph with average degree 8
+    CUSTOM = "custom"      # Custom topology
 
 
 class TopologyFactory:
@@ -71,7 +73,7 @@ class TopologyFactory:
             for i in range(num_nodes):
                 matrix[i, (i + 1) % num_nodes] = 1
                 matrix[(i + 1) % num_nodes, i] = 1
-        elif topology_type in [TopologyType.RANDOM_2, TopologyType.RANDOM_3, TopologyType.RANDOM_4]:
+        elif topology_type in [TopologyType.RANDOM_2, TopologyType.RANDOM_3, TopologyType.RANDOM_4, TopologyType.RANDOM_8, TopologyType.CUSTOM]:
             # Erdős–Rényi G(n, M) model: select M edges randomly
             if num_nodes <= 1:
                 return matrix  # No edges possible for 0 or 1 node
@@ -80,8 +82,12 @@ class TopologyFactory:
                 avg_degree = 2
             elif topology_type == TopologyType.RANDOM_3:
                 avg_degree = 3
-            else:  # RANDOM_4
+            elif topology_type == TopologyType.RANDOM_4:
                 avg_degree = 4
+            elif topology_type == TopologyType.RANDOM_8:
+                avg_degree = 8
+            else:  # CUSTOM
+                avg_degree = 8  # Default to 8 neighbors for custom as requested
 
             # Calculate target number of edges M = (n * avg_degree) / 2
             num_edges_target = round(num_nodes * avg_degree / 2)

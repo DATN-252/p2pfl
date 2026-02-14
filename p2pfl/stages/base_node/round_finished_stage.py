@@ -22,6 +22,7 @@ from p2pfl.communication.commands.message.metrics_command import MetricsCommand
 from p2pfl.communication.protocols.communication_protocol import CommunicationProtocol
 from p2pfl.learning.aggregators.aggregator import Aggregator
 from p2pfl.learning.frameworks.learner import Learner
+from p2pfl.management.experiment_logger import ExperimentLogger # NEW IMPORT
 from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 from p2pfl.stages.stage import Stage
@@ -42,6 +43,7 @@ class RoundFinishedStage(Stage):
         learner: Learner | None = None,
         communication_protocol: CommunicationProtocol | None = None,
         aggregator: Aggregator | None = None,
+        experiment_logger: ExperimentLogger | None = None, # NEW PARAM
         **kwargs,
     ) -> type["Stage"] | None:
         """Execute the stage."""
@@ -64,17 +66,22 @@ class RoundFinishedStage(Stage):
             return StageFactory.get_stage("VoteTrainSetStage")
         else:
             # At end, all nodes compute metrics
-            RoundFinishedStage.__evaluate(state, learner, communication_protocol)
+            RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger) # NEW: Pass experiment_logger
             # Finish
             state.clear()
             logger.info(state.addr, "😋 Training finished!!")
             return None
 
     @staticmethod
-    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol) -> None:
+    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, experiment_logger: ExperimentLogger | None = None) -> None: # NEW param
         logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
+
+        # NEW: Record metrics with experiment_logger
+        if experiment_logger:
+            experiment_logger.record_metrics(state.round, results)
+
         # Send metrics
         if len(results) > 0:
             logger.info(state.addr, "📢 Broadcasting metrics.")

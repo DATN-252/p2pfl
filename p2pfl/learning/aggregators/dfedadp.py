@@ -8,7 +8,7 @@ from p2pfl.management.logger import logger
 
 class DFedAdp(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
-    requires_gradient_only: bool = True
+    requires_gradient_only: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     
 
@@ -46,10 +46,6 @@ class DFedAdp(Aggregator):
         # --- Initial Round (Round 0) ---
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
-            info = self._get_and_validate_model_info(self_model)
-            delta = info["delta"]
-            self.prev_local_gradient = [-d / self.learning_rate for d in delta]
-            self_model.gradients_estimate = self.prev_local_gradient
 
         # --- 3. Calculate Metropolis-Hastings Weights (Robustly) ---
         my_degree = int(self._get_and_validate_model_info(self_model)["degrees"])
@@ -66,17 +62,18 @@ class DFedAdp(Aggregator):
         metro_weights = neighbor_weights
         metro_weights[self.addr] = self_weight
 
-        # --- 4. Compute Current Local Gradient ---
+        # --- 4. Compute Pseudo-Gradient (for tracking purpose) ---
+        # Even with weight aggregation, we use delta to compute adaptive scores
         self_info = self._get_and_validate_model_info(self_model)
         self_delta = self_info["delta"]
         curr_local_gradient = [-d / self.learning_rate for d in self_delta]
 
-        # --- 5. Gradient Tracking: Estimate Global Gradient ---
+        # --- 5. Gradient Tracking: Estimate Global Direction ---
         weighted_neighbor_tracking = [np.zeros_like(p) for p in self.global_model_params]
         for addr, m in model_map.items():
             if hasattr(m, 'gradients_estimate') and m.gradients_estimate:
                 g_j_prev = m.gradients_estimate
-            else: # Fallback for first round
+            else: # Fallback
                 d = self._get_and_validate_model_info(m)["delta"]
                 g_j_prev = [-x / self.learning_rate for x in d]
             
@@ -117,16 +114,14 @@ class DFedAdp(Aggregator):
         sum_mix = sum(unnormalized_mix.values())
         final_mixing_weights = {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
         
-        # --- 8. Aggregation Step (Consensus) & 9. Final Update ---
-        w_half = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
+        # --- 8. Aggregation Step (Consensus Average) ---
+        new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():
             w = final_mixing_weights.get(addr, 0.0)
             for i, layer in enumerate(m.get_parameters()):
-                w_half[i] += layer * w
+                new_weights[i] += layer * w
 
-        clip_threshold = 5.0
-        tracking_gradient = [np.clip(tg, -clip_threshold, clip_threshold) for tg in tracking_gradient]
-        self.global_model_params = [wh - self.learning_rate * tg for wh, tg in zip(w_half, tracking_gradient)]
+        self.global_model_params = new_weights
 
         # --- Build and return result ---
         result_model = self_model.build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)

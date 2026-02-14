@@ -19,7 +19,7 @@ network:
 experiment:
   name: "my_experiment"
   rounds: 50
-  epochs: 1
+  epochs: 3
   trainset_size: 10
   seed: 666
   wait_timeout: 18000

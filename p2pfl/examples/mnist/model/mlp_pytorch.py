@@ -97,7 +97,7 @@ class MLP(L.LightningModule):
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
         """Configure the optimizer."""
-        return torch.optim.Adam(self.parameters(), lr=self.lr_rate)
+        return torch.optim.SGD(self.parameters(), lr=self.lr_rate, momentum=0.9)
 
     def training_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Training step of the MLP."""

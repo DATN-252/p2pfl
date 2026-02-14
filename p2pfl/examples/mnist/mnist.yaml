@@ -31,12 +31,12 @@ experiment:
     batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "RandomIIDPartitionStrategy"
+      strategy: "DirichletPartitioner"
       reduced_dataset: false # For testing purposes
       reduction_factor: 10
 
       params:
-        alpha: 0.5
+        alpha: 0.1
         min_partition_size: 10
         self_balancing: false
 

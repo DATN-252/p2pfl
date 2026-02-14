@@ -78,12 +78,12 @@ settings:
     CLIENT_KEY: None
   heartbeat:
     period: 2
-    timeout: 60 
+    timeout: 300 
     wait_convergence: 20
     exclude_beat_logs: true
   gossip:
-    period: 1
-    ttl: 100
+    period: 0.5
+    ttl: 50
     messages_per_period: 200
     amount_last_messages_saved: 1000
     models_period: 1

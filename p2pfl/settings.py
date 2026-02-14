@@ -55,7 +55,7 @@ class Heartbeat:
 
     PERIOD: float = 2.0
     """Period (seconds) to send heartbeats."""
-    TIMEOUT: float = 5.0
+    TIMEOUT: float = 300.0
     """Timeout (seconds) for a node to be considered dead."""
     WAIT_CONVERGENCE: float = PERIOD
     """Time (seconds) to wait for the heartbeats to converge before a learning round starts."""
@@ -67,9 +67,9 @@ class Heartbeat:
 class Gossip:
     """Gossip protocol settings."""
 
-    PERIOD: float = 0.1
+    PERIOD: float = 0.5
     """Period (seconds) for the gossip protocol."""
-    TTL: int = 100
+    TTL: int = 50
     """Time to live (TTL) for a message in the gossip protocol."""
     MESSAGES_PER_PERIOD: int = 100
     """Number of messages to send in each gossip period."""

@@ -59,7 +59,10 @@ experiment:
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
-    params: {}
+    params: 
+      learning_rate: 0.01
+      decay_rate: 0.99
+      alpha: 2.0
  
 
 # General experiment settings

@@ -1,7 +1,7 @@
 description: "MNIST Pathological - Label Skewed"
 network:
-  package: "p2pfl.communication.protocols.protobuff.memory"
-  protocol: "MemoryCommunicationProtocol"
+  package: "p2pfl.communication.protocols.protobuff.grpc"
+  protocol: "GrpcCommunicationProtocol"
   nodes: 50
   topology: custom
 experiment:
@@ -34,7 +34,7 @@ experiment:
       alpha: 1.0
 settings:
   general:
-    disable_ray: True
+    disable_ray: False
   heartbeat:
     timeout: 99999
     period: 10

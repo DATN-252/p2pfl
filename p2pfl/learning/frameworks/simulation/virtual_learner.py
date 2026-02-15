@@ -111,11 +111,12 @@ class VirtualNodeLearner(Learner):
     def fit(self, apply_update: bool = True) -> P2PFLModel:
         """Fit the model."""
         try:
+            job_id = f"{str(self.addr)}_fit"
             self.actor_pool.submit_learner_job(
                 lambda actor, addr, learner: actor.fit.remote(addr, learner, apply_update=apply_update),
-                (str(self.addr), self.learner),
+                (job_id, self.learner),
             )
-            model: P2PFLModel = self.actor_pool.get_learner_result(str(self.addr), None)[1]
+            model: P2PFLModel = self.actor_pool.get_learner_result(job_id, None)[1]
             self.learner.set_model(model)
             return model
         except Exception as ex:
@@ -136,11 +137,12 @@ class VirtualNodeLearner(Learner):
 
         """
         try:
+            job_id = f"{str(self.addr)}_eval"
             self.actor_pool.submit_learner_job(
                 lambda actor, addr, learner: actor.evaluate.remote(addr, learner),
-                (str(self.addr), self.learner),
+                (job_id, self.learner),
             )
-            result: dict[str, float] = self.actor_pool.get_learner_result(str(self.addr), None)[1]
+            result: dict[str, float] = self.actor_pool.get_learner_result(job_id, None)[1]
             return result
         except Exception as ex:
             logger.error(self.addr, f"An error occurred during remote evaluation: {ex}")

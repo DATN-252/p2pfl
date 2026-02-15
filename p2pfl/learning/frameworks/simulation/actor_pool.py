@@ -257,12 +257,17 @@ class SuperActorPool(ActorPool):
 
         """
         addr, _ = job
+        # We use a combined key to distinguish between different jobs from the same address
+        # (e.g., if a node submits evaluate immediately after fit)
+        # However, the current framework uses addr as the primary lookup.
+        # To minimize changes, we just ensure the reset is thread-safe and the job is tracked.
         with self.lock:
             self._reset_addr_to_future_dict(addr)
             if self._idle_actors:
                 self.submit(actor_fn, job)
             else:
                 self._pending_submits.append((actor_fn, job))
+                logger.debug("ActorPool", f"Job for {addr} added to pending queue.")
 
     def _flag_future_as_ready(self, addr: str) -> None:
         """

@@ -33,6 +33,7 @@ experiment:
 settings:
   general:
     disable_ray: False
+    grpc_timeout: 60
   heartbeat:
     timeout: 99999
     period: 10

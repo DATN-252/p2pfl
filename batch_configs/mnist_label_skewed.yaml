@@ -34,7 +34,7 @@ experiment:
       alpha: 1.0
 settings:
   heartbeat:
-    timeout: 1200
-    period: 5
+    timeout: 99999
+    period: 10
 
 

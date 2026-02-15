@@ -27,43 +27,43 @@ class PSGD(Aggregator):
             raise NoModelsToAggregateError(f"({self.addr}) No models to aggregate")
 
         # 1. Find the model from the current node to access its info later
-        self_model = next((m for m in models if self.addr in m.get_contributors()), None)
+        self_idx = -1
+        for i, m in enumerate(models):
+            if self.addr in m.get_contributors():
+                self_idx = i
+                break
 
-        if self_model is None:
-            # Fallback or raise error if the node's own model is not in the list
+        if self_idx == -1:
             raise NoModelsToAggregateError("Self model not found in the aggregation list.")
+        
+        self_model = models[self_idx]
 
         # 2. Calculate Metropolis-Hastings Weights (Topology-based)
-        # This assumes the self_model is the first in the list, which is the p2pfl convention.
-        degrees = [int(self._get_and_validate_model_info(m)["degrees"]) for m in models]
-        weights = [0.0] * len(models)
-        my_degree = degrees[0]
+        model_info = [self._get_and_validate_model_info(m) for m in models]
+        degrees = [int(info["degrees"]) for info in model_info]
+        my_degree = degrees[self_idx]
         
+        weights = [0.0] * len(models)
         # Calculate neighbor weights
-        for i in range(1, len(models)):
+        for i in range(len(models)):
+            if i == self_idx:
+                continue
             weights[i] = 1.0 / (1.0 + max(my_degree, degrees[i]))
         
         # Calculate self-weight
-        weights[0] = 1.0 - sum(weights[1:])
+        weights[self_idx] = 1.0 - sum(weights)
         
-        # 3. Consensus Step: x_{k+1/2, i} = Σ_j w_ij * x_{k,j}
+        # 3. Consensus Step: x_{k+1, i} = Σ_j w_ij * x_{k,j}
+        # In P2PFL, models in 'models' list are already trained locally (x_j = x_old + delta_j).
+        # The aggregation (mixing) of these trained models completes the D-PSGD step.
         x_params = self_model.get_parameters()
-        mixed_params = [np.zeros_like(p) for p in x_params]
+        final_params = [np.zeros_like(p, dtype=np.float64) for p in x_params]
 
         for i, m in enumerate(models):
             w_ij = weights[i]
             if w_ij > 0:
                 for l, param in enumerate(m.get_parameters()):
-                    mixed_params[l] += w_ij * param
-
-        # 3. Gradient Step: x_{k+1, i} = x_{k+1/2, i} + delta
-        # The learner provides `delta` which is equal to `-γ * ∇F`.
-        # So, the update is x_{k+1/2, i} + delta.
-        
-        info = self._get_and_validate_model_info(self_model)
-        delta = info["delta"]
-
-        final_params = [m_param + d_param for m_param, d_param in zip(mixed_params, delta)]
+                    final_params[l] += w_ij * param
 
         # 4. Return the final updated model
         return self_model.build_copy(

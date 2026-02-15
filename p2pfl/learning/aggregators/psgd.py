@@ -10,8 +10,8 @@ class PSGD(Aggregator):
     """
 
     SUPPORTS_PARTIAL_AGGREGATION = True
-    requires_gradient_only: bool = True
-    REQUIRED_INFO_KEYS = ["delta", "degrees"]
+    requires_gradient_only: bool = False
+    REQUIRED_INFO_KEYS = ["degrees"]
 
     def __init__(self, lr: float = 0.01):
         """

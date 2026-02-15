@@ -236,8 +236,13 @@ class SuperActorPool(ActorPool):
         if self._check_and_remove_actor_from_pool(actor):
             future = fn(actor, addr, learner)
             future_key = tuple(future) if isinstance(future, list) else future
+            
+            # Ensure future is assigned before releasing the lock
+            # This prevents get_learner_result from seeing a None future
             self._future_to_actor[future_key] = (self._next_task_index, actor, addr)
             self._next_task_index += 1
+            if addr not in self._addr_to_future:
+                self._addr_to_future[addr] = {}
             self._addr_to_future[addr]["future"] = future_key
         else:
             logger.error("ActorPool", "Actor should have been removed from pool but wasn't")
@@ -311,6 +316,8 @@ class SuperActorPool(ActorPool):
         """
         try:
             future = self._addr_to_future[addr]["future"]
+            if future is None:
+                raise ValueError(f"No future job found for address {addr}. The job might have failed to submit or was already processed.")
             res_addr, result = ray.get(future)
         except ray.exceptions.RayActorError as ex:
             # print(ex)
@@ -391,6 +398,30 @@ class SuperActorPool(ActorPool):
             Address and result of the learner job.
 
         """
+        import time
+        start_time = time.time()
+        
+        # Wait until the job is actually submitted (not in pending_submits anymore)
+        # and has a valid future reference.
+        while True:
+            with self.lock:
+                future = self._addr_to_future.get(addr, {}).get("future")
+                if future is not None:
+                    break
+            
+            # If we've been waiting too long for submission, something is wrong
+            if timeout and (time.time() - start_time) > timeout:
+                raise TimeoutError(f"Timed out waiting for job {addr} to be submitted to Ray.")
+            
+            # If there are idle actors, try to process pending submits
+            # (Ray's ActorPool might not do this automatically if we're manually managing)
+            if not self.has_next() and not self._pending_submits: # type: ignore
+                 # No jobs running and nothing pending? This is an error state for this addr.
+                 raise RuntimeError(f"Job {addr} vanished from the pool.")
+            
+            time.sleep(0.1)
+
+        # Now that we have a future, wait for it to be ready
         while self.has_next() and not self._is_future_ready(addr):  # type: ignore
             try:
                 self.process_unordered_future(timeout=timeout)

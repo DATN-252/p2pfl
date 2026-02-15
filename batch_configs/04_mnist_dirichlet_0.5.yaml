@@ -35,11 +35,11 @@ experiment:
 settings:
   general:
     disable_ray: False
-    grpc_timeout: 60
+    grpc_timeout: 120
   heartbeat:
     timeout: 99999
     period: 10
-    wait_convergence: 60
+    wait_convergence: 180
   training:
     vote_timeout: 120
     aggregation_timeout: 300

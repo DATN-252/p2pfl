@@ -1,60 +1,67 @@
 import os
 import json
+import threading
 from typing import Dict, Any
 
 class ExperimentLogger:
     """
     Manages logging of evaluated metrics for a specific node during an experiment.
-    Results are stored in a JSON Lines (.jsonl) file, making them easy to append
-    and parse for plotting scripts.
     """
-    def __init__(self, output_dir: str, node_id: str):
-        """
-        Initializes the ExperimentLogger.
+    # Class-level lock to ensure thread-safe file writing across instances if needed
+    _file_lock = threading.Lock()
 
-        Args:
-            output_dir (str): The base directory for experiment logs.
-            node_id (str): The unique identifier for the node (e.g., its address).
-        """
+    def __init__(self, output_dir: str, node_id: str):
         self.output_dir = output_dir
         self.node_id = node_id
-        # Use .jsonl (JSON Lines) for easy appending and parsing of individual JSON objects
         self.log_file_path = os.path.join(output_dir, f"node_{self.node_id}.jsonl")
         
-        # Ensure the output directory exists
         os.makedirs(self.output_dir, exist_ok=True)
         
-        # CLEAR EXISTING LOG FILE FOR THIS NODE
-        # This prevents duplicate entries from previous runs if the same port is used
-        if os.path.exists(self.log_file_path):
-            os.remove(self.log_file_path)
-        
-        # Track recorded rounds to prevent duplicate logging within the same run
+        # We don't delete here anymore, instead we let the launcher manage folders
+        # to preserve history if needed, but we ensure consistency within this instance
         self.__recorded_rounds = set()
 
     def record_metrics(self, round_num: int, metrics: Dict[str, Any]):
         """
         Records evaluated metrics for a given round.
-
-        Args:
-            round_num (int): The current training round number.
-            metrics (Dict[str, Any]): A dictionary of metrics (e.g., {'test_acc': 0.98}).
         """
-        if round_num in self.__recorded_rounds:
-            return # Skip if already recorded for this round
-            
-        # Clean up keys and values to remove accidental newlines/whitespace
-        clean_metrics = {}
-        for k, v in metrics.items():
-            clean_key = str(k).replace('\n', '').strip()
-            clean_val = v.strip().replace('\n', '') if isinstance(v, str) else v
-            clean_metrics[clean_key] = clean_val
+        if round_num is None:
+            return
 
-        log_entry = {
-            "round": round_num,
-            "metrics": clean_metrics
-        }
-        with open(self.log_file_path, 'a') as f:
-            f.write(json.dumps(log_entry) + '\n')
-        
-        self.__recorded_rounds.add(round_num)
+        with self._file_lock:
+            # Check if this round was already recorded by this specific logger instance
+            if round_num in self.__recorded_rounds:
+                return 
+                
+            # Clean up keys and values
+            clean_metrics = {}
+            for k, v in metrics.items():
+                clean_key = str(k).replace('\n', '').strip()
+                clean_val = v.strip().replace('\n', '') if isinstance(v, str) else v
+                clean_metrics[clean_key] = clean_val
+
+            log_entry = {
+                "round": round_num,
+                "metrics": clean_metrics
+            }
+            
+            # Double check: read the file to see if round is already there (Slow but 100% safe)
+            # This is the "Nuclear Option" for consistency
+            already_in_file = False
+            if os.path.exists(self.log_file_path):
+                try:
+                    with open(self.log_file_path, 'r') as f:
+                        for line in f:
+                            if line.strip():
+                                entry = json.loads(line)
+                                if entry.get("round") == round_num:
+                                    already_in_file = True
+                                    break
+                except Exception:
+                    pass
+
+            if not already_in_file:
+                with open(self.log_file_path, 'a') as f:
+                    f.write(json.dumps(log_entry) + '\n')
+            
+            self.__recorded_rounds.add(round_num)

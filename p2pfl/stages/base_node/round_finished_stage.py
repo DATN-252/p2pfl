@@ -50,28 +50,31 @@ class RoundFinishedStage(Stage):
         if state is None or communication_protocol is None or aggregator is None or learner is None:
             raise Exception("Invalid parameters on RoundFinishedStage.")
 
-        # Every node computes metrics at the end of each round (BEFORE increasing the round number)
-        RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger)
+        # Ensure atomicity of evaluation and round increment
+        with state.round_condition:
+            # Every node computes metrics at the end of each round (BEFORE increasing the round number)
+            RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger)
 
-        # Set Next Round
-        aggregator.clear()
-        state.increase_round()
+            # Set Next Round
+            aggregator.clear()
+            state.increase_round()
 
-        # Next Step or Finish
-        logger.info(
-            state.addr,
-            f"🎉 Round {state.round} of {state.total_rounds} finished.",
-        )
-        if state.round is None or state.total_rounds is None:
-            raise ValueError("Round or total rounds not set.")
+            # Next Step or Finish
+            logger.info(
+                state.addr,
+                f"🎉 Round {state.round} of {state.total_rounds} finished.",
+            )
+            
+            if state.round is None or state.total_rounds is None:
+                raise ValueError("Round or total rounds not set.")
 
-        if state.round < state.total_rounds:
-            return StageFactory.get_stage("VoteTrainSetStage")
-        else:
-            # Finish
-            state.clear()
-            logger.info(state.addr, "😋 Training finished!!")
-            return None
+            if state.round < state.total_rounds:
+                return StageFactory.get_stage("VoteTrainSetStage")
+            else:
+                # Finish
+                state.clear()
+                logger.info(state.addr, "😋 Training finished!!")
+                return None
 
     @staticmethod
     def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, experiment_logger: ExperimentLogger | None = None) -> None: # NEW param

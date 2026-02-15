@@ -1,11 +1,11 @@
-description: "MNIST Pathological - Label Skewed"
+description: "MNIST Dirichlet 10.0 - Near IID"
 network:
   package: "p2pfl.communication.protocols.protobuff.grpc"
   protocol: "GrpcCommunicationProtocol"
   nodes: 50
   topology: custom
 experiment:
-  name: "mnist_pathological"
+  name: "mnist_dirichlet_10.0"
   rounds: 100
   epochs: 1
   trainset_size: 50
@@ -17,9 +17,9 @@ experiment:
     batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "LabelSkewedPartitionStrategy"
+      strategy: "DirichletPartitionStrategy"
       params:
-        shards_per_node: 2
+        alpha: 10.0
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
@@ -35,13 +35,14 @@ experiment:
 settings:
   general:
     disable_ray: False
-    grpc_timeout: 60
+    grpc_timeout: 120
   heartbeat:
     timeout: 99999
     period: 10
-    wait_convergence: 60
+    wait_convergence: 180
   training:
     vote_timeout: 120
     aggregation_timeout: 300
+
 
 

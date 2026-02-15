@@ -311,6 +311,9 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         )
         node.start()
         nodes.append(node)
+        
+        # STAGGERED START: Give 1s delay to prevent gRPC port collisions on high-core systems
+        time.sleep(1)
 
     try:
         # Connect nodes

@@ -28,13 +28,15 @@ class PSGD(Aggregator):
 
         # 1. Find the model from the current node to access its info later
         self_idx = -1
+        norm_self_addr = self.normalize_addr(self.addr)
         for i, m in enumerate(models):
-            if self.addr in m.get_contributors():
+            contributors = m.get_contributors()
+            if contributors and norm_self_addr == self.normalize_addr(contributors[0]):
                 self_idx = i
                 break
 
         if self_idx == -1:
-            raise NoModelsToAggregateError("Self model not found in the aggregation list.")
+            raise NoModelsToAggregateError(f"Self model ({norm_self_addr}) not found in the aggregation list for PSGD.")
         
         self_model = models[self_idx]
 

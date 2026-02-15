@@ -34,10 +34,20 @@ class DFedAdp(Aggregator):
             raise NoModelsToAggregateError(f"({self.addr}) No models to aggregate")
 
         # --- Setup ---
-        model_map = {m.get_contributors()[0]: m for m in models}
-        self_model = model_map.get(self.addr)
+        # Normalize addresses for robust mapping
+        norm_self_addr = self.normalize_addr(self.addr)
+        model_map = {}
+        for m in models:
+            contributors = m.get_contributors()
+            if contributors:
+                norm_contributor = self.normalize_addr(contributors[0])
+                model_map[norm_contributor] = m
+
+        self_model = model_map.get(norm_self_addr)
         if self_model is None:
-            raise NoModelsToAggregateError("Self model not found in the aggregation list for DFedAdp.")
+            # Provide more diagnostic info
+            available_nodes = list(model_map.keys())
+            raise NoModelsToAggregateError(f"Self model ({norm_self_addr}) not found in the aggregation list for DFedAdp. Available: {available_nodes}")
         
         total_samples = sum(m.get_num_samples() for m in model_map.values())
         contributors = list(model_map.keys())

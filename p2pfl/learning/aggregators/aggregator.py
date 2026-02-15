@@ -105,7 +105,8 @@ class Aggregator(NodeComponent):
 
         """
         if not self._finish_aggregation_event.is_set():
-            raise Exception("It is not possible to set nodes to aggregate when the aggregation is running.")
+            logger.warning(self.addr, "Force clearing aggregator state to start new round.")
+            self.clear()
 
         # Start new aggregation
         self.__train_set = nodes_to_aggregate

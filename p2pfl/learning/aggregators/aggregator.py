@@ -74,18 +74,20 @@ class Aggregator(NodeComponent):
 
             self.__train_set = nodes_to_aggregate
             self._finish_aggregation_event.clear()
-            # Try to process unhandled models for the new round
+            
+            # PROACTIVE RECOVERY: Process models that arrived early for this round
             to_process = self.__unhandled_models
             self.__unhandled_models = []
-            for m in to_process:
-                self.add_model(m)
+            if to_process:
+                logger.info(self.addr, f"♻️ Proactively processing {len(to_process)} early models.")
+                for m in to_process:
+                    self.add_model(m)
 
     def clear(self) -> None:
         with self.__agg_lock:
             self.__train_set = []
             self.__models = []
-            # Note: we don't clear __unhandled_models here anymore
-            # to preserve models from future rounds that arrived early.
+            # Preserve __unhandled_models for future rounds
             self._finish_aggregation_event.set()
 
     def get_aggregated_models(self) -> list[str]:
@@ -99,7 +101,6 @@ class Aggregator(NodeComponent):
         with self.__agg_lock:
             self.__local_model_backup = model
             norm_self = self.normalize_addr(self.addr)
-            # Check if local node already contributed to any model in __models
             already_present = False
             for m in self.__models:
                 if any(self.normalize_addr(c) == norm_self for c in m.get_contributors()):
@@ -109,7 +110,7 @@ class Aggregator(NodeComponent):
             if not already_present:
                 self.__models.append(model)
                 logger.info(self.addr, f"✅ [FORCE] Local model added. ({len(self.__models)}/{len(self.__train_set)})")
-                if len(self.__models) >= len(self.__train_set) > 0:
+                if self.__train_set and len(self.__models) >= len(self.__train_set):
                     self._finish_aggregation_event.set()
 
     def add_model(self, model: P2PFLModel) -> list[str]:
@@ -126,15 +127,12 @@ class Aggregator(NodeComponent):
                 self.force_add_local_model(model)
                 return self.get_aggregated_models()
 
-            # Check if we are even expecting models
             if not self.__train_set:
                 self.__unhandled_models.append(model)
                 return []
 
-            # Check if all contributors of this model are in our train_set
             norm_train_set = {self.normalize_addr(t) for t in self.__train_set}
             if all(c in norm_train_set for c in norm_contributors):
-                # Check if any of these contributors have already been added
                 current_contributors = {self.normalize_addr(c) for m in self.__models for c in m.get_contributors()}
                 if not any(c in current_contributors for c in norm_contributors):
                     self.__models.append(model)
@@ -145,11 +143,7 @@ class Aggregator(NodeComponent):
                 else:
                     logger.debug(self.addr, f"🚫 Model from {contributors} already aggregated.")
             else:
-                # If the aggregation is full, save to unhandled
-                if len(self.__models) >= len(self.__train_set):
-                    self.__unhandled_models.append(model)
-                else:
-                    logger.debug(self.addr, f"🚫 Contributors {norm_contributors} not in train_set.")
+                self.__unhandled_models.append(model)
         return []
 
     def wait_and_get_aggregation(self, timeout: int = Settings.training.AGGREGATION_TIMEOUT) -> P2PFLModel:
@@ -158,14 +152,14 @@ class Aggregator(NodeComponent):
         with self.__agg_lock:
             if not self.__models:
                 if self.__local_model_backup:
-                    logger.warning(self.addr, "⚠️ Aggregation empty. Using local backup.")
+                    logger.warning(self.addr, "⚠️ Aggregation list empty after timeout. Using local backup.")
                     self.__models = [self.__local_model_backup]
                 elif self.__unhandled_models:
                     self.__models = [self.__unhandled_models.pop(0)]
                     logger.info(self.addr, "✅ Recovered from unhandled.")
             
             if not self.__models:
-                raise NoModelsToAggregateError(f"({self.addr}) No models after fallback. Expected: {len(self.__train_set)}")
+                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate.")
 
             try:
                 result = self.aggregate(self.__models)

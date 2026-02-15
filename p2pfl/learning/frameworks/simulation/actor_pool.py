@@ -105,16 +105,15 @@ class SuperActorPool(ActorPool):
         self.lock = threading.RLock()
 
     def _calculate_gpu_per_actor(self, num_actors: int) -> float:
-        """Calculate GPU fraction per actor. Let Ray handle the global allocation."""
-        # For simulation, we want to allow many actors to share GPUs
-        # We use a small fraction to ensure Ray doesn't block too early
-        return 0.01 
+        """Calculate GPU fraction per actor."""
+        # On n2d-highmem-8 without GPU, we force this to 0
+        return 0.0 
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Each actor should take at least 1 core if possible, 
-        # but let's be conservative to avoid Ray scheduling stalls.
-        return 0.5
+        # 50 nodes * 1 actor/node * 0.1 CPU = 5 CPUs. 
+        # This leaves 3 CPUs for gRPC and OS overhead on an 8 vCPU machine.
+        return 0.1
 
     def create_actor(self) -> VirtualLearnerActor:
         """

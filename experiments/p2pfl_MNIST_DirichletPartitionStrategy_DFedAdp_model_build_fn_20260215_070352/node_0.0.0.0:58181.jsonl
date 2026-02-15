@@ -1,0 +1,14 @@
+{"round": 0, "metrics": {"test_loss": 27.784740447998047, "test_acc": 0.5703125, "test_precision": 0.142578125, "test_recall": 0.25, "test_f1": 0.18159204721450806}}
+{"round": 1, "metrics": {"test_loss": 4.131898403167725, "test_acc": 0.6484375, "test_precision": 0.2359693944454193, "test_recall": 0.2380952537059784, "test_f1": 0.227027028799057}}
+{"round": 2, "metrics": {"test_loss": 8.867231369018555, "test_acc": 0.6796875, "test_precision": 0.2762500047683716, "test_recall": 0.33105021715164185, "test_f1": 0.30001863837242126}}
+{"round": 3, "metrics": {"test_loss": 8.125200271606445, "test_acc": 0.6328125, "test_precision": 0.2042233645915985, "test_recall": 0.19166666269302368, "test_f1": 0.19005848467350006}}
+{"round": 5, "metrics": {"test_loss": 9.013376235961914, "test_acc": 0.6875, "test_precision": 0.2180221527814865, "test_recall": 0.3333333432674408, "test_f1": 0.26218488812446594}}
+{"round": 6, "metrics": {"test_loss": 7.268727779388428, "test_acc": 0.6875, "test_precision": 0.2118152529001236, "test_recall": 0.2857142984867096, "test_f1": 0.24319729208946228}}
+{"round": 6, "metrics": {"test_loss": 7.268727779388428, "test_acc": 0.6875, "test_precision": 0.2118152529001236, "test_recall": 0.2857142984867096, "test_f1": 0.24319729208946228}}
+{"round": 8, "metrics": {"test_loss": 8.224395751953125, "test_acc": 0.6796875, "test_precision": 0.21171875298023224, "test_recall": 0.24166667461395264, "test_f1": 0.22465482354164124}}
+{"round": 9, "metrics": {"test_loss": 8.470911026000977, "test_acc": 0.6875, "test_precision": 0.21039605140686035, "test_recall": 0.2857142984867096, "test_f1": 0.24231761693954468}}
+{"round": 11, "metrics": {"test_loss": 13.411307334899902, "test_acc": 0.65625, "test_precision": 0.2871287167072296, "test_recall": 0.2888889014720917, "test_f1": 0.2808724045753479}}
+{"round": 12, "metrics": {"test_loss": 10.561384201049805, "test_acc": 0.6875, "test_precision": 0.24192345142364502, "test_recall": 0.2857142984867096, "test_f1": 0.26188647747039795}}
+{"round": 13, "metrics": {"test_loss": 10.561384201049805, "test_acc": 0.6875, "test_precision": 0.24192345142364502, "test_recall": 0.2857142984867096, "test_f1": 0.26188647747039795}}
+{"round": 14, "metrics": {"test_loss": 11.462077140808105, "test_acc": 0.6875, "test_precision": 0.20915435254573822, "test_recall": 0.2857142984867096, "test_f1": 0.24024724960327148}}
+{"round": 15, "metrics": {"test_loss": 10.98661994934082, "test_acc": 0.6875, "test_precision": 0.19385823607444763, "test_recall": 0.25, "test_f1": 0.21759338676929474}}

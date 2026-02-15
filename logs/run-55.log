@@ -1,0 +1,887 @@
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] ♻️ Proactively processing 2 early models.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🎉 Round 10 of 100 finished.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🧩 Model added (1/4) from ['0.0.0.0:45333']
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] ♻️ Proactively processing 3 early models.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🧩 Model added (1/5) from ['0.0.0.0:59479']
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] ✅ [FORCE] Local model added. (2/4)
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41895 | INFO ] ✅ [FORCE] Local model added. (2/5)
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.8015384674072266, 'test_acc': 0.9049999713897705, 'test_precision': 0.9132241606712341, 'test_recall': 0.9026356339454651, 'test_f1': 0.899427056312561}
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🎉 Round 12 of 100 finished.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:32 | 0.0.0.0:41199 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:40:33 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:40:33 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.105647087097168, 'test_acc': 0.8899999856948853, 'test_precision': 0.9016011953353882, 'test_recall': 0.8892064094543457, 'test_f1': 0.8897033929824829}
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🎉 Round 63 of 100 finished.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:33 | 0.0.0.0:55817 | INFO ] 🧩 Model added (3/7) from ['0.0.0.0:60331']
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:33 | 0.0.0.0:60331 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.065190076828003, 'test_acc': 0.9049999713897705, 'test_precision': 0.897319495677948, 'test_recall': 0.8941270709037781, 'test_f1': 0.8915004730224609}
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🎉 Round 64 of 100 finished.
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:34 | 0.0.0.0:60331 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.156777858734131, 'test_acc': 0.8999999761581421, 'test_precision': 0.9084909558296204, 'test_recall': 0.911206066608429, 'test_f1': 0.9025248885154724}
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎉 Round 63 of 100 finished.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:35 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.156777858734131, 'test_acc': 0.8999999761581421, 'test_precision': 0.9084909558296204, 'test_recall': 0.911206066608429, 'test_f1': 0.9025248885154724}
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🧩 Model added (1/4) from ['0.0.0.0:59479']
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎉 Round 64 of 100 finished.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:35 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:40:35 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.156777858734131, 'test_acc': 0.8999999761581421, 'test_precision': 0.9084909558296204, 'test_recall': 0.911206066608429, 'test_f1': 0.9025248885154724}
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🧩 Model added (2/4) from ['0.0.0.0:59479']
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎉 Round 65 of 100 finished.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:35 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:40:36 | 0.0.0.0:45333 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:41199', '0.0.0.0:54877', '0.0.0.0:48049', '0.0.0.0:35933']
+[ 2026-02-15 08:40:36 | 0.0.0.0:41199 | INFO ] 🧩 Model added (2/4) from ['0.0.0.0:45333']
+[ 2026-02-15 08:40:36 | 0.0.0.0:44055 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:54877', '0.0.0.0:45753']
+[ 2026-02-15 08:40:37 | 0.0.0.0:41199 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:35933', '0.0.0.0:41895']
+[ 2026-02-15 08:40:37 | 0.0.0.0:41895 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:41199', '0.0.0.0:59479', '0.0.0.0:58027', '0.0.0.0:38361']
+[ 2026-02-15 08:40:37 | 0.0.0.0:35933 | INFO ] 🧩 Model added (5/5) from ['0.0.0.0:41199']
+[ 2026-02-15 08:40:37 | 0.0.0.0:58027 | INFO ] 🧩 Model added (4/5) from ['0.0.0.0:41895']
+[ 2026-02-15 08:40:37 | 0.0.0.0:41199 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:35933', '0.0.0.0:41895']
+[ 2026-02-15 08:40:37 | 0.0.0.0:35933 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:37 | 0.0.0.0:41895 | INFO ] 🧩 Model added (3/5) from ['0.0.0.0:41199']
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:37 | 0.0.0.0:35933 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.1798293590545654, 'test_acc': 0.9399999976158142, 'test_precision': 0.9402675628662109, 'test_recall': 0.9279659986495972, 'test_f1': 0.92926424741745}
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🎉 Round 52 of 100 finished.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:37 | 0.0.0.0:59479 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:45597']
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:37 | 0.0.0.0:48409 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:38 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:40:39 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:40:39 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:39 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:39 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.9925615787506104, 'test_acc': 0.8700000047683716, 'test_precision': 0.8747877478599548, 'test_recall': 0.8658947944641113, 'test_f1': 0.860613226890564}
+[ 2026-02-15 08:40:39 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🎉 Round 42 of 100 finished.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:40 | 0.0.0.0:55817 | INFO ] ✅ [FORCE] Local model added. (1/7)
+[ 2026-02-15 08:40:40 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:40:40 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:40:40 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:40:41 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:41 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:41 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.3715050220489502, 'test_acc': 0.9150000214576721, 'test_precision': 0.9241958856582642, 'test_recall': 0.9107409119606018, 'test_f1': 0.9075657725334167}
+[ 2026-02-15 08:40:41 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🎉 Round 42 of 100 finished.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 4.065453052520752, 'test_acc': 0.8700000047683716, 'test_precision': 0.8741125464439392, 'test_recall': 0.8764300346374512, 'test_f1': 0.8683487176895142}
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:42 | 0.0.0.0:45333 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🎉 Round 65 of 100 finished.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:42 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:42 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:43 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:43 | 0.0.0.0:54877 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:43 | 0.0.0.0:45597 | INFO ] 🧩 Model added (2/4) from ['0.0.0.0:59479']
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:43 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.970900774002075, 'test_acc': 0.875, 'test_precision': 0.8817471265792847, 'test_recall': 0.8699511885643005, 'test_f1': 0.8688307404518127}
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🎉 Round 41 of 100 finished.
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:43 | 0.0.0.0:44055 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:44 | 0.0.0.0:44055 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.6112290620803833, 'test_acc': 0.9449999928474426, 'test_precision': 0.9403195381164551, 'test_recall': 0.9495704770088196, 'test_f1': 0.9416283965110779}
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🎉 Round 32 of 100 finished.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:44 | 0.0.0.0:44055 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:44 | 0.0.0.0:44055 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:44 | 0.0.0.0:44055 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:44 | 0.0.0.0:45333 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:40:45 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.071460008621216, 'test_acc': 0.8999999761581421, 'test_precision': 0.9140458703041077, 'test_recall': 0.885873019695282, 'test_f1': 0.8863969445228577}
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🎉 Round 65 of 100 finished.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:46 | 0.0.0.0:55817 | INFO ] 🧩 Model added (2/7) from ['0.0.0.0:60331']
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:46 | 0.0.0.0:60331 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.9166231155395508, 'test_acc': 0.9049999713897705, 'test_precision': 0.9129664897918701, 'test_recall': 0.911074697971344, 'test_f1': 0.9076576232910156}
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🎉 Round 66 of 100 finished.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:47 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:48 | 0.0.0.0:54877 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:45333', '0.0.0.0:44055', '0.0.0.0:48049', '0.0.0.0:41765', '0.0.0.0:32831', '0.0.0.0:40755']
+[ 2026-02-15 08:40:48 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:48 | 0.0.0.0:59479 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:45597']
+[ 2026-02-15 08:40:48 | 0.0.0.0:45333 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:48 | 0.0.0.0:44055 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:48 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:48 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:48 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:40:48 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.534538984298706, 'test_acc': 0.9150000214576721, 'test_precision': 0.916746973991394, 'test_recall': 0.9111375212669373, 'test_f1': 0.9053337574005127}
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🎉 Round 54 of 100 finished.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.534538984298706, 'test_acc': 0.9150000214576721, 'test_precision': 0.916746973991394, 'test_recall': 0.9111375212669373, 'test_f1': 0.9053337574005127}
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:48 | 0.0.0.0:54877 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:48 | 0.0.0.0:55817 | INFO ] 🧩 Model added (3/7) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:48 | 0.0.0.0:45333 | INFO ] 🧩 Model added (3/5) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🎉 Round 55 of 100 finished.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:40:48 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.4554905593395233, 'test_acc': 0.925000011920929, 'test_precision': 0.9345752000808716, 'test_recall': 0.929553210735321, 'test_f1': 0.9265821576118469}
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🎉 Round 12 of 100 finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] ♻️ Proactively processing 2 early models.
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🧩 Model added (1/5) from ['0.0.0.0:41199']
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:45333']
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.360893487930298, 'test_acc': 0.9350000023841858, 'test_precision': 0.9348437786102295, 'test_recall': 0.9269887804985046, 'test_f1': 0.9255090355873108}
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🎉 Round 53 of 100 finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:44055 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:54877', '0.0.0.0:45753']
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:49 | 0.0.0.0:35933 | INFO ] ✅ [FORCE] Local model added. (3/5)
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🤫 Gossip finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:49 | 0.0.0.0:45333 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:41199', '0.0.0.0:54877', '0.0.0.0:48049', '0.0.0.0:35933']
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🤫 Gossip finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.5010693073272705, 'test_acc': 0.8999999761581421, 'test_precision': 0.9097678661346436, 'test_recall': 0.8956015706062317, 'test_f1': 0.8973268866539001}
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🎉 Round 27 of 100 finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.0053794384002686, 'test_acc': 0.9399999976158142, 'test_precision': 0.9457783699035645, 'test_recall': 0.9242897629737854, 'test_f1': 0.9297817945480347}
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.5010693073272705, 'test_acc': 0.8999999761581421, 'test_precision': 0.9097678661346436, 'test_recall': 0.8956015706062317, 'test_f1': 0.8973268866539001}
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🎉 Round 54 of 100 finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:49 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🎉 Round 28 of 100 finished.
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:49 | 0.0.0.0:57889 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:50 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:50 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:50 | 0.0.0.0:48409 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:50 | 0.0.0.0:57889 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:50 | 0.0.0.0:57889 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:50 | 0.0.0.0:57889 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:50 | 0.0.0.0:57889 | INFO ] ✅ [FORCE] Local model added. (1/2)
+[ 2026-02-15 08:40:50 | 0.0.0.0:57889 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:51 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.470155715942383, 'test_acc': 0.875, 'test_precision': 0.8789225220680237, 'test_recall': 0.8554785847663879, 'test_f1': 0.8544009327888489}
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🎉 Round 43 of 100 finished.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.470155715942383, 'test_acc': 0.875, 'test_precision': 0.8789225220680237, 'test_recall': 0.8554785847663879, 'test_f1': 0.8544009327888489}
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🎉 Round 44 of 100 finished.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] ✅ [FORCE] Local model added. (1/7)
+[ 2026-02-15 08:40:52 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:53 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:40:53 | 0.0.0.0:48049 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:48409', '0.0.0.0:59479', '0.0.0.0:54877', '0.0.0.0:32831', '0.0.0.0:38361', '0.0.0.0:55817']
+[ 2026-02-15 08:40:53 | 0.0.0.0:48049 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:48409', '0.0.0.0:59479', '0.0.0.0:54877', '0.0.0.0:32831', '0.0.0.0:38361', '0.0.0.0:55817']
+[ 2026-02-15 08:40:53 | 0.0.0.0:48409 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:54 | 0.0.0.0:55817 | INFO ] 🧩 Model added (2/7) from ['0.0.0.0:48049']
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.169065475463867, 'test_acc': 0.8949999809265137, 'test_precision': 0.9207006692886353, 'test_recall': 0.8978448510169983, 'test_f1': 0.8900506496429443}
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🎉 Round 43 of 100 finished.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:54 | 0.0.0.0:35933 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:41199', '0.0.0.0:41765', '0.0.0.0:42319']
+[ 2026-02-15 08:40:54 | 0.0.0.0:41199 | INFO ] 🧩 Model added (3/4) from ['0.0.0.0:35933']
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.169065475463867, 'test_acc': 0.8949999809265137, 'test_precision': 0.9207006692886353, 'test_recall': 0.8978448510169983, 'test_f1': 0.8900506496429443}
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:54 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🎉 Round 44 of 100 finished.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.988722562789917, 'test_acc': 0.8700000047683716, 'test_precision': 0.8715817332267761, 'test_recall': 0.8752179145812988, 'test_f1': 0.8676894307136536}
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:54 | 0.0.0.0:54877 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 🎉 Round 66 of 100 finished.
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:54 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:55 | 0.0.0.0:48049 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:59479']
+[ 2026-02-15 08:40:55 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:40:55 | 0.0.0.0:57889 | INFO ] 📤 Sending model to 1 direct neighbors: ['0.0.0.0:42319']
+[ 2026-02-15 08:40:55 | 0.0.0.0:57889 | INFO ] 📤 Sending model to 1 direct neighbors: ['0.0.0.0:42319']
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.1020562648773193, 'test_acc': 0.9100000262260437, 'test_precision': 0.9143383502960205, 'test_recall': 0.9114885926246643, 'test_f1': 0.9074519276618958}
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🎉 Round 67 of 100 finished.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 📈 Evaluated. Results: {'test_loss': 4.532062530517578, 'test_acc': 0.8799999952316284, 'test_precision': 0.8756762742996216, 'test_recall': 0.882517397403717, 'test_f1': 0.870302140712738}
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🎉 Round 42 of 100 finished.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.1020562648773193, 'test_acc': 0.9100000262260437, 'test_precision': 0.9143383502960205, 'test_recall': 0.9114885926246643, 'test_f1': 0.9074519276618958}
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🎉 Round 68 of 100 finished.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:55 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:40:55 | 0.0.0.0:44055 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:56 | 0.0.0.0:56889 | INFO ] Cannot send message beat to 0.0.0.0:51535. Error: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.162933111190796, 'test_acc': 0.8999999761581421, 'test_precision': 0.9280065894126892, 'test_recall': 0.9122473001480103, 'test_f1': 0.9035184979438782}
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🎉 Round 33 of 100 finished.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:40:56 | 0.0.0.0:45333 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:54877']
+[ 2026-02-15 08:40:57 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:40:57 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.3751282691955566, 'test_acc': 0.8849999904632568, 'test_precision': 0.899705708026886, 'test_recall': 0.8638453483581543, 'test_f1': 0.8706046938896179}
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🎉 Round 66 of 100 finished.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.3751282691955566, 'test_acc': 0.8849999904632568, 'test_precision': 0.899705708026886, 'test_recall': 0.8638453483581543, 'test_f1': 0.8706046938896179}
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🎉 Round 67 of 100 finished.
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] ✅ [FORCE] Local model added. (1/0)
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:40:58 | 0.0.0.0:55817 | INFO ] 🧩 Model added (3/7) from ['0.0.0.0:60331']
+[ 2026-02-15 08:40:58 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:59 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:40:59 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:40:59 | 0.0.0.0:38361 | INFO ] Cannot send message beat to 0.0.0.0:59873. Error: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.DEADLINE_EXCEEDED
+	details = "Deadline Exceeded"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_status:4, grpc_message:"Deadline Exceeded"}"
+>
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:40:59 | 0.0.0.0:54877 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:45333', '0.0.0.0:44055', '0.0.0.0:48049', '0.0.0.0:41765', '0.0.0.0:32831', '0.0.0.0:40755']
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.5676074028015137, 'test_acc': 0.8999999761581421, 'test_precision': 0.9105587601661682, 'test_recall': 0.9096276760101318, 'test_f1': 0.9030812978744507}
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🎉 Round 67 of 100 finished.
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:40:59 | 0.0.0.0:54877 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:45333', '0.0.0.0:44055', '0.0.0.0:48049', '0.0.0.0:41765', '0.0.0.0:32831', '0.0.0.0:40755']
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:40:59 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.5676074028015137, 'test_acc': 0.8999999761581421, 'test_precision': 0.9105587601661682, 'test_recall': 0.9096276760101318, 'test_f1': 0.9030812978744507}
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:00 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🎉 Round 68 of 100 finished.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🧩 Model added (1/4) from ['0.0.0.0:59479']
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.7498104572296143, 'test_acc': 0.9100000262260437, 'test_precision': 0.917107105255127, 'test_recall': 0.9150826930999756, 'test_f1': 0.912356436252594}
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🎉 Round 69 of 100 finished.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:41:00 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:00 | 0.0.0.0:44055 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:54877', '0.0.0.0:45753']
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:00 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:41:00 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.1249217987060547, 'test_acc': 0.8899999856948853, 'test_precision': 0.8844997882843018, 'test_recall': 0.8894447088241577, 'test_f1': 0.879472017288208}
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 🎉 Round 56 of 100 finished.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:00 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.1249217987060547, 'test_acc': 0.8899999856948853, 'test_precision': 0.8844997882843018, 'test_recall': 0.8894447088241577, 'test_f1': 0.879472017288208}
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.1690399646759033, 'test_acc': 0.949999988079071, 'test_precision': 0.9412294030189514, 'test_recall': 0.9515342712402344, 'test_f1': 0.9437733292579651}
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:01 | 0.0.0.0:59479 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:45597']
+[ 2026-02-15 08:41:01 | 0.0.0.0:54877 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🎉 Round 55 of 100 finished.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🎉 Round 57 of 100 finished.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:41:01 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:01 | 0.0.0.0:45333 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:41199', '0.0.0.0:54877', '0.0.0.0:48049', '0.0.0.0:35933']
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:01 | 0.0.0.0:48409 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:41:02 | 0.0.0.0:48409 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:02 | 0.0.0.0:45333 | INFO ] 🧩 Model added (3/5) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:03 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:41:04 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.7613935470581055, 'test_acc': 0.8849999904632568, 'test_precision': 0.8876568675041199, 'test_recall': 0.8812084794044495, 'test_f1': 0.8809242248535156}
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🎉 Round 45 of 100 finished.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:04 | 0.0.0.0:55817 | INFO ] ✅ [FORCE] Local model added. (1/7)
+[ 2026-02-15 08:41:05 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:41:05 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:41:05 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.815458059310913, 'test_acc': 0.9150000214576721, 'test_precision': 0.9193213582038879, 'test_recall': 0.9150906205177307, 'test_f1': 0.9130524396896362}
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🎉 Round 45 of 100 finished.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:06 | 0.0.0.0:48049 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:48409', '0.0.0.0:59479', '0.0.0.0:54877', '0.0.0.0:32831', '0.0.0.0:38361', '0.0.0.0:55817']
+[ 2026-02-15 08:41:06 | 0.0.0.0:48049 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:48409', '0.0.0.0:59479', '0.0.0.0:54877', '0.0.0.0:32831', '0.0.0.0:38361', '0.0.0.0:55817']
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:06 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:06 | 0.0.0.0:54877 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:41:06 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:06 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:07 | 0.0.0.0:54877 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.571828603744507, 'test_acc': 0.9100000262260437, 'test_precision': 0.9150705933570862, 'test_recall': 0.9114885926246643, 'test_f1': 0.9083192348480225}
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:07 | 0.0.0.0:55817 | INFO ] 🧩 Model added (2/7) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🎉 Round 69 of 100 finished.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:45597 | INFO ] 🧩 Model added (2/4) from ['0.0.0.0:59479']
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:48049 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:59479']
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.778318405151367, 'test_acc': 0.8899999856948853, 'test_precision': 0.8854038119316101, 'test_recall': 0.889249861240387, 'test_f1': 0.884310781955719}
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🎉 Round 43 of 100 finished.
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:07 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:07 | 0.0.0.0:44055 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.1101219654083252, 'test_acc': 0.949999988079071, 'test_precision': 0.9488882422447205, 'test_recall': 0.9450655579566956, 'test_f1': 0.944409191608429}
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🎉 Round 34 of 100 finished.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:08 | 0.0.0.0:45333 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:41:09 | 0.0.0.0:44055 | INFO ] 🧩 Model added (2/3) from ['0.0.0.0:54877']
+[ 2026-02-15 08:41:09 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.3753583431243896, 'test_acc': 0.9049999713897705, 'test_precision': 0.895633339881897, 'test_recall': 0.9040571451187134, 'test_f1': 0.8927345275878906}
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🎉 Round 68 of 100 finished.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:11 | 0.0.0.0:55817 | INFO ] 🧩 Model added (3/7) from ['0.0.0.0:60331']
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:11 | 0.0.0.0:60331 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:41:11 | 0.0.0.0:54877 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:45333', '0.0.0.0:44055', '0.0.0.0:48049', '0.0.0.0:41765', '0.0.0.0:32831', '0.0.0.0:40755']
+[ 2026-02-15 08:41:11 | 0.0.0.0:45333 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:54877']
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.7318512201309204, 'test_acc': 0.9200000166893005, 'test_precision': 0.9213556051254272, 'test_recall': 0.9298474192619324, 'test_f1': 0.920930027961731}
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🎉 Round 70 of 100 finished.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 45
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:12 | 0.0.0.0:59479 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:45597', '0.0.0.0:48049', '0.0.0.0:42319', '0.0.0.0:41895']
+[ 2026-02-15 08:41:12 | 0.0.0.0:44055 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:54877', '0.0.0.0:45753']
+[ 2026-02-15 08:41:12 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:13 | 0.0.0.0:59479 | INFO ] 🧩 Model added (2/5) from ['0.0.0.0:45597']
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.196017026901245, 'test_acc': 0.9449999928474426, 'test_precision': 0.9464272856712341, 'test_recall': 0.9348553419113159, 'test_f1': 0.9353308081626892}
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.5392301082611084, 'test_acc': 0.8849999904632568, 'test_precision': 0.8890479207038879, 'test_recall': 0.8809072375297546, 'test_f1': 0.8723894357681274}
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🎉 Round 56 of 100 finished.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.196017026901245, 'test_acc': 0.9449999928474426, 'test_precision': 0.9464272856712341, 'test_recall': 0.9348553419113159, 'test_f1': 0.9353308081626892}
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🎉 Round 58 of 100 finished.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:13 | 0.0.0.0:45597 | INFO ] ✅ [FORCE] Local model added. (1/4)
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🎉 Round 57 of 100 finished.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 49
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🧩 Model added (1/3) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] ✅ [FORCE] Local model added. (2/3)
+[ 2026-02-15 08:41:13 | 0.0.0.0:48409 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:13 | 0.0.0.0:48049 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:41:13 | 0.0.0.0:45333 | INFO ] 📤 Sending model to 4 direct neighbors: ['0.0.0.0:41199', '0.0.0.0:54877', '0.0.0.0:48049', '0.0.0.0:35933']
+[ 2026-02-15 08:41:14 | 0.0.0.0:45333 | INFO ] 🧩 Model added (3/5) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:16 | 0.0.0.0:60331 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45753', '0.0.0.0:55817']
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.269923210144043, 'test_acc': 0.875, 'test_precision': 0.8885748386383057, 'test_recall': 0.8737186193466187, 'test_f1': 0.8719041347503662}
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🎉 Round 46 of 100 finished.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.269923210144043, 'test_acc': 0.875, 'test_precision': 0.8885748386383057, 'test_recall': 0.8737186193466187, 'test_f1': 0.8719041347503662}
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🎉 Round 47 of 100 finished.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:17 | 0.0.0.0:55817 | INFO ] ✅ [FORCE] Local model added. (1/7)
+[ 2026-02-15 08:41:18 | 0.0.0.0:45597 | INFO ] 📤 Sending model to 3 direct neighbors: ['0.0.0.0:39683', '0.0.0.0:39581', '0.0.0.0:59479']
+[ 2026-02-15 08:41:18 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:41:18 | 0.0.0.0:48409 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:48049', '0.0.0.0:35331']
+[ 2026-02-15 08:41:18 | 0.0.0.0:48049 | INFO ] 📤 Sending model to 7 direct neighbors: ['0.0.0.0:45333', '0.0.0.0:48409', '0.0.0.0:59479', '0.0.0.0:54877', '0.0.0.0:32831', '0.0.0.0:38361', '0.0.0.0:55817']
+[ 2026-02-15 08:41:19 | 0.0.0.0:55817 | INFO ] 🧩 Model added (2/7) from ['0.0.0.0:48049']
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.0321686267852783, 'test_acc': 0.925000011920929, 'test_precision': 0.9301458597183228, 'test_recall': 0.919462263584137, 'test_f1': 0.9180282354354858}
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🎉 Round 46 of 100 finished.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.0321686267852783, 'test_acc': 0.925000011920929, 'test_precision': 0.9301458597183228, 'test_recall': 0.919462263584137, 'test_f1': 0.9180282354354858}
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.3930344581604004, 'test_acc': 0.9200000166893005, 'test_precision': 0.9295884966850281, 'test_recall': 0.9206918478012085, 'test_f1': 0.9204022288322449}
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🎉 Round 47 of 100 finished.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🎉 Round 70 of 100 finished.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:19 | 0.0.0.0:54877 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:19 | 0.0.0.0:48049 | INFO ] 🧩 Model added (2/8) from ['0.0.0.0:59479']
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.3930344581604004, 'test_acc': 0.9200000166893005, 'test_precision': 0.9295884966850281, 'test_recall': 0.9206918478012085, 'test_f1': 0.9204022288322449}
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 📈 Evaluated. Results: {'test_loss': 4.550011157989502, 'test_acc': 0.8849999904632568, 'test_precision': 0.8916385769844055, 'test_recall': 0.8896523118019104, 'test_f1': 0.8824093341827393}
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🎉 Round 71 of 100 finished.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 🎉 Round 44 of 100 finished.
+[ 2026-02-15 08:41:19 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 46
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:19 | 0.0.0.0:44055 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:20 | 0.0.0.0:44055 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 📈 Evaluated. Results: {'test_loss': 4.086685657501221, 'test_acc': 0.8799999952316284, 'test_precision': 0.8998269438743591, 'test_recall': 0.8875350952148438, 'test_f1': 0.8862226009368896}
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🎉 Round 72 of 100 finished.
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:20 | 0.0.0.0:44055 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:20 | 0.0.0.0:44055 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:20 | 0.0.0.0:44055 | INFO ] ✅ [FORCE] Local model added. (1/3)
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:41:20 | 0.0.0.0:59479 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 📈 Evaluated. Results: {'test_loss': 1.207073450088501, 'test_acc': 0.949999988079071, 'test_precision': 0.9447892904281616, 'test_recall': 0.9467656016349792, 'test_f1': 0.9430468082427979}
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🎉 Round 35 of 100 finished.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:21 | 0.0.0.0:45333 | INFO ] ✅ [FORCE] Local model added. (1/5)
+[ 2026-02-15 08:41:22 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:41:22 | 0.0.0.0:55817 | INFO ] 📤 Sending model to 6 direct neighbors: ['0.0.0.0:37699', '0.0.0.0:51449', '0.0.0.0:60331', '0.0.0.0:48049', '0.0.0.0:58027', '0.0.0.0:51535']
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.312675714492798, 'test_acc': 0.8949999809265137, 'test_precision': 0.9004673957824707, 'test_recall': 0.8886345028877258, 'test_f1': 0.8916337490081787}
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🎉 Round 59 of 100 finished.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 47
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🎓 Training step done.
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-15 08:41:23 | 0.0.0.0:48049 | INFO ] ✅ [FORCE] Local model added. (1/8)
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 🔬 Evaluating...
+[ 2026-02-15 08:41:24 | 0.0.0.0:37699 | INFO ] Stopping node...
+[ 2026-02-15 08:41:24 | 0.0.0.0:37699 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-15 08:41:24 | 0.0.0.0:39683 | INFO ] Stopping node...
+[ 2026-02-15 08:41:24 | 0.0.0.0:39683 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-15 08:41:24 | 0.0.0.0:39581 | INFO ] Stopping node...
+[ 2026-02-15 08:41:24 | 0.0.0.0:39581 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-15 08:41:24 | 0.0.0.0:60435 | INFO ] Stopping node...
+[ 2026-02-15 08:41:24 | 0.0.0.0:60435 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 📈 Evaluated. Results: {'test_loss': 3.395796775817871, 'test_acc': 0.8799999952316284, 'test_precision': 0.8838481903076172, 'test_recall': 0.8682825565338135, 'test_f1': 0.8655725121498108}
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | WARNING ] ⚠️ Aggregation list empty after timeout. Using local backup.
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 🎉 Round 69 of 100 finished.
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 48
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-15 08:41:24 | 0.0.0.0:60331 | INFO ] 🏋️‍♀️ Preparing training...

@@ -71,121 +71,50 @@ class SuperActorPool(ActorPool):
     SuperActorPool extends ActorPool to manage a pool of VirtualLearnerActor instances for asynchronous distributed computing using Ray.
 
     Attributes:
-        _instance (SuperActorPool): Singleton instance of SuperActorPool.
-        _lock (threading.Lock): Lock for thread-safe instance creation.
         resources (dict): Resources for actor creation.
         _addr_to_future (dict): Mapping from actor address to future information.
         actor_to_remove (set): Set of actor IDs scheduled for removal.
         num_actors (int): Number of active actors in the pool.
         lock (threading.RLock): Reentrant lock for thread-safe operations.
-        initialized (bool): Flag indicating initialization status.
 
     """
 
-    _instance = None
-    _lock = threading.Lock()
-
-    def __new__(cls, *args, **kwargs):
-        """
-        Singleton instance creation for SuperActorPool.
-
-        Returns:
-            Singleton instance of SuperActorPool.
-
-        """
-        with cls._lock:
-            if cls._instance is None:
-                cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, amount_actors: int | None = None):
+    def __init__(self, amount_actors: int = 1):
         """
         Initialize SuperActorPool.
 
         Args:
-            actor_list: List of pre-initialized actors. Defaults to None.
-            amount_actors: Number of actors to initialize. Defaults to None.
+            amount_actors: Number of actors to initialize. Defaults to 1.
 
         """
-        # To avoid reinitialization
-        if not hasattr(self, "initialized"):
-            # Initialize ActorPool
-            num_actors = Settings.training.RAY_ACTOR_POOL_SIZE if amount_actors is None else amount_actors
+        # Calculate resources per actor (Dynamic based on node's perspective)
+        self.gpu_per_actor = self._calculate_gpu_per_actor(amount_actors)
+        self.cpu_per_actor = self._calculate_cpu_per_actor(amount_actors)
 
-            # Calculate resources per actor
-            self.gpu_per_actor = self._calculate_gpu_per_actor(num_actors)
-            self.cpu_per_actor = self._calculate_cpu_per_actor(num_actors)
+        actors = [self.create_actor() for _ in range(amount_actors)]
+        self.num_actors = len(actors)
+        logger.debug("ActorPool", f"Initialized local pool with {self.num_actors} actors")
+        super().__init__(actors)
 
-            actors = [self.create_actor() for _ in range(num_actors)]
-            self.num_actors = len(actors)
-            logger.info("ActorPool", f"Initialized with {self.num_actors} actors, {self.cpu_per_actor:.2f} CPU and {self.gpu_per_actor:.2f} GPU per actor")
-            super().__init__(actors)
+        # A dict that maps addr to another dict containing: a reference to the remote job
+        # and its status (i.e. whether it is ready or not)
+        self._addr_to_future: dict[str, dict[str, Any]] = {}
+        # a set of actor ids to be removed
+        self.actor_to_remove: set[str] = set()
 
-            # A dict that maps addr to another dict containing: a reference to the remote job
-            # and its status (i.e. whether it is ready or not)
-            self._addr_to_future: dict[str, dict[str, Any]] = {}
-            # a set of actor ids to be removed
-            self.actor_to_remove: set[str] = set()
-
-            self.lock = threading.RLock()
-            # Mark as initialized
-            self.initialized = True
+        self.lock = threading.RLock()
 
     def _calculate_gpu_per_actor(self, num_actors: int) -> float:
-        """
-        Calculate GPU resources per actor based on available GPUs.
-
-        Args:
-            num_actors: Number of actors to create.
-
-        Returns:
-            GPU fraction per actor.
-
-        """
-        # Get available GPU resources from Ray (framework-agnostic)
-        available_resources = ray.available_resources()
-        num_gpus = available_resources.get("GPU", 0)
-
-        if num_gpus == 0:
-            logger.warning("ActorPool", "No GPUs available. Actors will run on CPU only.")
-            return 0
-
-        # Calculate GPU per actor (fractional GPUs allowed in Ray)
-        gpu_per_actor = num_gpus / num_actors
-
-        logger.info("ActorPool", f"Ray detected {num_gpus} GPU(s), allocating {gpu_per_actor:.2f} GPU per actor")
-
-        # Log warning if GPU allocation is very small
-        if gpu_per_actor < 0.1:
-            logger.warning(
-                "ActorPool", f"GPU allocation per actor is very small ({gpu_per_actor:.2f}). Consider reducing the number of actors."
-            )
-
-        return gpu_per_actor
+        """Calculate GPU fraction per actor. Let Ray handle the global allocation."""
+        # For simulation, we want to allow many actors to share GPUs
+        # We use a small fraction to ensure Ray doesn't block too early
+        return 0.01 
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
-        """
-        Calculate CPU resources per actor based on available CPUs.
-
-        Args:
-            num_actors: Number of actors to create.
-
-        Returns:
-            CPU fraction per actor.
-
-        """
-        available_resources = ray.available_resources()
-        num_cpus = available_resources.get("CPU", 0)
-
-        if num_cpus == 0:
-            return 0
-
-        # Calculate CPU per actor
-        cpu_per_actor = num_cpus / num_actors
-
-        logger.info("ActorPool", f"Ray detected {num_cpus} CPU(s), allocating {cpu_per_actor:.2f} CPU per actor")
-
-        return cpu_per_actor
+        """Calculate CPU fraction per actor."""
+        # Each actor should take at least 1 core if possible, 
+        # but let's be conservative to avoid Ray scheduling stalls.
+        return 0.5
 
     def create_actor(self) -> VirtualLearnerActor:
         """
@@ -421,7 +350,7 @@ class SuperActorPool(ActorPool):
                 raise TimeoutError(f"Timed out waiting for job {addr} to be submitted to Ray.")
             
             # Give Ray time to process submissions by releasing the lock and sleeping
-            time.sleep(0.5)
+            time.sleep(0.1)
 
         # Now that we have a future, wait for it to be ready
         while self.has_next() and not self._is_future_ready(addr):  # type: ignore

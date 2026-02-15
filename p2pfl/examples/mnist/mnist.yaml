@@ -80,8 +80,8 @@ settings:
     SERVER_KEY: None
     CLIENT_KEY: None
   heartbeat:
-    period: 2
-    timeout: 300 
+    period: 10
+    timeout: 99999 
     wait_convergence: 20
     exclude_beat_logs: true
   gossip:

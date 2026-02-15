@@ -93,6 +93,17 @@ class Aggregator(NodeComponent):
             models_added += n.get_contributors()
         return models_added
 
+    def force_add_local_model(self, model: P2PFLModel) -> None:
+        """Forcefully add the local model to the aggregation list, bypassing all checks."""
+        with self.__agg_lock:
+            # Check if already added to avoid duplicates
+            norm_self_addr = self.normalize_addr(self.addr)
+            if not any(norm_self_addr in [self.normalize_addr(c) for c in m.get_contributors()] for m in self.__models):
+                self.__models.append(model)
+                logger.info(self.addr, f"✅ [FORCE] Local model added. Total: {len(self.__models)}")
+                if len(self.__models) >= len(self.__train_set):
+                    self._finish_aggregation_event.set()
+
     def add_model(self, model: P2PFLModel) -> list[str]:
         contributors = model.get_contributors()
         if not contributors:

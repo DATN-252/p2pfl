@@ -81,7 +81,9 @@ class TrainStage(Stage):
             if state.addr not in state.train_set:
                 n_s = learner.get_data().get_num_samples()
                 current_model.set_contribution([state.addr], n_s) 
-            aggregator.add_model(current_model)
+            
+            # Use force_add_local_model instead of add_model for the local node
+            aggregator.force_add_local_model(current_model)
 
             import time
             time.sleep(5) # wait for continuous voting

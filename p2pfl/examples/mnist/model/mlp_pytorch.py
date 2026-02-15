@@ -41,6 +41,8 @@ class MLP(L.LightningModule):
         out_channels: int = 10,
         activation: str = "relu",
         lr_rate: float = 0.001,
+        optimizer_name: str = "adam",
+        momentum: float = 0.9,
     ) -> None:
         """Initialize the MLP."""
         super().__init__()
@@ -48,6 +50,8 @@ class MLP(L.LightningModule):
         if hidden_sizes is None:
             hidden_sizes = [256, 128]
         self.lr_rate = lr_rate
+        self.optimizer_name = optimizer_name.lower()
+        self.momentum = momentum
         if out_channels == 1:
             self.accuracy = Accuracy(task="binary")
             self.precision = Precision(task="binary")
@@ -97,6 +101,8 @@ class MLP(L.LightningModule):
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
         """Configure the optimizer."""
+        if self.optimizer_name == "sgd":
+            return torch.optim.SGD(self.parameters(), lr=self.lr_rate, momentum=self.momentum)
         return torch.optim.Adam(self.parameters(), lr=self.lr_rate)
 
     def training_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:

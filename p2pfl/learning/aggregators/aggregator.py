@@ -52,8 +52,6 @@ class Aggregator(NodeComponent):
         self._finish_aggregation_event = threading.Event()
         self._finish_aggregation_event.set()
         self.__unhandled_models: list[P2PFLModel] = []
-        
-        # Backup for local model to ensure we never have an empty aggregation
         self.__local_model_backup: P2PFLModel | None = None
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
@@ -64,9 +62,9 @@ class Aggregator(NodeComponent):
 
     def normalize_addr(self, addr: str) -> str:
         """Remove P2PFL version suffixes from addresses."""
-        if addr and "-" in addr:
+        if addr and isinstance(addr, str) and "-" in addr:
             return addr.split("-")[0]
-        return addr
+        return str(addr)
 
     def set_nodes_to_aggregate(self, nodes_to_aggregate: list[str]) -> None:
         with self.__agg_lock:
@@ -76,9 +74,11 @@ class Aggregator(NodeComponent):
 
             self.__train_set = nodes_to_aggregate
             self._finish_aggregation_event.clear()
-            for m in self.__unhandled_models:
-                self.add_model(m)
+            # Try to process unhandled models for the new round
+            to_process = self.__unhandled_models
             self.__unhandled_models = []
+            for m in to_process:
+                self.add_model(m)
 
     def clear(self) -> None:
         with self.__agg_lock:
@@ -86,8 +86,6 @@ class Aggregator(NodeComponent):
             self.__models = []
             self.__unhandled_models = []
             self._finish_aggregation_event.set()
-            # Note: we don't clear __local_model_backup here, 
-            # it's updated round by round in TrainStage
 
     def get_aggregated_models(self) -> list[str]:
         models_added = []
@@ -96,14 +94,21 @@ class Aggregator(NodeComponent):
         return models_added
 
     def force_add_local_model(self, model: P2PFLModel) -> None:
-        """Forcefully add the local model and keep a backup."""
+        """Forcefully add the local model."""
         with self.__agg_lock:
             self.__local_model_backup = model
-            norm_self_addr = self.normalize_addr(self.addr)
-            if not any(norm_self_addr in [self.normalize_addr(c) for c in m.get_contributors()] for m in self.__models):
+            norm_self = self.normalize_addr(self.addr)
+            # Check if local node already contributed to any model in __models
+            already_present = False
+            for m in self.__models:
+                if any(self.normalize_addr(c) == norm_self for c in m.get_contributors()):
+                    already_present = True
+                    break
+            
+            if not already_present:
                 self.__models.append(model)
-                logger.info(self.addr, f"✅ [FORCE] Local model added. Total: {len(self.__models)}")
-                if len(self.__models) >= len(self.__train_set):
+                logger.info(self.addr, f"✅ [FORCE] Local model added. ({len(self.__models)}/{len(self.__train_set)})")
+                if len(self.__models) >= len(self.__train_set) > 0:
                     self._finish_aggregation_event.set()
 
     def add_model(self, model: P2PFLModel) -> list[str]:
@@ -111,48 +116,55 @@ class Aggregator(NodeComponent):
         if not contributors:
             return []
 
-        norm_self_addr = self.normalize_addr(self.addr)
+        norm_self = self.normalize_addr(self.addr)
         norm_contributors = [self.normalize_addr(c) for c in contributors]
-        norm_train_set = [self.normalize_addr(t) for t in self.__train_set]
-        is_local = norm_self_addr in norm_contributors
+        is_local = norm_self in norm_contributors
 
         with self.__agg_lock:
             if is_local:
                 self.force_add_local_model(model)
                 return self.get_aggregated_models()
 
-            if len(self.__train_set) > len(self.__models):
-                if all(c in norm_train_set for c in norm_contributors):
-                    any_model_added = any(any(self.normalize_addr(c) in [self.normalize_addr(curr_c) for curr_c in m.get_contributors()] for m in self.__models) for c in contributors)
-                    if not any_model_added:
-                        self.__models.append(model)
-                        logger.info(self.addr, f"🧩 Model added ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
-                        if len(self.__models) >= len(self.__train_set):
-                            self._finish_aggregation_event.set()
-                        return self.get_aggregated_models()
-            else:
+            # Check if we are even expecting models
+            if not self.__train_set:
                 self.__unhandled_models.append(model)
+                return []
+
+            # Check if all contributors of this model are in our train_set
+            norm_train_set = {self.normalize_addr(t) for t in self.__train_set}
+            if all(c in norm_train_set for c in norm_contributors):
+                # Check if any of these contributors have already been added
+                current_contributors = {self.normalize_addr(c) for m in self.__models for c in m.get_contributors()}
+                if not any(c in current_contributors for c in norm_contributors):
+                    self.__models.append(model)
+                    logger.info(self.addr, f"🧩 Model added ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
+                    if len(self.__models) >= len(self.__train_set):
+                        self._finish_aggregation_event.set()
+                    return self.get_aggregated_models()
+                else:
+                    logger.debug(self.addr, f"🚫 Model from {contributors} already aggregated.")
+            else:
+                # If the aggregation is full, save to unhandled
+                if len(self.__models) >= len(self.__train_set):
+                    self.__unhandled_models.append(model)
+                else:
+                    logger.debug(self.addr, f"🚫 Contributors {norm_contributors} not in train_set.")
         return []
 
     def wait_and_get_aggregation(self, timeout: int = Settings.training.AGGREGATION_TIMEOUT) -> P2PFLModel:
-        # Wait for aggregation event
         self._finish_aggregation_event.wait(timeout=timeout)
         
         with self.__agg_lock:
-            # SUPER FALLBACK: If list is empty, use the backup local model
             if not self.__models:
                 if self.__local_model_backup:
-                    logger.warning(self.addr, "⚠️ Aggregation list empty after timeout. Using local model backup.")
+                    logger.warning(self.addr, "⚠️ Aggregation empty. Using local backup.")
                     self.__models = [self.__local_model_backup]
-                else:
-                    # Search in unhandled as last resort
-                    for i, m in enumerate(self.__unhandled_models):
-                        self.__models = [self.__unhandled_models.pop(i)]
-                        logger.info(self.addr, "✅ Recovered a model from unhandled.")
-                        break
+                elif self.__unhandled_models:
+                    self.__models = [self.__unhandled_models.pop(0)]
+                    logger.info(self.addr, "✅ Recovered from unhandled.")
             
             if not self.__models:
-                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate after timeout and fallback.")
+                raise NoModelsToAggregateError(f"({self.addr}) No models after fallback. Expected: {len(self.__train_set)}")
 
             try:
                 result = self.aggregate(self.__models)
@@ -174,7 +186,7 @@ class Aggregator(NodeComponent):
         for m in self.__models:
             if all(n not in except_nodes for n in m.get_contributors()):
                 return m
-        raise NoModelsToAggregateError("No remaining models available for aggregation.")
+        raise NoModelsToAggregateError("No remaining models available.")
 
     def get_model(self, except_nodes) -> P2PFLModel:
         if self.partial_aggregation:

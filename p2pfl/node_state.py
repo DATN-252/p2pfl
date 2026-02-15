@@ -110,7 +110,8 @@ class NodeState:
     def increase_round(self) -> None:
         """Increase the round number."""
         if self.experiment is None:
-            raise ValueError("Experiment not initialized")
+            logger.warning(self.addr, "Attempted to increase round but experiment is not initialized. Ignoring.")
+            return
 
         # Clear old votes
         new_round = self.experiment.round + 1

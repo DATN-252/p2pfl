@@ -50,6 +50,10 @@ class RoundFinishedStage(Stage):
         if state is None or communication_protocol is None or aggregator is None or learner is None:
             raise Exception("Invalid parameters on RoundFinishedStage.")
 
+        if state.round is None:
+            logger.info(state.addr, "Stopping RoundFinishedStage: Experiment not initialized.")
+            return None
+
         # Ensure atomicity of evaluation and round increment
         with state.round_condition:
             # Every node computes metrics at the end of each round (BEFORE increasing the round number)
@@ -59,14 +63,16 @@ class RoundFinishedStage(Stage):
             aggregator.clear()
             state.increase_round()
 
+            # If round became None after increase (e.g. cleared by other thread)
+            if state.round is None or state.total_rounds is None:
+                logger.info(state.addr, "Stopping RoundFinishedStage: Experiment cleared.")
+                return None
+
             # Next Step or Finish
             logger.info(
                 state.addr,
                 f"🎉 Round {state.round} of {state.total_rounds} finished.",
             )
-            
-            if state.round is None or state.total_rounds is None:
-                raise ValueError("Round or total rounds not set.")
 
             if state.round < state.total_rounds:
                 return StageFactory.get_stage("VoteTrainSetStage")

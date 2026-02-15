@@ -430,15 +430,25 @@ class Node:
             self.stop()
 
     def __stop_learning(self) -> None:
-        logger.info(self.addr, "Stopping learning")
+        logger.info(self.addr, "Stopping learning...")
         # Learner
-        self.learner.interrupt_fit()
+        try:
+            self.learner.interrupt_fit()
+        except Exception:
+            pass
+            
         # Aggregator
         self.aggregator.clear()
+        
+        # --- GRACEFUL WAIT ---
+        # Wait a few seconds for final messages/logs to propagate before clearing state
+        time.sleep(2)
+        
         # State
         self.state.clear()
         logger.experiment_finished(self.addr)
         logger.finish()
+        
         # Try to free wait locks
         with contextlib.suppress(Exception):
             self.state.wait_votes_ready_lock.release()

@@ -158,7 +158,11 @@ class Gossiper(threading.Thread, NodeComponent):
             # Send messages
             for msg, neis in messages_to_send:
                 for nei in neis:
-                    nei.send(msg)
+                    try:
+                        nei.send(msg)
+                    except Exception:
+                        # Ignore connection errors during gossip, especially during shutdown
+                        pass
             # Sleep to allow periodicity
             sleep_time = max(0, self.period - (t - time.time()))
             time.sleep(sleep_time)

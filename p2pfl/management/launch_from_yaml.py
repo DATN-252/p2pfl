@@ -369,6 +369,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         wait_timeout = experiment_config.get("wait_timeout", 60)
         wait_to_finish(nodes, timeout=wait_timeout * 60, debug=debug)  # Convert minutes to seconds
 
+        # --- FINAL COOL-DOWN BARRIER ---
+        # Give nodes a few seconds to finish broadcasting final metrics and logging
+        logger.info(None, "🏁 All nodes finished training. Waiting 10s for final synchronization...")
+        time.sleep(10)
+        # --- END FINAL COOL-DOWN BARRIER ---
+
     except Exception as e:
         raise e
     finally:

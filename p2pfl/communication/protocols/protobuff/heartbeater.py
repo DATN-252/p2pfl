@@ -111,7 +111,11 @@ class Heartbeater(threading.Thread, NodeComponent):
             # Send heartbeat
             beat_msg = self.__build_beat_message(time.time())
             for client, _ in self.__neighbors.get_all(only_direct=True).values():
-                client.send(beat_msg, raise_error=False, disconnect_on_error=True)
+                try:
+                    client.send(beat_msg, raise_error=False, disconnect_on_error=True)
+                except Exception:
+                    # Ignore connection errors during heartbeat sending, especially during shutdown
+                    pass
 
             # Sleep to allow the periodicity
             sleep_time = max(0, period - (t - time.time()))

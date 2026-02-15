@@ -83,6 +83,7 @@ class TrainStage(Stage):
                 current_model.set_contribution([state.addr], n_s) 
             
             # Use force_add_local_model instead of add_model for the local node
+            logger.info(state.addr, "🛠️ Calling force_add_local_model...")
             aggregator.force_add_local_model(current_model)
 
             import time
@@ -94,6 +95,7 @@ class TrainStage(Stage):
             # Set aggregated model
             aggregator.set_trained_round(state.addr)
             agg_model = aggregator.wait_and_get_aggregation()
+            logger.info(state.addr, "🧠 Aggregation complete. Setting new model.")
             learner.set_model(agg_model)
 
             # Share that aggregation is done

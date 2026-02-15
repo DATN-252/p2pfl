@@ -39,6 +39,10 @@ settings:
   heartbeat:
     timeout: 99999
     period: 10
+    wait_convergence: 60
+  training:
+    vote_timeout: 120
+    aggregation_timeout: 300
 
 
 

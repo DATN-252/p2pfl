@@ -84,7 +84,8 @@ class Aggregator(NodeComponent):
         with self.__agg_lock:
             self.__train_set = []
             self.__models = []
-            self.__unhandled_models = []
+            # Note: we don't clear __unhandled_models here anymore
+            # to preserve models from future rounds that arrived early.
             self._finish_aggregation_event.set()
 
     def get_aggregated_models(self) -> list[str]:

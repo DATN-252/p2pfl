@@ -41,7 +41,7 @@ def ray_installed() -> bool:
         if not ray.is_initialized():
             ray.init(
                 namespace="p2pfl",
-                num_cpus=100,  # Leave some cores for the OS and background threads
+                num_cpus=80,  # Leave 48 cores for OS, gRPC servers, and background threads
                 include_dashboard=False,
                 logging_level=Settings.general.LOG_LEVEL,
                 logging_config=ray.LoggingConfig(encoding="TEXT", log_level=Settings.general.LOG_LEVEL),

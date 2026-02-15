@@ -82,24 +82,47 @@ class GrpcServer(ProtobuffServer):
         """
         # Server
         node_pb2_grpc.add_NodeServicesServicer_to_server(self, self.__server)
-        try:
-            if Settings.ssl.USE_SSL and isfile(Settings.ssl.SERVER_KEY) and isfile(Settings.ssl.SERVER_CRT):
-                with (
-                    open(Settings.ssl.SERVER_KEY) as key_file,
-                    open(Settings.ssl.SERVER_CRT) as crt_file,
-                    open(Settings.ssl.CA_CRT) as ca_file,
-                ):
-                    private_key = key_file.read().encode()
-                    certificate_chain = crt_file.read().encode()
-                    root_certificates = ca_file.read().encode()
-                server_credentials = grpc.ssl_server_credentials(
-                    [(private_key, certificate_chain)], root_certificates=root_certificates, require_client_auth=True
-                )
-                self.__server.add_secure_port(self.addr, server_credentials)
-            else:
-                self.__server.add_insecure_port(self.addr)
-        except Exception as e:
-            raise Exception(f"Cannot bind the address ({self.addr}): {e}") from e
+        
+        max_retries = 10
+        retry_count = 0
+        while retry_count < max_retries:
+            try:
+                if Settings.ssl.USE_SSL and isfile(Settings.ssl.SERVER_KEY) and isfile(Settings.ssl.SERVER_CRT):
+                    with (
+                        open(Settings.ssl.SERVER_KEY) as key_file,
+                        open(Settings.ssl.SERVER_CRT) as crt_file,
+                        open(Settings.ssl.CA_CRT) as ca_file,
+                    ):
+                        private_key = key_file.read().encode()
+                        certificate_chain = crt_file.read().encode()
+                        root_certificates = ca_file.read().encode()
+                    server_credentials = grpc.ssl_server_credentials(
+                        [(private_key, certificate_chain)], root_certificates=root_certificates, require_client_auth=True
+                    )
+                    self.__server.add_secure_port(self.addr, server_credentials)
+                else:
+                    self.__server.add_insecure_port(self.addr)
+                
+                # If we reached here, binding was successful
+                break
+            except Exception as e:
+                retry_count += 1
+                if retry_count >= max_retries:
+                    raise Exception(f"Cannot bind the address ({self.addr}) after {max_retries} retries: {e}") from e
+                
+                # Port collision detected, get a new random port and update self.addr
+                logger.warning(self.addr, f"Port collision detected for {self.addr}. Retrying with a new port ({retry_count}/{max_retries})...")
+                import socket
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.bind(("", 0))
+                    new_port = s.getsockname()[1]
+                
+                # Construct new address (assuming IPv4 for simplicity in simulation)
+                host = self.addr.split(":")[0]
+                self.set_addr(f"{host}:{new_port}")
+                import time
+                time.sleep(0.5)
+
         self.__server.start()
         self.__server_started = True
 

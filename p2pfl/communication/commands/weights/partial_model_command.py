@@ -55,7 +55,7 @@ class PartialModelCommand(Command):
 
         try:
             model = self.learner.get_model().build_copy(params=weights, num_samples=num_samples, contributors=list(contributors))
-            models_added = self.aggregator.add_model(model)
+            models_added = self.aggregator.add_model(model, round_num=round)
             if models_added != []:
                 self.communication_protocol.broadcast(self.communication_protocol.build_msg(ModelsAggregatedCommand.get_name(), models_added, round=self.state.round))
             else:

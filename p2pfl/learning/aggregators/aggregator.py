@@ -51,8 +51,10 @@ class Aggregator(NodeComponent):
         self.__agg_lock = threading.RLock()
         self._finish_aggregation_event = threading.Event()
         self._finish_aggregation_event.set()
-        self.__unhandled_models: list[P2PFLModel] = []
+        # Round-aware buffering: round_num -> list of models
+        self.__unhandled_models: dict[int, list[P2PFLModel]] = defaultdict(list)
         self.__local_model_backup: P2PFLModel | None = None
+        self.__current_round: int | None = None
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
@@ -66,27 +68,34 @@ class Aggregator(NodeComponent):
             return addr.split("-")[0]
         return str(addr)
 
-    def set_nodes_to_aggregate(self, nodes_to_aggregate: list[str]) -> None:
+    def set_nodes_to_aggregate(self, nodes_to_aggregate: list[str], round_num: int | None = None) -> None:
         with self.__agg_lock:
             if not self._finish_aggregation_event.is_set():
-                logger.warning(self.addr, "Force clearing aggregator state to start new round.")
+                logger.warning(self.addr, f"Force clearing aggregator state to start new round (Current: {self.__current_round}, New: {round_num}).")
                 self.clear()
 
             self.__train_set = nodes_to_aggregate
+            self.__current_round = round_num
             self._finish_aggregation_event.clear()
             
-            # PROACTIVE RECOVERY: Process models that arrived early for this round
-            to_process = self.__unhandled_models
-            self.__unhandled_models = []
-            if to_process:
-                logger.info(self.addr, f"♻️ Proactively processing {len(to_process)} early models.")
-                for m in to_process:
-                    self.add_model(m)
+            # PROACTIVE RECOVERY: Process models that arrived early for this specific round
+            if round_num is not None:
+                to_process = self.__unhandled_models.pop(round_num, [])
+                if to_process:
+                    logger.info(self.addr, f"♻️ Proactively processing {len(to_process)} early models for round {round_num}.")
+                    for m in to_process:
+                        self.add_model(m, round_num)
+                
+                # Clean up very old rounds to prevent memory leaks
+                old_rounds = [r for r in self.__unhandled_models.keys() if r < round_num]
+                for r in old_rounds:
+                    del self.__unhandled_models[r]
 
     def clear(self) -> None:
         with self.__agg_lock:
             self.__train_set = []
             self.__models = []
+            self.__current_round = None
             # Preserve __unhandled_models for future rounds
             self._finish_aggregation_event.set()
 
@@ -109,11 +118,11 @@ class Aggregator(NodeComponent):
             
             if not already_present:
                 self.__models.append(model)
-                logger.info(self.addr, f"✅ [FORCE] Local model added. ({len(self.__models)}/{len(self.__train_set)})")
+                logger.info(self.addr, f"✅ [FORCE] Local model added for round {self.__current_round}. ({len(self.__models)}/{len(self.__train_set)})")
                 if self.__train_set and len(self.__models) >= len(self.__train_set):
                     self._finish_aggregation_event.set()
 
-    def add_model(self, model: P2PFLModel) -> list[str]:
+    def add_model(self, model: P2PFLModel, round_num: int | None = None) -> list[str]:
         contributors = model.get_contributors()
         if not contributors:
             return []
@@ -123,12 +132,25 @@ class Aggregator(NodeComponent):
         is_local = norm_self in norm_contributors
 
         with self.__agg_lock:
+            # Local models are usually added directly by TrainStage via force_add_local_model
             if is_local:
                 self.force_add_local_model(model)
                 return self.get_aggregated_models()
 
+            # Handle round mismatch
+            if round_num is not None and self.__current_round is not None:
+                if round_num < self.__current_round:
+                    logger.debug(self.addr, f"Ignoring model from past round {round_num} (Current: {self.__current_round}) from {contributors}")
+                    return []
+                if round_num > self.__current_round:
+                    logger.debug(self.addr, f"Buffering model from future round {round_num} (Current: {self.__current_round}) from {contributors}")
+                    self.__unhandled_models[round_num].append(model)
+                    return []
+
+            # If current_round is not set yet or matches
             if not self.__train_set:
-                self.__unhandled_models.append(model)
+                if round_num is not None:
+                    self.__unhandled_models[round_num].append(model)
                 return []
 
             norm_train_set = {self.normalize_addr(t) for t in self.__train_set}
@@ -136,30 +158,61 @@ class Aggregator(NodeComponent):
                 current_contributors = {self.normalize_addr(c) for m in self.__models for c in m.get_contributors()}
                 if not any(c in current_contributors for c in norm_contributors):
                     self.__models.append(model)
-                    logger.info(self.addr, f"🧩 Model added ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
+                    logger.info(self.addr, f"🧩 Model added for round {self.__current_round} ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
                     if len(self.__models) >= len(self.__train_set):
                         self._finish_aggregation_event.set()
                     return self.get_aggregated_models()
                 else:
-                    logger.debug(self.addr, f"🚫 Model from {contributors} already aggregated.")
+                    logger.debug(self.addr, f"🚫 Model from {contributors} already aggregated for round {self.__current_round}.")
             else:
-                self.__unhandled_models.append(model)
+                # If not in train set, might be for a future round where the train set is different
+                if round_num is not None:
+                    self.__unhandled_models[round_num].append(model)
         return []
 
-    def wait_and_get_aggregation(self, timeout: int = Settings.training.AGGREGATION_TIMEOUT) -> P2PFLModel:
+    def wait_and_get_aggregation(self, timeout: int = Settings.training.AGGREGATION_TIMEOUT, state: Any = None) -> P2PFLModel:
+        """
+        Wait for models and return the aggregation.
+        Implements Dynamic Patience: if 'state' is provided, it will be more patient 
+        if missing nodes are still active.
+        """
+        # Initial wait
         self._finish_aggregation_event.wait(timeout=timeout)
         
+        # Dynamic Patience: If we still don't have all models, check if missing nodes are alive
+        if not self._finish_aggregation_event.is_set() and state is not None:
+            max_patience_rounds = 5 # Maximum extra wait iterations
+            for i in range(max_patience_rounds):
+                missing = self.get_missing_models()
+                # Check if any missing node is still in our round or previous (meaning they are just slow)
+                # If they moved to a FUTURE round, then we really missed them.
+                still_active = False
+                with state.round_condition:
+                    for m_node in missing:
+                        m_round = state.nei_status.get(m_node, -1)
+                        if m_round != -1 and m_round <= (self.__current_round or 0):
+                            still_active = True
+                            break
+                
+                if still_active:
+                    logger.info(self.addr, f"⏳ Dynamic Patience (iteration {i+1}): Missing nodes still active. Waiting {timeout//2}s more...")
+                    if self._finish_aggregation_event.wait(timeout=timeout // 2):
+                        break
+                else:
+                    break
+
         with self.__agg_lock:
             if not self.__models:
                 if self.__local_model_backup:
-                    logger.warning(self.addr, "⚠️ Aggregation list empty after timeout. Using local backup.")
+                    logger.warning(self.addr, f"⚠️ Aggregation list empty for round {self.__current_round} after timeout. Using local backup.")
                     self.__models = [self.__local_model_backup]
-                elif self.__unhandled_models:
-                    self.__models = [self.__unhandled_models.pop(0)]
-                    logger.info(self.addr, "✅ Recovered from unhandled.")
+                elif self.__unhandled_models.get(self.__current_round or -1):
+                    # Try to recover from unhandled if any (shouldn't happen with proactive recovery but as a safety)
+                    self.__models = [self.__unhandled_models[self.__current_round].pop(0)]
+                    logger.info(self.addr, f"✅ Recovered from unhandled for round {self.__current_round}.")
             
             if not self.__models:
-                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate.")
+                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate for round {self.__current_round}.")
 
             try:
                 result = self.aggregate(self.__models)

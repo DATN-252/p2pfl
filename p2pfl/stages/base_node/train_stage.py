@@ -60,7 +60,7 @@ class TrainStage(Stage):
             # Set Models To Aggregate
             direct_neighbors = list(communication_protocol.get_neighbors(only_direct=True).keys())
             expected_contributors = [state.addr] + direct_neighbors
-            aggregator.set_nodes_to_aggregate(expected_contributors)
+            aggregator.set_nodes_to_aggregate(expected_contributors, round_num=state.round)
 
             check_early_stop(state)
 
@@ -94,7 +94,7 @@ class TrainStage(Stage):
             
             # Set aggregated model
             aggregator.set_trained_round(state.addr)
-            agg_model = aggregator.wait_and_get_aggregation()
+            agg_model = aggregator.wait_and_get_aggregation(state=state)
             logger.info(state.addr, "🧠 Aggregation complete. Setting new model.")
             learner.set_model(agg_model)
 

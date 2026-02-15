@@ -48,10 +48,13 @@ class Aggregator(NodeComponent):
 
         NodeComponent.__init__(self)
 
-        self.__agg_lock = threading.Lock()
+        self.__agg_lock = threading.RLock()
         self._finish_aggregation_event = threading.Event()
         self._finish_aggregation_event.set()
         self.__unhandled_models: list[P2PFLModel] = []
+        
+        # Backup for local model to ensure we never have an empty aggregation
+        self.__local_model_backup: P2PFLModel | None = None
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
@@ -69,10 +72,7 @@ class Aggregator(NodeComponent):
         with self.__agg_lock:
             if not self._finish_aggregation_event.is_set():
                 logger.warning(self.addr, "Force clearing aggregator state to start new round.")
-                self.__train_set = []
-                self.__models = []
-                self.__unhandled_models = []
-                self._finish_aggregation_event.set()
+                self.clear()
 
             self.__train_set = nodes_to_aggregate
             self._finish_aggregation_event.clear()
@@ -86,6 +86,8 @@ class Aggregator(NodeComponent):
             self.__models = []
             self.__unhandled_models = []
             self._finish_aggregation_event.set()
+            # Note: we don't clear __local_model_backup here, 
+            # it's updated round by round in TrainStage
 
     def get_aggregated_models(self) -> list[str]:
         models_added = []
@@ -94,9 +96,9 @@ class Aggregator(NodeComponent):
         return models_added
 
     def force_add_local_model(self, model: P2PFLModel) -> None:
-        """Forcefully add the local model to the aggregation list, bypassing all checks."""
+        """Forcefully add the local model and keep a backup."""
         with self.__agg_lock:
-            # Check if already added to avoid duplicates
+            self.__local_model_backup = model
             norm_self_addr = self.normalize_addr(self.addr)
             if not any(norm_self_addr in [self.normalize_addr(c) for c in m.get_contributors()] for m in self.__models):
                 self.__models.append(model)
@@ -107,7 +109,6 @@ class Aggregator(NodeComponent):
     def add_model(self, model: P2PFLModel) -> list[str]:
         contributors = model.get_contributors()
         if not contributors:
-            logger.debug(self.addr, "Received a model without a list of contributors.")
             return []
 
         norm_self_addr = self.normalize_addr(self.addr)
@@ -117,13 +118,8 @@ class Aggregator(NodeComponent):
 
         with self.__agg_lock:
             if is_local:
-                any_local_added = any(norm_self_addr in [self.normalize_addr(c) for c in m.get_contributors()] for m in self.__models)
-                if not any_local_added:
-                    self.__models.append(model)
-                    logger.info(self.addr, f"✅ Local model added to aggregation ({len(self.__models)}/{len(self.__train_set)})")
-                    if len(self.__models) >= len(self.__train_set):
-                        self._finish_aggregation_event.set()
-                    return self.get_aggregated_models()
+                self.force_add_local_model(model)
+                return self.get_aggregated_models()
 
             if len(self.__train_set) > len(self.__models):
                 if all(c in norm_train_set for c in norm_contributors):
@@ -134,39 +130,35 @@ class Aggregator(NodeComponent):
                         if len(self.__models) >= len(self.__train_set):
                             self._finish_aggregation_event.set()
                         return self.get_aggregated_models()
-                else:
-                    if is_local:
-                        logger.info(self.addr, f"🚫 Local node not in current train_set.")
             else:
                 self.__unhandled_models.append(model)
         return []
 
     def wait_and_get_aggregation(self, timeout: int = Settings.training.AGGREGATION_TIMEOUT) -> P2PFLModel:
-        event_set = self._finish_aggregation_event.wait(timeout=timeout)
-        missing_models = self.get_missing_models()
+        # Wait for aggregation event
+        self._finish_aggregation_event.wait(timeout=timeout)
         
-        if not event_set:
-            logger.info(self.addr, f"⏳ Aggregation wait timed out. Missing models: {missing_models}")
-        
-        if not self.__models:
-            logger.warning(self.addr, "⚠️ No models collected. Searching in unhandled...")
-            norm_self_addr = self.normalize_addr(self.addr)
-            with self.__agg_lock:
-                for i, m in enumerate(self.__unhandled_models):
-                    if norm_self_addr in [self.normalize_addr(c) for c in m.get_contributors()]:
+        with self.__agg_lock:
+            # SUPER FALLBACK: If list is empty, use the backup local model
+            if not self.__models:
+                if self.__local_model_backup:
+                    logger.warning(self.addr, "⚠️ Aggregation list empty after timeout. Using local model backup.")
+                    self.__models = [self.__local_model_backup]
+                else:
+                    # Search in unhandled as last resort
+                    for i, m in enumerate(self.__unhandled_models):
                         self.__models = [self.__unhandled_models.pop(i)]
+                        logger.info(self.addr, "✅ Recovered a model from unhandled.")
                         break
-                if not self.__models and self.__unhandled_models:
-                    self.__models = [self.__unhandled_models.pop(0)]
             
             if not self.__models:
-                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate after timeout.")
+                raise NoModelsToAggregateError(f"({self.addr}) No models available to aggregate after timeout and fallback.")
 
-        try:
-            result = self.aggregate(self.__models)
-        finally:
-            self.clear()
-        return result
+            try:
+                result = self.aggregate(self.__models)
+            finally:
+                self.clear()
+            return result
 
     def get_missing_models(self) -> set:
         agg_models = []

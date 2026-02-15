@@ -1,6 +1,0 @@
-{"round": 0, "metrics": {"test_loss": 18.475549697875977, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}
-{"round": 1, "metrics": {"test_loss": 5.444290637969971, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}
-{"round": 2, "metrics": {"test_loss": 10.77094554901123, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}
-{"round": 2, "metrics": {"test_loss": 10.77094554901123, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}
-{"round": 4, "metrics": {"test_loss": 16.808130264282227, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}
-{"round": 4, "metrics": {"test_loss": 16.808130264282227, "test_acc": 0.0, "test_precision": 0.0, "test_recall": 0.0, "test_f1": 0.0}}

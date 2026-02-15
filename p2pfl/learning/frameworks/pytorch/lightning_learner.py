@@ -63,6 +63,8 @@ class LightningLearner(Learner):
         # Start logging
         # To avoid GPU/TPU printings
         logging.getLogger("pytorch_lightning").setLevel(logging.WARNING)
+        logging.getLogger("lightning").setLevel(logging.WARNING)
+        logging.getLogger("lightning.pytorch").setLevel(logging.WARNING)
 
     def set_addr(self, addr: str) -> str:
         """Set the addr of the node."""
@@ -110,6 +112,7 @@ class LightningLearner(Learner):
                     logger=self.logger,  # type: ignore
                     enable_checkpointing=False,
                     enable_model_summary=False,
+                    enable_progress_bar=False,
                     callbacks=all_callbacks,  # type: ignore
                     gradient_clip_val=1.0,
                 )
@@ -149,9 +152,15 @@ class LightningLearner(Learner):
         """
         try:
             if self.epochs > 0:
-                self.__trainer = Trainer()
+                self.__trainer = Trainer(
+                    accelerator="auto",
+                    logger=False,
+                    enable_checkpointing=False,
+                    enable_progress_bar=False,
+                    enable_model_summary=False,
+                )
                 pt_model, pt_data = self.__get_pt_model_data(train=False)
-                results = self.__trainer.test(pt_model, pt_data, verbose=True)[0]
+                results = self.__trainer.test(pt_model, pt_data, verbose=False)[0]
                 self.__trainer = None
                 # Log metrics
                 for k, v in results.items():

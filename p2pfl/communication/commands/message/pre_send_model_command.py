@@ -43,8 +43,9 @@ class PreSendModelCommand(Command):
     def remove_hashed(node_state: NodeState, cmd: str, hashes: list[str], round: int) -> None:
         """Remove hashes from sending_models."""
         with node_state.sending_models_lock:
-            for hashed in [f"{str(hs)}-{round}" for hs in hashes]:
-                del node_state.sending_models[cmd][hashed]
+            if cmd in node_state.sending_models:
+                for hashed in [f"{str(hs)}-{round}" for hs in hashes]:
+                    node_state.sending_models[cmd].pop(hashed, None)
 
     def execute(self, source: str, round: int, *args, **kwargs) -> str | None:
         """Execute the command."""

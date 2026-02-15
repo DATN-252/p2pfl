@@ -1,11 +1,11 @@
-description: "Verification Test - Small Scale"
+description: "Verification Test - Small Scale (PSGD + SGD)"
 network:
   package: "p2pfl.communication.protocols.protobuff.grpc"
   protocol: "GrpcCommunicationProtocol"
   nodes: 3
   topology: custom
 experiment:
-  name: "verify_test"
+  name: "verify_test_psgd_sgd"
   rounds: 5
   epochs: 1
   trainset_size: 3
@@ -22,14 +22,14 @@ experiment:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.001
+      lr_rate: 0.01
+      optimizer_name: "sgd"
+      momentum: 0.0
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.psgd"
+    aggregator: "PSGD"
     params: 
-      learning_rate: 0.001
-      decay_rate: 0.99
-      alpha: 1.0
+      lr: 0.01
 settings:
   general:
     disable_ray: False

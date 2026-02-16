@@ -65,7 +65,7 @@ if __name__ == "__main__":
     # This node has the best convergence (Loss 0.59 -> 0.08)
     target_file = os.path.join(
         "experiments", 
-        "p2pfl_MNIST_RandomIIDPartitionStrategy_PSGD_model_build_fn_20260215_150503", 
-        "node_0.0.0.0_33645.jsonl"
+        "p2pfl_MNIST_DirichletPartitionStrategy_PSGD_model_build_fn_20260216_012950", 
+        "node_0.0.0.0_33053.jsonl"
     )
     plot_jsonl_metrics(target_file)

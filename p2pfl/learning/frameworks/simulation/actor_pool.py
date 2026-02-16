@@ -112,9 +112,9 @@ class SuperActorPool(ActorPool):
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Each actor should take at least 1 core if possible, 
-        # but let's be conservative to avoid Ray scheduling stalls.
-        return 0.5
+        # Each actor should take a small fraction to avoid Ray scheduling stalls
+        # and leave enough for background gRPC/Heartbeat tasks.
+        return 0.2
 
     def create_actor(self) -> VirtualLearnerActor:
         """

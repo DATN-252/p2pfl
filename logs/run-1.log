@@ -1,0 +1,260 @@
+[ 2026-02-16 01:28:34 | None | INFO ] Created experiment folder: /home/thaihoa_hn120/p2pfl/experiments/p2pfl_MNIST_RandomIIDPartitionStrategy_PSGD_model_build_fn_20260216_012834 and copied 00_test_verify.yaml
+[ 2026-02-16 01:28:34 | None | INFO ] Set simulation heartbeat: timeout=60s, period=2s
+[ 2026-02-16 01:28:35 | 0.0.0.0:45527 | INFO ] 🏁 Starting gossiper...
+[ 2026-02-16 01:28:35 | None | INFO ] 🚀 Created 0/3 nodes, waiting 1.00s for CPU to breathe...
+[ 2026-02-16 01:28:36 | 0.0.0.0:52929 | INFO ] 🏁 Starting gossiper...
+[ 2026-02-16 01:28:37 | 0.0.0.0:59445 | INFO ] 🏁 Starting gossiper...
+[ 2026-02-16 01:28:38 |  | INFO ] Connected nodes 0.0.0.0:45527 and 0.0.0.0:52929
+[ 2026-02-16 01:28:38 |  | INFO ] Connected nodes 0.0.0.0:45527 and 0.0.0.0:59445
+[ 2026-02-16 01:28:38 |  | INFO ] Connected nodes 0.0.0.0:52929 and 0.0.0.0:59445
+[ 2026-02-16 01:28:38 | None | INFO ] 📡 Performing global simulation discovery for 3 nodes...
+[ 2026-02-16 01:28:38 | None | INFO ] ⌛ Waiting for direct topology connections (2-2 per node)...
+[ 2026-02-16 01:28:38 | None | INFO ] ✅ Network topology ready.
+[ 2026-02-16 01:28:38 | 0.0.0.0:45527 | INFO ] 🚀 Broadcasting start learning to 3 nodes...
+[ 2026-02-16 01:28:38 | 0.0.0.0:52929 | INFO ] 🔍 Neighbors found: ['0.0.0.0:45527', '0.0.0.0:59445'] | Degree: 2
+[ 2026-02-16 01:28:38 | 0.0.0.0:59445 | INFO ] 🔍 Neighbors found: ['0.0.0.0:45527', '0.0.0.0:52929'] | Degree: 2
+[ 2026-02-16 01:28:38 | 0.0.0.0:52929 | INFO ] ⏳ Waiting initialization.
+[ 2026-02-16 01:28:38 | 0.0.0.0:59445 | INFO ] ⏳ Waiting initialization.
+[ 2026-02-16 01:28:38 | 0.0.0.0:45527 | INFO ] 🔍 Neighbors found: ['0.0.0.0:52929', '0.0.0.0:59445'] | Degree: 2
+[ 2026-02-16 01:28:38 | 0.0.0.0:45527 | INFO ] ⏳ Waiting initialization.
+[ 2026-02-16 01:28:38 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-16 01:28:39 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-16 01:28:39 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-02-16 01:28:40 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:40 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:40 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:48 | 0.0.0.0:52929 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['0.0.0.0:45527', '0.0.0.0:59445', '0.0.0.0:52929']
+[ 2026-02-16 01:28:48 | 0.0.0.0:52929 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:48 | 0.0.0.0:59445 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['0.0.0.0:45527', '0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:28:48 | 0.0.0.0:45527 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['0.0.0.0:52929', '0.0.0.0:59445', '0.0.0.0:45527']
+[ 2026-02-16 01:28:48 | 0.0.0.0:59445 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:48 | 0.0.0.0:45527 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:51 | 0.0.0.0:52929 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:51 | 0.0.0.0:52929 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:51 | 0.0.0.0:52929 | INFO ] ✅ [FORCE] Local model added for round 0. (1/3)
+[ 2026-02-16 01:28:51 | 0.0.0.0:45527 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:51 | 0.0.0.0:45527 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:51 | 0.0.0.0:59445 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:51 | 0.0.0.0:45527 | INFO ] ✅ [FORCE] Local model added for round 0. (1/3)
+[ 2026-02-16 01:28:51 | 0.0.0.0:59445 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:51 | 0.0.0.0:59445 | INFO ] ✅ [FORCE] Local model added for round 0. (1/3)
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:59445']
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 0 (2/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 0 (2/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:52929']
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 0 (3/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 0 (2/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 0 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 0 (3/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.5850121378898621, 'test_acc': 0.8376837968826294, 'test_precision': 0.8378729224205017, 'test_recall': 0.8344702124595642, 'test_f1': 0.830976665019989}
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.6201107501983643, 'test_acc': 0.826582670211792, 'test_precision': 0.82462477684021, 'test_recall': 0.8211867213249207, 'test_f1': 0.8166165351867676}
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.5976189970970154, 'test_acc': 0.8371325731277466, 'test_precision': 0.8376321196556091, 'test_recall': 0.8338813185691833, 'test_f1': 0.8299557566642761}
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🎉 Round 1 of 5 finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:28:56 | 0.0.0.0:59445 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🎉 Round 1 of 5 finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🎉 Round 1 of 5 finished.
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:28:56 | 0.0.0.0:52929 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:56 | 0.0.0.0:45527 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:28:59 | 0.0.0.0:59445 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:59 | 0.0.0.0:59445 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:59 | 0.0.0.0:59445 | INFO ] ✅ [FORCE] Local model added for round 1. (1/3)
+[ 2026-02-16 01:28:59 | 0.0.0.0:52929 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:59 | 0.0.0.0:52929 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:59 | 0.0.0.0:52929 | INFO ] ✅ [FORCE] Local model added for round 1. (1/3)
+[ 2026-02-16 01:28:59 | 0.0.0.0:45527 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:28:59 | 0.0.0.0:45527 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:28:59 | 0.0.0.0:45527 | INFO ] ✅ [FORCE] Local model added for round 1. (1/3)
+[ 2026-02-16 01:29:04 | 0.0.0.0:59445 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:52929']
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 1 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:04 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 1 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:04 | 0.0.0.0:52929 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:59445']
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 1 (3/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:04 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 1 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:04 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 1 (2/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:04 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 1 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:04 | 0.0.0.0:52929 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:59445 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.413832664489746, 'test_acc': 0.8869225978851318, 'test_precision': 0.8872867822647095, 'test_recall': 0.8856048583984375, 'test_f1': 0.8821242451667786}
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🎉 Round 2 of 5 finished.
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:04 | 0.0.0.0:45527 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.317556381225586, 'test_acc': 0.8928892612457275, 'test_precision': 0.894526481628418, 'test_recall': 0.892127513885498, 'test_f1': 0.8885166049003601}
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 📈 Evaluated. Results: {'test_loss': 2.319450616836548, 'test_acc': 0.8820881843566895, 'test_precision': 0.8797083497047424, 'test_recall': 0.8766741752624512, 'test_f1': 0.8739085793495178}
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 🎉 Round 2 of 5 finished.
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:05 | 0.0.0.0:59445 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 🎉 Round 2 of 5 finished.
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:05 | 0.0.0.0:52929 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:06 | 0.0.0.0:45527 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:06 | 0.0.0.0:45527 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:06 | 0.0.0.0:45527 | INFO ] ✅ [FORCE] Local model added for round 2. (1/3)
+[ 2026-02-16 01:29:07 | 0.0.0.0:52929 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:07 | 0.0.0.0:52929 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:07 | 0.0.0.0:52929 | INFO ] ✅ [FORCE] Local model added for round 2. (1/3)
+[ 2026-02-16 01:29:07 | 0.0.0.0:59445 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:07 | 0.0.0.0:59445 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:07 | 0.0.0.0:59445 | INFO ] ✅ [FORCE] Local model added for round 2. (1/3)
+[ 2026-02-16 01:29:11 | 0.0.0.0:45527 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:29:11 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 2 (2/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:11 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 2 (2/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:59445']
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:52929']
+[ 2026-02-16 01:29:12 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 2 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:12 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 2 (3/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:12 | 0.0.0.0:45527 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 2 (3/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 2 (3/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:12 | 0.0.0.0:52929 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:12 | 0.0.0.0:59445 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:13 | 0.0.0.0:59445 | INFO ] 📈 Evaluated. Results: {'test_loss': 15.27218246459961, 'test_acc': 0.892589271068573, 'test_precision': 0.8941344618797302, 'test_recall': 0.8923740386962891, 'test_f1': 0.8881641030311584}
+[ 2026-02-16 01:29:13 | 0.0.0.0:59445 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:13 | 0.0.0.0:52929 | INFO ] 📈 Evaluated. Results: {'test_loss': 15.063047409057617, 'test_acc': 0.8883888125419617, 'test_precision': 0.8854509592056274, 'test_recall': 0.8833467960357666, 'test_f1': 0.8805166482925415}
+[ 2026-02-16 01:29:13 | 0.0.0.0:52929 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:13 | 0.0.0.0:59445 | INFO ] 🎉 Round 3 of 5 finished.
+[ 2026-02-16 01:29:13 | 0.0.0.0:59445 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:13 | 0.0.0.0:59445 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:13 | 0.0.0.0:52929 | INFO ] 🎉 Round 3 of 5 finished.
+[ 2026-02-16 01:29:13 | 0.0.0.0:52929 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:13 | 0.0.0.0:52929 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:13 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:13 | 0.0.0.0:45527 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:14 | 0.0.0.0:45527 | INFO ] 📈 Evaluated. Results: {'test_loss': 16.197999954223633, 'test_acc': 0.8893221616744995, 'test_precision': 0.8906949758529663, 'test_recall': 0.8876380324363708, 'test_f1': 0.884564995765686}
+[ 2026-02-16 01:29:14 | 0.0.0.0:45527 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:14 | 0.0.0.0:45527 | INFO ] 🎉 Round 3 of 5 finished.
+[ 2026-02-16 01:29:14 | 0.0.0.0:45527 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:14 | 0.0.0.0:45527 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:15 | 0.0.0.0:52929 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:15 | 0.0.0.0:52929 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:15 | 0.0.0.0:52929 | INFO ] ✅ [FORCE] Local model added for round 3. (1/3)
+[ 2026-02-16 01:29:15 | 0.0.0.0:59445 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:15 | 0.0.0.0:59445 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:15 | 0.0.0.0:59445 | INFO ] ✅ [FORCE] Local model added for round 3. (1/3)
+[ 2026-02-16 01:29:16 | 0.0.0.0:45527 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:16 | 0.0.0.0:45527 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:16 | 0.0.0.0:45527 | INFO ] ✅ [FORCE] Local model added for round 3. (1/3)
+[ 2026-02-16 01:29:20 | 0.0.0.0:52929 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:59445']
+[ 2026-02-16 01:29:20 | 0.0.0.0:59445 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:52929']
+[ 2026-02-16 01:29:20 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 3 (2/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:20 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 3 (3/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:20 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 3 (2/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:20 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 3 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:29:21 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 3 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:21 | 0.0.0.0:52929 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 3 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 📈 Evaluated. Results: {'test_loss': 121.15263366699219, 'test_acc': 0.8875225186347961, 'test_precision': 0.8885642886161804, 'test_recall': 0.8852507472038269, 'test_f1': 0.8817700147628784}
+[ 2026-02-16 01:29:21 | 0.0.0.0:45527 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 📈 Evaluated. Results: {'test_loss': 112.08753204345703, 'test_acc': 0.8937893509864807, 'test_precision': 0.8948422074317932, 'test_recall': 0.8931688666343689, 'test_f1': 0.888951301574707}
+[ 2026-02-16 01:29:21 | 0.0.0.0:59445 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:22 | 0.0.0.0:45527 | INFO ] 🎉 Round 4 of 5 finished.
+[ 2026-02-16 01:29:22 | 0.0.0.0:45527 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:22 | 0.0.0.0:45527 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:22 | 0.0.0.0:59445 | INFO ] 🎉 Round 4 of 5 finished.
+[ 2026-02-16 01:29:22 | 0.0.0.0:59445 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:22 | 0.0.0.0:59445 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:22 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:22 | 0.0.0.0:52929 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:22 | 0.0.0.0:52929 | INFO ] 📈 Evaluated. Results: {'test_loss': 110.30579376220703, 'test_acc': 0.8907890915870667, 'test_precision': 0.8888511061668396, 'test_recall': 0.8866647481918335, 'test_f1': 0.8836092948913574}
+[ 2026-02-16 01:29:22 | 0.0.0.0:52929 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:23 | 0.0.0.0:52929 | INFO ] 🎉 Round 4 of 5 finished.
+[ 2026-02-16 01:29:23 | 0.0.0.0:52929 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 3
+[ 2026-02-16 01:29:23 | 0.0.0.0:52929 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-02-16 01:29:24 | 0.0.0.0:59445 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:24 | 0.0.0.0:59445 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:24 | 0.0.0.0:59445 | INFO ] ✅ [FORCE] Local model added for round 4. (1/3)
+[ 2026-02-16 01:29:24 | 0.0.0.0:45527 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:24 | 0.0.0.0:45527 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:24 | 0.0.0.0:45527 | INFO ] ✅ [FORCE] Local model added for round 4. (1/3)
+[ 2026-02-16 01:29:25 | 0.0.0.0:52929 | INFO ] 🎓 Training step done.
+[ 2026-02-16 01:29:25 | 0.0.0.0:52929 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-02-16 01:29:25 | 0.0.0.0:52929 | INFO ] ✅ [FORCE] Local model added for round 4. (1/3)
+[ 2026-02-16 01:29:29 | 0.0.0.0:59445 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:52929']
+[ 2026-02-16 01:29:29 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 4 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:29 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 4 (2/3) from ['0.0.0.0:59445']
+[ 2026-02-16 01:29:29 | 0.0.0.0:45527 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:52929', '0.0.0.0:59445']
+[ 2026-02-16 01:29:29 | 0.0.0.0:52929 | INFO ] 🧩 Model added for round 4 (3/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:29 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 4 (2/3) from ['0.0.0.0:45527']
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 📤 Sending model to 2 direct neighbors: ['0.0.0.0:45527', '0.0.0.0:59445']
+[ 2026-02-16 01:29:30 | 0.0.0.0:45527 | INFO ] 🧩 Model added for round 4 (3/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:30 | 0.0.0.0:45527 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:45527 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:59445 | INFO ] 🧩 Model added for round 4 (3/3) from ['0.0.0.0:52929']
+[ 2026-02-16 01:29:30 | 0.0.0.0:59445 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:59445 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 📈 Evaluated. Results: {'test_loss': 858.7384033203125, 'test_acc': 0.8904890418052673, 'test_precision': 0.8883308172225952, 'test_recall': 0.8865583539009094, 'test_f1': 0.8835415244102478}
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 🎉 Round 5 of 5 finished.
+[ 2026-02-16 01:29:30 | 0.0.0.0:52929 | INFO ] 😋 Training finished!!
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 🤫 Gossip finished.
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 🔬 Evaluating...
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 📈 Evaluated. Results: {'test_loss': 925.7818603515625, 'test_acc': 0.8887222409248352, 'test_precision': 0.8903453350067139, 'test_recall': 0.8864213824272156, 'test_f1': 0.8836576342582703}
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 📈 Evaluated. Results: {'test_loss': 856.8870849609375, 'test_acc': 0.8955895304679871, 'test_precision': 0.8960534334182739, 'test_recall': 0.8949313163757324, 'test_f1': 0.8909871578216553}
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 📢 Broadcasting metrics.
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 🎉 Round 5 of 5 finished.
+[ 2026-02-16 01:29:31 | 0.0.0.0:45527 | INFO ] 😋 Training finished!!
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 🎉 Round 5 of 5 finished.
+[ 2026-02-16 01:29:31 | 0.0.0.0:59445 | INFO ] 😋 Training finished!!
+[ 2026-02-16 01:29:31 | None | INFO ] 🏁 All nodes finished training. Waiting 10s for final synchronization...
+[ 2026-02-16 01:29:41 | 0.0.0.0:45527 | INFO ] Stopping node...
+[ 2026-02-16 01:29:41 | 0.0.0.0:45527 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-16 01:29:41 | 0.0.0.0:52929 | INFO ] Stopping node...
+[ 2026-02-16 01:29:41 | 0.0.0.0:52929 | INFO ] 🛑 Stopping gossiper...
+[ 2026-02-16 01:29:41 | 0.0.0.0:59445 | INFO ] Stopping node...
+[ 2026-02-16 01:29:41 | 0.0.0.0:59445 | INFO ] 🛑 Stopping gossiper...

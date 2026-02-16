@@ -1,2 +1,0 @@
-[ 2026-02-15 08:45:38 | None | INFO ] Created experiment folder: /root/p2pfl/experiments/p2pfl_MNIST_RandomIIDPartitionStrategy_DFedAdp_model_build_fn_20260215_084538 and copied 00_test_verify.yaml
-[ 2026-02-15 08:45:38 | None | INFO ] Set simulation heartbeat: timeout=60s, period=2s

@@ -5,7 +5,7 @@ network:
   nodes: 50
   topology: custom
 experiment:
-  name: "mnist_dirichlet_0.1_psgd_sgd"
+  name: "mnist_dirichlet_0.1"
   rounds: 100
   epochs: 1
   trainset_size: 50
@@ -28,8 +28,8 @@ experiment:
       optimizer_name: "sgd"
       momentum: 0.0
   aggregator:
-    package: "p2pfl.learning.aggregators.psgd"
-    aggregator: "PSGD"
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
     params: 
       lr: 0.01
 settings:

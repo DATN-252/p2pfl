@@ -1,11 +1,11 @@
-description: "MNIST Dirichlet 0.1 - Highly Non-IID"
+description: "MNIST Dirichlet 0.1 - PSGD + SGD"
 network:
   package: "p2pfl.communication.protocols.protobuff.grpc"
   protocol: "GrpcCommunicationProtocol"
   nodes: 50
   topology: custom
 experiment:
-  name: "mnist_dirichlet_0.3"
+  name: "mnist_dirichlet_0.1"
   rounds: 100
   epochs: 1
   trainset_size: 50
@@ -19,19 +19,19 @@ experiment:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"
       params:
-        alpha: 0.3
+        alpha: 0.1
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.001
+      lr_rate: 0.01
+      optimizer_name: "sgd"
+      momentum: 0.0
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
     params: 
-      learning_rate: 0.001
-      decay_rate: 0.99
-      alpha: 1.0
+      lr: 0.01
 settings:
   general:
     disable_ray: False
@@ -43,5 +43,3 @@ settings:
   training:
     vote_timeout: 120
     aggregation_timeout: 300
-
-

@@ -1,25 +1,23 @@
-description: "MNIST Dirichlet 0.1 - Highly Non-IID"
+description: "Verification Test - Small Scale"
 network:
   package: "p2pfl.communication.protocols.protobuff.grpc"
   protocol: "GrpcCommunicationProtocol"
-  nodes: 50
+  nodes: 3
   topology: custom
 experiment:
-  name: "mnist_dirichlet_0.3"
-  rounds: 100
+  name: "verify_test"
+  rounds: 5
   epochs: 1
-  trainset_size: 50
+  trainset_size: 3
   seed: 666
-  wait_timeout: 18000
+  wait_timeout: 10
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"
     batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitionStrategy"
-      params:
-        alpha: 0.3
+      strategy: "RandomIIDPartitionStrategy"
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
@@ -35,13 +33,11 @@ experiment:
 settings:
   general:
     disable_ray: False
-    grpc_timeout: 120
+    grpc_timeout: 30
   heartbeat:
-    timeout: 99999
-    period: 10
-    wait_convergence: 180
+    timeout: 60
+    period: 2
+    wait_convergence: 10
   training:
-    vote_timeout: 120
-    aggregation_timeout: 300
-
-
+    vote_timeout: 30
+    aggregation_timeout: 60

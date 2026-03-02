@@ -166,6 +166,65 @@ class LabelSkewedPartitionStrategy(DataPartitionStrategy):
                 
         return node_partitions
 
+class QualitySkewedPartitionStrategy(DataPartitionStrategy):
+    """Partition the dataset for Quality-Skew scenario to test adaptive weight."""
+
+    @staticmethod
+    def generate_partitions(
+        train_data: Dataset, 
+        test_data: Dataset, 
+        num_partitions: int, 
+        lable_tag: str = 'label',
+        alpha_quantity: float = 1.0,  # Quantity Skew
+        alpha_label: float = 0.5,
+        **kwargs     # Label Skew (Non-IID)
+    ) -> tuple[list[list[int]], list[list[int]]]:
+        """
+        Generate partitions of the dataset using Quality-Skew.
+
+        Args:
+            train_data: The training Dataset object to partition.
+            test_data: The test Dataset object to partition.
+            num_partitions: The number of partitions to create.
+            **kwargs: Additional keyword arguments that may be required by specific strategies.
+
+        Returns:
+            A tuple containing two lists of lists:
+                - The first list contains lists of indices for the training data partitions.
+                - The second list contains lists of indices for the test data partitions.
+
+        """
+        rng = np.random.default_rng(Settings.general.SEED)
+        
+        proportions = rng.dirichlet([alpha_quantity] * num_partitions)
+        
+        train_labels = np.array(train_data[lable_tag])
+        num_classes = len(np.unique(train_labels))
+        
+        label_distribution = rng.dirichlet([alpha_label] * num_partitions, num_classes)
+
+        def distribute_indices(labels, dist_matrix, client_proportions):
+            class_indices = [np.where(labels == i)[0] for i in range(num_classes)]
+            partition_indices = [[] for _ in range(num_partitions)]
+            
+            for k in range(num_classes):
+                rng.shuffle(class_indices[k])
+                combined_probs = dist_matrix[k] * client_proportions
+                combined_probs /= combined_probs.sum()
+                
+                split_points = (np.cumsum(combined_probs) * len(class_indices[k])).astype(int)[:-1]
+                for client_idx, indices in enumerate(np.split(class_indices[k], split_points)):
+                    partition_indices[client_idx].extend(indices.tolist())
+            
+            for p in partition_indices: rng.shuffle(p)
+            return partition_indices
+
+        train_partitions = distribute_indices(train_labels, label_distribution, proportions)
+        
+        test_labels = np.array(test_data[lable_tag])
+        test_partitions = distribute_indices(test_labels, label_distribution, proportions)
+
+        return train_partitions, test_partitions
 
 class DirichletPartitionStrategy(DataPartitionStrategy):
     """

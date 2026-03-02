@@ -13,7 +13,7 @@ class ExperimentLogger:
     def __init__(self, output_dir: str, node_id: str):
         self.output_dir = output_dir
         self.node_id = node_id
-        self.log_file_path = os.path.join(output_dir, f"node_{self.node_id}.jsonl")
+        self.log_file_path = os.path.join(output_dir, f"node_{self.node_id.replace(':', '_')}.jsonl")
         
         os.makedirs(self.output_dir, exist_ok=True)
         

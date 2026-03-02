@@ -84,7 +84,10 @@ class DFedAdp(Aggregator):
         weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
         for addr, m in model_map.items():
             w_ij = metro_weights.get(addr, 0.0)
-            v_j_prev = m.gradients_estimate if hasattr(m, 'gradients_estimate') and m.gradients_estimate else self_delta
+            m_info = self._get_and_validate_model_info(m)
+            v_j_prev = m_info.get("tracking_v")
+            if v_j_prev is None:
+                v_j_prev = self_delta
             weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
 
         tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]
@@ -128,7 +131,10 @@ class DFedAdp(Aggregator):
 
         # --- Build and return result ---
         result_model = self_model.build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
-        result_model.gradients_estimate = tracking_delta
+        result_model.add_info("gradient_delta_calculator", {
+            "delta": self_delta,
+            "tracking_v": [v.copy() for v in tracking_delta]
+        })
         return result_model
 
     def _gompertz_function(self, angle: float):

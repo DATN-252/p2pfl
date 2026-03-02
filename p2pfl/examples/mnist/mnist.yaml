@@ -45,7 +45,7 @@ experiment:
     package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.0001
+      lr_rate: 0.001
     # Learning algorithm parameters (algorithm-specific)
     #compression:
     #ptq:

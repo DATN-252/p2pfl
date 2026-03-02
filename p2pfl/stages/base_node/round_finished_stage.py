@@ -57,7 +57,7 @@ class RoundFinishedStage(Stage):
         # Ensure atomicity of evaluation and round increment
         with state.round_condition:
             # Every node computes metrics at the end of each round (BEFORE increasing the round number)
-            RoundFinishedStage.__evaluate(state, learner, communication_protocol, experiment_logger)
+            RoundFinishedStage.__evaluate(state, learner, communication_protocol, aggregator, experiment_logger)
 
             # Set Next Round
             aggregator.clear()
@@ -83,9 +83,13 @@ class RoundFinishedStage(Stage):
                 return None
 
     @staticmethod
-    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, experiment_logger: ExperimentLogger | None = None) -> None: # NEW param
+    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, aggregator: Aggregator, experiment_logger: ExperimentLogger | None = None) -> None: # NEW param
         logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
+        
+        # Add communication cost to results
+        results["communication_cost"] = aggregator.get_last_comm_cost()
+        
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
 
         # NEW: Record metrics with experiment_logger

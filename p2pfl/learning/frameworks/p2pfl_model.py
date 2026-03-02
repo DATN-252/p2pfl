@@ -64,8 +64,13 @@ class P2PFLModel:
         self.additional_info: dict[str, Any] = {}
         if additional_info is not None:
             self.additional_info = additional_info
+        
+        self.size = 0
         if params is not None:
+            if isinstance(params, bytes):
+                self.size = len(params)
             self.set_parameters(params)
+
         if compression is not None:
             self.compression = compression
         else:

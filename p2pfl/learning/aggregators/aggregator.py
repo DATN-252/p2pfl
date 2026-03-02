@@ -56,9 +56,19 @@ class Aggregator(NodeComponent):
         self.__unhandled_models: dict[int, list[P2PFLModel]] = defaultdict(list)
         self.__local_model_backup: P2PFLModel | None = None
         self.__current_round: int | None = None
+        self.__comm_cost: int = 0
+        self.__last_comm_cost: int = 0
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
+
+    def get_comm_cost(self) -> int:
+        """Get the communication cost for the current round."""
+        return self.__comm_cost
+
+    def get_last_comm_cost(self) -> int:
+        """Get the communication cost for the last finished round."""
+        return self.__last_comm_cost
 
     def get_required_callbacks(self) -> list[str]:
         return []
@@ -94,9 +104,12 @@ class Aggregator(NodeComponent):
 
     def clear(self) -> None:
         with self.__agg_lock:
+            if self.__current_round is not None:
+                self.__last_comm_cost = self.__comm_cost
             self.__train_set = []
             self.__models = []
             self.__current_round = None
+            self.__comm_cost = 0
             # Preserve __unhandled_models for future rounds
             self._finish_aggregation_event.set()
 
@@ -159,6 +172,7 @@ class Aggregator(NodeComponent):
                 current_contributors = {self.normalize_addr(c) for m in self.__models for c in m.get_contributors()}
                 if not any(c in current_contributors for c in norm_contributors):
                     self.__models.append(model)
+                    self.__comm_cost += model.size
                     logger.info(self.addr, f"🧩 Model added for round {self.__current_round} ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
                     if len(self.__models) >= len(self.__train_set):
                         self._finish_aggregation_event.set()

@@ -107,9 +107,13 @@ class TrainStage(Stage):
             return None
 
     @staticmethod
-    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, experiment_logger: ExperimentLogger | None) -> None: # NEW param
+    def __evaluate(state: NodeState, learner: Learner, communication_protocol: CommunicationProtocol, aggregator: Aggregator, experiment_logger: ExperimentLogger | None) -> None: # NEW param
         logger.info(state.addr, "🔬 Evaluating...")
         results = learner.evaluate()
+
+        # Add communication cost to results
+        results["communication_cost"] = aggregator.get_last_comm_cost()
+
         logger.info(state.addr, f"📈 Evaluated. Results: {results}")
         
         # NEW: Record metrics with experiment_logger

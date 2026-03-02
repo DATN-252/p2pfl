@@ -104,7 +104,7 @@ class DFedAdp(Aggregator):
             angle = float(np.arccos(cos_sim))
 
             prev_angle = self.node_correlation.get(addr, 0.0)
-            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else ((current_round - 1)/current_round)*prev_angle + (1/current_round)*angle
+            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else 0.9 * prev_angle + 0.1 * angle
             self.node_correlation[addr] = smoothed_angle
             
             f_val = self._gompertz_function(smoothed_angle)

@@ -1,11 +1,11 @@
-description: "MNIST Dirichlet 0.1 - Highly Non-IID"
+description: "MNIST Dirichlet 0.5 - Strong Non-IID"
 network:
   package: "p2pfl.communication.protocols.protobuff.grpc"
   protocol: "GrpcCommunicationProtocol"
   nodes: 50
   topology: custom
 experiment:
-  name: "mnist_dirichlet_0.1"
+  name: "mnist_dirichlet_0.5"
   rounds: 100
   epochs: 1
   trainset_size: 50
@@ -14,12 +14,12 @@ experiment:
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"
-    batch_size: 128
+    batch_size: 4096
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"
       params:
-        alpha: 0.1
+        alpha: 0.5
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"

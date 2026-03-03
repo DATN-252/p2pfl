@@ -28,7 +28,7 @@ experiment:
   dataset:
     source: "huggingface" # Dataset source: "huggingface", "csv", etc.
     name: "p2pfl/MNIST"
-    batch_size: 128
+    batch_size: 4096
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"

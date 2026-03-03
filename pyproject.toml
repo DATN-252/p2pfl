@@ -25,11 +25,14 @@ dependencies = [
     "typer>=0.12.3,<0.13",
     "ray>=2.43.0,<3",
     "datasets==2.15.0",
+    "huggingface_hub<0.20.0",
     "pandas>=2.2.3,<3",
     "tqdm>=4.67.0,<5",
     "protobuf>=5.29.1",
     "pyyaml>=6.0.2,<7",
     "click==8.1.8",
+    "seaborn==0.13.2",
+    "kagglehub"
 ]
 
 [project.optional-dependencies]

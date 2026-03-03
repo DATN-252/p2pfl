@@ -1,9 +1,9 @@
 description: "MNIST Dirichlet 10.0 - Near IID"
 network:
-  package: "p2pfl.communication.protocols.protobuff.grpc"
-  protocol: "GrpcCommunicationProtocol"
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
   nodes: 50
-  topology: custom
+  topology: "custom"
 experiment:
   name: "mnist_dirichlet_10.0"
   rounds: 100
@@ -14,7 +14,7 @@ experiment:
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"
-    batch_size: 256
+    batch_size: 128
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"
@@ -24,14 +24,14 @@ experiment:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.001
+      lr_rate: 0.0001
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
     params: 
       learning_rate: 0.001
-      decay_rate: 0.99
-      alpha: 1.0
+      decay_rate: 0.95
+      alpha: 0.5
 settings:
   general:
     disable_ray: False
@@ -43,6 +43,3 @@ settings:
   training:
     vote_timeout: 120
     aggregation_timeout: 300
-
-
-

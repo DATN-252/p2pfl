@@ -164,6 +164,10 @@ class Learner(ABC, NodeComponent):
         """Interrupt the fit process."""
         pass
 
+    def shutdown(self) -> None:
+        """Shutdown the learner and its resources."""
+        self.interrupt_fit()
+
     @abstractmethod
     def evaluate(self) -> dict[str, float]:
         """

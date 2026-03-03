@@ -196,12 +196,12 @@ class Gossiper(threading.Thread, NodeComponent):
         last_x_status: list[Any] = []
         j = 0
 
-        while True:
+        while not self.__gossip_terminate_flag.is_set():
             # Get time to calculate frequency
             t = time.time()
 
             # If the trainning has been interrupted, stop waiting
-            if early_stopping_fn():
+            if early_stopping_fn() or self.__gossip_terminate_flag.is_set():
                 logger.info(self.addr, "Stopping model gossip process.")
                 return
 

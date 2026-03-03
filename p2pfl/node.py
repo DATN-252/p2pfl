@@ -236,6 +236,9 @@ class Node:
         """
         logger.info(self.addr, "Stopping node...")
         try:
+            # Stop learner
+            if self.learner:
+                self.learner.shutdown()
             # Stop server
             self._communication_protocol.stop()
             # Set not running

@@ -318,6 +318,20 @@ class SuperActorPool(ActorPool):
                     self._return_actor(actor)  # type: ignore
                 self._flag_future_as_ready(addr)
 
+    def shutdown(self) -> None:
+        """
+        Shutdown the actor pool by terminating all actors.
+        """
+        with self.lock:
+            logger.info("ActorPool", f"Shutting down pool with {len(self._idle_actors)} idle actors.")
+            for actor in self._idle_actors:
+                try:
+                    actor.terminate.remote()
+                except Exception:
+                    pass
+            self._idle_actors = []
+            self.num_actors = 0
+
     def get_learner_result(self, addr: str, timeout: float | None) -> tuple[Any, Any]:
         """
         Retrieve the learner result associated with the given address.

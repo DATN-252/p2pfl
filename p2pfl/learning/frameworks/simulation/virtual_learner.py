@@ -128,12 +128,15 @@ class VirtualNodeLearner(Learner):
     def interrupt_fit(self) -> None:
         """Interrupt the fit process."""
         try:
-            # For remote actors, the best we can do is signal the pool to remove actors
-            # or let them finish their current task if it's already in progress.
-            # In simulation, we can just clear the local pool.
+            if self.actor_pool is not None:
+                self.actor_pool.shutdown()
             self.actor_pool = None 
         except Exception:
             pass
+
+    def shutdown(self) -> None:
+        """Shutdown the learner and its resources."""
+        self.interrupt_fit()
 
     def evaluate(self) -> dict[str, float]:
         """

@@ -106,15 +106,13 @@ class SuperActorPool(ActorPool):
 
     def _calculate_gpu_per_actor(self, num_actors: int) -> float:
         """Calculate GPU fraction per actor. Let Ray handle the global allocation."""
-        # For simulation, we want to allow many actors to share GPUs
-        # We use a small fraction to ensure Ray doesn't block too early
-        return 0.1 
+        # For simulation on 1 machine, we need a very small fraction to share 1 GPU among 50 nodes
+        return 0.01 
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Each actor should take at least 1 core if possible, 
-        # but let's be conservative to avoid Ray scheduling stalls.
-        return 8
+        # Reduced to 2.0 to fit 50 actors into a 128-core machine (50*2 = 100 cores)
+        return 2.0
 
     def create_actor(self) -> VirtualLearnerActor:
         """

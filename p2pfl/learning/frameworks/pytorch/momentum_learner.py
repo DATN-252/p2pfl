@@ -76,9 +76,9 @@ class MomentumLearner(Learner):
                     # Move batch to device
                     if isinstance(batch, list | tuple):
                         batch = [b.to(device) if isinstance(b, torch.Tensor) else b for b in batch]
-                        x, y = batch[0], batch[1]
+                        x, y = batch[0].float(), batch[1]
                     else:
-                        x = batch['image'].to(device)
+                        x = batch['image'].to(device).float()
                         y = batch['label'].to(device)
 
                     # Compute Gradient g^{t,k}
@@ -128,9 +128,9 @@ class MomentumLearner(Learner):
         with torch.no_grad():
             for batch in pt_data:
                 if isinstance(batch, list | tuple):
-                    x, y = batch[0].to(device), batch[1].to(device)
+                    x, y = batch[0].to(device).float(), batch[1].to(device)
                 else:
-                    x, y = batch['image'].to(device), batch['label'].to(device)
+                    x, y = batch['image'].to(device).float(), batch['label'].to(device)
                 outputs = pt_model(x)
                 _, predicted = torch.max(outputs.data, 1)
                 total += y.size(0)

@@ -19,7 +19,7 @@ network:
 experiment:
   name: "qdfedavgm_iid_10nodes"
   rounds: 30
-  epochs: 1
+  epochs: 2
   trainset_size: 10
   seed: 666
   wait_timeout: 18000
@@ -44,7 +44,7 @@ experiment:
     learner_package: "p2pfl.learning.frameworks.pytorch.momentum_learner" # New
     learner_class: "MomentumLearner" # New
     params: 
-      lr_rate: 0.0001
+      lr_rate: 0.01
       momentum: 0.9 # For Heavy-ball
 
   # Aggregation algorithm configuration

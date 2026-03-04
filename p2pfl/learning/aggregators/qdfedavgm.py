@@ -44,6 +44,16 @@ class QDFedAvgMAggregator(Aggregator):
         self.x_state: List[np.ndarray] = []  # Current global state x^t
         self.is_initialized = False
 
+    def init_state(self, params: List[np.ndarray]):
+        """
+        Initialize the global state x^0.
+        Should be called before the first training round.
+        """
+        if not self.is_initialized:
+            self.x_state = [p.copy() for p in params]
+            self.is_initialized = True
+            logger.info(self.addr, "Q-DFedAvgM: Global state initialized (x^0).")
+
     def preprocess_local_model(self, model: P2PFLModel) -> P2PFLModel:
         """
         Quantizes the local model difference before broadcasting.
@@ -51,13 +61,9 @@ class QDFedAvgMAggregator(Aggregator):
         """
         params = model.get_parameters()
         
-        # Initialization at Round 0
+        # Guard against uninitialized state
         if not self.is_initialized:
-            self.x_state = [p.copy() for p in params]
-            self.is_initialized = True
-            # For round 0, diff is usually 0 if initialized together, 
-            # but we send the initial state quantized for consistency if needed.
-            # However, Algorithm 2 assumes nodes start with the same x^0.
+            self.init_state(params)
             
         # q^t(i) = Q(y^{t,K}(i) - x^t(i))
         q_diff = []
@@ -67,7 +73,12 @@ class QDFedAvgMAggregator(Aggregator):
         
         # Build a model containing the quantized difference
         # We piggyback the 'q_diff' in the parameters for the P2P communication
-        return model.build_copy(params=q_diff)
+        return model.build_copy(
+            params=q_diff,
+            contributors=model.get_contributors(),
+            num_samples=model.get_num_samples(),
+            additional_info=model.get_info()
+        )
 
     def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         """
@@ -108,4 +119,8 @@ class QDFedAvgMAggregator(Aggregator):
             self.x_state[i] += sum_wq[i]
 
         # Return the new global model
-        return self_model.build_copy(params=self.x_state)
+        return self_model.build_copy(
+            params=self.x_state,
+            contributors=self_model.get_contributors(),
+            num_samples=self_model.get_num_samples()
+        )

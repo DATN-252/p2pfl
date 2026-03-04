@@ -57,6 +57,11 @@ class TrainStage(Stage):
         try:
             check_early_stop(state)
 
+            # For Decentralized algorithms that track state (like Q-DFedAvgM)
+            # we need to capture x^t BEFORE training starts.
+            if hasattr(aggregator, "init_state"):
+                aggregator.init_state(learner.get_model().get_parameters())
+
             # Set Models To Aggregate
             direct_neighbors = list(communication_protocol.get_neighbors(only_direct=True).keys())
             expected_contributors = [state.addr] + direct_neighbors

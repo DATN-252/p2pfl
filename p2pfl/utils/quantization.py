@@ -61,7 +61,7 @@ class StochasticQuantizer:
         # floor(normalized_x) + Bernoulli(normalized_x - floor(normalized_x))
         floor_x = np.floor(normalized_x)
         prob = normalized_x - floor_x
-        rounded_x = floor_x + (np.random.rand(*x.shape) < prob).astype(float)
+        rounded_x = floor_x + (np.random.rand(*x.shape) < prob).astype(np.float32)
         
         # Rescale back
-        return np.sign(x) * (norm_inf / s) * rounded_x
+        return (np.sign(x) * (norm_inf / s) * rounded_x).astype(np.float32)

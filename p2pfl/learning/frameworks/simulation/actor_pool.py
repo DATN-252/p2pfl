@@ -320,16 +320,27 @@ class SuperActorPool(ActorPool):
 
     def shutdown(self) -> None:
         """
-        Shutdown the actor pool by terminating all actors.
+        Shutdown the actor pool by terminating all actors (idle and busy).
         """
         with self.lock:
-            logger.info("ActorPool", f"Shutting down pool with {len(self._idle_actors)} idle actors.")
+            # 1. Terminate idle actors
+            logger.info("ActorPool", f"Terminating {len(self._idle_actors)} idle actors.")
             for actor in self._idle_actors:
                 try:
                     actor.terminate.remote()
                 except Exception:
                     pass
             self._idle_actors = []
+
+            # 2. Terminate busy actors (those currently working on futures)
+            busy_actors = [actor for _, actor, _ in self._future_to_actor.values()]
+            logger.info("ActorPool", f"Terminating {len(busy_actors)} busy actors.")
+            for actor in busy_actors:
+                try:
+                    actor.terminate.remote()
+                except Exception:
+                    pass
+            self._future_to_actor = {}
             self.num_actors = 0
 
     def get_learner_result(self, addr: str, timeout: float | None) -> tuple[Any, Any]:

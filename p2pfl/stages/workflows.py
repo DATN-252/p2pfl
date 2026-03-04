@@ -39,15 +39,20 @@ class StageWokflow:
         # get state (need info from state)
         state: NodeState | None = kwargs.get("state")
         if state:
-            while True:
-                logger.debug(state.addr, f"🏃 Running stage: {(self.current_stage.name())}")
-                self.history.append(self.current_stage.name())
-                kwargs['experiment_logger'] = experiment_logger # NEW: Pass logger to next stage
-                next_stage = self.current_stage.execute(**kwargs)
-                if next_stage is None or check_early_stop(state, raise_exception=False):
-                    self.finished = True
-                    break
-                self.current_stage = next_stage
+            try:
+                while True:
+                    logger.debug(state.addr, f"🏃 Running stage: {(self.current_stage.name())}")
+                    self.history.append(self.current_stage.name())
+                    kwargs['experiment_logger'] = experiment_logger # NEW: Pass logger to next stage
+                    next_stage = self.current_stage.execute(**kwargs)
+                    if next_stage is None or check_early_stop(state, raise_exception=False):
+                        break
+                    self.current_stage = next_stage
+            except Exception as e:
+                logger.error(state.addr, f"💥 Workflow error: {e}")
+                raise e
+            finally:
+                self.finished = True
         else:
             raise ValueError("State not found in kwargs")
 

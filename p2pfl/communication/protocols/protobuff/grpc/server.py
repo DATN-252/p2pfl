@@ -128,7 +128,7 @@ class GrpcServer(ProtobuffServer):
 
     def stop(self) -> None:
         """Stop the GRPC server."""
-        self.__server.stop(0)
+        self.__server.stop(2)
         self.__server_started = False
 
     def wait_for_termination(self) -> None:

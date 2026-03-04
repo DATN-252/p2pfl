@@ -19,21 +19,32 @@ def run_experiments(config_dir="batch_configs"):
 
     print(f"🚀 Found {len(config_files)} experiments. Starting batch run...")
 
+    # 4-hour timeout per experiment (4 * 3600 seconds)
+    EXP_TIMEOUT = 14400 
+
     for i, config_file in enumerate(config_files):
         config_path = os.path.join(config_dir, config_file)
         print("\n" + "="*60)
         print(f"🧪 [{i+1}/{len(config_files)}] Running: {config_file}")
         print(f"⏰ Started at: {datetime.now().strftime('%H:%M:%S')}")
+        print(f"⏱️  Timeout set to {EXP_TIMEOUT/3600} hours")
         print("="*60)
 
         try:
-            # Run the experiment using p2pfl CLI
+            # Run the experiment using p2pfl CLI with timeout
             result = subprocess.run(
                 ["p2pfl", "run", config_path],
                 check=True,
-                text=True
+                text=True,
+                timeout=EXP_TIMEOUT
             )
             print(f"✅ Finished experiment: {config_file}")
+        except subprocess.TimeoutExpired:
+            print(f"🚨 TIMEOUT: Experiment {config_file} exceeded {EXP_TIMEOUT/3600} hours.")
+            print("🛑 Force killing any remaining Ray/Python processes...")
+            # Extra safety: kill any zombies on this machine
+            os.system("pkill -9 python; pkill -9 raylet")
+            time.sleep(10) # Wait for OS to clean up
         except subprocess.CalledProcessError as e:
             print(f"❌ Error while running {config_file}: {e}")
         except KeyboardInterrupt:

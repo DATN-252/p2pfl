@@ -340,7 +340,11 @@ class SuperActorPool(ActorPool):
                     actor.terminate.remote()
                 except Exception:
                     pass
+            
+            # 3. Clear all references
             self._future_to_actor = {}
+            self._addr_to_future = {}
+            self._pending_submits = []
             self.num_actors = 0
 
     def get_learner_result(self, addr: str, timeout: float | None) -> tuple[Any, Any]:

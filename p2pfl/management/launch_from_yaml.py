@@ -390,8 +390,19 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         raise e
     finally:
         # Stop Nodes
+        logger.info(None, "🛑 Stopping all nodes...")
         for node in nodes:
             node.stop()
+        
+        # Explicit Ray shutdown to free resources immediately
+        try:
+            import ray
+            if ray.is_initialized():
+                logger.info(None, "🧹 Shutting down Ray...")
+                ray.shutdown()
+        except Exception:
+            pass
+
         # Profiling
         if start_time:
             print(f"Execution time: {time.time() - start_time} seconds")

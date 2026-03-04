@@ -47,7 +47,7 @@ experiment:
     learner_package: "p2pfl.learning.frameworks.pytorch.momentum_learner" # New
     learner_class: "MomentumLearner" # New
     params: 
-      lr_rate: 0.001
+      lr_rate: 0.0001
       momentum: 0.9 # For Heavy-ball
 
   # Aggregation algorithm configuration

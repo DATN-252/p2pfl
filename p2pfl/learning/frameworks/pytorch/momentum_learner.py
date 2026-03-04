@@ -62,9 +62,9 @@ class MomentumLearner(Learner):
         # Extract parameters for manual update
         params = list(pt_model.parameters())
         
-        # Initialize y_prev if it's the first time
-        if self.y_prev is None:
-            self.y_prev = [p.clone().detach() for p in params]
+        # RESET y_prev at the start of each round to current aggregated parameters.
+        # This prevents a massive momentum jump caused by the aggregation step.
+        self.y_prev = [p.clone().detach() for p in params]
 
         # Get eta and theta from model params or defaults
         self.eta = getattr(pt_model, "lr_rate", self.eta)
@@ -73,12 +73,12 @@ class MomentumLearner(Learner):
         try:
             for epoch in range(self.epochs): # K local iterations
                 for batch in pt_data:
-                    # Move batch to device
+                    # Move batch to device and NORMALIZE to [0, 1]
                     if isinstance(batch, list | tuple):
                         batch = [b.to(device) if isinstance(b, torch.Tensor) else b for b in batch]
-                        x, y = batch[0].float(), batch[1]
+                        x, y = batch[0].float() / 255.0, batch[1]
                     else:
-                        x = batch['image'].to(device).float()
+                        x = batch['image'].to(device).float() / 255.0
                         y = batch['label'].to(device)
 
                     # Compute Gradient g^{t,k}
@@ -128,9 +128,9 @@ class MomentumLearner(Learner):
         with torch.no_grad():
             for batch in pt_data:
                 if isinstance(batch, list | tuple):
-                    x, y = batch[0].to(device).float(), batch[1].to(device)
+                    x, y = batch[0].to(device).float() / 255.0, batch[1].to(device)
                 else:
-                    x, y = batch['image'].to(device).float(), batch['label'].to(device)
+                    x, y = batch['image'].to(device).float() / 255.0, batch['label'].to(device)
                 outputs = pt_model(x)
                 _, predicted = torch.max(outputs.data, 1)
                 total += y.size(0)

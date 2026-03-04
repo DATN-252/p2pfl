@@ -116,28 +116,46 @@ class MomentumLearner(Learner):
         pass
 
     def evaluate(self) -> dict[str, float]:
-        """Simple evaluation."""
+        """Full evaluation with all metrics."""
         pt_model = self.get_model().get_model()
         pt_data = self.get_data().export(PyTorchExportStrategy, train=False)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         pt_model.to(device)
         pt_model.eval()
         
-        correct = 0
-        total = 0
+        total_loss = 0.0
+        all_preds = []
+        all_targets = []
+        
         with torch.no_grad():
             for batch in pt_data:
                 if isinstance(batch, list | tuple):
                     x, y = batch[0].to(device).float() / 255.0, batch[1].to(device)
                 else:
                     x, y = batch['image'].to(device).float() / 255.0, batch['label'].to(device)
+                
                 outputs = pt_model(x)
-                _, predicted = torch.max(outputs.data, 1)
-                total += y.size(0)
-                correct += (predicted == y).sum().item()
+                loss = torch.nn.functional.cross_entropy(outputs, y)
+                total_loss += loss.item()
+                
+                preds = torch.argmax(outputs, dim=1)
+                all_preds.append(preds.cpu())
+                all_targets.append(y.cpu())
         
-        acc = correct / total
-        return {"test_acc": acc}
+        # Concatenate all results
+        all_preds = torch.cat(all_preds)
+        all_targets = torch.cat(all_targets)
+        
+        # Calculate metrics using model's internal metrics
+        # This ensures consistency with MLP definition
+        metrics = {
+            "test_loss": total_loss / len(pt_data),
+            "test_acc": pt_model.accuracy(all_preds, all_targets).item(),
+            "test_precision": pt_model.precision(all_preds, all_targets).item(),
+            "test_recall": pt_model.recall(all_preds, all_targets).item(),
+            "test_f1": pt_model.f1(all_preds, all_targets).item(),
+        }
+        return metrics
 
     def get_framework(self) -> str:
         return Framework.PYTORCH.value

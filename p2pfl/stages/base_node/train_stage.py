@@ -82,14 +82,23 @@ class TrainStage(Stage):
                 n_s = learner.get_data().get_num_samples()
                 current_model.set_contribution([state.addr], n_s) 
             
-            # Use force_add_local_model instead of add_model for the local node
-            logger.info(state.addr, "🛠️ Calling force_add_local_model...")
-            aggregator.force_add_local_model(current_model)
+            # For Decentralized algos (like Q-DFedAvgM), we need the node degree for weights
+            current_model.add_info("degrees", len(direct_neighbors))
+
+            # If the aggregator needs to preprocess the local model (e.g., Quantization)
+            if hasattr(aggregator, "preprocess_local_model"):
+                model_to_send = aggregator.preprocess_local_model(current_model)
+            else:
+                model_to_send = current_model
+
+            # Use force_add_local_model with the model_to_send (quantized diff for Q-DFedAvgM)
+            logger.info(state.addr, "🛠️ Calling force_add_local_model with processed model...")
+            aggregator.force_add_local_model(model_to_send)
 
             import time
             time.sleep(5) # wait for continuous voting
 
-            TrainStage.__send_model_direct(state, communication_protocol, current_model)
+            TrainStage.__send_model_direct(state, communication_protocol, model_to_send)
             check_early_stop(state)
             
             # Set aggregated model

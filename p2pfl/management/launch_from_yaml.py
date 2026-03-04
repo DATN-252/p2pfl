@@ -250,6 +250,16 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         params = {**params, "compression": model_config.get("compression", None)}
         return model_class(**params)
 
+    ###########
+    # Learner #
+    ###########
+    
+    learner_package = model_config.get("learner_package")
+    learner_class_name = model_config.get("learner_class")
+    learner_class = None
+    if learner_package and learner_class_name:
+        learner_class = load_by_package_and_name(learner_package, learner_class_name)
+
     ##############
     # Aggregator #
     ##############
@@ -307,6 +317,7 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
             partitions[i],
             protocol=protocol(),
             aggregator=node_aggregator,
+            learner=learner_class() if learner_class else None,
             experiment_folder_path=experiment_folder_path, # NEW
         )
         node.start()

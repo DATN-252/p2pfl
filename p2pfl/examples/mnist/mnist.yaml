@@ -11,16 +11,16 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 10
+  nodes: 3
   topology: "full"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
   additional_connections: []
 
 # Defines experiment settings
 experiment:
   name: "my_experiment"
-  rounds: 50
+  rounds: 5
   epochs: 1
-  trainset_size: 10
+  trainset_size: 3
   seed: 666
   wait_timeout: 18000
 
@@ -44,29 +44,18 @@ experiment:
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
     model_build_fn: "model_build_fn"
+    learner_package: "p2pfl.learning.frameworks.pytorch.momentum_learner" # New
+    learner_class: "MomentumLearner" # New
     params: 
       lr_rate: 0.001
-    # Learning algorithm parameters (algorithm-specific)
-    #compression:
-    #ptq:
-    #  dtype: "int8"
-    #topk:
-    #  k: 0.1
-    #zlib:
-    #  level: 6
+      momentum: 0.9 # For Heavy-ball
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.qdfedavgm"
+    aggregator: "QDFedAvgMAggregator"
     params:
-      learning_rate: 0.001
-      decay_rate: 0.95
-      alpha: 0.5
-
-    # package: "p2pfl.learning.aggregators.fedavg"
-    # aggregator: "FedAvg"
-    # params: {}
+      bits: 8
  
     # package: "p2pfl.learning.aggregators.psgd"
     # aggregator: "PSGD"

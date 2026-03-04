@@ -142,9 +142,9 @@ class MomentumLearner(Learner):
                 all_preds.append(preds.cpu())
                 all_targets.append(y.cpu())
         
-        # Concatenate all results
-        all_preds = torch.cat(all_preds)
-        all_targets = torch.cat(all_targets)
+        # Concatenate all results and move to the current device
+        all_preds = torch.cat(all_preds).to(device)
+        all_targets = torch.cat(all_targets).to(device)
         
         # Calculate metrics using model's internal metrics
         # This ensures consistency with MLP definition

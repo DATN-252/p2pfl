@@ -11,16 +11,16 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 3
+  nodes: 10
   topology: "full"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
   additional_connections: []
 
 # Defines experiment settings
 experiment:
-  name: "my_experiment"
-  rounds: 5
+  name: "qdfedavgm_iid_10nodes"
+  rounds: 30
   epochs: 1
-  trainset_size: 3
+  trainset_size: 10
   seed: 666
   wait_timeout: 18000
 
@@ -31,14 +31,11 @@ experiment:
     batch_size: 256
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitionStrategy"
+      strategy: "RandomIIDPartitionStrategy"
       reduced_dataset: false # For testing purposes
       reduction_factor: 10
 
-      params:
-        alpha: 0.5
-        min_partition_size: 10
-        self_balancing: false
+      params: {}
 
   # Learning algorithm configuration
   model:

@@ -1,0 +1,59 @@
+description: "DFedAdp - CIFAR10 Label Skewed"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 50
+  topology: "custom"
+experiment:
+  name: "dfedadp_cifar10_label_skewed"
+  rounds: 100
+  epochs: 1
+  trainset_size: 50
+  seed: 666
+  wait_timeout: 18000
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/CIFAR10"
+    batch_size: 50
+    transforms:
+      package: "p2pfl.examples.cifar10.transforms"
+      function: "get_cifar10_transforms"
+      params: {}
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "LabelSkewedPartitionStrategy"
+      params:
+        shards_per_node: 2
+  model:
+    package: "p2pfl.examples.cifar10.model.resnet_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.001
+  aggregator:
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params: 
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: False
+  heartbeat:
+    period: 10
+    timeout: 99999
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 150
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300

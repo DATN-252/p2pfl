@@ -42,9 +42,9 @@ class MomentumLearner(Learner):
 
     def __init__(self, model: P2PFLModel | None = None, data: P2PFLDataset | None = None, aggregator: Aggregator | None = None) -> None:
         super().__init__(model, data, aggregator)
-        # Previous local iterate y^{t, k-1}
+        # Previous local iterate y^{t, k-1} - PERSISTENT across rounds
         self.y_prev: list[torch.Tensor] | None = None
-        self.eta = 0.01  # learning rate
+        self.eta = 0.01  # initial learning rate
         self.theta = 0.9 # momentum factor
 
     def fit(self, apply_update: bool = True) -> P2PFLModel:
@@ -62,18 +62,19 @@ class MomentumLearner(Learner):
         # Extract parameters for manual update
         params = list(pt_model.parameters())
         
-        # RESET y_prev at the start of each round to current aggregated parameters.
-        # This prevents a massive momentum jump caused by the aggregation step.
+        # ALGORITHM 2 CORRECTION (Section 3.1):
+        # Initialize local iterates: y^{t, -1} = y^{t, 0} = x^t
+        # This ensures momentum is 0 at the start of each communication round.
         self.y_prev = [p.clone().detach() for p in params]
 
-        # Get eta and theta from model params or defaults
+        # Get hyperparameters from model
         self.eta = getattr(pt_model, "lr_rate", self.eta)
         self.theta = getattr(pt_model, "momentum", self.theta)
 
         try:
             for epoch in range(self.epochs): # K local iterations
                 for batch in pt_data:
-                    # Move batch to device and NORMALIZE to [0, 1]
+                    # Normalize data [0, 1]
                     if isinstance(batch, list | tuple):
                         batch = [b.to(device) if isinstance(b, torch.Tensor) else b for b in batch]
                         x, y = batch[0].float() / 255.0, batch[1]
@@ -142,14 +143,12 @@ class MomentumLearner(Learner):
                 all_preds.append(preds.cpu())
                 all_targets.append(y.cpu())
         
-        # Concatenate all results and move to the current device
+        # Concatenate and sync device
         all_preds = torch.cat(all_preds).to(device)
         all_targets = torch.cat(all_targets).to(device)
         
-        # Calculate metrics using model's internal metrics
-        # This ensures consistency with MLP definition
         metrics = {
-            "test_loss": total_loss / len(pt_data),
+            "test_loss": total_loss / len(pt_data) if len(pt_data) > 0 else 0,
             "test_acc": pt_model.accuracy(all_preds, all_targets).item(),
             "test_precision": pt_model.precision(all_preds, all_targets).item(),
             "test_recall": pt_model.recall(all_preds, all_targets).item(),

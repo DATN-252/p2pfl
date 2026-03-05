@@ -50,8 +50,9 @@ class StochasticQuantizer:
 
         # Norm infinity (max absolute value)
         norm_inf = np.max(np.abs(x))
-        if norm_inf == 0:
-            return x
+        # Add a tiny epsilon to avoid division by zero
+        if norm_inf < 1e-12:
+            return np.zeros_like(x).astype(np.float32)
 
         # Normalize
         abs_x = np.abs(x)

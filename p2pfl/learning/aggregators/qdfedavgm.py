@@ -68,11 +68,13 @@ class QDFedAvgMAggregator(Aggregator):
         # q^t(i) = Q(y^{t,K}(i) - x^t(i))
         q_diff = []
         for p_y, p_x in zip(params, self.x_state):
-            diff = p_y - p_x
-            q_diff.append(StochasticQuantizer.quantize(diff, self.bits))
+            # Ensure high precision subtraction
+            diff = p_y.astype(np.float32) - p_x.astype(np.float32)
+            # Apply stochastic quantization
+            q_val = StochasticQuantizer.quantize(diff, self.bits)
+            q_diff.append(q_val)
         
         # Build a model containing the quantized difference
-        # We piggyback the 'q_diff' in the parameters for the P2P communication
         return model.build_copy(
             params=q_diff,
             contributors=model.get_contributors(),

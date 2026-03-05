@@ -18,7 +18,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "qdfedavgm_iid_10nodes"
-  rounds: 30
+  rounds: 100
   epochs: 2
   trainset_size: 10
   seed: 666
@@ -28,17 +28,14 @@ experiment:
   dataset:
     source: "huggingface" # Dataset source: "huggingface", "csv", etc.
     name: "p2pfl/MNIST"
-    batch_size: 256
+    batch_size: 50
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitionStrategy"
+      strategy: "RandomIIDPartitionStrategy"
       reduced_dataset: false # For testing purposes
       reduction_factor: 10
 
-      params:
-        alpha: 0.1
-        min_partition_size: 10
-        self_balancing: false
+      params: {}
 
   # Learning algorithm configuration
   model:

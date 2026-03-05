@@ -14,10 +14,11 @@ experiment:
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"
-    batch_size: 128
+    batch_size: 50
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "RandomIIDPartitionStrategy"
+      params: {}
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
@@ -33,12 +34,22 @@ experiment:
       bits: 8
 settings:
   general:
+    log_level: "INFO"
+    grpc_timeout: 2
     disable_ray: False
-    grpc_timeout: 120
   heartbeat:
-    timeout: 99999
     period: 10
-    wait_convergence: 180
+    timeout: 99999
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50
   training:
-    vote_timeout: 120
+    vote_timeout: 30
     aggregation_timeout: 300

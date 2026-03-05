@@ -1,11 +1,11 @@
-description: "Q-DFedAvgM - MNIST Random IID"
+description: "Q-DFedAvgM - MNIST Dirichlet 1.0"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 50
   topology: "custom"
 experiment:
-  name: "qdfedavgm_mnist_iid"
+  name: "qdfedavgm_mnist_dirichlet_1.0"
   rounds: 100
   epochs: 2
   trainset_size: 50
@@ -14,10 +14,14 @@ experiment:
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"
-    batch_size: 128
+    batch_size: 50
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "RandomIIDPartitionStrategy"
+      strategy: "DirichletPartitionStrategy"
+      params:
+        alpha: 1.0
+        min_partition_size: 10
+        self_balancing: false
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
@@ -33,12 +37,22 @@ experiment:
       bits: 8
 settings:
   general:
+    log_level: "INFO"
+    grpc_timeout: 2
     disable_ray: False
-    grpc_timeout: 120
   heartbeat:
-    timeout: 99999
     period: 10
-    wait_convergence: 180
+    timeout: 99999
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50
   training:
-    vote_timeout: 120
+    vote_timeout: 30
     aggregation_timeout: 300

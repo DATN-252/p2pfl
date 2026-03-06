@@ -19,7 +19,7 @@ from p2pfl.stages.stage import Stage, check_early_stop
 from p2pfl.stages.stage_factory import StageFactory
 
 def _centralized_evaluate(state, learner, aggregator, experiment_logger):
-    """Helper function to evaluate model and log results, avoiding class attribute issues."""
+    """Helper function to evaluate model and log results."""
     logger.info(state.addr, "🔬 Evaluating...")
     results = learner.evaluate()
     results["communication_cost"] = aggregator.get_last_comm_cost()
@@ -28,6 +28,22 @@ def _centralized_evaluate(state, learner, aggregator, experiment_logger):
     if experiment_logger:
         experiment_logger.record_metrics(state.round, results)
     return results
+
+def _centralized_init_experiment(state, learner, aggregator, experiment_name, rounds, epochs):
+    """Helper function to initialize experiment metadata."""
+    with state.start_thread_lock:
+        state.set_experiment(
+            experiment_name,
+            rounds,
+            dataset_name=learner.get_data().dataset_name,
+            model_name=learner.get_model().__class__.__name__,
+            aggregator_name=aggregator.__class__.__name__,
+            framework_name=learner.get_model().get_framework(),
+            learning_rate=getattr(learner.get_model().get_model(), "lr_rate", None),
+            batch_size=learner.get_data().batch_size,
+            epochs_per_round=epochs,
+        )
+        learner.set_epochs(epochs)
 
 class CentralizedStartStage(Stage):
     """Initializes roles and starts the workflow."""
@@ -50,10 +66,8 @@ class CentralizedStartStage(Stage):
         if state is None or learner is None or communication_protocol is None or aggregator is None:
             raise Exception("Invalid parameters on CentralizedStartStage.")
 
-        # Init experiment metadata
-        # Reuse base class Stage method if available, or call directly
-        from p2pfl.stages.stage import Stage
-        Stage._init_experiment(state, learner, aggregator, experiment_name, rounds, epochs)
+        # Init experiment metadata using local helper
+        _centralized_init_experiment(state, learner, aggregator, experiment_name, rounds, epochs)
 
         if state.is_server:
             logger.info(state.addr, "👑 Node is SERVER. Broadcasting initial model.")

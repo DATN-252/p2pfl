@@ -1,131 +1,109 @@
-import numpy as np
-from functools import reduce
+#
+# Centralized FedAdp Aggregator.
+#
 import math
+import numpy as np
 from collections import defaultdict
-from typing import Any
+from typing import Any, List, Dict
+
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
 
-
 class FedAdp(Aggregator):
+    """
+    Centralized Federated Adaptive Weighting (FedAdp) Aggregator.
+    Adapts client weights based on the contribution of their updates to the global direction.
+    """
+    
+    def __init__(
+        self, 
+        alpha: float = 1.0, 
+        **kwargs
+    ) -> None:
+        super().__init__(disable_partial_aggregation=True)
+        self.global_model_params: List[np.ndarray] = []
+        self.node_correlation: Dict[str, float] = defaultdict(lambda: 0.0)
+        self.ALPHA = alpha
 
-    SUPPORTS_PARTIAL_AGGREGATION: bool = False
-    REQUIRED_INFO_KEYS = ["global_model"]
-
-    def __init__(self, disable_partial_aggregation: bool = False) -> None:
-        """Initialize the aggregator."""
-        super().__init__(disable_partial_aggregation=disable_partial_aggregation)
-        self.global_model_params: list[np.ndarray] = []
-        self.node_correlation  = defaultdict(lambda : 0.0)
-
-    def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
-        """
-        Aggregate the models.
-
-        Args:
-            models: Dictionary with the models (node: model,num_samples).
-
-        Returns:
-            A P2PFLModel with the aggregated.
-
-        Raises:
-            NoModelsToAggregateError: If there are no models to aggregate.
-
-        """
-        # Check if there are models to aggregate
+    def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         if len(models) == 0:
-            raise NoModelsToAggregateError(f"({self.addr}) Trying to aggregate models when there is no models")
+            raise NoModelsToAggregateError(f"({self.addr}) No models to aggregate")
+
+        # 1. Setup and basic FedAvg reference
+        total_samples = sum(m.get_num_samples() for m in models)
+        current_round = self.each_trained_round.get(self.addr, 0)
         
-        # Total Samples
-        total_samples = sum([m.get_num_samples() for m in models])
-        # Get contributors
-        contributors: list[str] = []
-        for m in models:
-            contributors = contributors + m.get_contributors()
-
-        # Set init global model
+        # Get current global parameters (reference from previous round)
+        # If not exists, use the first model as base
         if not self.global_model_params:
-            # at initial model at index 0 is its self model
             self.global_model_params = [p.copy() for p in models[0].get_parameters()]
-            return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
 
-        # Loss function = Gradient of its
-        list_lossvalues: list[list[np.ndarray]]  = []
-        total_lossvalue = [np.zeros_like(i) for i in self.global_model_params]
+        # 2. Calculate Local Deltas (Updates)
+        local_updates = []
         for m in models:
-            pi = m.get_parameters()
-            
-            # Check
-            assert len(pi) == len(self.global_model_params), "Layer count mismatch"
+            delta = [p_global - p_local for p_global, p_local in zip(self.global_model_params, m.get_parameters())]
+            local_updates.append(delta)
 
-            li =  [-(pi - pg) / self.learning_rate for pi, pg in zip(pi, self.global_model_params)]
-            list_lossvalues.append(li)
-            total_lossvalue = [m.get_num_samples() / float(total_samples) * l + t for l, t in  zip(li, total_lossvalue)]
+        # 3. Calculate Global Reference Update (Simple average of updates)
+        # This acts as the "Global Gradient" direction
+        global_delta = [np.zeros_like(p) for p in self.global_model_params]
+        for i, m in enumerate(models):
+            weight = m.get_num_samples() / total_samples
+            for j, layer_delta in enumerate(local_updates[i]):
+                global_delta[j] += weight * layer_delta
 
-
-        # Get weighted models
-        strategy_weights = []
-        g_vec = np.concatenate([p.ravel() for p in total_lossvalue]) 
+        # Flatten global delta for similarity calculation
+        g_vec = np.concatenate([p.ravel() for p in global_delta])
         g_norm = np.linalg.norm(g_vec)
-        t = self.each_trained_round[self.addr]
-        for index, m in enumerate(models):
-            l_vec = np.concatenate([p.ravel() for p in list_lossvalues[index]])
+
+        # 4. Calculate Adaptive Scores
+        fedadp_scores = {}
+        for i, m in enumerate(models):
+            addr = m.get_contributors()[0] if m.get_contributors() else f"node_{i}"
+            
+            # Flatten local update
+            l_vec = np.concatenate([p.ravel() for p in local_updates[i]])
             l_norm = np.linalg.norm(l_vec)
 
-            if g_norm == 0 or l_norm == 0:
-                cos_sim = 0.0
-            else:
-                cos_sim = float(np.dot(g_vec, l_vec) / (g_norm * l_norm))
-                cos_sim = np.clip(cos_sim, -1.0, 1.0)
+            # Cosine Similarity
+            cos_sim = 1.0 if g_norm == 0 or l_norm == 0 else np.clip(np.dot(g_vec, l_vec) / (g_norm * l_norm), -1.0, 1.0)
             angle = float(np.arccos(cos_sim))
 
-            pre_arccos_i = self.node_correlation[index]
-            arccos_i = angle if (t <= 1 or pre_arccos_i == 0.0) else (((t-1)/t)*pre_arccos_i + (1/t)*angle)
-            self.node_correlation[index] = arccos_i
-
-            gompertz_value = self._gompertz_function(arccos_i)
-            strategy_weights.append(m.get_num_samples() * math.exp(gompertz_value))
+            # Smoothing angle across rounds
+            prev_angle = self.node_correlation.get(addr, 0.0)
+            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else 0.9 * prev_angle + 0.1 * angle
+            self.node_correlation[addr] = smoothed_angle
             
+            # Gompertz amplification
+            f_val = self._gompertz_function(smoothed_angle)
+            fedadp_scores[addr] = m.get_num_samples() * math.exp(f_val)
+
+        # 5. Final Aggregation using Adaptive Scores
+        total_score = sum(fedadp_scores.values())
+        final_weights = {addr: s / total_score if total_score > 0 else 1.0/len(models) for addr, s in fedadp_scores.items()}
         
-        # Normalize weights
-        total_strategy_weights = sum(strategy_weights)
-        strategy_weights = [w/total_strategy_weights for w in strategy_weights]
+        new_params = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
+        contributors = []
+        
+        for i, m in enumerate(models):
+            addr = m.get_contributors()[0] if m.get_contributors() else f"node_{i}"
+            w = final_weights.get(addr, 0.0)
+            contributors.extend(m.get_contributors())
+            
+            for j, layer in enumerate(m.get_parameters()):
+                new_params[j] += layer * w
 
-        # Normalize accum
-        accum = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
-        for index, m in enumerate(models):
-            for i, layer in enumerate(m.get_parameters()):
-                accum[i] += (layer - self.global_model_params[i]) * strategy_weights[index]
+        self.global_model_params = [p.astype(np.float32) for p in new_params]
 
-        logger.info(self.addr, "Trained round value is " + str(t))
+        # 6. Return Result
+        return models[0].build_copy(
+            params=self.global_model_params, 
+            num_samples=total_samples, 
+            contributors=list(set(contributors))
+        )
 
-        # Change global parameter with newest
-        self.global_model_params = [g + a for g, a in zip(self.global_model_params, accum)]
-
-        # Return an aggregated p2pfl model
-        return models[0].build_copy(params=self.global_model_params, num_samples=total_samples, contributors=contributors)
-
-
-    
-    def _gompertz_function(self, angle: float):
-        return 5*(1-math.exp(-(math.exp(-5*(angle - 1)))))
-    
-    def _get_and_validate_model_info(self, model: P2PFLModel) -> dict[str, Any]:
-        """
-        Validate the model.
-
-        Args:
-            model: The model to validate.
-
-        """
-        info = model.get_info("fedadp")
-        if not all(key in info for key in self.REQUIRED_INFO_KEYS):
-            raise ValueError(f"Model is missing required info keys: {self.REQUIRED_INFO_KEYS}Model info keys: {info.keys()}")
-        return info
-    
-
-    def get_required_callbacks(self) -> list[str]:
-        """Retrieve the list of required callback keys for this aggregator."""
-        return ["fedadp"]
-    
+    def _gompertz_function(self, angle: float) -> float:
+        # Standard Gompertz function: f(x) = a * exp(-b * exp(-cx))
+        # Here simplified/adapted for FedAdp logic
+        return self.ALPHA * (1 - math.exp(-math.exp(-self.ALPHA * (angle - 1))))

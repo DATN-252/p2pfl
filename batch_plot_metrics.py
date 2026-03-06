@@ -176,11 +176,7 @@ if __name__ == "__main__":
     base_dir = "experiments"
     # List of DFedAdp experiments
     experiments = [
-        os.path.join(base_dir, "p2pfl_MNIST_RandomIIDPartitionStrategy_FedAvg_model_build_fn_20260306_124111"),
-        os.path.join(base_dir, "p2pfl_MNIST_RandomIIDPartitionStrategy_FedAvg_model_build_fn_20260306_124211"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_125725"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_131039"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_132413"),
+        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_133427"),
     ]
     batch_plot(experiments)
 

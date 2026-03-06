@@ -87,7 +87,9 @@ class DFedAdp(Aggregator):
             m_info = self._get_and_validate_model_info(m)
             v_j_prev = m_info.get("tracking_v")
             if v_j_prev is None:
-                v_j_prev = self_delta
+                # FIX: fallback must match the model 'm' structure, not 'self'
+                v_j_prev = [np.array(d) for d in m_info.get("delta", [np.zeros_like(p) for p in m.get_parameters()])]
+            
             weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
 
         tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]

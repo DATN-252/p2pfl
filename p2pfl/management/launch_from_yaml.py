@@ -96,13 +96,19 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     # We only log them now.
     logger.info(None, f"Set simulation heartbeat: timeout={Settings.heartbeat.TIMEOUT}s, period={Settings.heartbeat.PERIOD}s")
 
-    # Get Amount of Nodes
+    # Network config
     network_config = config.get("network", {})
     if not network_config:
         raise ValueError("Missing 'network' configuration in YAML file.")
     n = network_config.get("nodes")
     if not n:
         raise ValueError("Missing 'n' under 'network' configuration in YAML file.")
+
+    # Check for centralized mode
+    experiment_config = config.get("experiment", {})
+    is_centralized = experiment_config.get("centralized", False)
+    if is_centralized:
+        logger.info(None, "🏗️ Running in CENTRALIZED mode.")
 
     #############
     # Profiling #
@@ -278,6 +284,24 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     # Network #
     ###########
 
+    # PRE-INIT RAY: Initialize ray once before creating nodes
+    if not Settings.general.DISABLE_RAY:
+        try:
+            import ray
+            if not ray.is_initialized():
+                logger.info(None, "☀️ Initializing Ray cluster...")
+                ray.init(namespace="p2pfl", num_cpus=120, include_dashboard=False)
+        except ImportError:
+            pass
+
+    # PYTORCH PERF
+    try:
+        import torch
+        if torch.cuda.is_available():
+            torch.set_float32_matmul_precision("medium")
+    except ImportError:
+        pass
+
     # Create nodes
     nodes: list[Node] = []
     protocol_package = network_config.get("package")
@@ -308,6 +332,8 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
             protocol=protocol(),
             aggregator=node_aggregator,
             experiment_folder_path=experiment_folder_path, # NEW
+            is_server=(is_centralized and i == 0), # NEW
+            is_centralized=is_centralized # NEW
         )
         node.start()
         nodes.append(node)

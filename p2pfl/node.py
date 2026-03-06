@@ -80,6 +80,8 @@ class Node:
         aggregator: Aggregator | None = None,
         protocol: CommunicationProtocol | None = None,
         experiment_folder_path: str = None, # NEW PARAM
+        is_server: bool = False, # NEW PARAM
+        is_centralized: bool = False, # NEW PARAM
         **kwargs,
     ) -> None:
         """Initialize a node."""
@@ -103,6 +105,7 @@ class Node:
         # State
         self.__running = False
         self.state = NodeState(self.addr)
+        self.state.is_server = is_server # NEW
 
         # Custom Experiment Logger # NEW
         self.experiment_logger: ExperimentLogger | None = None
@@ -110,7 +113,8 @@ class Node:
             self.experiment_logger = ExperimentLogger(experiment_folder_path, self.addr)
 
         # Workflow
-        self.learning_workflow = LearningWorkflow()
+        from p2pfl.stages.workflows import LearningWorkflow, CentralizedWorkflow # NEW
+        self.learning_workflow = CentralizedWorkflow() if is_centralized else LearningWorkflow() # NEW
 
         # Commands
         commands = [

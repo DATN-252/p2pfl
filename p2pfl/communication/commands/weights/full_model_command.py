@@ -49,15 +49,27 @@ class FullModelCommand(Command):
         if self.state.round is not None and round < self.state.round:
             return
 
-        if self.state.round == round and not self.state.aggregated_model_event.is_set():
+        # CENTRALIZED SYNC: If client is behind, jump to the round received from server
+        is_future_round = self.state.round is not None and round > self.state.round
+        should_sync = self.state.round == round or (self.state.is_centralized and is_future_round)
+
+        if should_sync and not self.state.aggregated_model_event.is_set():
             try:
+                if is_future_round:
+                    logger.info(self.state.addr, f"⏩ Synchronization: Jumping from Round {self.state.round} to {round} (Centralized mode).")
+                    # Update round in state
+                    while self.state.round < round:
+                        self.state.increase_round()
+
                 self.learner.set_model(weights)
                 self.state.aggregated_model_event.set()
             except Exception as e:
-                logger.error(self.state.addr, f"Error adding full model: {e}")
+                logger.error(self.state.addr, f"Error adding/syncing full model: {e}")
         else:
             try:
-                model = self.learner.get_model().build_copy(params=weights, contributors=[source])
+                # FIX: Extract weight (num_samples) from kwargs
+                weight = kwargs.get("weight", 1)
+                model = self.learner.get_model().build_copy(params=weights, contributors=[source], num_samples=weight)
                 self.aggregator.add_model(model, round_num=round)
             except Exception as e:
                 logger.error(self.state.addr, f"Error buffering full model: {e}")

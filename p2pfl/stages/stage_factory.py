@@ -53,5 +53,16 @@ class StageFactory:
             from p2pfl.stages.base_node.vote_train_set_stage import VoteTrainSetStage
 
             return VoteTrainSetStage
+        
+        # CENTRALIZED STAGES
+        elif stage_name == "CentralizedStartStage":
+            from p2pfl.stages.centralized_stages import CentralizedStartStage
+            return CentralizedStartStage
+        elif stage_name == "CentralizedServerStage":
+            from p2pfl.stages.centralized_stages import CentralizedServerStage
+            return CentralizedServerStage
+        elif stage_name == "CentralizedClientStage":
+            from p2pfl.stages.centralized_stages import CentralizedClientStage
+            return CentralizedClientStage
         else:
             raise Exception("Invalid stage name.")

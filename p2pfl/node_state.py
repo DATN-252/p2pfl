@@ -32,6 +32,7 @@ class NodeState:
         """Initialize the node state."""
         self.addr = addr
         self.status = "Idle"
+        self.is_server = False
 
         # Aggregator
         self.models_aggregated_lock = threading.Lock()

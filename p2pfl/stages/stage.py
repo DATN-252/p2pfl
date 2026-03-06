@@ -41,6 +41,23 @@ class EarlyStopException(Exception):
     pass
 
 
+    @staticmethod
+    def _evaluate(
+        state: NodeState,
+        learner: "Learner",
+        aggregator: "Aggregator",
+        experiment_logger: "ExperimentLogger | None" = None,
+    ) -> dict[str, float]:
+        """Evaluate the model and log results."""
+        logger.info(state.addr, "🔬 Evaluating...")
+        results = learner.evaluate()
+        results["communication_cost"] = aggregator.get_last_comm_cost()
+        logger.info(state.addr, f"📈 Evaluated. Results: {results}")
+
+        if experiment_logger:
+            experiment_logger.record_metrics(state.round, results)
+        return results
+
 def check_early_stop(state: NodeState, raise_exception: bool = True) -> bool:
     """
     Check if early stopping is required.

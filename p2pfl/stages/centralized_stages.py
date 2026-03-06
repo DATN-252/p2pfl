@@ -18,6 +18,16 @@ from p2pfl.settings import Settings
 from p2pfl.stages.stage import Stage, check_early_stop
 from p2pfl.stages.stage_factory import StageFactory
 
+def _centralized_evaluate(state, learner, aggregator, experiment_logger):
+    """Helper function to evaluate model and log results, avoiding class attribute issues."""
+    logger.info(state.addr, "🔬 Evaluating...")
+    results = learner.evaluate()
+    results["communication_cost"] = aggregator.get_last_comm_cost()
+    logger.info(state.addr, f"📈 Evaluated. Results: {results}")
+
+    if experiment_logger:
+        experiment_logger.record_metrics(state.round, results)
+    return results
 
 class CentralizedStartStage(Stage):
     """Initializes roles and starts the workflow."""
@@ -31,10 +41,19 @@ class CentralizedStartStage(Stage):
         state: NodeState | None = None,
         learner: Learner | None = None,
         communication_protocol: CommunicationProtocol | None = None,
+        aggregator: Aggregator | None = None,
+        experiment_name: str | None = None,
+        rounds: int | None = None,
+        epochs: int | None = None,
         **kwargs,
     ) -> type["Stage"] | None:
-        if state is None or learner is None or communication_protocol is None:
+        if state is None or learner is None or communication_protocol is None or aggregator is None:
             raise Exception("Invalid parameters on CentralizedStartStage.")
+
+        # Init experiment metadata
+        # Reuse base class Stage method if available, or call directly
+        from p2pfl.stages.stage import Stage
+        Stage._init_experiment(state, learner, aggregator, experiment_name, rounds, epochs)
 
         if state.is_server:
             logger.info(state.addr, "👑 Node is SERVER. Broadcasting initial model.")
@@ -86,7 +105,7 @@ class CentralizedServerStage(Stage):
         
         aggregator.set_nodes_to_aggregate(list(neighbors.keys()), round_num=state.round)
 
-        # 2. Wait for updates (Academic sync mode)
+        # 2. Wait for updates
         start_time = time.time()
         while len(aggregator.get_aggregated_models()) < target_clients:
             time.sleep(1.0)
@@ -99,9 +118,7 @@ class CentralizedServerStage(Stage):
         # 3. Aggregate and Log
         agg_model = aggregator.wait_and_get_aggregation(timeout=0, state=state)
         learner.set_model(agg_model)
-        
-        # FIX: Call base class Stage._evaluate
-        Stage._evaluate(state, learner, aggregator, experiment_logger)
+        _centralized_evaluate(state, learner, aggregator, experiment_logger)
 
         if state.round >= state.total_rounds:
             logger.info(state.addr, "🏁 Training Finished.")
@@ -146,8 +163,7 @@ class CentralizedClientStage(Stage):
         state.aggregated_model_event.clear()
 
         # 2. Evaluate Global Model
-        # FIX: Call base class Stage._evaluate
-        Stage._evaluate(state, learner, aggregator, experiment_logger)
+        _centralized_evaluate(state, learner, aggregator, experiment_logger)
 
         # 3. Local Train
         logger.info(state.addr, f"🚂 Round {state.round}: Client training...")

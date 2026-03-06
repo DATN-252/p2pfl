@@ -176,12 +176,11 @@ if __name__ == "__main__":
     base_dir = "experiments"
     # List of DFedAdp experiments
     experiments = [
-        os.path.join(base_dir, "p2pfl_MNIST_RandomIIDPartitionStrategy_DFedAdp_model_build_fn_20260303_130347"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_model_build_fn_20260303_160431"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_model_build_fn_20260303_210233"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_model_build_fn_20260304_010747"),
-        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_model_build_fn_20260304_054111"),
-        os.path.join(base_dir, "p2pfl_MNIST_LabelSkewedPartitionStrategy_DFedAdp_model_build_fn_20260304_102722")
+        os.path.join(base_dir, "p2pfl_MNIST_RandomIIDPartitionStrategy_FedAvg_model_build_fn_20260306_124111"),
+        os.path.join(base_dir, "p2pfl_MNIST_RandomIIDPartitionStrategy_FedAvg_model_build_fn_20260306_124211"),
+        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_125725"),
+        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_131039"),
+        os.path.join(base_dir, "p2pfl_MNIST_DirichletPartitionStrategy_FedAvg_model_build_fn_20260306_132413"),
     ]
     batch_plot(experiments)
 

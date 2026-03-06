@@ -37,5 +37,7 @@ settings:
     log_level: "INFO"
     grpc_timeout: 2
     disable_ray: False
+  heartbeat:
+    timeout: 99999
   training:
     aggregation_timeout: 300

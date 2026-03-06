@@ -55,7 +55,7 @@ class Heartbeat:
 
     PERIOD: float = 1.0
     """Period (seconds) to send heartbeats."""
-    TIMEOUT: float = 300.0
+    TIMEOUT: float = 99999.0
     """Timeout (seconds) for a node to be considered dead."""
     WAIT_CONVERGENCE: float = PERIOD
     """Time (seconds) to wait for the heartbeats to converge before a learning round starts."""

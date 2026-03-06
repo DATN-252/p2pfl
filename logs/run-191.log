@@ -1,0 +1,2 @@
+[ 2026-03-06 14:16:34 | None | INFO ] Created experiment folder: /root/p2pfl/experiments/p2pfl_MNIST_DirichletPartitionStrategy_QDFedAvgMAggregator_model_build_fn_20260306_141634 and copied 99_qdfedavgm_mnist_dirichlet_0.1.yaml
+[ 2026-03-06 14:16:34 | None | INFO ] Set simulation heartbeat: timeout=99999s, period=10s

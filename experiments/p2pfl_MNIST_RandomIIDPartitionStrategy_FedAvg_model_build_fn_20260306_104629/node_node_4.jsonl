@@ -1,0 +1,6 @@
+{"round": 0, "metrics": {"test_loss": 0.916799783706665, "test_acc": 0.7350000143051147, "test_precision": 0.761340320110321, "test_recall": 0.7393583655357361, "test_f1": 0.7318869829177856, "communication_cost": 0}}
+{"round": 1, "metrics": {"test_loss": 0.5710711479187012, "test_acc": 0.8450000286102295, "test_precision": 0.8685870170593262, "test_recall": 0.848854660987854, "test_f1": 0.843064546585083, "communication_cost": 0}}
+{"round": 2, "metrics": {"test_loss": 0.5259472131729126, "test_acc": 0.8550000190734863, "test_precision": 0.8654883503913879, "test_recall": 0.8512899279594421, "test_f1": 0.8531053066253662, "communication_cost": 0}}
+{"round": 3, "metrics": {"test_loss": NaN, "test_acc": 0.10000000149011612, "test_precision": 0.009999999776482582, "test_recall": 0.10000000149011612, "test_f1": 0.01815818063914776, "communication_cost": 0}}
+{"round": 4, "metrics": {"test_loss": NaN, "test_acc": 0.10000000149011612, "test_precision": 0.009999999776482582, "test_recall": 0.10000000149011612, "test_f1": 0.01815818063914776, "communication_cost": 0}}
+{"round": 5, "metrics": {"test_loss": NaN, "test_acc": 0.10000000149011612, "test_precision": 0.009999999776482582, "test_recall": 0.10000000149011612, "test_f1": 0.01815818063914776, "communication_cost": 0}}

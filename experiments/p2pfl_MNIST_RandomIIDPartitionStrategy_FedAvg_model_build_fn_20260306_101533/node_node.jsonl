@@ -1,0 +1,2 @@
+{"round": 0, "metrics": {"test_loss": NaN, "test_acc": 0.125, "test_precision": 0.012500000186264515, "test_recall": 0.10000000149011612, "test_f1": 0.02222222276031971, "communication_cost": 6587238}}
+{"round": 1, "metrics": {"test_loss": NaN, "test_acc": 0.125, "test_precision": 0.012500000186264515, "test_recall": 0.10000000149011612, "test_f1": 0.02222222276031971, "communication_cost": 6587238}}

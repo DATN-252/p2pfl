@@ -1,0 +1,5 @@
+{"round": 0, "metrics": {"test_acc": 0.18871503082029398, "communication_cost": 1882094}}
+{"round": 1, "metrics": {"test_acc": 0.20009483167377903, "communication_cost": 1882094}}
+{"round": 2, "metrics": {"test_acc": 0.19013750592697962, "communication_cost": 1882094}}
+{"round": 3, "metrics": {"test_acc": 0.19298245614035087, "communication_cost": 1882094}}
+{"round": 4, "metrics": {"test_acc": 0.18397344713134187, "communication_cost": 1882094}}

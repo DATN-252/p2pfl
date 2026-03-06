@@ -1,0 +1,55 @@
+description: "Q-DFedAvgM - Verification Test"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 3
+  topology: "custom"
+experiment:
+  name: "qdfedavgm_verify_test"
+  rounds: 5
+  epochs: 2
+  trainset_size: 3
+  seed: 666
+  wait_timeout: 10
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 50
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      params: {}
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    learner_package: "p2pfl.learning.frameworks.pytorch.momentum_learner"
+    learner_class: "MomentumLearner"
+    params: 
+      lr_rate: 0.005
+      momentum: 0.9
+  aggregator:
+    package: "p2pfl.learning.aggregators.qdfedavgm"
+    aggregator: "QDFedAvgMAggregator"
+    params: 
+      bits: 8
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: False
+  heartbeat:
+    period: 10
+    timeout: 99999
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300

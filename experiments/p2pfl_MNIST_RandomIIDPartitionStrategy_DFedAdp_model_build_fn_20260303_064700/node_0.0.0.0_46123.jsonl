@@ -1,0 +1,1 @@
+{"round": 0, "metrics": {"test_loss": 1.7117770910263062, "test_acc": 0.6800000071525574, "test_precision": 0.5894622802734375, "test_recall": 0.6232954263687134, "test_f1": 0.6000778675079346, "communication_cost": 18819320}}

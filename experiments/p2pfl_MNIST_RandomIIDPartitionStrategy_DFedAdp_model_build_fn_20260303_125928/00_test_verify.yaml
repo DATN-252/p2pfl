@@ -1,0 +1,43 @@
+description: "Verification Test - Small Scale"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 3
+  topology: "custom"
+experiment:
+  name: "verify_test"
+  rounds: 5
+  epochs: 1
+  trainset_size: 3
+  seed: 666
+  wait_timeout: 10
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 128
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.0001
+  aggregator:
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params: 
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
+settings:
+  general:
+    disable_ray: False
+    grpc_timeout: 120
+  heartbeat:
+    timeout: 99999
+    period: 10
+    wait_convergence: 180
+  training:
+    vote_timeout: 120
+    aggregation_timeout: 300

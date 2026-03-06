@@ -1,0 +1,6 @@
+{"round": 0, "metrics": {"test_loss": 21.147005081176758, "test_acc": 0.10499999672174454, "test_precision": 0.01820400170981884, "test_recall": 0.10276666283607483, "test_f1": 0.03031773492693901, "communication_cost": 0}}
+{"round": 1, "metrics": {"test_loss": 0.8185350298881531, "test_acc": 0.75, "test_precision": 0.8170436024665833, "test_recall": 0.7488247752189636, "test_f1": 0.7603701949119568, "communication_cost": 0}}
+{"round": 2, "metrics": {"test_loss": 0.4173623025417328, "test_acc": 0.8949999809265137, "test_precision": 0.8962043523788452, "test_recall": 0.8990312218666077, "test_f1": 0.8917930722236633, "communication_cost": 0}}
+{"round": 3, "metrics": {"test_loss": 0.337116539478302, "test_acc": 0.9150000214576721, "test_precision": 0.9186253547668457, "test_recall": 0.9203073978424072, "test_f1": 0.9149438738822937, "communication_cost": 0}}
+{"round": 4, "metrics": {"test_loss": 0.2713375985622406, "test_acc": 0.925000011920929, "test_precision": 0.9239538311958313, "test_recall": 0.9297476410865784, "test_f1": 0.9228208661079407, "communication_cost": 0}}
+{"round": 5, "metrics": {"test_loss": 0.34809836745262146, "test_acc": 0.9150000214576721, "test_precision": 0.9136554002761841, "test_recall": 0.9173125624656677, "test_f1": 0.9110084772109985, "communication_cost": 0}}

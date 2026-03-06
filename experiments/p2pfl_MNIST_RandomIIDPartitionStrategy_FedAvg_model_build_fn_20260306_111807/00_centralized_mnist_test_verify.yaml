@@ -1,0 +1,52 @@
+description: "DFedAdp - CIFAR10 Verification Test"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 5
+  topology: "star"
+experiment:
+  centralized: true
+  name: "centralized_mnist_test_verify"
+  rounds: 5
+  epochs: 1
+  trainset_size: 5
+  seed: 666
+  wait_timeout: 1800
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 128
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      reduced_dataset: true
+      reduction_factor: 10
+      params: {}
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      input_size: 784
+      lr_rate: 0.001
+  aggregator:
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
+    params: {}
+    grpc_timeout: 2
+    disable_ray: False
+  heartbeat:
+    period: 10
+    timeout: 99999
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 150
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300

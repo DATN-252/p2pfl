@@ -1,0 +1,51 @@
+description: "Centralized MNIST experiment using P2PFL framework."
+
+# Defines network setup
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 5
+  topology: "star"   # Star topology for centralized
+  additional_connections: []
+
+# Defines experiment settings
+experiment:
+  name: "centralized_mnist"
+  rounds: 10
+  epochs: 1
+  trainset_size: 5
+  seed: 666
+  wait_timeout: 1800
+
+  # Dataset settings
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 128
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      reduced_dataset: true
+      reduction_factor: 10
+
+  # Learning algorithm configuration
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.01
+
+  # Aggregator configuration (FedAvg is standard for Centralized)
+  aggregator:
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
+    params: {}
+
+# General experiment settings
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: True
+  training:
+    aggregation_timeout: 60

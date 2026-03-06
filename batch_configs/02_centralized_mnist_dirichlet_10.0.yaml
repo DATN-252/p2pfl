@@ -1,0 +1,40 @@
+description: "Centralized MNIST Dirichlet 10.0"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 50
+  topology: "star"
+experiment:
+  centralized: true
+  name: "centralized_mnist_dirichlet_10.0"
+  rounds: 100
+  epochs: 1
+  trainset_size: 50
+  seed: 666
+  wait_timeout: 18000
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 128
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "DirichletPartitionStrategy"
+      params: 
+        alpha: 10.0
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      input_size: 784
+      lr_rate: 0.001
+  aggregator:
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
+    params: {}
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: False
+  training:
+    aggregation_timeout: 300

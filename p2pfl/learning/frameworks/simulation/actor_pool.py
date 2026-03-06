@@ -40,6 +40,16 @@ from p2pfl.settings import Settings
 class VirtualLearnerActor:
     """Decorator for the learner to be used in the simulation."""
 
+    def __init__(self) -> None:
+        """Initialize the actor."""
+        # Set PyTorch precision inside the worker process
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.set_float32_matmul_precision("medium")
+        except ImportError:
+            pass
+
     def terminate(self) -> None:
         """Manually terminate Actor object."""
         logger.debug(self.__class__.__name__, f"Manually terminating {self.__class__.__name__}")

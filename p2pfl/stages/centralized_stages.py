@@ -99,7 +99,7 @@ class CentralizedServerStage(Stage):
         # 3. Aggregate and Log
         agg_model = aggregator.wait_and_get_aggregation(timeout=0, state=state)
         learner.set_model(agg_model)
-        CentralizedServerStage._evaluate(state, learner, aggregator, experiment_logger)
+        Stage._evaluate(state, learner, aggregator, experiment_logger)
 
         if state.round >= state.total_rounds:
             logger.info(state.addr, "🏁 Training Finished.")
@@ -144,7 +144,7 @@ class CentralizedClientStage(Stage):
         state.aggregated_model_event.clear()
 
         # 2. Evaluate Global Model
-        CentralizedClientStage._evaluate(state, learner, aggregator, experiment_logger)
+        Stage._evaluate(state, learner, aggregator, experiment_logger)
 
         # 3. Local Train
         logger.info(state.addr, f"🚂 Round {state.round}: Client training...")

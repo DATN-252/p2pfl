@@ -397,8 +397,8 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
 
         # --- FINAL COOL-DOWN BARRIER ---
         # Give nodes a few seconds to finish broadcasting final metrics and logging
-        logger.info(None, "🏁 All nodes finished training. Waiting 10s for final synchronization...")
-        time.sleep(10)
+        logger.info(None, "🏁 All nodes finished training. Finalizing...")
+        time.sleep(2)
         # --- END FINAL COOL-DOWN BARRIER ---
 
     except Exception as e:
@@ -407,6 +407,17 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         # Stop Nodes
         for node in nodes:
             node.stop()
+        
+        # SHUTDOWN RAY: Critical for batch execution to release resources
+        if not Settings.general.DISABLE_RAY:
+            try:
+                import ray
+                if ray.is_initialized():
+                    logger.info(None, "🌙 Shutting down Ray cluster...")
+                    ray.shutdown()
+            except Exception:
+                pass
+
         # Profiling
         if start_time:
             print(f"Execution time: {time.time() - start_time} seconds")

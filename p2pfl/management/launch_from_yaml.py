@@ -421,6 +421,10 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         # Profiling
         if start_time:
             print(f"Execution time: {time.time() - start_time} seconds")
+        
+        # BRUTE-FORCE EXIT: Ensure no hanging threads prevent batch continuation
+        logger.info(None, "👋 Experiment process exiting.")
+        os._exit(0)
         if profiling_enabled:
             # Stop profiler
             yappi.stop()

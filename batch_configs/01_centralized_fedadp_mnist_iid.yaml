@@ -30,7 +30,9 @@ experiment:
     package: "p2pfl.learning.aggregators.fedadp"
     aggregator: "FedAdp"
     params: 
-      alpha: 1.0
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
 settings:
   general:
     log_level: "INFO"

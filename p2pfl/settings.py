@@ -115,6 +115,9 @@ class Training:
     DEFAULT_BATCH_SIZE: int = 1024
     """Default batch size for training."""
     RAY_ACTOR_POOL_SIZE: int = 1
+    """Amount of actors in the pool."""
+    NUM_WORKERS: int = 0
+    """Number of workers for data loading."""
 
 
 ###################

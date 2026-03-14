@@ -79,7 +79,7 @@ class PyTorchExportStrategy(DataExportStrategy):
     def export(
         data: Dataset,
         batch_size: int | None = None,
-        num_workers: int = 0,
+        num_workers: int | None = None,
         **kwargs,
     ) -> DataLoader:
         """
@@ -98,6 +98,9 @@ class PyTorchExportStrategy(DataExportStrategy):
         if not batch_size:
             batch_size = Settings.training.DEFAULT_BATCH_SIZE
 
+        if num_workers is None:
+            num_workers = Settings.training.NUM_WORKERS
+
         # Check if data is already in torch format or has transforms applied
         # If format type is None, it means transforms might be handling conversion
         if hasattr(data, "format") and data.format["type"] is not None:
@@ -106,3 +109,4 @@ class PyTorchExportStrategy(DataExportStrategy):
         else:
             # Apply torch format
             return DataLoader(data.with_format(type="torch", output_all_columns=True), batch_size=batch_size, num_workers=num_workers)
+

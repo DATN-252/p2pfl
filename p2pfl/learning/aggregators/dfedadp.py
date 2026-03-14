@@ -82,12 +82,22 @@ class DFedAdp(Aggregator):
 
         # --- 4. Update Tracking Variable V (tracks Average Delta) ---
         weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
+        
+        # Verify self_delta consistency with current global params
+        if len(self_delta) != len(weighted_v_consensus) or any(s.shape != g.shape for s, g in zip(self_delta, weighted_v_consensus)):
+            self_delta = [np.zeros_like(p) for p in self.global_model_params]
+            self.prev_local_gradient = [np.zeros_like(p) for p in self.global_model_params]
+
         for addr, m in model_map.items():
             w_ij = metro_weights.get(addr, 0.0)
             m_info = self._get_and_validate_model_info(m)
             v_j_prev = m_info.get("tracking_v")
-            if v_j_prev is None:
-                v_j_prev = self_delta
+            
+            # If neighbor provides stale or incompatible tracking data, fallback to zero (reset)
+            if v_j_prev is None or len(v_j_prev) != len(weighted_v_consensus) or \
+               any(np.array(v).shape != g.shape for v, g in zip(v_j_prev, weighted_v_consensus)):
+                v_j_prev = [np.zeros_like(p) for p in self.global_model_params]
+            
             weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
 
         tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]

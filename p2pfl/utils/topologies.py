@@ -25,6 +25,7 @@ import numpy as np
 
 from p2pfl.management.logger import logger
 from p2pfl.node import Node
+# from p2pfl.settings import Settings
 
 
 class TopologyType(Enum):
@@ -92,6 +93,8 @@ class TopologyFactory:
             # Calculate target number of edges M = (n * avg_degree) / 2
             num_edges_target = round(num_nodes * avg_degree / 2)
 
+            # FIX: Use Settings.general.SEED for reproducibility (Commented out as requested)
+            # rng = np.random.default_rng(Settings.general.SEED)
             rng = np.random.default_rng()
             possible_edges = []
             for i in range(num_nodes):

@@ -65,7 +65,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
 
     # --- Create experiment folder and copy YAML ---
     # Extract details for folder name
-    dataset_name_for_folder = config.get("experiment", {}).get("dataset", {}).get("name", "unknown_dataset").replace("/", "_")
+    dataset_name_raw = config.get("experiment", {}).get("dataset", {}).get("name", "unknown_dataset")
+    if isinstance(dataset_name_raw, dict):
+        dataset_name_for_folder = "_".join(str(v) for v in dataset_name_raw.values()).replace("/", "_")
+    else:
+        dataset_name_for_folder = str(dataset_name_raw).replace("/", "_")
+
     partition_strategy_name_for_folder = config.get("experiment", {}).get("dataset", {}).get("partitioning", {}).get("strategy", "unknown_partition")
     aggregator_name_for_folder = config.get("experiment", {}).get("aggregator", {}).get("aggregator", "unknown_aggregator")
     model_name_from_package = config.get("experiment", {}).get("model", {}).get("package", "unknown_model").split('.')[-1]

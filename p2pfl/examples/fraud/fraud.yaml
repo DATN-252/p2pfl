@@ -11,20 +11,20 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 4
+  nodes: 3
   topology: "ring" # Network topology: "line", "ring", "star", "full"
   additional_connections:
-    - [0, 2]
-    - [1, 3]
+    - [0, 1]
+    - [1, 2]
 
 # Defines experiment settings
 experiment:
   name: "fraud_detection_experiment"
-  rounds: 2
-  epochs: 1
-  trainset_size: 10
+  rounds: 20
+  epochs: 3
+  trainset_size: 100
   seed: 666
-  wait_timeout: 60
+  wait_timeout: 120
 
   # Dataset settings - downloading from Kaggle
   dataset:
@@ -48,12 +48,14 @@ experiment:
   model:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
-    params: {}
+    params:
+      pos_weight: 300.0
+      learning_rate: 0.0005
 
   # Aggregation algorithm
   aggregator:
-    package: "p2pfl.learning.aggregators.fedavg"
-    aggregator: "FedAvg"
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
     params: {}
 
 # General settings

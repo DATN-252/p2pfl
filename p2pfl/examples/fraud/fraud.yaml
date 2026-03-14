@@ -2,18 +2,17 @@ description: "Fraud Detection using P2PFL with custom CSV dataset"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 3
-  topology: "ring" # Network topology: "line", "ring", "star", "full"
-  additional_connections:
-    - [0, 1]
-    - [1, 2]
+  nodes: 50
+  topology: "custom" # Benchmark with 50 nodes
+  additional_connections: []
 experiment:
-  name: "fraud_detection_experiment"
-  rounds: 50
+  name: "fraud_detection_benchmark_50n"
+  rounds: 150
   epochs: 1
   trainset_size: 10000
   seed: 666
-  wait_timeout: 120
+  wait_timeout: 36000
+
   dataset:
     source: "kaggle"
     dataset_id: "kartik2112/fraud-detection"

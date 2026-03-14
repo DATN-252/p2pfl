@@ -111,8 +111,9 @@ class SuperActorPool(ActorPool):
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Increased to 3.0 for the 12-core VM
-        return 3.0
+        # Scale for 50 nodes benchmark on 12-core VM (11 usable)
+        # 50 nodes * 0.2 = 10 cores, leaving 1 core for overhead.
+        return 0.2
 
     def create_actor(self) -> VirtualLearnerActor:
         """

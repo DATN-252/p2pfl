@@ -54,7 +54,10 @@ def calculate_age(dob_str):
 def build_behavioral_lookup(examples):
     """Pre-calculate advanced behavioral features including velocity."""
     global BEHAVIORAL_LOOKUP
+    import gc
+    
     df = pd.DataFrame(examples)
+    # Ensure memory-heavy columns are converted efficiently
     df['trans_date_trans_time'] = pd.to_datetime(df['trans_date_trans_time'], format='mixed')
     df = df.sort_values(by=['cc_num', 'trans_date_trans_time'])
     
@@ -69,14 +72,13 @@ def build_behavioral_lookup(examples):
     df['prev_time'] = df.groupby('cc_num')['unix_time'].shift(1)
     
     # Calculate distance to previous transaction
-    # Note: Using vectorized haversine logic here for performance
     lat1, lon1 = np.radians(df['merch_lat']), np.radians(df['merch_long'])
     lat2, lon2 = np.radians(df['prev_lat'].fillna(df['merch_lat'])), np.radians(df['prev_long'].fillna(df['merch_long']))
     dlat, dlon = lat2 - lat1, lon2 - lon1
     a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
     dist_to_prev = 6371 * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
     
-    time_diff_h = (df['unix_time'] - df['prev_time']).fillna(3600) / 3600.0 # Default 1h if first trans
+    time_diff_h = (df['unix_time'] - df['prev_time']).fillna(3600) / 3600.0
     df['distance_velocity'] = (dist_to_prev / time_diff_h).replace([np.inf, -np.inf], 0).fillna(0)
     
     # Fill lookup table
@@ -87,6 +89,11 @@ def build_behavioral_lookup(examples):
             'trans_count_24h': float(row['trans_count_24h']),
             'distance_velocity': float(row['distance_velocity'])
         }
+    
+    # Explicitly clear large objects and trigger GC
+    del df
+    del temp_df
+    gc.collect()
 
 def fraud_transform(examples):
     """Transform batch using 15 optimized features."""

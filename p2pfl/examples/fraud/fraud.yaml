@@ -1,13 +1,4 @@
 description: "Fraud Detection using P2PFL with custom CSV dataset"
-
-# Remote loggers configuration (optional)
-remote_loggers:
-  # wandb_api_key: "your-api-key"
-  # wandb_project: "p2pfl-fraud"
-  # p2pfl_web_url: "https://your-server.com"
-  # p2pfl_web_key: "your-api-key"
-
-# Defines network setup
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
@@ -16,8 +7,6 @@ network:
   additional_connections:
     - [0, 1]
     - [1, 2]
-
-# Defines experiment settings
 experiment:
   name: "fraud_detection_experiment"
   rounds: 20
@@ -25,8 +14,6 @@ experiment:
   trainset_size: 100
   seed: 666
   wait_timeout: 120
-
-  # Dataset settings - downloading from Kaggle
   dataset:
     source: "kaggle"
     dataset_id: "kartik2112/fraud-detection"
@@ -42,9 +29,7 @@ experiment:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "RandomIIDPartitionStrategy"
       params:
-        label_tag: "is_fraud" # Column name for labels
-
-  # Model configuration
+        label_tag: "is_fraud" 
   model:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
@@ -52,48 +37,22 @@ experiment:
       pos_weight: 300.0
       learning_rate: 0.0005
 
-  # Aggregation algorithm
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
-    params: {}
+    params: 
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
 
-# General settings
 settings:
   general:
-    log_level: "INFO"
-    grpc_timeout: 2
     disable_ray: False
-
-  SSL:
-    use_ssl: false
-    CA_CRT: null
-    SERVER_CRT: null
-    CLIENT_CRT: null
-    SERVER_KEY: null
-    CLIENT_KEY: null
-
+    grpc_timeout: 120
   heartbeat:
-    period: 2
-    timeout: 10
-    wait_convergence: 4
-    exclude_beat_logs: true
-
-  gossip:
-    period: 1
-    ttl: 10
-    messages_per_period: 200
-    amount_last_messages_saved: 1000
-    models_period: 1
-    models_per_round: 4
-    exit_on_x_equal_rounds: 50
-
+    timeout: 99999
+    period: 10
+    wait_convergence: 180
   training:
-    vote_timeout: 60
+    vote_timeout: 120
     aggregation_timeout: 300
-
-# Profiling
-profiling:
-  enabled: false
-  measure_time: true
-  output_dir: "profile/fraud"

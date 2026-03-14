@@ -17,10 +17,10 @@ from math import radians, sin, cos, sqrt, atan2
 
 # Features to use: 
 # 0: amt, 1: lat, 2: long, 3: city_pop, 4: merch_lat, 5: merch_long, 
-# 6: distance, 7: hour, 8: day_of_week, 9: category_idx, 10: age
+# 6: distance, 7: hour, 8: day_of_week, 9: category_idx, 10: age, 11: unix_time
 NUMERIC_FEATURES = [
     "amt", "lat", "long", "city_pop", "merch_lat", "merch_long", 
-    "distance", "hour", "day_of_week", "category_idx", "age"
+    "distance", "hour", "day_of_week", "category_idx", "age", "unix_time"
 ]
 
 # Mapping for categories (Top categories from dataset)
@@ -60,7 +60,7 @@ def fraud_transform(examples):
     
     for idx in range(batch_size):
         # 1. Raw numeric
-        for f in ["amt", "lat", "long", "city_pop", "merch_lat", "merch_long"]:
+        for f in ["amt", "lat", "long", "city_pop", "merch_lat", "merch_long", "unix_time"]:
             data_dict[f].append(float(examples.get(f, [0])[idx] or 0))
         
         # 2. Distance

@@ -32,7 +32,7 @@ from p2pfl.utils.seed import set_seed
 class FraudDetectionMLP(LightningModule):
     """Refined MLP for fraud detection using LayerNorm for better tabular data stability."""
 
-    def __init__(self, input_size: int = 11, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -42,17 +42,17 @@ class FraudDetectionMLP(LightningModule):
         self.model = nn.Sequential(
             nn.Linear(input_size, hidden_size),
             nn.LayerNorm(hidden_size),
-            nn.ReLU(),
+            nn.LeakyReLU(0.1),
             nn.Dropout(0.2),
             
             nn.Linear(hidden_size, hidden_size // 2),
             nn.LayerNorm(hidden_size // 2),
-            nn.ReLU(),
+            nn.LeakyReLU(0.1),
             nn.Dropout(0.2),
             
             nn.Linear(hidden_size // 2, 64),
             nn.LayerNorm(64),
-            nn.ReLU(),
+            nn.LeakyReLU(0.1),
             
             nn.Linear(64, 1)
         )
@@ -115,9 +115,9 @@ def model_build_fn(**kwargs) -> LightningModel:
     # Separate compression from other parameters
     compression = kwargs.pop("compression", None)
     
-    # Ensure input_size matches updated transforms
+    # Ensure input_size matches updated transforms (12 features)
     if "input_size" not in kwargs:
-        kwargs["input_size"] = 11
+        kwargs["input_size"] = 12
     
     # Initialize the core MLP
     mlp_model = FraudDetectionMLP(**kwargs)

@@ -161,16 +161,23 @@ class SuperActorPool(ActorPool):
         actor = self._idle_actors.pop()
 
         if self._check_and_remove_actor_from_pool(actor):
-            future = fn(actor, addr, learner)
-            future_key = tuple(future) if isinstance(future, list) else future
-            
-            # Ensure future is assigned before releasing the lock
-            # This prevents get_learner_result from seeing a None future
-            self._future_to_actor[future_key] = (self._next_task_index, actor, addr)
-            self._next_task_index += 1
-            if addr not in self._addr_to_future:
-                self._addr_to_future[addr] = {}
-            self._addr_to_future[addr]["future"] = future_key
+            try:
+                logger.debug("ActorPool", f"Node {addr} submitting remote fit/eval to Ray...")
+                future = fn(actor, addr, learner)
+                future_key = tuple(future) if isinstance(future, list) else future
+                
+                # Ensure future is assigned before releasing the lock
+                # This prevents get_learner_result from seeing a None future
+                self._future_to_actor[future_key] = (self._next_task_index, actor, addr)
+                self._next_task_index += 1
+                if addr not in self._addr_to_future:
+                    self._addr_to_future[addr] = {}
+                self._addr_to_future[addr]["future"] = future_key
+                logger.debug("ActorPool", f"Node {addr} job ID {future_key} assigned.")
+            except Exception as e:
+                logger.error("ActorPool", f"Node {addr} FAILED to submit to Ray: {e}")
+                self._idle_actors.append(actor)
+                raise e
         else:
             logger.error("ActorPool", "Actor should have been removed from pool but wasn't")
 
@@ -191,10 +198,11 @@ class SuperActorPool(ActorPool):
         with self.lock:
             self._reset_addr_to_future_dict(addr)
             if self._idle_actors:
+                logger.debug("ActorPool", f"Node {addr} starting job with {len(self._idle_actors)} idle actors available.")
                 self.submit(actor_fn, job)
             else:
                 self._pending_submits.append((actor_fn, job))
-                logger.debug("ActorPool", f"Job for {addr} added to pending queue.")
+                logger.warning("ActorPool", f"Node {addr} job added to pending queue (No idle actors).")
 
     def _flag_future_as_ready(self, addr: str) -> None:
         """

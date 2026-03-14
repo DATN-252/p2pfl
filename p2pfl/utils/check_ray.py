@@ -20,8 +20,11 @@
 
 import importlib
 import os
+import threading
 
 from p2pfl.settings import Settings
+
+_ray_init_lock = threading.Lock()
 
 
 def ray_installed() -> bool:
@@ -37,14 +40,15 @@ def ray_installed() -> bool:
         # Try to initialize ray
         import ray
 
-        # If ray not initialized, initialize it
-        if not ray.is_initialized():
-            ray.init(
-                namespace="p2pfl",
-                num_cpus=11,  # Reserved for 12-core VM
-                include_dashboard=False,
-                logging_level=Settings.general.LOG_LEVEL,
-                logging_config=ray.LoggingConfig(encoding="TEXT", log_level=Settings.general.LOG_LEVEL),
-            )
+        with _ray_init_lock:
+            # If ray not initialized, initialize it
+            if not ray.is_initialized():
+                ray.init(
+                    namespace="p2pfl",
+                    num_cpus=11,  # Reserved for 12-core VM
+                    include_dashboard=False,
+                    logging_level=Settings.general.LOG_LEVEL,
+                    logging_config=ray.LoggingConfig(encoding="TEXT", log_level=Settings.general.LOG_LEVEL),
+                )
         return True
     return False

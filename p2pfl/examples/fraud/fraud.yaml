@@ -11,7 +11,7 @@ experiment:
   name: "fraud_detection_experiment"
   rounds: 20
   epochs: 1
-  trainset_size: 100
+  trainset_size: 10000
   seed: 666
   wait_timeout: 120
   dataset:
@@ -20,7 +20,7 @@ experiment:
     name:
       train: "fraudTrain.csv"
       test: "fraudTest.csv"
-    batch_size: 32
+    batch_size: 512
     transforms:
       package: "p2pfl.examples.fraud.transforms"
       function: "get_fraud_transforms"
@@ -34,7 +34,7 @@ experiment:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
     params:
-      pos_weight: 300.0
+      pos_weight: 100.0
       learning_rate: 0.0005
 
   aggregator:

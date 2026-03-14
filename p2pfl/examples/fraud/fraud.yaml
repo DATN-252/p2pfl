@@ -10,7 +10,7 @@ network:
 experiment:
   name: "fraud_detection_experiment"
   rounds: 20
-  epochs: 3
+  epochs: 1
   trainset_size: 100
   seed: 666
   wait_timeout: 120

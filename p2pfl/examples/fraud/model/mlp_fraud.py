@@ -32,7 +32,7 @@ from p2pfl.utils.seed import set_seed
 class FraudDetectionMLP(LightningModule):
     """Efficient MLP for fraud detection with BatchNorm and Weighted Loss."""
 
-    def __init__(self, input_size: int = 14, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+    def __init__(self, input_size: int = 15, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -115,9 +115,9 @@ def model_build_fn(**kwargs) -> LightningModel:
     # Separate compression from other parameters
     compression = kwargs.pop("compression", None)
     
-    # Ensure input_size matches updated transforms (14 features)
+    # Ensure input_size matches updated transforms (15 features)
     if "input_size" not in kwargs:
-        kwargs["input_size"] = 14
+        kwargs["input_size"] = 15
     
     # Initialize the core MLP
     mlp_model = FraudDetectionMLP(**kwargs)

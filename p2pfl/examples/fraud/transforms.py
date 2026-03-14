@@ -7,7 +7,7 @@
 # the Free Software Foundation, version 3.
 #
 
-"""Transform functions for fraud detection dataset with online behavioral engineering."""
+"""Transform functions for fraud detection dataset with online behavioral engineering (Phase 3)."""
 
 import torch
 import pandas as pd
@@ -15,11 +15,11 @@ import numpy as np
 from datetime import datetime
 from math import radians, sin, cos, sqrt, atan2
 
-# Features to use (14 total)
+# Features to use (15 total)
 NUMERIC_FEATURES = [
     "amt", "lat", "long", "city_pop", "merch_lat", "merch_long", 
     "distance", "hour", "day_of_week", "category_idx", "age", "unix_time",
-    "amt_diff_avg_30d", "trans_count_24h"
+    "amt_diff_avg_30d", "trans_count_24h", "distance_velocity"
 ]
 
 # Mapping for categories
@@ -52,33 +52,44 @@ def calculate_age(dob_str):
     except: return 40.0
 
 def build_behavioral_lookup(examples):
-    """Pre-calculate behavioral features for the local partition using pandas rolling windows."""
+    """Pre-calculate advanced behavioral features including velocity."""
     global BEHAVIORAL_LOOKUP
     df = pd.DataFrame(examples)
     df['trans_date_trans_time'] = pd.to_datetime(df['trans_date_trans_time'], format='mixed')
     df = df.sort_values(by=['cc_num', 'trans_date_trans_time'])
     
-    # 1. Rolling Average Amount (30 days window)
+    # 1. Rolling windows
     temp_df = df.set_index('trans_date_trans_time')
-    df['avg_amt_30d'] = temp_df.groupby('cc_num')['amt'].transform(
-        lambda x: x.rolling(window='30D', min_periods=1).mean()
-    ).values
+    df['avg_amt_30d'] = temp_df.groupby('cc_num')['amt'].transform(lambda x: x.rolling(window='30D', min_periods=1).mean()).values
+    df['trans_count_24h'] = temp_df.groupby('cc_num')['amt'].transform(lambda x: x.rolling(window='24h', min_periods=1).count()).values
     
-    # 2. Transaction Count (24h window)
-    df['trans_count_24h'] = temp_df.groupby('cc_num')['amt'].transform(
-        lambda x: x.rolling(window='24H', min_periods=1).count()
-    ).values
+    # 2. Distance Velocity (km/h)
+    df['prev_lat'] = df.groupby('cc_num')['merch_lat'].shift(1)
+    df['prev_long'] = df.groupby('cc_num')['merch_long'].shift(1)
+    df['prev_time'] = df.groupby('cc_num')['unix_time'].shift(1)
     
-    # Update global lookup table
+    # Calculate distance to previous transaction
+    # Note: Using vectorized haversine logic here for performance
+    lat1, lon1 = np.radians(df['merch_lat']), np.radians(df['merch_long'])
+    lat2, lon2 = np.radians(df['prev_lat'].fillna(df['merch_lat'])), np.radians(df['prev_long'].fillna(df['merch_long']))
+    dlat, dlon = lat2 - lat1, lon2 - lon1
+    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+    dist_to_prev = 6371 * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+    
+    time_diff_h = (df['unix_time'] - df['prev_time']).fillna(3600) / 3600.0 # Default 1h if first trans
+    df['distance_velocity'] = (dist_to_prev / time_diff_h).replace([np.inf, -np.inf], 0).fillna(0)
+    
+    # Fill lookup table
     for _, row in df.iterrows():
         key = (row['cc_num'], int(row['unix_time']))
         BEHAVIORAL_LOOKUP[key] = {
             'amt_diff_avg_30d': float(row['amt'] - row['avg_amt_30d']),
-            'trans_count_24h': float(row['trans_count_24h'])
+            'trans_count_24h': float(row['trans_count_24h']),
+            'distance_velocity': float(row['distance_velocity'])
         }
 
 def fraud_transform(examples):
-    """Transform batch using advanced features and lazy lookup."""
+    """Transform batch using 15 optimized features."""
     global FEATURE_STATS, BEHAVIORAL_LOOKUP
     batch_size = len(examples.get("amt", []))
     
@@ -93,30 +104,25 @@ def fraud_transform(examples):
         for f in ["amt", "lat", "long", "city_pop", "merch_lat", "merch_long", "unix_time"]:
             data_dict[f].append(float(examples.get(f, [0])[idx] or 0))
         
-        # 2. Calculated Distance
-        dist = haversine(examples["lat"][idx], examples["long"][idx], 
-                         examples["merch_lat"][idx], examples["merch_long"][idx])
-        data_dict["distance"].append(dist)
-        
-        # 3. Temporal
+        # 2. Geospatial & Temporal
+        data_dict["distance"].append(haversine(examples["lat"][idx], examples["long"][idx], 
+                                             examples["merch_lat"][idx], examples["merch_long"][idx]))
         try:
-            dt_str = examples["trans_date_trans_time"][idx]
-            dt = datetime.strptime(dt_str, '%Y-%m-%d %H:%M:%S')
+            dt = datetime.strptime(examples["trans_date_trans_time"][idx], '%Y-%m-%d %H:%M:%S')
             data_dict["hour"].append(float(dt.hour))
             data_dict["day_of_week"].append(float(dt.weekday()))
         except:
             data_dict["hour"].append(0.0); data_dict["day_of_week"].append(0.0)
             
-        # 4. Categorical & Age
-        cat = examples.get("category", [""])[idx]
-        data_dict["category_idx"].append(float(CATEGORY_MAP.get(cat, 14)))
+        data_dict["category_idx"].append(float(CATEGORY_MAP.get(examples.get("category", [""])[idx], 14)))
         data_dict["age"].append(calculate_age(examples.get("dob", ["1980-01-01"])[idx]))
         
-        # 5. Behavioral Lookup (Online tra cứu từ bảng đã dựng)
+        # 3. Behavioral Lookup
         key = (examples['cc_num'][idx], int(examples['unix_time'][idx]))
-        beh = BEHAVIORAL_LOOKUP.get(key, {'amt_diff_avg_30d': 0.0, 'trans_count_24h': 1.0})
+        beh = BEHAVIORAL_LOOKUP.get(key, {'amt_diff_avg_30d': 0.0, 'trans_count_24h': 1.0, 'distance_velocity': 0.0})
         data_dict['amt_diff_avg_30d'].append(beh['amt_diff_avg_30d'])
         data_dict['trans_count_24h'].append(beh['trans_count_24h'])
+        data_dict['distance_velocity'].append(beh['distance_velocity'])
 
     df = pd.DataFrame(data_dict)
     

@@ -111,10 +111,10 @@ class SuperActorPool(ActorPool):
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Limiting concurrency to 1 CPU per actor to prevent RAM exhaustion (OOM)
-        # on 32GB RAM machines when running 50 nodes. 
-        # Ray will queue the nodes and process ~11 at a time.
-        return 1.0
+        # Adopted from low-end optimization branch:
+        # 0.1 CPU per actor allows high density (50 nodes) on limited RAM
+        # by reducing concurrent compute pressure.
+        return 0.1
 
     def create_actor(self) -> VirtualLearnerActor:
         """

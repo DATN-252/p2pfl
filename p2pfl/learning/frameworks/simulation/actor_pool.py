@@ -110,7 +110,9 @@ class SuperActorPool(ActorPool):
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Low-end optimization for 50 nodes density
+        # Ultra-limited concurrency to save RAM:
+        # 3.5 CPUs per actor on 11 CPU budget = max 3 concurrent actors.
+        # This keeps RAM usage low enough for 50-node simulation on 32GB.
         return 0.1
 
     def create_actor(self) -> VirtualLearnerActor:

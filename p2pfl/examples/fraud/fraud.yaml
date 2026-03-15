@@ -19,7 +19,7 @@ experiment:
     name:
       train: "fraudTrain.csv"
       test: "fraudTest.csv"
-    batch_size: 256
+    batch_size: 128
     transforms:
       package: "p2pfl.examples.fraud.transforms"
       function: "get_fraud_transforms"

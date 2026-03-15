@@ -38,6 +38,7 @@ class General:
     GRPC_TIMEOUT: float = 10.0
     """Maximum time (seconds) to wait for a gRPC request."""
     LOG_LEVEL: str = "INFO"
+
     """Log level for the system."""
     LOG_DIR: str = "logs"
     """Directory to save logs."""
@@ -57,6 +58,7 @@ class Heartbeat:
     """Period (seconds) to send heartbeats."""
     TIMEOUT: float = 300.0
     """Timeout (seconds) for a node to be considered dead."""
+
     WAIT_CONVERGENCE: float = PERIOD
     """Time (seconds) to wait for the heartbeats to converge before a learning round starts."""
     EXCLUDE_BEAT_LOGS: bool = True

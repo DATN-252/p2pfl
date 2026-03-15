@@ -106,14 +106,11 @@ class SuperActorPool(ActorPool):
 
     def _calculate_gpu_per_actor(self, num_actors: int) -> float:
         """Calculate GPU fraction per actor. Let Ray handle the global allocation."""
-        # For simulation on 1 machine, we need a very small fraction to share 1 GPU among 50 nodes
         return 0.0
 
     def _calculate_cpu_per_actor(self, num_actors: int) -> float:
         """Calculate CPU fraction per actor."""
-        # Adopted from low-end optimization branch:
-        # 0.1 CPU per actor allows high density (50 nodes) on limited RAM
-        # by reducing concurrent compute pressure.
+        # Low-end optimization for 50 nodes density
         return 0.1
 
     def create_actor(self) -> VirtualLearnerActor:
@@ -169,13 +166,11 @@ class SuperActorPool(ActorPool):
                 future_key = tuple(future) if isinstance(future, list) else future
                 
                 # Ensure future is assigned before releasing the lock
-                # This prevents get_learner_result from seeing a None future
                 self._future_to_actor[future_key] = (self._next_task_index, actor, addr)
                 self._next_task_index += 1
                 if addr not in self._addr_to_future:
                     self._addr_to_future[addr] = {}
                 self._addr_to_future[addr]["future"] = future_key
-                logger.debug("ActorPool", f"Node {addr} job ID {future_key} assigned.")
             except Exception as e:
                 logger.error("ActorPool", f"Node {addr} FAILED to submit to Ray: {e}")
                 self._idle_actors.append(actor)
@@ -193,18 +188,13 @@ class SuperActorPool(ActorPool):
 
         """
         addr, _ = job
-        # We use a combined key to distinguish between different jobs from the same address
-        # (e.g., if a node submits evaluate immediately after fit)
-        # However, the current framework uses addr as the primary lookup.
-        # To minimize changes, we just ensure the reset is thread-safe and the job is tracked.
         with self.lock:
             self._reset_addr_to_future_dict(addr)
             if self._idle_actors:
-                logger.debug("ActorPool", f"Node {addr} starting job with {len(self._idle_actors)} idle actors available.")
                 self.submit(actor_fn, job)
             else:
                 self._pending_submits.append((actor_fn, job))
-                logger.warning("ActorPool", f"Node {addr} job added to pending queue (No idle actors).")
+                logger.debug("ActorPool", f"Job for {addr} added to pending queue.")
 
     def _flag_future_as_ready(self, addr: str) -> None:
         """
@@ -262,7 +252,6 @@ class SuperActorPool(ActorPool):
                 raise ValueError(f"No future job found for address {addr}. The job might have failed to submit or was already processed.")
             res_addr, result = ray.get(future)
         except ray.exceptions.RayActorError as ex:
-            # print(ex)
             if hasattr(ex, "actor_id"):
                 self._flag_actor_for_removal(ex.actor_id)
             raise ex
@@ -333,7 +322,6 @@ class SuperActorPool(ActorPool):
         Shutdown the actor pool by terminating all actors.
         """
         with self.lock:
-            logger.info("ActorPool", f"Shutting down pool with {len(self._idle_actors)} idle actors.")
             for actor in self._idle_actors:
                 try:
                     actor.terminate.remote()
@@ -357,8 +345,6 @@ class SuperActorPool(ActorPool):
         import time
         start_time = time.time()
         
-        # Wait until the job is actually submitted (not in pending_submits anymore)
-        # and has a valid future reference.
         while True:
             future = None
             with self.lock:
@@ -367,14 +353,11 @@ class SuperActorPool(ActorPool):
             if future is not None:
                 break
             
-            # If we've been waiting too long for submission, something is wrong
             if timeout and (time.time() - start_time) > timeout:
                 raise TimeoutError(f"Timed out waiting for job {addr} to be submitted to Ray.")
             
-            # Give Ray time to process submissions by releasing the lock and sleeping
             time.sleep(0.1)
 
-        # Now that we have a future, wait for it to be ready
         while self.has_next() and not self._is_future_ready(addr):  # type: ignore
             try:
                 self.process_unordered_future(timeout=timeout)

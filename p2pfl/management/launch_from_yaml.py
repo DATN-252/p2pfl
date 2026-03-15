@@ -319,10 +319,10 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
         
         # STAGGERED START: Incremental delay to prevent gRPC port collisions and Ray initialization storms
         # We start with 0.5s and add more as we create more nodes.
-        delay = 0.5 + (i * 0.05) 
-        if i % 10 == 0:
-            logger.info(None, f"🚀 Created {i}/{n} nodes, waiting {delay:.2f}s...")
-        time.sleep(min(delay, 2.0))
+        delay = 1.0 + (i * 0.1) 
+        if i % 5 == 0:
+            logger.info(None, f"🚀 Created {i}/{n} nodes, waiting {delay:.2f}s for CPU to breathe...")
+        time.sleep(min(delay, 5.0))
 
     try:
         # Connect nodes

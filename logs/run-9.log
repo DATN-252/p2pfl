@@ -1,2 +1,0 @@
-[ 2026-03-14 04:08:33 | None | INFO ] Created experiment folder: /mnt/c/Users/thaih/HK252/DATN/p2pfl/experiments/fraudTrain.csv_fraudTest.csv_RandomIIDPartitionStrategy_DFedAdp_model_build_fn_20260314_040833 and copied fraud.yaml
-[ 2026-03-14 04:08:33 | None | INFO ] Set simulation heartbeat: timeout=10s, period=2s

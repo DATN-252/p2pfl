@@ -172,7 +172,7 @@ wandb/
 .uv/
 uv.lock.tmp*
 .uv-cache/
-p2pfl/examples/fraud/*.csv
+p2pfl/examples/fraud/processed_data/*.csv
 
 PROJECT_DEEP_DIVE_VI.md
 PROJECT_WORKFLOW_VI.md

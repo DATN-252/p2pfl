@@ -17,7 +17,7 @@ from math import radians, sin, cos, sqrt, atan2
 
 # Features to use (15 total)
 NUMERIC_FEATURES = [
-    "amt", "lat", "long", "city_pop", "merch_lat", "merch_long", 
+    "city_pop", "merch_lat", "merch_long", 
     "distance", "hour", "day_of_week", "category_idx", "age", "unix_time",
     "amt_diff_avg_30d", "trans_count_24h", "distance_velocity"
 ]
@@ -108,7 +108,7 @@ def fraud_transform(examples):
     
     for idx in range(batch_size):
         # 1. Raw numeric
-        for f in ["amt", "lat", "long", "city_pop", "merch_lat", "merch_long", "unix_time"]:
+        for f in ["city_pop", "merch_lat", "merch_long", "unix_time"]:
             data_dict[f].append(float(examples.get(f, [0])[idx] or 0))
         
         # 2. Geospatial & Temporal
@@ -154,3 +154,50 @@ def fraud_transform(examples):
 
 def get_fraud_transforms():
     return {"train": fraud_transform, "test": fraud_transform}
+
+def preprocess_transform(train, test):
+    global BEHAVIORAL_LOOKUP, FEATURE_STATS
+    
+    # 1. Clear previous state to ensure clean preprocessing
+    BEHAVIORAL_LOOKUP = {}
+    FEATURE_STATS = {}
+    
+    # 2. Build combined lookup for both train and test to ensure behavioral features 
+    # are calculated with full historical context (velocity, rolling windows)
+    print("Building behavioral lookup for combined train and test data...")
+    combined = pd.concat([train, test], axis=0)
+    build_behavioral_lookup(combined)
+    
+    # 3. Transform both sets
+    # We want the numeric values, not tensors, for CSV saving
+    train_dic = fraud_transform(train)
+    test_dic = fraud_transform(test)
+    
+    # Convert list of tensors back to numeric DataFrame
+    # Note: features_list in fraud_transform contains 1D tensors
+    train_features = np.array([t.numpy() for t in train_dic["features"]])
+    test_features = np.array([t.numpy() for t in test_dic["features"]])
+    
+    train_df = pd.DataFrame(train_features, columns=NUMERIC_FEATURES)
+    train_df["is_fraud"] = [int(t.item()) for t in train_dic["label"]]
+    
+    test_df = pd.DataFrame(test_features, columns=NUMERIC_FEATURES)
+    test_df["is_fraud"] = [int(t.item()) for t in test_dic["label"]]
+    
+    return train_df, test_df
+
+def processed_fraud_transform(examples):
+    """Transform for data that is already processed (standardized and engineered)."""
+    # Use torch.tensor on lists directly for efficiency
+    # features is (batch_size, 12)
+    feature_cols = [torch.tensor(examples[feat], dtype=torch.float32) for feat in NUMERIC_FEATURES]
+    features = torch.stack(feature_cols, dim=1)
+    
+    # labels is (batch_size,)
+    labels = torch.tensor(examples["is_fraud"], dtype=torch.long)
+    
+    return {"features": features, "label": labels}
+
+def get_processed_fraud_transforms():
+    """Return transforms specifically for pre-processed CSV data."""
+    return {"train": processed_fraud_transform, "test": processed_fraud_transform}

@@ -1,0 +1,65 @@
+description: "Quick Fraud Detection test for verification."
+
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 3
+  topology: "ring"
+  additional_connections: []
+
+experiment:
+  name: "quick_fraud_test"
+  rounds: 5
+  epochs: 1
+  trainset_size: 10
+  seed: 666
+  wait_timeout: 600
+
+  # Dataset settings - Fraud Dataset from Kaggle
+  dataset:
+    source: "kaggle"
+    dataset_id: "kartik2112/fraud-detection"
+    name:
+      train: "fraudTrain.csv"
+      test: "fraudTest.csv"
+    batch_size: 128
+    transforms:
+      package: "p2pfl.examples.fraud.transforms"
+      function: "get_fraud_transforms"
+      params: {}
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      params:
+        label_tag: "is_fraud"
+
+  # Model configuration - Fraud MLP
+  model:
+    package: "p2pfl.examples.fraud.model.mlp_fraud"
+    model_build_fn: "model_build_fn"
+    params:
+      pos_weight: 20.0
+      learning_rate: 0.0001
+
+  # Aggregation algorithm - DFedAdp
+  aggregator:
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params: 
+      learning_rate: 0.001
+      decay_rate: 0.99
+      alpha: 0.5
+
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 10
+    disable_ray: False
+  heartbeat:
+    period: 10
+    timeout: 300 
+    wait_convergence: 20
+    exclude_beat_logs: true
+  training:
+    vote_timeout: 60
+    aggregation_timeout: 300

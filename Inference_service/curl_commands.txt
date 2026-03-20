@@ -1,0 +1,31 @@
+# --- Trang thai he thong ---
+curl -X GET http://localhost:8000/admin/status
+
+# --- Cau hinh nhan cap nhat tu dong ---
+curl -X POST http://localhost:8000/admin/config \
+-H "Content-Type: application/json" \
+-d '{"accept_triggers": true}'
+
+# --- Quay ve phien ban mo hinh cu (vi du round 10) ---
+curl -X POST http://localhost:8000/admin/rollback/10
+
+# --- Cap nhat mo hinh moi tu P2PFL ---
+curl -X POST http://localhost:8000/reload \
+-H "Content-Type: application/json" \
+-d '{"model_data": "BASE64_STRING", "round": 15}'
+
+# --- Thuc hien du doan giao dich ---
+curl -X POST http://localhost:8000/predict \
+-H "Content-Type: application/json" \
+-d '{
+"amt": 125.50,
+"lat": 40.7128,
+"long": -74.0060,
+"city_pop": 8000000,
+"merch_lat": 40.7589,
+"merch_long": -73.9851,
+"dob": "1990-01-01",
+"trans_date_trans_time": "2023-10-27 14:30:00",
+"category": "gas_transport",
+"unix_time": 1698417000
+}'

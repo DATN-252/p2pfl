@@ -1,5 +1,6 @@
 #
-# FastAPI Service for P2PFL Fraud Detection Inference (Direct Push with Persistence)
+# FastAPI Service for P2PFL Fraud Detection Inference (Enterprise Edition)
+# Features: Versioning, Rollback, and Trigger Control
 #
 
 import os
@@ -9,9 +10,9 @@ import asyncio
 import io
 import base64
 import glob
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Body
 from pydantic import BaseModel
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from contextlib import asynccontextmanager
 
 # --- PATH ALERT: Update these imports when moving the file outside p2pfl ---
@@ -23,131 +24,160 @@ from p2pfl.examples.fraud.transforms import haversine, calculate_age, CATEGORY_M
 CACHE_DIR = "is_model_cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
 
-# Global state
+# Global State
 model = None
 current_round = -1
+accept_triggers = True # Global switch for FL triggers
 model_lock = asyncio.Lock()
 
 class ReloadRequest(BaseModel):
-    model_data: str # Base64 encoded weights
+    model_data: str 
     round: int
     format: str = "pt_base64"
 
-def get_latest_from_cache():
-    """Find the highest round model in the local IS cache."""
-    cache_files = glob.glob(os.path.join(CACHE_DIR, "model_round_*.pt"))
-    if not cache_files:
-        return None, -1
-    latest_file = max(cache_files, key=lambda x: int(x.split("_round_")[-1].split(".")[0]))
-    round_num = int(latest_file.split("_round_")[-1].split(".")[0])
-    return latest_file, round_num
+class ConfigRequest(BaseModel):
+    accept_triggers: bool
 
-async def load_model_safely(path_or_buffer, round_num: int, is_buffer=False):
-    """Unified loader for both startup (file) and webhook (memory)."""
+def get_available_versions() -> List[int]:
+    """List all round numbers available in the local cache."""
+    files = glob.glob(os.path.join(CACHE_DIR, "model_round_*.pt"))
+    rounds = [int(f.split("_round_")[-1].split(".")[0]) for f in files]
+    return sorted(rounds, reverse=True)
+
+async def load_model_logic(path_or_buffer, round_num: int, is_buffer=False):
+    """Core logic to swap the active model."""
     global model, current_round
     async with model_lock:
         try:
-            if round_num <= current_round:
-                return
-
             new_model = FraudDetectionMLP(input_size=15)
+            # Load weights
             state_dict = torch.load(path_or_buffer)
             new_model.load_state_dict(state_dict)
             new_model.eval()
             
+            # Atomic swap
             model = new_model
             current_round = round_num
-            source = "Memory" if is_buffer else "Disk Cache"
-            print(f"✅ LOAD SUCCESS: Round {round_num} from {source}")
             
-            # If it was a push (buffer), save it to cache for next time
+            # Persist if it came from memory
             if is_buffer:
-                cache_path = os.path.join(CACHE_DIR, f"model_round_{round_num}.pt")
+                cache_path = os.path.abspath(os.path.join(CACHE_DIR, f"model_round_{round_num}.pt"))
                 with open(cache_path, "wb") as f:
                     path_or_buffer.seek(0)
                     f.write(path_or_buffer.read())
-                print(f"💾 PERSISTED: Model saved to local cache {cache_path}")
-                
+                print(f"💾 PERSISTED: Model saved to {cache_path}")
+            
+            source = "MEMORY" if is_buffer else "DISK"
+            print(f"✅ ACTIVE MODEL UPDATED: Round {round_num} from {source}")
+            return True
         except Exception as e:
             print(f"❌ LOAD ERROR: {e}")
+            return False
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Restore latest model from cache on startup."""
-    cache_path, round_num = get_latest_from_cache()
-    if cache_path:
-        print(f"📦 Startup: Restoring latest model from cache (Round {round_num})...")
-        await load_model_safely(cache_path, round_num)
+    """Restore the latest version on startup."""
+    versions = get_available_versions()
+    if versions:
+        latest_r = versions[0]
+        path = os.path.abspath(os.path.join(CACHE_DIR, f"model_round_{latest_r}.pt"))
+        print(f"📦 Startup: Restoring Round {latest_r} from {path}...")
+        await load_model_logic(path, latest_r)
     else:
-        print("ℹ️ Startup: No cached model found. Waiting for first P2PFL push.")
-    
+        print("ℹ️ Startup: No cached model found in is_model_cache/")
     yield
-    print("Inference service shutting down...")
+    print("Shutting down...")
 
-app = FastAPI(title="P2PFL Fraud Detection Service (Persistent)", lifespan=lifespan)
+app = FastAPI(title="P2PFL Enterprise Inference Service", lifespan=lifespan)
 
-class Transaction(BaseModel):
-    cc_num: int
-    amt: float
-    lat: float
-    long: float
-    city_pop: int
-    merch_lat: float
-    merch_long: float
-    unix_time: int
-    category: str
-    dob: str
-    trans_date_trans_time: str
+# --- ADMIN / CONTROL ENDPOINTS ---
+
+@app.get("/admin/status")
+async def get_status():
+    return {
+        "status": "ready" if model else "idle",
+        "current_round": current_round,
+        "accept_triggers": accept_triggers,
+        "available_versions": get_available_versions(),
+        "cache_dir": os.path.abspath(CACHE_DIR)
+    }
+
+@app.post("/admin/config")
+async def update_config(req: ConfigRequest):
+    global accept_triggers
+    accept_triggers = req.accept_triggers
+    status = "ENABLED" if accept_triggers else "DISABLED"
+    print(f"⚙️ ADMIN: Trigger reception is now {status}")
+    return {"message": f"Trigger reception {status.lower()}", "accept_triggers": accept_triggers}
+
+@app.post("/admin/rollback/{round_num}")
+async def rollback(round_num: int):
+    """Manually switch to a specific version in cache."""
+    cache_path = os.path.join(CACHE_DIR, f"model_round_{round_num}.pt")
+    if not os.path.exists(cache_path):
+        raise HTTPException(status_code=404, detail=f"Version {round_num} not found in cache")
+    
+    success = await load_model_logic(cache_path, round_num)
+    if success:
+        return {"message": "Rollback successful", "active_round": round_num}
+    raise HTTPException(status_code=500, detail="Failed to load model during rollback")
+
+# --- P2PFL TRIGGER ENDPOINT ---
 
 @app.post("/reload")
 async def trigger_reload(req: ReloadRequest, background_tasks: BackgroundTasks):
-    """Receive and persist model data."""
+    """Triggered by P2PFL ModelPackager."""
+    if not accept_triggers:
+        print(f"🚫 TRIGGER BLOCKED: Incoming push for Round {req.round} ignored")
+        raise HTTPException(status_code=403, detail="Inference Service is currently not accepting automated triggers.")
+    
+    if req.round <= current_round:
+        print(f"ℹ️ PUSH IGNORED: Round {req.round} is not newer than current Round {current_round}")
+        return {"message": "Already up to date", "current": current_round}
+
+    print(f"📥 PUSH RECEIVED: Incoming Model Round {req.round}")
     model_bytes = base64.b64decode(req.model_data)
     buffer = io.BytesIO(model_bytes)
-    background_tasks.add_task(load_model_safely, buffer, req.round, is_buffer=True)
-    return {"message": "Model received and queuing for persistence", "round": req.round}
+    background_tasks.add_task(load_model_logic, buffer, req.round, is_buffer=True)
+    return {"message": "Push accepted", "target_round": req.round}
+
+# --- PREDICTION ENDPOINT ---
 
 @app.post("/predict")
-async def predict(tx: Transaction):
+async def predict(tx: Dict = Body(...)): 
     if model is None:
         raise HTTPException(status_code=503, detail="Model not ready.")
     
-    async with model_lock:
-        with torch.no_grad():
-            dist = haversine(tx.lat, tx.long, tx.merch_lat, tx.merch_long)
-            age = calculate_age(tx.dob)
-            
-            from datetime import datetime
-            try:
-                dt = datetime.strptime(tx.trans_date_trans_time, '%Y-%m-%d %H:%M:%S')
-                hour, day_of_week = float(dt.hour), float(dt.weekday())
-            except:
-                hour, day_of_week = 0.0, 0.0
+    try:
+        async with model_lock:
+            with torch.no_grad():
+                dist = haversine(tx['lat'], tx['long'], tx['merch_lat'], tx['merch_long'])
+                age = calculate_age(tx['dob'])
+                
+                from datetime import datetime
+                try:
+                    dt = datetime.strptime(tx['trans_date_trans_time'], '%Y-%m-%d %H:%M:%S')
+                    hour, day_of_week = float(dt.hour), float(dt.weekday())
+                except:
+                    hour, day_of_week = 0.0, 0.0
 
-            category_idx = float(CATEGORY_MAP.get(tx.category, 14))
+                category_idx = float(CATEGORY_MAP.get(tx['category'], 14))
+                
+                features = [
+                    tx['amt'], tx['lat'], tx['long'], tx['city_pop'], tx['merch_lat'], tx['merch_long'],
+                    dist, hour, day_of_week, category_idx, age, float(tx['unix_time']),
+                    0.0, 1.0, 0.0 # Behaviorals
+                ]
+                
+                input_tensor = torch.tensor([features], dtype=torch.float32)
+                logits = model(input_tensor)
+                probability = torch.sigmoid(logits).item()
             
-            features = [
-                tx.amt, tx.lat, tx.long, tx.city_pop, tx.merch_lat, tx.merch_long,
-                dist, hour, day_of_week, category_idx, age, float(tx.unix_time),
-                0.0, 1.0, 0.0 # Behaviorals
-            ]
-            
-            input_tensor = torch.tensor([features], dtype=torch.float32)
-            logits = model(input_tensor)
-            probability = torch.sigmoid(logits).item()
-        
-    prediction = "FRAUD" if probability > 0.5 else "NORMAL"
-    return {
-        "fraud_probability": round(probability, 4),
-        "prediction": prediction,
-        "model_round": current_round
-    }
-
-@app.get("/status")
-async def status():
-    cache_file, _ = get_latest_from_cache()
-    return {
-        "status": "ready" if model else "idle", 
-        "current_round": current_round,
-        "cached_on_disk": cache_file
-    }
+        prediction = "FRAUD" if probability > 0.5 else "NORMAL"
+        return {
+            "fraud_probability": round(probability, 4),
+            "prediction": prediction,
+            "model_round": current_round
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Invalid transaction data: {e}")

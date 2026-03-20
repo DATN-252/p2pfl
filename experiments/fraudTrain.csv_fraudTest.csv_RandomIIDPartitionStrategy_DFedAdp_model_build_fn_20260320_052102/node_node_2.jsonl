@@ -1,0 +1,3 @@
+{"round": 0, "metrics": {"test_loss": 0.13819898664951324, "test_accuracy": 0.9870167970657349, "test_precision": 0.15684683620929718, "test_recall": 0.2712171673774719, "test_f1": 0.18547025322914124, "communication_cost": 741972}}
+{"round": 1, "metrics": {"test_loss": 0.12662345170974731, "test_accuracy": 0.9882206320762634, "test_precision": 0.16880115866661072, "test_recall": 0.2780120074748993, "test_f1": 0.19692106544971466, "communication_cost": 1112752}}
+{"round": 2, "metrics": {"test_loss": 0.12191764265298843, "test_accuracy": 0.9885337352752686, "test_precision": 0.17074748873710632, "test_recall": 0.278702974319458, "test_f1": 0.19886410236358643, "communication_cost": 1482468}}

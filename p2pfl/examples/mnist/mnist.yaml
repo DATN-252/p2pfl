@@ -11,62 +11,43 @@ remote_loggers:
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 10
-  topology: "full"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
+  nodes: 3
+  topology: "ring"
   additional_connections: []
 
 # Defines experiment settings
 experiment:
-  name: "my_experiment"
-  rounds: 50
+  name: "minimal_mnist_test"
+  rounds: 10
   epochs: 1
   trainset_size: 10
   seed: 666
-  wait_timeout: 18000
+  wait_timeout: 600
 
   # Dataset settings
   dataset:
-    source: "huggingface" # Dataset source: "huggingface", "csv", etc.
+    source: "huggingface"
     name: "p2pfl/MNIST"
-    batch_size: 256
+    batch_size: 64
     partitioning:
       package: "p2pfl.learning.dataset.partition_strategies"
-      strategy: "DirichletPartitionStrategy"
-      reduced_dataset: false # For testing purposes
+      strategy: "RandomIIDPartitionStrategy"
+      reduced_dataset: true
       reduction_factor: 10
-
-      params:
-        alpha: 0.5
-        min_partition_size: 10
-        self_balancing: false
+      params: {}
 
   # Learning algorithm configuration
   model:
-    package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
       lr_rate: 0.001
-    # Learning algorithm parameters (algorithm-specific)
-    #compression:
-    #ptq:
-    #  dtype: "int8"
-    #topk:
-    #  k: 0.1
-    #zlib:
-    #  level: 6
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
-    params:
-      learning_rate: 0.001
-      decay_rate: 0.95
-      alpha: 0.5
-
-    # package: "p2pfl.learning.aggregators.fedavg"
-    # aggregator: "FedAvg"
-    # params: {}
+    package: "p2pfl.learning.aggregators.fedavg"
+    aggregator: "FedAvg"
+    params: {}
  
     # package: "p2pfl.learning.aggregators.psgd"
     # aggregator: "PSGD"

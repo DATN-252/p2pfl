@@ -1,0 +1,124 @@
+[ 2026-03-20 03:31:00 | None | INFO ] Created experiment folder: /mnt/c/Users/thaih/HK252/DATN/p2pfl/experiments/fraudTrain.csv_fraudTest.csv_RandomIIDPartitionStrategy_DFedAdp_model_build_fn_20260320_033100 and copied test.yaml
+[ 2026-03-20 03:31:00 | None | INFO ] Set simulation heartbeat: timeout=300s, period=10s
+[ 2026-03-20 03:32:17 | node | INFO ] InMemoryServer started at node
+[ 2026-03-20 03:32:17 | node | INFO ] 🏁 Starting gossiper...
+[ 2026-03-20 03:32:17 | None | INFO ] 🚀 Created 0/3 nodes, waiting 1.00s for CPU to breathe...
+[ 2026-03-20 03:32:18 | node_1 | INFO ] InMemoryServer started at node_1
+[ 2026-03-20 03:32:18 | node_1 | INFO ] 🏁 Starting gossiper...
+[ 2026-03-20 03:32:19 | node_2 | INFO ] InMemoryServer started at node_2
+[ 2026-03-20 03:32:19 | node_2 | INFO ] 🏁 Starting gossiper...
+[ 2026-03-20 03:32:20 |  | INFO ] Connected nodes node and node_1
+[ 2026-03-20 03:32:20 |  | INFO ] Connected nodes node and node_2
+[ 2026-03-20 03:32:20 |  | INFO ] Connected nodes node_1 and node_2
+[ 2026-03-20 03:32:20 | None | INFO ] 📡 Performing global simulation discovery for 3 nodes...
+[ 2026-03-20 03:32:20 | None | INFO ] ⌛ Waiting for direct topology connections (2-2 per node)...
+[ 2026-03-20 03:32:20 | None | INFO ] ✅ Network topology ready.
+[ 2026-03-20 03:32:20 | node | INFO ] 🚀 Broadcasting start learning to 3 nodes...
+[ 2026-03-20 03:32:20 | node_1 | INFO ] 🔍 Neighbors found: ['node', 'node_2'] | Degree: 2
+[ 2026-03-20 03:32:20 | node_2 | INFO ] 🔍 Neighbors found: ['node', 'node_1'] | Degree: 2
+[ 2026-03-20 03:32:20 | node_1 | INFO ] ⏳ Waiting initialization.
+[ 2026-03-20 03:32:20 | node_2 | INFO ] ⏳ Waiting initialization.
+[ 2026-03-20 03:32:20 | node | INFO ] 🔍 Neighbors found: ['node_1', 'node_2'] | Degree: 2
+[ 2026-03-20 03:32:20 | node | INFO ] ⏳ Waiting initialization.
+[ 2026-03-20 03:32:20 | node | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-03-20 03:32:20 | node_1 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-03-20 03:32:20 | node_2 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-03-20 03:32:21 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-03-20 03:32:21 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-03-20 03:32:21 | node | INFO ] 🤫 Gossip finished.
+[ 2026-03-20 03:32:40 | node_1 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node', 'node_2', 'node_1']
+[ 2026-03-20 03:32:40 | node_2 | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node', 'node_1', 'node_2']
+[ 2026-03-20 03:32:40 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-03-20 03:32:40 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-03-20 03:32:40 | node | INFO ] 🚂 Train set of 3 nodes (all available nodes): ['node_1', 'node_2', 'node']
+[ 2026-03-20 03:32:40 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-03-20 03:38:23 | node | INFO ] 🎓 Training step done.
+[ 2026-03-20 03:38:23 | node | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-03-20 03:38:23 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-03-20 03:38:23 | node | INFO ] ✅ [FORCE] Local model added for round 0. (1/3)
+[ 2026-03-20 03:38:23 | node_1 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-03-20 03:38:23 | node_1 | INFO ] ✅ [FORCE] Local model added for round 0. (1/3)
+[ 2026-03-20 03:38:28 | node | INFO ] 📤 Sending model to 2 direct neighbors: ['node_1', 'node_2']
+[ 2026-03-20 03:38:28 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_2']
+[ 2026-03-20 03:38:28 | node_1 | INFO ] 🧩 Model added for round 0 (2/3) from ['node']
+[ 2026-03-20 03:38:28 | node | INFO ] 🧩 Model added for round 0 (2/3) from ['node_1']
+[ 2026-03-20 03:38:28 | node_2 | INFO ] 🧩 Model added for round 0 (1/3) from ['node']
+[ 2026-03-20 03:38:28 | node_2 | INFO ] 🧩 Model added for round 0 (2/3) from ['node_1']
+[ 2026-03-20 03:38:59 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-03-20 03:38:59 | node_2 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-03-20 03:38:59 | node_2 | INFO ] ✅ [FORCE] Local model added for round 0. (3/3)
+[ 2026-03-20 03:39:04 | node_2 | INFO ] 📤 Sending model to 2 direct neighbors: ['node', 'node_1']
+[ 2026-03-20 03:39:04 | node | INFO ] 🧩 Model added for round 0 (3/3) from ['node_2']
+[ 2026-03-20 03:39:04 | node_1 | INFO ] 🧩 Model added for round 0 (3/3) from ['node_2']
+[ 2026-03-20 03:39:05 | node | ERROR ] Error AttributeError: 'LightningModel' object has no attribute 'get_weights'
+Traceback (most recent call last):
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/base_node/train_stage.py", line 97, in execute
+    agg_model = aggregator.wait_and_get_aggregation(state=state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/learning/aggregators/aggregator.py", line 246, in wait_and_get_aggregation
+    self.packager.check_and_package(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/model_packaging.py", line 30, in check_and_package
+    agg_weights = np.concatenate([p.flatten() for p in aggregated_model.get_weights()])
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'LightningModel' object has no attribute 'get_weights'
+
+[ 2026-03-20 03:39:05 | node_1 | ERROR ] Error AttributeError: 'LightningModel' object has no attribute 'get_weights'
+Traceback (most recent call last):
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/base_node/train_stage.py", line 97, in execute
+    agg_model = aggregator.wait_and_get_aggregation(state=state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/learning/aggregators/aggregator.py", line 246, in wait_and_get_aggregation
+    self.packager.check_and_package(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/model_packaging.py", line 30, in check_and_package
+    agg_weights = np.concatenate([p.flatten() for p in aggregated_model.get_weights()])
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'LightningModel' object has no attribute 'get_weights'
+
+[ 2026-03-20 03:39:05 | node | INFO ] Stopping node...
+[ 2026-03-20 03:39:05 | node_1 | INFO ] Stopping node...
+[ 2026-03-20 03:39:05 | node | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-20 03:39:05 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-20 03:39:05 | node | INFO ] InMemoryServer stopped at node
+[ 2026-03-20 03:39:05 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2026-03-20 03:39:05 | node_2 | ERROR ] Error AttributeError: 'LightningModel' object has no attribute 'get_weights'
+Traceback (most recent call last):
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/stages/base_node/train_stage.py", line 97, in execute
+    agg_model = aggregator.wait_and_get_aggregation(state=state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/learning/aggregators/aggregator.py", line 246, in wait_and_get_aggregation
+    self.packager.check_and_package(
+  File "/mnt/c/Users/thaih/HK252/DATN/p2pfl/p2pfl/utils/model_packaging.py", line 30, in check_and_package
+    agg_weights = np.concatenate([p.flatten() for p in aggregated_model.get_weights()])
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'LightningModel' object has no attribute 'get_weights'
+
+[ 2026-03-20 03:39:05 | node_2 | INFO ] Stopping node...
+[ 2026-03-20 03:39:05 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-20 03:39:05 | node_2 | INFO ] InMemoryServer stopped at node_2
+[ 2026-03-20 03:39:12 | node | INFO ] Stopping node...
+[ 2026-03-20 03:39:12 | node_1 | INFO ] Stopping node...
+[ 2026-03-20 03:39:12 | node_2 | INFO ] Stopping node...

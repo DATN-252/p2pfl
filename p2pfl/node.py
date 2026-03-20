@@ -108,6 +108,7 @@ class Node:
         self.experiment_logger: ExperimentLogger | None = None
         if experiment_folder_path:
             self.experiment_logger = ExperimentLogger(experiment_folder_path, self.addr)
+            self.state.experiment_logger = self.experiment_logger # NEW: Linked to state
 
         # Workflow
         self.learning_workflow = LearningWorkflow()

@@ -120,6 +120,8 @@ class Training:
     """Amount of actors in the pool."""
     NUM_WORKERS: int = 0
     """Number of workers for data loading."""
+    AUTHORIZED_PUSH_NODE: str = "node"
+    """The node authorized to push models to the inference service."""
 
 
 ###################

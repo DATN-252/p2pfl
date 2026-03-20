@@ -26,6 +26,10 @@ from p2pfl.management.logger import logger
 from p2pfl.settings import Settings
 from p2pfl.utils.node_component import NodeComponent
 
+# --- START MODEL PACKAGING ADDITION ---
+from p2pfl.utils.model_packaging import ModelPackager
+# --- END MODEL PACKAGING ADDITION ---
+
 class NoModelsToAggregateError(Exception):
     """Exception raised when there are no models to aggregate."""
     pass
@@ -58,6 +62,11 @@ class Aggregator(NodeComponent):
         self.__current_round: int | None = None
         self.__comm_cost: int = 0
         self.__last_comm_cost: int = 0
+
+        # --- START MODEL PACKAGING ADDITION ---
+        # Highly relaxed threshold for quick testing (epsilon 0.1, patience 1)
+        self.packager = ModelPackager(epsilon=0.1, patience=1)
+        # --- END MODEL PACKAGING ADDITION ---
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
@@ -231,6 +240,18 @@ class Aggregator(NodeComponent):
 
             try:
                 result = self.aggregate(self.__models)
+                
+                # --- START MODEL PACKAGING ADDITION ---
+                if state is not None and hasattr(state, "experiment_logger") and state.experiment_logger is not None:
+                    self.packager.check_and_package(
+                        models=self.__models, 
+                        aggregated_model=result, 
+                        round_num=self.__current_round or 0, 
+                        output_path=state.experiment_logger.output_dir,
+                        node_addr=self.normalize_addr(self.addr)
+                    )
+                # --- END MODEL PACKAGING ADDITION ---
+                
             finally:
                 self.clear()
             return result

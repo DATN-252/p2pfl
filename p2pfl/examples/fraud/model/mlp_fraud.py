@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Refactored efficient MLP model for fraud detection."""
+"""Refactored efficient MLP model for fraud detection with Focal Loss."""
 
 import torch
 import torch.nn as nn
@@ -29,14 +29,51 @@ from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 
 
-class FraudDetectionMLP(LightningModule):
-    """Efficient MLP for fraud detection with BatchNorm and Weighted Loss."""
+def focal_loss(logits, targets, alpha=0.25, gamma=2.0, reduction='mean'):
+    """
+    Binary Focal Loss implementation.
+    
+    Args:
+        logits: [N, 1] - Model output before sigmoid.
+        targets: [N, 1] - Ground truth labels (0 or 1).
+        alpha: Weight for the positive class (0.25 by default).
+        gamma: Focusing parameter to reduce loss for easy examples (2.0 by default).
+        reduction: 'mean', 'sum' or 'none'.
+    """
+    # Calculate binary cross entropy with logits for stability
+    bce_loss = F.binary_cross_entropy_with_logits(logits, targets, reduction='none')
+    
+    # p_t is the probability of the correct class
+    p_t = torch.exp(-bce_loss)
+    
+    # Modulating factor (1 - p_t)^gamma
+    focal_modulation = (1 - p_t) ** gamma
+    
+    # Alpha balancing factor
+    alpha_t = targets * alpha + (1 - targets) * (1 - alpha)
+    
+    # Final Focal Loss
+    loss = alpha_t * focal_modulation * bce_loss
+    
+    if reduction == 'mean':
+        return loss.mean()
+    elif reduction == 'sum':
+        return loss.sum()
+    else:
+        return loss
 
-    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+
+class FraudDetectionMLP(LightningModule):
+    """Efficient MLP for fraud detection with BatchNorm and Focal Loss."""
+
+    def __init__(self, input_size: int = 12, hidden_size: int = 256, 
+                 learning_rate: float = 0.001, alpha: float = 0.25, gamma: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
         self.learning_rate = learning_rate
+        self.alpha = alpha
+        self.gamma = gamma
 
         # Using LayerNorm instead of BatchNorm for better stability with imbalanced classes
         self.model = nn.Sequential(
@@ -56,7 +93,6 @@ class FraudDetectionMLP(LightningModule):
 
             nn.Linear(64, 1)
         )
-        self.register_buffer("pos_weight_tensor", torch.tensor([pos_weight]))
 
         # Metrics
         self.accuracy = Accuracy(task="binary")
@@ -68,12 +104,12 @@ class FraudDetectionMLP(LightningModule):
         return self.model(x)
 
     def training_step(self, batch, batch_idx):
-        """Training step with weighted loss."""
+        """Training step with Focal Loss."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = focal_loss(y_hat_logits, y, alpha=self.alpha, gamma=self.gamma)
         
         self.log("train_loss", loss, prog_bar=True)
         return loss
@@ -84,7 +120,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = focal_loss(y_hat_logits, y, alpha=self.alpha, gamma=self.gamma)
         self.log("val_loss", loss, prog_bar=True)
 
     def test_step(self, batch, batch_idx):
@@ -93,7 +129,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = focal_loss(y_hat_logits, y, alpha=self.alpha, gamma=self.gamma)
         y_hat_probs = torch.sigmoid(y_hat_logits)
         
         self.log("test_loss", loss, prog_bar=True)

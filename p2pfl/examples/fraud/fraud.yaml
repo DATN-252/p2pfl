@@ -2,7 +2,7 @@ description: "Fraud Detection using P2PFL with custom CSV dataset"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 5
+  nodes: 50
   topology: "ring" # Benchmark with 50 nodes
   additional_connections: []
 experiment:

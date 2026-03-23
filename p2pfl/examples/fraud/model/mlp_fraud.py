@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Refactored efficient MLP model for fraud detection."""
+"""Refactored efficient MLP model for fraud detection with Tversky Loss."""
 
 import torch
 import torch.nn as nn
@@ -29,14 +29,45 @@ from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 
 
-class FraudDetectionMLP(LightningModule):
-    """Efficient MLP for fraud detection with BatchNorm and Weighted Loss."""
+def tversky_loss(logits, targets, alpha=0.3, beta=0.7, smooth=1e-6):
+    """
+    Tversky Loss implementation for Binary Classification.
+    
+    Args:
+        logits: [N, 1] - Model output before sigmoid.
+        targets: [N, 1] - Ground truth labels (0 or 1).
+        alpha: Penalty for False Positives.
+        beta: Penalty for False Negatives (higher beta increases Recall).
+        smooth: Smoothing constant to avoid division by zero.
+    """
+    probs = torch.sigmoid(logits)
+    
+    # Flatten tensors
+    probs = probs.view(-1)
+    targets = targets.view(-1)
+    
+    # Calculate components
+    tp = (probs * targets).sum()
+    fp = (probs * (1 - targets)).sum()
+    fn = ((1 - probs) * targets).sum()
+    
+    # Tversky Index
+    tversky_index = (tp + smooth) / (tp + alpha * fp + beta * fn + smooth)
+    
+    return 1 - tversky_index
 
-    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+
+class FraudDetectionMLP(LightningModule):
+    """Efficient MLP for fraud detection using Tversky Loss to maximize Recall."""
+
+    def __init__(self, input_size: int = 12, hidden_size: int = 256, 
+                 learning_rate: float = 0.001, alpha: float = 0.3, beta: float = 0.7):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
         self.learning_rate = learning_rate
+        self.alpha = alpha
+        self.beta = beta
 
         # Using LayerNorm instead of BatchNorm for better stability with imbalanced classes
         self.model = nn.Sequential(
@@ -56,7 +87,6 @@ class FraudDetectionMLP(LightningModule):
 
             nn.Linear(64, 1)
         )
-        self.register_buffer("pos_weight_tensor", torch.tensor([pos_weight]))
 
         # Metrics
         self.accuracy = Accuracy(task="binary")
@@ -68,12 +98,12 @@ class FraudDetectionMLP(LightningModule):
         return self.model(x)
 
     def training_step(self, batch, batch_idx):
-        """Training step with weighted loss."""
+        """Training step with Tversky Loss."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = tversky_loss(y_hat_logits, y, alpha=self.alpha, beta=self.beta)
         
         self.log("train_loss", loss, prog_bar=True)
         return loss
@@ -84,7 +114,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = tversky_loss(y_hat_logits, y, alpha=self.alpha, beta=self.beta)
         self.log("val_loss", loss, prog_bar=True)
 
     def test_step(self, batch, batch_idx):
@@ -93,7 +123,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = tversky_loss(y_hat_logits, y, alpha=self.alpha, beta=self.beta)
         y_hat_probs = torch.sigmoid(y_hat_logits)
         
         self.log("test_loss", loss, prog_bar=True)

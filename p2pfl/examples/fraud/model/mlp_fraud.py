@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Complete BalanceFL and Peer-to-Peer Distillation implementation for fraud detection."""
+"""Optimized BalanceFL and Peer-to-Peer Distillation for fraud detection."""
 
 import torch
 import torch.nn as nn
@@ -33,7 +33,7 @@ from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 from p2pfl.examples.fraud.model.balance_fl import BalanceFL
 
-# --- Task 2.1: Class Balanced Sampling (Two-Stage Process) ---
+# --- Task 2.1: Class Balanced Sampling ---
 class TwoStageBalancedSampler(Sampler):
     def __init__(self, labels: torch.Tensor):
         self.labels = labels
@@ -54,8 +54,6 @@ class TwoStageBalancedSampler(Sampler):
         return self.total_size
 
 class FraudDetectionMLP(LightningModule):
-    """Refactored MLP supporting BalanceFL and Peer-to-Peer Neighbor Distillation."""
-
     def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, 
                  alpha: float = 1.0, beta: float = 0.05, peer_alpha: float = 0.5, temperature: float = 2.0):
         super().__init__()
@@ -63,10 +61,9 @@ class FraudDetectionMLP(LightningModule):
         self.save_hyperparameters()
         self.learning_rate = learning_rate
         
-        # BalanceFL & Peer KD Hyperparameters
-        self.alpha = alpha        # Weight for Global KD (absent classes)
-        self.beta = beta          # Weight for Smooth Regularization
-        self.peer_alpha = peer_alpha # Weight for Neighbor Distillation
+        self.alpha = alpha        
+        self.beta = beta          
+        self.peer_alpha = peer_alpha 
         self.temperature = temperature
         
         self.feature_extractor = nn.Sequential(
@@ -84,9 +81,7 @@ class FraudDetectionMLP(LightningModule):
         )
         self.classifier = nn.Linear(64, 1)
 
-        # Global Model Container
         self.teacher_model_container = [None]
-        # Peer Models Container (Neighbors)
         self.neighbor_teachers = [] 
         
         self.absent_classes = []
@@ -97,12 +92,19 @@ class FraudDetectionMLP(LightningModule):
         self.p_aug_dict: Dict[int, float] = {}
 
     def on_train_start(self):
-        """Pre-prepare the global consensus teacher."""
+        # 1. Global Teacher
         teacher = copy.deepcopy(self)
         teacher.eval()
         for param in teacher.parameters():
             param.requires_grad = False
         self.teacher_model_container[0] = teacher
+
+        # 2. Peer Teachers - Move to device ONCE at start of round
+        for neighbor in self.neighbor_teachers:
+            neighbor.to(self.device)
+            neighbor.eval()
+            for param in neighbor.parameters():
+                param.requires_grad = False
 
     def forward(self, x: Optional[torch.Tensor], perturbed_h: Optional[torch.Tensor] = None) -> torch.Tensor:
         if perturbed_h is not None:
@@ -114,13 +116,14 @@ class FraudDetectionMLP(LightningModule):
 
     def training_step(self, batch, batch_idx):
         x = batch["features"]
-        y_logits_target = batch["label"].float().unsqueeze(1)
+        # Sử dụng 'label' thay vì 'is_fraud' vì transform trả về 'label'
+        y_target = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         y_labels = batch["label"].long().squeeze()
         
         h = self.feature_extractor(x)
         z_local = self.classifier(h)
         
-        # --- 1. Feature Augmentation (BalanceFL) ---
+        # --- 1. BalanceFL: Feature Augmentation ---
         sigma = BalanceFL.calculate_global_covariance(h, y_labels)
         if not self.p_aug_dict:
             self.p_aug_dict = BalanceFL.calculate_max_imbalance_probabilities(y_labels)
@@ -139,10 +142,10 @@ class FraudDetectionMLP(LightningModule):
                 z_aug = self.classifier(h_augmented)
             except: pass
 
-        # --- 2. Standard Classification Loss ---
-        loss_ce = F.binary_cross_entropy_with_logits(z_aug, y_logits_target)
+        # --- 2. Losses ---
+        loss_ce = F.binary_cross_entropy_with_logits(z_aug, y_target)
 
-        # --- 3. Global Knowledge Inheritance (BalanceFL L_KD) ---
+        # Global KD
         loss_global_kd = torch.tensor(0.0, device=self.device)
         global_teacher = self.teacher_model_container[0]
         if global_teacher is not None and self.absent_classes:
@@ -156,66 +159,47 @@ class FraudDetectionMLP(LightningModule):
             for c in self.absent_classes:
                 loss_global_kd += kl[:, c].mean()
 
-        # --- 4. Peer-to-Peer Distillation (Neighbor Distillation) ---
+        # Peer KD (Neighbor Distillation) - Optimized (no .to(device) here)
         loss_peer_kd = torch.tensor(0.0, device=self.device)
         if self.neighbor_teachers:
-            neighbor_logits_list = []
             with torch.no_grad():
-                for neighbor in self.neighbor_teachers:
-                    neighbor.to(self.device)
-                    neighbor_logits_list.append(neighbor(x))
-            
-            # Ensemble neighbors (Tri thức tập thể của hàng xóm)
-            z_neighbors_ensemble = torch.mean(torch.stack(neighbor_logits_list), dim=0)
+                neighbor_logits = [neighbor(x) for neighbor in self.neighbor_teachers]
+                z_neighbors_ensemble = torch.mean(torch.stack(neighbor_logits), dim=0)
             
             p_peer = torch.sigmoid(z_neighbors_ensemble / self.temperature)
             p_local = torch.sigmoid(z_local / self.temperature)
             dist_peer = torch.stack([1 - p_peer, p_peer], dim=1).squeeze()
             dist_local = torch.stack([1 - p_local, p_local], dim=1).squeeze()
-            
-            # Chưng cất từ tất cả các lớp của hàng xóm (không chỉ lớp bị thiếu)
             loss_peer_kd = F.kl_div(dist_local.log(), dist_peer, reduction='batchmean')
 
-        # --- 5. Smooth Regularization ---
-        p_softmax = torch.sigmoid(z_aug)
-        dist_s = torch.stack([1 - p_softmax, p_softmax], dim=1).squeeze()
+        # Smooth Regularization
+        p_s = torch.sigmoid(z_aug)
+        dist_s = torch.stack([1 - p_s, p_s], dim=1).squeeze()
         loss_reg = (dist_s * torch.log(dist_s + 1e-9)).sum(dim=1).mean()
 
-        # --- Total Objective ---
         loss_total = loss_ce + (self.alpha * loss_global_kd) + (self.beta * loss_reg) + (self.peer_alpha * loss_peer_kd)
         
         self.log("train_loss", loss_total, prog_bar=True)
-        self.log("l_peer_kd", loss_peer_kd)
         return loss_total
 
     def validation_step(self, batch, batch_idx):
-        """Validation step with full metrics."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1)
-
-        y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y)
-        y_hat_probs = torch.sigmoid(y_hat_logits)
-
+        y_hat = self(x)
+        loss = F.binary_cross_entropy_with_logits(y_hat, y)
+        probs = torch.sigmoid(y_hat)
         self.log("val_loss", loss, prog_bar=True)
-        self.log("val_accuracy", self.accuracy(y_hat_probs, y))
-        self.log("val_precision", self.precision(y_hat_probs, y))
-        self.log("val_recall", self.recall(y_hat_probs, y))
-        self.log("val_f1", self.f1(y_hat_probs, y))
+        self.log("val_f1", self.f1(probs, y))
 
     def test_step(self, batch, batch_idx):
-        """Test step with full metrics logging."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1)
-
-        y_hat_logits = self(x)
-        y_hat_probs = torch.sigmoid(y_hat_logits)
-
-        self.log("test_accuracy", self.accuracy(y_hat_probs, y), prog_bar=True)
-        self.log("test_precision", self.precision(y_hat_probs, y), prog_bar=True)
-        self.log("test_recall", self.recall(y_hat_probs, y), prog_bar=True)
-        self.log("test_f1", self.f1(y_hat_probs, y), prog_bar=True)
-
+        y_hat = self(x)
+        probs = torch.sigmoid(y_hat)
+        self.log("test_accuracy", self.accuracy(probs, y), prog_bar=True)
+        self.log("test_precision", self.precision(probs, y), prog_bar=True)
+        self.log("test_recall", self.recall(probs, y), prog_bar=True)
+        self.log("test_f1", self.f1(probs, y), prog_bar=True)
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=self.learning_rate)

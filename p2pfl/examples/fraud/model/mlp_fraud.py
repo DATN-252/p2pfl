@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Refactored efficient MLP model for fraud detection with Focal Loss."""
+"""Refactored efficient MLP model for fraud detection with High-Alpha Focal Loss."""
 
 import torch
 import torch.nn as nn
@@ -29,14 +29,14 @@ from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 
 
-def focal_loss(logits, targets, alpha=0.25, gamma=2.0, reduction='mean'):
+def focal_loss(logits, targets, alpha=0.95, gamma=2.0, reduction='mean'):
     """
-    Binary Focal Loss implementation.
+    Standard Focal Loss with Extreme Class Balancing to maximize Recall.
     
     Args:
         logits: [N, 1] - Model output before sigmoid.
         targets: [N, 1] - Ground truth labels (0 or 1).
-        alpha: Weight for the positive class (0.25 by default).
+        alpha: Weight for the positive class (Set to 0.95 to heavily favor Fraud).
         gamma: Focusing parameter to reduce loss for easy examples (2.0 by default).
         reduction: 'mean', 'sum' or 'none'.
     """
@@ -49,7 +49,7 @@ def focal_loss(logits, targets, alpha=0.25, gamma=2.0, reduction='mean'):
     # Modulating factor (1 - p_t)^gamma
     focal_modulation = (1 - p_t) ** gamma
     
-    # Alpha balancing factor
+    # Alpha balancing factor: 0.95 for targets=1, 0.05 for targets=0
     alpha_t = targets * alpha + (1 - targets) * (1 - alpha)
     
     # Final Focal Loss
@@ -64,10 +64,10 @@ def focal_loss(logits, targets, alpha=0.25, gamma=2.0, reduction='mean'):
 
 
 class FraudDetectionMLP(LightningModule):
-    """Efficient MLP for fraud detection with BatchNorm and Focal Loss."""
+    """Efficient MLP for fraud detection with Extreme Alpha-Balanced Focal Loss."""
 
     def __init__(self, input_size: int = 12, hidden_size: int = 256, 
-                 learning_rate: float = 0.001, alpha: float = 0.25, gamma: float = 2.0):
+                 learning_rate: float = 0.001, alpha: float = 0.95, gamma: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -104,7 +104,7 @@ class FraudDetectionMLP(LightningModule):
         return self.model(x)
 
     def training_step(self, batch, batch_idx):
-        """Training step with Focal Loss."""
+        """Training step with High-Alpha Focal Loss."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         

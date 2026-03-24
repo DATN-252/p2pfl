@@ -31,7 +31,10 @@ experiment:
   model:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
-    params: {}
+    params: 
+      learning_rate: 0.001
+      alpha: 0.95
+      gamma: 2
 
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"

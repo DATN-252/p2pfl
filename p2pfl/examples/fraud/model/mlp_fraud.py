@@ -134,8 +134,8 @@ class FraudDetectionMLP(LightningModule):
     def training_step(self, batch, batch_idx):
         """Implement complete BalanceFL local training objective."""
         x = batch["features"]
-        y_logits_target = batch["is_fraud"].float().unsqueeze(1)
-        y_labels = batch["is_fraud"].long().squeeze()
+        y_logits_target = batch["label"].float().unsqueeze(1)
+        y_labels = batch["label"].long().squeeze()
         
         # 1. Feature Extraction (Local Model)
         h = self.feature_extractor(x)
@@ -217,7 +217,7 @@ class FraudDetectionMLP(LightningModule):
     def validation_step(self, batch, batch_idx):
         """Validation step."""
         x = batch["features"]
-        y = batch["is_fraud"].float().unsqueeze(1)
+        y = batch["label"].float().unsqueeze(1)
         
         y_hat_logits = self(x)
         loss = F.binary_cross_entropy_with_logits(y_hat_logits, y)
@@ -226,7 +226,7 @@ class FraudDetectionMLP(LightningModule):
     def test_step(self, batch, batch_idx):
         """Test step with metrics."""
         x = batch["features"]
-        y = batch["is_fraud"].float().unsqueeze(1)
+        y = batch["label"].float().unsqueeze(1)
         
         y_hat_logits = self(x)
         y_hat_probs = torch.sigmoid(y_hat_logits)

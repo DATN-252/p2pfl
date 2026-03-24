@@ -3,7 +3,7 @@ network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 50
-  topology: "ring" # Benchmark with 50 nodes
+  topology: "custom" # Benchmark with 50 nodes
   additional_connections: []
 experiment:
   name: "fraud_detection_benchmark_50n"
@@ -32,7 +32,8 @@ experiment:
     package: "p2pfl.examples.fraud.model.mlp_fraud"
     model_build_fn: "model_build_fn"
     params:
-      pos_weight: 20.0
+      gamma_pos:  0.0
+      gamma_neg: 4.0
       learning_rate: 0.0001
 
   aggregator:

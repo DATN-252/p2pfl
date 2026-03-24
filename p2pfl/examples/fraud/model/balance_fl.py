@@ -142,3 +142,31 @@ class BalanceFL:
             global_cov /= total_valid_samples
             return global_cov
         return None
+
+    @staticmethod
+    def compute_tversky_loss(logits: torch.Tensor, targets: torch.Tensor, alpha: float = 0.7, beta: float = 0.3, eps: float = 1e-7):
+        """
+        Compute the Tversky Loss for binary classification.
+        Tversky Index = TP / (TP + alpha * FN + beta * FP)
+        Loss = 1 - Tversky Index
+
+        Args:
+            logits: Predicted logits of shape (N, 1) or (N,).
+            targets: Ground truth labels of shape (N, 1) or (N,).
+            alpha: Penalty for False Positives (FP). Default is 0.3.
+            beta: Penalty for False Negatives (FN). Default is 0.7.
+            eps: Small epsilon for numerical stability.
+
+        Returns:
+            torch.Tensor: The Tversky loss value.
+        """
+        probs = torch.sigmoid(logits).view(-1)
+        targets = targets.float().view(-1)
+
+        true_pos = (probs * targets).sum()
+        false_neg = ((1 - probs) * targets).sum()
+        false_pos = (probs * (1 - targets)).sum()
+
+        tversky_index = (true_pos + eps) / (true_pos + alpha * false_pos + beta * false_neg + eps)
+
+        return 1 - tversky_index

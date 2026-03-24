@@ -2,7 +2,7 @@ description: "Fraud Detection using P2PFL with custom CSV dataset"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 50
+  nodes: 2
   topology: "custom" # Benchmark with 50 nodes
   additional_connections: []
 experiment:
@@ -33,6 +33,8 @@ experiment:
     model_build_fn: "model_build_fn"
     params:
       learning_rate: 0.001
+      tversky_alpha: 0.1
+      tversky_beta: 0.9
 
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"

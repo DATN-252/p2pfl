@@ -57,7 +57,8 @@ class FraudDetectionMLP(LightningModule):
     """Refactored MLP supporting BalanceFL and Peer-to-Peer Neighbor Distillation."""
 
     def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, 
-                 alpha: float = 1.0, beta: float = 0.05, peer_alpha: float = 0.5, temperature: float = 2.0):
+                 alpha: float = 1.0, beta: float = 0.05, peer_alpha: float = 0.5, temperature: float = 2.0,
+                 tversky_alpha: float = 0.7, tversky_beta: float = 0.3):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -68,6 +69,10 @@ class FraudDetectionMLP(LightningModule):
         self.beta = beta          # Weight for Smooth Regularization
         self.peer_alpha = peer_alpha # Weight for Neighbor Distillation
         self.temperature = temperature
+        
+        # Tversky Loss Hyperparameters
+        self.tversky_alpha = tversky_alpha
+        self.tversky_beta = tversky_beta
         
         self.feature_extractor = nn.Sequential(
             nn.Linear(input_size, hidden_size),
@@ -139,8 +144,13 @@ class FraudDetectionMLP(LightningModule):
                 z_aug = self.classifier(h_augmented)
             except: pass
 
-        # --- 2. Standard Classification Loss ---
-        loss_ce = F.binary_cross_entropy_with_logits(z_aug, y_logits_target)
+        # --- 2. Tversky Classification Loss (instead of BCE + summations) ---
+        loss_tversky = BalanceFL.compute_tversky_loss(
+            z_aug, 
+            y_logits_target, 
+            alpha=self.tversky_alpha, 
+            beta=self.tversky_beta
+        )
 
         # --- 3. Global Knowledge Inheritance (BalanceFL L_KD) ---
         loss_global_kd = torch.tensor(0.0, device=self.device)
@@ -182,10 +192,15 @@ class FraudDetectionMLP(LightningModule):
         loss_reg = (dist_s * torch.log(dist_s + 1e-9)).sum(dim=1).mean()
 
         # --- Total Objective ---
-        loss_total = loss_ce + (self.alpha * loss_global_kd) + (self.beta * loss_reg) + (self.peer_alpha * loss_peer_kd)
+        # As requested: replace adding losses with Tversky Loss
+        # We use Tversky Loss as the primary objective which naturally handles imbalance
+        loss_total = loss_tversky 
         
         self.log("train_loss", loss_total, prog_bar=True)
+        self.log("l_tversky", loss_tversky)
+        self.log("l_global_kd", loss_global_kd)
         self.log("l_peer_kd", loss_peer_kd)
+        self.log("l_reg", loss_reg)
         return loss_total
 
     def validation_step(self, batch, batch_idx):
@@ -194,7 +209,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1)
 
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y)
+        loss = BalanceFL.compute_tversky_loss(y_hat_logits, y, alpha=self.tversky_alpha, beta=self.tversky_beta)
         y_hat_probs = torch.sigmoid(y_hat_logits)
 
         self.log("val_loss", loss, prog_bar=True)

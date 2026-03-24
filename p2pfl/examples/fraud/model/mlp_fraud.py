@@ -30,9 +30,10 @@ from p2pfl.utils.seed import set_seed
 
 
 class FraudDetectionMLP(LightningModule):
-    """Efficient MLP for fraud detection with BatchNorm and Weighted Loss."""
+    """Efficient MLP for fraud detection with Asymmetric Focal Loss."""
 
-    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, 
+                 pos_weight: float = 1.0, gamma_pos: float = 0.0, gamma_neg: float = 3.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -64,16 +65,35 @@ class FraudDetectionMLP(LightningModule):
         self.recall = Recall(task="binary")
         self.f1 = F1Score(task="binary")
 
+        self.gamma_pos = gamma_pos
+        self.gamma_neg = gamma_neg
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
 
+    def _compute_loss(self, y_hat_logits, y):
+        """
+        Asymmetric Focal Loss:
+        - gamma_pos (0.0): Keeps Fraud loss stable (equivalent to Cross-Entropy).
+        - gamma_neg (3.0): Heavily penalizes easy normal cases to focus on fraud.
+        """
+        probs = torch.sigmoid(y_hat_logits)
+        log_probs = F.logsigmoid(y_hat_logits)
+        log_1_minus_probs = F.logsigmoid(-y_hat_logits)
+
+        # loss = - [pos_weight * y * (1-p)^gamma_pos * log(p) + (1-y) * p^gamma_neg * log(1-p)]
+        loss_pos = - self.pos_weight_tensor * y * (1 - probs)**self.gamma_pos * log_probs
+        loss_neg = - (1 - y) * probs**self.gamma_neg * log_1_minus_probs
+        
+        return (loss_pos + loss_neg).mean()
+
     def training_step(self, batch, batch_idx):
-        """Training step with weighted loss."""
+        """Training step with asymmetric focal loss."""
         x = batch["features"]
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = self._compute_loss(y_hat_logits, y)
         
         self.log("train_loss", loss, prog_bar=True)
         return loss
@@ -84,7 +104,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = self._compute_loss(y_hat_logits, y)
         self.log("val_loss", loss, prog_bar=True)
 
     def test_step(self, batch, batch_idx):
@@ -93,7 +113,7 @@ class FraudDetectionMLP(LightningModule):
         y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = self._compute_loss(y_hat_logits, y)
         y_hat_probs = torch.sigmoid(y_hat_logits)
         
         self.log("test_loss", loss, prog_bar=True)

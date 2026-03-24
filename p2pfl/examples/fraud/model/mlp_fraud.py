@@ -16,13 +16,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Refactored efficient MLP model for fraud detection with BalanceFL techniques."""
+"""Complete BalanceFL implementation for fraud detection based on IPSN'22 paper."""
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import random
-from typing import Dict, Optional
+import copy
+from typing import Dict, Optional, List
 from torch.utils.data import Sampler
 from lightning import LightningModule
 from torchmetrics import Precision, Recall, F1Score, Accuracy
@@ -32,7 +33,7 @@ from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 from p2pfl.examples.fraud.model.balance_fl import BalanceFL
 
-# Task 1: Implement Class Balanced Sampling (Two-Stage Process)
+# --- Task 2.1: Class Balanced Sampling (Two-Stage Process) ---
 class TwoStageBalancedSampler(Sampler):
     """
     Two-stage balanced sampler for long-tail distributions.
@@ -46,7 +47,6 @@ class TwoStageBalancedSampler(Sampler):
             int(c): torch.where(labels == c)[0] 
             for c in self.classes
         }
-        # align with the majority class
         self.max_samples = max(len(idx) for idx in self.class_indices.values())
         self.total_size = self.max_samples * len(self.classes)
 
@@ -64,15 +64,21 @@ class TwoStageBalancedSampler(Sampler):
         return self.total_size
 
 class FraudDetectionMLP(LightningModule):
-    """Refactored MLP for fraud detection with Feature-Level Data Augmentation."""
+    """Refactored MLP for fraud detection implementing all BalanceFL techniques (IPSN'22)."""
 
-    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, pos_weight: float = 1.0):
+    def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, 
+                 alpha: float = 1.0, beta: float = 0.05, temperature: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
         self.learning_rate = learning_rate
-
-        # Task 2: Refactor into feature_extractor and classifier
+        
+        # BalanceFL Hyperparameters
+        self.alpha = alpha  # Weight for L_KD
+        self.beta = beta    # Weight for L_reg
+        self.temperature = temperature
+        
+        # Task 2: Refactor architecture into feature_extractor and classifier
         self.feature_extractor = nn.Sequential(
             nn.Linear(input_size, hidden_size),
             nn.LayerNorm(hidden_size),
@@ -91,16 +97,28 @@ class FraudDetectionMLP(LightningModule):
         
         self.classifier = nn.Linear(64, 1)
 
-        self.register_buffer("pos_weight_tensor", torch.tensor([pos_weight]))
+        # Global Model (Teacher) for Knowledge Inheritance
+        self.teacher_model = None
+        self.absent_classes = []
         
-        # Store augmentation probabilities
-        self.p_aug_dict: Dict[int, float] = {}
-
         # Metrics
         self.accuracy = Accuracy(task="binary")
         self.precision = Precision(task="binary")
         self.recall = Recall(task="binary")
         self.f1 = F1Score(task="binary")
+        
+        # Store augmentation probabilities
+        self.p_aug_dict: Dict[int, float] = {}
+
+    def on_train_start(self):
+        """
+        At the start of each local training round, the current model (received from server)
+        is deep-copied to serve as the 'Global Model' (Teacher) for Knowledge Inheritance.
+        """
+        self.teacher_model = copy.deepcopy(self)
+        self.teacher_model.eval()
+        for param in self.teacher_model.parameters():
+            param.requires_grad = False
 
     def forward(self, x: Optional[torch.Tensor], perturbed_h: Optional[torch.Tensor] = None) -> torch.Tensor:
         """Forward pass with optional feature injection."""
@@ -114,26 +132,30 @@ class FraudDetectionMLP(LightningModule):
         raise ValueError("Either x or perturbed_h must be provided.")
 
     def training_step(self, batch, batch_idx):
-        """Task 3: Implement Feature-Level Data Augmentation in the Training Loop."""
+        """Implement complete BalanceFL local training objective."""
         x = batch["features"]
-        y_logits_target = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
-        y_labels = batch["label"].long().squeeze()
+        y_logits_target = batch["is_fraud"].float().unsqueeze(1)
+        y_labels = batch["is_fraud"].long().squeeze()
         
-        # Step C: Forward pass - Get original features h
+        # 1. Feature Extraction (Local Model)
         h = self.feature_extractor(x)
+        z_local = self.classifier(h)
         
-        # Step A: Calculate overall covariance matrix (Sigma) of the feature vectors
+        # --- Task 2.2: Feature-Level Data Augmentation ---
+        # Step 1: Calculate Global Covariance Matrix
         sigma = BalanceFL.calculate_global_covariance(h, y_labels)
         
-        # Step B: Calculate class-specific augmentation probability p_aug
+        # Step 2: Calculate Augmentation Probabilities (Once per Node round)
         if not self.p_aug_dict:
-            # Note: In practice, this should be pre-calculated from global labels if possible.
-            # Here we demonstrate the logic using batch labels as a fallback.
             self.p_aug_dict = BalanceFL.calculate_max_imbalance_probabilities(y_labels)
+            # Identify absent classes for KD
+            all_classes = [0, 1]
+            present_classes = torch.unique(y_labels).tolist()
+            self.absent_classes = [c for c in all_classes if c not in present_classes]
 
-        # Step C: Apply noise injection based on p_aug and Multivariate Gaussian N(0, Sigma)
+        # Step 3: Noise Injection (L_CE is calculated on augmented features)
+        z_aug = z_local
         if sigma is not None:
-            # Regularize Sigma for stability
             sigma += torch.eye(sigma.size(0), device=self.device) * 1e-6
             try:
                 dist = torch.distributions.MultivariateNormal(
@@ -150,38 +172,66 @@ class FraudDetectionMLP(LightningModule):
                         epsilon = dist.sample()
                         h_augmented[i] = h[i] + epsilon
                 
-                y_hat_logits = self.classifier(h_augmented)
+                z_aug = self.classifier(h_augmented)
             except Exception:
-                y_hat_logits = self.classifier(h)
-        else:
-            y_hat_logits = self.classifier(h)
-
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y_logits_target, pos_weight=self.pos_weight_tensor)
+                z_aug = z_local
         
-        self.log("train_loss", loss, prog_bar=True)
-        return loss
+        # --- Total Local Loss (Task 3) ---
+        
+        # 1. Cross-Entropy Loss (L_CE)
+        loss_ce = F.binary_cross_entropy_with_logits(z_aug, y_logits_target)
+
+        # 2. Knowledge Inheritance (L_KD - for absent classes)
+        loss_kd = torch.tensor(0.0, device=self.device)
+        if self.teacher_model is not None and self.absent_classes:
+            with torch.no_grad():
+                z_global = self.teacher_model(x)
+            
+            # Binary version of KL Divergence using sigmoid distributions [1-p, p]
+            p_g = torch.sigmoid(z_global / self.temperature)
+            p_l = torch.sigmoid(z_local / self.temperature)
+            
+            dist_g = torch.stack([1 - p_g, p_g], dim=1).squeeze()
+            dist_l = torch.stack([1 - p_l, p_l], dim=1).squeeze()
+            
+            # Ensure safe log
+            kl = F.kl_div(dist_l.log(), dist_g, reduction='none')
+            for c in self.absent_classes:
+                loss_kd += kl[:, c].mean()
+
+        # 3. Smooth Regularization (L_reg - Negative Entropy)
+        p_aug_softmax = torch.sigmoid(z_aug)
+        dist_aug = torch.stack([1 - p_aug_softmax, p_aug_softmax], dim=1).squeeze()
+        loss_reg = (dist_aug * torch.log(dist_aug + 1e-9)).sum(dim=1).mean()
+
+        # Final Objective: L_total = L_CE + alpha * L_KD + beta * L_reg
+        loss_total = loss_ce + self.alpha * loss_kd + self.beta * loss_reg
+        
+        self.log("train_loss", loss_total, prog_bar=True)
+        self.log("l_ce", loss_ce)
+        self.log("l_kd", loss_kd)
+        self.log("l_reg", loss_reg)
+        
+        return loss_total
 
     def validation_step(self, batch, batch_idx):
-        """Validation step without augmentation."""
+        """Validation step."""
         x = batch["features"]
-        y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
+        y = batch["is_fraud"].float().unsqueeze(1)
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
+        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y)
         self.log("val_loss", loss, prog_bar=True)
 
     def test_step(self, batch, batch_idx):
-        """Test step."""
+        """Test step with metrics."""
         x = batch["features"]
-        y = batch["label"].float().unsqueeze(1) if batch["label"].dim() == 1 else batch["label"].float()
+        y = batch["is_fraud"].float().unsqueeze(1)
         
         y_hat_logits = self(x)
-        loss = F.binary_cross_entropy_with_logits(y_hat_logits, y, pos_weight=self.pos_weight_tensor)
         y_hat_probs = torch.sigmoid(y_hat_logits)
         
-        self.log("test_loss", loss, prog_bar=True)
         self.log("test_accuracy", self.accuracy(y_hat_probs, y), prog_bar=True)
-        self.log("test_precision", self.precision(y_hat_probs, y), prog_bar=True)
         self.log("test_recall", self.recall(y_hat_probs, y), prog_bar=True)
         self.log("test_f1", self.f1(y_hat_probs, y), prog_bar=True)
 
@@ -191,18 +241,8 @@ class FraudDetectionMLP(LightningModule):
 
 
 def model_build_fn(**kwargs) -> LightningModel:
-    """
-    Build function to create the fraud detection model.
-    """
-    # Separate compression from other parameters
+    """Build function for BalanceFL model."""
     compression = kwargs.pop("compression", None)
-
-    # Ensure input_size matches updated transforms (12 features)
-    if "input_size" not in kwargs:
-        kwargs["input_size"] = 12
-
-    # Initialize the core MLP
-    mlp_model = FraudDetectionMLP(**kwargs)
-    
-    # Wrap it in LightningModel and pass compression
+    input_size = kwargs.pop("input_size", 12)
+    mlp_model = FraudDetectionMLP(input_size=input_size, **kwargs)
     return LightningModel(mlp_model, compression=compression)

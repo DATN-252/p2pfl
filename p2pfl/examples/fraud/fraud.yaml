@@ -33,6 +33,9 @@ experiment:
     model_build_fn: "model_build_fn"
     params:
       learning_rate: 0.001
+      beta: 0.1
+      peer_alpha: 0.1
+      temperature: 2.0
 
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"

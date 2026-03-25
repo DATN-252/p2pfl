@@ -22,7 +22,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import random
-import copy
 from typing import Dict, Optional, List
 from torch.utils.data import Sampler
 from lightning import LightningModule
@@ -55,13 +54,12 @@ class TwoStageBalancedSampler(Sampler):
 
 class FraudDetectionMLP(LightningModule):
     def __init__(self, input_size: int = 12, hidden_size: int = 256, learning_rate: float = 0.001, 
-                 alpha: float = 1.0, beta: float = 0.05, peer_alpha: float = 0.5, temperature: float = 2.0):
+                 beta: float = 0.05, peer_alpha: float = 0.5, temperature: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
         self.learning_rate = learning_rate
         
-        self.alpha = alpha        
         self.beta = beta          
         self.peer_alpha = peer_alpha 
         self.temperature = temperature
@@ -81,10 +79,8 @@ class FraudDetectionMLP(LightningModule):
         )
         self.classifier = nn.Linear(64, 1)
 
-        self.teacher_model_container = [None]
         self.neighbor_teachers = [] 
         
-        self.absent_classes = []
         self.accuracy = Accuracy(task="binary")
         self.precision = Precision(task="binary")
         self.recall = Recall(task="binary")
@@ -92,14 +88,7 @@ class FraudDetectionMLP(LightningModule):
         self.p_aug_dict: Dict[int, float] = {}
 
     def on_train_start(self):
-        # 1. Global Teacher
-        teacher = copy.deepcopy(self)
-        teacher.eval()
-        for param in teacher.parameters():
-            param.requires_grad = False
-        self.teacher_model_container[0] = teacher
-
-        # 2. Peer Teachers - Move to device ONCE at start of round
+        # Peer Teachers - Move to device ONCE at start of round
         for neighbor in self.neighbor_teachers:
             neighbor.to(self.device)
             neighbor.eval()
@@ -127,8 +116,6 @@ class FraudDetectionMLP(LightningModule):
         sigma = BalanceFL.calculate_global_covariance(h, y_labels)
         if not self.p_aug_dict:
             self.p_aug_dict = BalanceFL.calculate_max_imbalance_probabilities(y_labels)
-            present_classes = torch.unique(y_labels).tolist()
-            self.absent_classes = [c for c in [0, 1] if c not in present_classes]
 
         z_aug = z_local
         if sigma is not None:
@@ -144,20 +131,6 @@ class FraudDetectionMLP(LightningModule):
 
         # --- 2. Losses ---
         loss_ce = F.binary_cross_entropy_with_logits(z_aug, y_target)
-
-        # Global KD
-        loss_global_kd = torch.tensor(0.0, device=self.device)
-        global_teacher = self.teacher_model_container[0]
-        if global_teacher is not None and self.absent_classes:
-            with torch.no_grad():
-                z_global = global_teacher(x)
-            p_g = torch.sigmoid(z_global / self.temperature)
-            p_l = torch.sigmoid(z_local / self.temperature)
-            dist_g = torch.stack([1 - p_g, p_g], dim=1).squeeze()
-            dist_l = torch.stack([1 - p_l, p_l], dim=1).squeeze()
-            kl = F.kl_div(dist_l.log(), dist_g, reduction='none')
-            for c in self.absent_classes:
-                loss_global_kd += kl[:, c].mean()
 
         # Peer KD (Neighbor Distillation) - Optimized (no .to(device) here)
         loss_peer_kd = torch.tensor(0.0, device=self.device)
@@ -177,7 +150,7 @@ class FraudDetectionMLP(LightningModule):
         dist_s = torch.stack([1 - p_s, p_s], dim=1).squeeze()
         loss_reg = (dist_s * torch.log(dist_s + 1e-9)).sum(dim=1).mean()
 
-        loss_total = loss_ce + (self.alpha * loss_global_kd) + (self.beta * loss_reg) + (self.peer_alpha * loss_peer_kd)
+        loss_total = loss_ce + (self.beta * loss_reg) + (self.peer_alpha * loss_peer_kd)
         
         self.log("train_loss", loss_total, prog_bar=True)
         return loss_total

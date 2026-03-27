@@ -36,16 +36,10 @@ class DFedAdp(Aggregator):
         # --- Setup ---
         # Normalize addresses for robust mapping
         norm_self_addr = self.normalize_addr(self.addr)
-        model_map = {}
-        for m in models:
-            contributors = m.get_contributors()
-            if contributors:
-                norm_contributor = self.normalize_addr(contributors[0])
-                model_map[norm_contributor] = m
+        model_map = {self.normalize_addr(m.get_contributors()[0]): m for m in models if m.get_contributors()}
 
         self_model = model_map.get(norm_self_addr)
         if self_model is None:
-            # Provide more diagnostic info
             available_nodes = list(model_map.keys())
             raise NoModelsToAggregateError(f"Self model ({norm_self_addr}) not found in the aggregation list for DFedAdp. Available: {available_nodes}")
         
@@ -53,83 +47,25 @@ class DFedAdp(Aggregator):
         contributors = list(model_map.keys())
         current_round = self.each_trained_round.get(self.addr, 0)
 
-        def get_delta(m):
-            m_info = self._get_and_validate_model_info(m)
-            return [np.array(d) for d in m_info.get("delta", [np.zeros_like(p) for p in m.get_parameters()])]
-
-        self_delta = get_delta(self_model)
+        self_delta = self._get_delta(self_model)
 
         # --- Initial Round (Round 0) ---
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
             self.prev_local_gradient = [d.copy() for d in self_delta]
-            self_model.gradients_estimate = [d.copy() for d in self_delta]
 
         # --- 3. Calculate Metropolis-Hastings Weights ---
-        my_info = self._get_and_validate_model_info(self_model)
-        my_degree = int(my_info.get("degrees", len(model_map) - 1))
-        
-        neighbor_weights = {}
-        for addr, model in model_map.items():
-            if addr == self.addr:
-                continue
-            neighbor_info = self._get_and_validate_model_info(model)
-            neighbor_degree = int(neighbor_info.get("degrees", len(model_map) - 1))
-            neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
-        
-        metro_weights = neighbor_weights
-        metro_weights[self.addr] = 1.0 - sum(neighbor_weights.values())
+        metro_weights = self._get_metro_weights(model_map, self_model)
 
         # --- 4. Update Tracking Variable V (tracks Average Delta) ---
-        weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
-        
-        # Verify self_delta consistency with current global params
-        if len(self_delta) != len(weighted_v_consensus) or any(s.shape != g.shape for s, g in zip(self_delta, weighted_v_consensus)):
-            self_delta = [np.zeros_like(p) for p in self.global_model_params]
-            self.prev_local_gradient = [np.zeros_like(p) for p in self.global_model_params]
-
-        for addr, m in model_map.items():
-            w_ij = metro_weights.get(addr, 0.0)
-            m_info = self._get_and_validate_model_info(m)
-            v_j_prev = m_info.get("tracking_v")
-            
-            # If neighbor provides stale or incompatible tracking data, fallback to zero (reset)
-            if v_j_prev is None or len(v_j_prev) != len(weighted_v_consensus) or \
-               any(np.array(v).shape != g.shape for v, g in zip(v_j_prev, weighted_v_consensus)):
-                v_j_prev = [np.zeros_like(p) for p in self.global_model_params]
-            
-            weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
-
-        tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]
+        tracking_delta = self._get_tracking_delta(model_map, self_delta)
         self.prev_local_gradient = [d.copy() for d in self_delta]
 
         # --- 5. Calculate Adaptive FedAdp Scores (using Tracking Delta) ---
-        fedadp_scores = {}
-        g_vec = np.concatenate([p.ravel() for p in tracking_delta])
-        g_norm = np.linalg.norm(g_vec)
-
-        for addr, m in model_map.items():
-            m_delta = get_delta(m)
-            l_vec = np.concatenate([p.ravel() for p in m_delta])
-            l_norm = np.linalg.norm(l_vec)
-
-            cos_sim = 1.0 if g_norm == 0 or l_norm == 0 else np.clip(np.dot(g_vec, l_vec) / (g_norm * l_norm), -1.0, 1.0)
-            angle = float(np.arccos(cos_sim))
-
-            prev_angle = self.node_correlation.get(addr, 0.0)
-            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else 0.9 * prev_angle + 0.1 * angle
-            self.node_correlation[addr] = smoothed_angle
-            
-            f_val = self._gompertz_function(smoothed_angle)
-            fedadp_scores[addr] = m.get_num_samples() * math.exp(f_val)
+        fedadp_scores = self._get_fedadp_scores(model_map, tracking_delta, current_round)
 
         # --- 6. Final Update: Weight Consensus using Adaptive Scores ---
-        total_score = sum(fedadp_scores.values())
-        psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
-        
-        unnormalized_mix = {addr: psi[addr] * metro_weights[addr] for addr in model_map}
-        sum_mix = sum(unnormalized_mix.values())
-        final_mixing_weights = {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
+        final_mixing_weights = self._get_final_mixing_weights(model_map, fedadp_scores, metro_weights)
         
         new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():
@@ -146,6 +82,81 @@ class DFedAdp(Aggregator):
             "tracking_v": [v.copy() for v in tracking_delta]
         })
         return result_model
+
+    def _get_delta(self, m: P2PFLModel) -> List[np.ndarray]:
+        m_info = self._get_and_validate_model_info(m)
+        return [np.array(d) for d in m_info.get("delta", [np.zeros_like(p) for p in m.get_parameters()])]
+
+    def _get_metro_weights(self, model_map: Dict[str, P2PFLModel], self_model: P2PFLModel) -> Dict[str, float]:
+        my_info = self._get_and_validate_model_info(self_model)
+        my_degree = int(my_info.get("degrees", len(model_map) - 1))
+        
+        neighbor_weights = {}
+        for addr, model in model_map.items():
+            if addr == self.normalize_addr(self.addr):
+                continue
+            neighbor_info = self._get_and_validate_model_info(model)
+            neighbor_degree = int(neighbor_info.get("degrees", len(model_map) - 1))
+            neighbor_weights[addr] = 1.0 / (1.0 + max(my_degree, neighbor_degree))
+        
+        metro_weights = neighbor_weights
+        metro_weights[self.normalize_addr(self.addr)] = 1.0 - sum(neighbor_weights.values())
+        return metro_weights
+
+    def _get_tracking_delta(self, model_map: Dict[str, P2PFLModel], self_delta: List[np.ndarray]) -> List[np.ndarray]:
+        weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
+        
+        # Verify self_delta consistency
+        if len(self_delta) != len(weighted_v_consensus) or any(s.shape != g.shape for s, g in zip(self_delta, weighted_v_consensus)):
+            self_delta = [np.zeros_like(p) for p in self.global_model_params]
+            self.prev_local_gradient = [np.zeros_like(p) for p in self.global_model_params]
+
+        # Calculate metro weights again or pass them? Let's recalculate for simplicity in this method or pass them.
+        # Actually, it's better to pass metro_weights if we want to be perfectly consistent.
+        # But for tracking_v, it usually uses the same metro weights.
+        metro_weights = self._get_metro_weights(model_map, model_map[self.normalize_addr(self.addr)])
+
+        for addr, m in model_map.items():
+            w_ij = metro_weights.get(addr, 0.0)
+            m_info = self._get_and_validate_model_info(m)
+            v_j_prev = m_info.get("tracking_v")
+            
+            if v_j_prev is None or len(v_j_prev) != len(weighted_v_consensus) or \
+               any(np.array(v).shape != g.shape for v, g in zip(v_j_prev, weighted_v_consensus)):
+                v_j_prev = [np.zeros_like(p) for p in self.global_model_params]
+            
+            weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
+
+        return [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]
+
+    def _get_fedadp_scores(self, model_map: Dict[str, P2PFLModel], tracking_delta: List[np.ndarray], current_round: int) -> Dict[str, float]:
+        fedadp_scores = {}
+        g_vec = np.concatenate([p.ravel() for p in tracking_delta])
+        g_norm = np.linalg.norm(g_vec)
+
+        for addr, m in model_map.items():
+            m_delta = self._get_delta(m)
+            l_vec = np.concatenate([p.ravel() for p in m_delta])
+            l_norm = np.linalg.norm(l_vec)
+
+            cos_sim = 1.0 if g_norm == 0 or l_norm == 0 else np.clip(np.dot(g_vec, l_vec) / (g_norm * l_norm), -1.0, 1.0)
+            angle = float(np.arccos(cos_sim))
+
+            prev_angle = self.node_correlation.get(addr, 0.0)
+            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else 0.9 * prev_angle + 0.1 * angle
+            self.node_correlation[addr] = smoothed_angle
+            
+            f_val = self._gompertz_function(smoothed_angle)
+            fedadp_scores[addr] = m.get_num_samples() * math.exp(f_val)
+        return fedadp_scores
+
+    def _get_final_mixing_weights(self, model_map: Dict[str, P2PFLModel], fedadp_scores: Dict[str, float], metro_weights: Dict[str, float]) -> Dict[str, float]:
+        total_score = sum(fedadp_scores.values())
+        psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
+        
+        unnormalized_mix = {addr: psi[addr] * metro_weights[addr] for addr in model_map}
+        sum_mix = sum(unnormalized_mix.values())
+        return {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
 
     def _gompertz_function(self, angle: float):
         # Non-linear Gompertz mapping function

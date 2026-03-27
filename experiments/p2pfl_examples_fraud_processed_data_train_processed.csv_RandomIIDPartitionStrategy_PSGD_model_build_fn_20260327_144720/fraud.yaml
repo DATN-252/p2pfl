@@ -1,0 +1,62 @@
+description: "Fraud Detection using P2PFL with custom CSV dataset"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 50
+  topology: "custom" # Benchmark with 50 nodes
+  additional_connections: []
+experiment:
+  name: "fraud_detection_benchmark_50n"
+  rounds: 150
+  epochs: 1
+  trainset_size: 10000
+  seed: 666
+  wait_timeout: 36000
+
+  dataset:
+    source: "csv"
+    name:
+      train: "p2pfl/examples/fraud/processed_data/train_processed.csv"
+      test: "p2pfl/examples/fraud/processed_data/test_processed.csv"
+    batch_size: 2048
+    transforms:
+      package: "p2pfl.examples.fraud.transforms"
+      function: "get_processed_fraud_transforms"
+      params: {}
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      params:
+        label_tag: "is_fraud" 
+  model:
+    package: "p2pfl.examples.fraud.model.mlp_fraud"
+    model_build_fn: "model_build_fn"
+    params: 
+      learning_rate: 0.001
+      alpha: 0.95
+      gamma: 0.5
+
+  aggregator:
+    package: "p2pfl.learning.aggregators.psgd"
+    aggregator: "PSGD"
+    params: 
+      lr: 0.01
+
+    # package: "p2pfl.learning.aggregators.dfedadp"
+    # aggregator: "DFedAdp"
+    # params: 
+    #   learning_rate: 0.001
+    #   decay_rate: 0.99
+    #   alpha: 0.5
+
+settings:
+  general:
+    disable_ray: False
+    grpc_timeout: 120
+  heartbeat:
+    timeout: 99999
+    period: 10
+    wait_convergence: 180
+  training:
+    vote_timeout: 120
+    aggregation_timeout: 300

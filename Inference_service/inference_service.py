@@ -143,6 +143,8 @@ async def trigger_reload(req: ReloadRequest, background_tasks: BackgroundTasks):
 
 # --- PREDICTION ENDPOINT ---
 
+from p2pfl.examples.fraud.transforms import fraud_transform, build_behavioral_lookup
+
 @app.post("/predict")
 async def predict(tx: Dict = Body(...)): 
     if model is None:
@@ -151,33 +153,21 @@ async def predict(tx: Dict = Body(...)):
     try:
         async with model_lock:
             with torch.no_grad():
-                dist = haversine(tx['lat'], tx['long'], tx['merch_lat'], tx['merch_long'])
-                age = calculate_age(tx['dob'])
+                example = {k: [v] for k, v in tx.items()}
                 
-                from datetime import datetime
-                try:
-                    dt = datetime.strptime(tx['trans_date_trans_time'], '%Y-%m-%d %H:%M:%S')
-                    hour, day_of_week = float(dt.hour), float(dt.weekday())
-                except:
-                    hour, day_of_week = 0.0, 0.0
-
-                category_idx = float(CATEGORY_MAP.get(tx['category'], 14))
+                build_behavioral_lookup(example)
                 
-                features = [
-                    tx['amt'], tx['lat'], tx['long'], tx['city_pop'], tx['merch_lat'], tx['merch_long'],
-                    dist, hour, day_of_week, category_idx, age, float(tx['unix_time']),
-                    0.0, 1.0, 0.0 # Behaviorals
-                ]
-                
-                input_tensor = torch.tensor([features], dtype=torch.float32)
-                logits = model(input_tensor)
+                transformed = fraud_transform(example)
+                features = torch.stack(transformed["features"])  
+                logits = model(features)
                 probability = torch.sigmoid(logits).item()
-            
+        
         prediction = "FRAUD" if probability > 0.5 else "NORMAL"
         return {
             "fraud_probability": round(probability, 4),
             "prediction": prediction,
             "model_round": current_round
         }
+
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid transaction data: {e}")

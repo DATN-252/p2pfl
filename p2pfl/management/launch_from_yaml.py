@@ -67,7 +67,7 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     # Extract details for folder name
     dataset_name_raw = config.get("experiment", {}).get("dataset", {}).get("name", "unknown_dataset")
     if isinstance(dataset_name_raw, dict):
-        dataset_name_for_folder = "_".join(str(v) for v in dataset_name_raw.values()).replace("/", "_")
+        dataset_name_for_folder = dataset_name_raw["train"].replace("/", "_")
     else:
         dataset_name_for_folder = str(dataset_name_raw).replace("/", "_")
 

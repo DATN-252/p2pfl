@@ -61,7 +61,16 @@ class ExperimentLogger:
                     pass
 
             if not already_in_file:
-                with open(self.log_file_path, 'a') as f:
-                    f.write(json.dumps(log_entry) + '\n')
+                # Ensure directory exists (again, as a safety measure for distributed/parallel runs)
+                os.makedirs(os.path.dirname(self.log_file_path), exist_ok=True)
+                
+                try:
+                    with open(self.log_file_path, 'a') as f:
+                        f.write(json.dumps(log_entry) + '\n')
+                except FileNotFoundError:
+                    # On Windows, path length might be an issue. 
+                    # Try using the long path prefix if needed, but for now just log it.
+                    from p2pfl.management.logger import logger
+                    logger.error(f"ExperimentLogger", f"❌ Failed to write metrics to {self.log_file_path}. Path may be too long.")
             
             self.__recorded_rounds.add(round_num)

@@ -31,6 +31,7 @@ from p2pfl.management.logger import logger
 from p2pfl.node_state import NodeState
 from p2pfl.stages.stage import EarlyStopException, Stage, check_early_stop
 from p2pfl.stages.stage_factory import StageFactory
+from p2pfl.learning.aggregators.qdfedavgm import QDFedAvgMAggregator
 
 
 class TrainStage(Stage):
@@ -84,12 +85,17 @@ class TrainStage(Stage):
             
             # Use force_add_local_model instead of add_model for the local node
             logger.info(state.addr, "🛠️ Calling force_add_local_model...")
+
             aggregator.force_add_local_model(current_model)
 
             import time
             time.sleep(5) # wait for continuous voting
 
-            TrainStage.__send_model_direct(state, communication_protocol, current_model)
+            if aggregator is QDFedAvgMAggregator:
+                pre_model = aggregator.preprocess_local_model(current_model)
+            else:
+                pre_model = current_model
+            TrainStage.__send_model_direct(state, communication_protocol, pre_model)
             check_early_stop(state)
             
             # Set aggregated model

@@ -62,6 +62,13 @@ class Aggregator(NodeComponent):
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
 
+    def preprocess_local_model(self, model: P2PFLModel) -> P2PFLModel:
+        """
+        Preprocess the local model before broadcasting and adding to the aggregator.
+        Default implementation returns the model as is.
+        """
+        return model
+
     def get_comm_cost(self) -> int:
         """Get the communication cost for the current round."""
         return self.__comm_cost

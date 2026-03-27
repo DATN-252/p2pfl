@@ -96,6 +96,12 @@ class QDFedAvgMAggregator(Aggregator):
 
         # 2. Update State: x^{t+1} = x^t + Σ w_il * q^t(l)
         # Note: In our implementation, the received 'params' ARE already q^t(l)
+        if not self.is_initialized or len(self.x_state) == 0:
+            self.x_state = [p.copy() for p in self_model.get_parameters()]
+            self.is_initialized = True
+
+        sum_wq = [np.zeros_like(p) for p in self.x_state]
+
         sum_wq = [np.zeros_like(p) for p in self.x_state]
         for addr, m in model_map.items():
             w_il = weights.get(addr, 0.0)

@@ -35,6 +35,7 @@ from p2pfl.node import Node
 from p2pfl.settings import Settings
 from p2pfl.utils.topologies import TopologyFactory
 from p2pfl.utils.utils import wait_convergence, wait_to_finish
+from p2pfl.utils.monitor import Monitor # NEW IMPORT
 
 
 def load_by_package_and_name(package_name, class_name) -> Any:
@@ -324,7 +325,13 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
             logger.info(None, f"🚀 Created {i}/{n} nodes, waiting {delay:.2f}s for CPU to breathe...")
         time.sleep(min(delay, 5.0))
 
+    monitor = None
     try:
+        # --- Start System Monitor ---
+        monitor = Monitor(interval=2.0)
+        monitor.start()
+        # --- End Start System Monitor ---
+        
         # Connect nodes
         topology = network_config.get("topology")
         # Additional connections
@@ -383,6 +390,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     except Exception as e:
         raise e
     finally:
+        # Stop System Monitor
+        if monitor:
+            monitor.stop()
+            monitor.join()
+            monitor.save_metrics(os.path.join(experiment_folder_path, "system_metrics.json"))
+        
         # Stop Nodes
         for node in nodes:
             node.stop()

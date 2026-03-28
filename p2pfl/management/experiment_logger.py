@@ -2,6 +2,7 @@ import os
 import json
 import threading
 from typing import Dict, Any
+from p2pfl.utils.monitor import Monitor # NEW IMPORT
 
 class ExperimentLogger:
     """
@@ -39,6 +40,14 @@ class ExperimentLogger:
                 clean_key = str(k).replace('\n', '').strip()
                 clean_val = v.strip().replace('\n', '') if isinstance(v, str) else v
                 clean_metrics[clean_key] = clean_val
+            
+            # --- Include system usage in metrics ---
+            system_usage = Monitor.get_current_usage()
+            clean_metrics["system_cpu_usage"] = system_usage["cpu_percent"]
+            clean_metrics["system_ram_usage"] = system_usage["ram_percent"]
+            if system_usage["gpu_percent"] is not None:
+                clean_metrics["system_gpu_usage"] = system_usage["gpu_percent"]
+            # --- End Include system usage ---
 
             log_entry = {
                 "round": round_num,

@@ -1,0 +1,9 @@
+{
+    "execution_time_seconds": 5761.949846744537,
+    "average_cpu_usage_percent": 76.9832400279912,
+    "average_ram_usage_percent": 66.86504548635413,
+    "average_gpu_usage_percent": null,
+    "peak_cpu_usage_percent": 100.0,
+    "peak_ram_usage_percent": 93.0,
+    "peak_gpu_usage_percent": null
+}

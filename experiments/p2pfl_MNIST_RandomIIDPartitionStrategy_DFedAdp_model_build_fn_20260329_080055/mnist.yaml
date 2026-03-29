@@ -15,7 +15,7 @@ network:
   topology: "custom"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
   additional_connections: []
 
-# Defines experimsettings
+# Defines experiment settings
 experiment:
   name: "my_experiment"
   rounds: 100

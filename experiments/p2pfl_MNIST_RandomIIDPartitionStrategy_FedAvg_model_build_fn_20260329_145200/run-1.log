@@ -1,0 +1,589 @@
+[ 2026-03-29 15:25:42 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_6 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_5 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_5 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_6 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_7 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_6 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_7 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_8 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_7 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_8 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_9 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_8 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_9 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_10 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_9 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_10 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_10 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_11 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_11 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_12 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_11 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_13 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_12 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_12 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_13 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_13 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_14 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_15 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_14 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_15 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_14 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_15 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_16 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_16 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_16 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:42 | node_17 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_17 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:42 | node_18 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:42 | node_17 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_18 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_19 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_18 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_19 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_20 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_19 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_20 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_21 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_20 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_21 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_22 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_21 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_22 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_23 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_22 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_23 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_24 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_23 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_24 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_25 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_24 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_26 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_25 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_25 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_27 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_28 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_27 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_27 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_26 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_28 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_26 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_28 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_29 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_29 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_29 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_30 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_30 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_31 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_30 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_32 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_31 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_31 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_32 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_33 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:43 | node_32 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:43 | node_33 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:43 | node_34 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_33 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_35 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_34 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_34 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_35 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_36 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_35 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_36 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_37 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_36 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_37 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_38 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_37 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_39 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_38 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_38 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_39 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_39 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_40 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_40 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_40 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_41 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_41 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_42 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_41 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_43 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_42 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_42 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_43 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_44 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_43 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_44 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_44 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_45 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_45 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_46 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_45 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_46 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_47 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_46 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:44 | node_47 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:44 | node_48 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:44 | node_47 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:45 | node_48 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:45 | node_49 | INFO ] 🧩 Model added for round 99 (2/2) from ['node']
+[ 2026-03-29 15:25:45 | node_48 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:45 | node_49 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:45 | node_49 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:45 | node | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24185506999492645, 'test_acc': 0.9700000286102295, 'test_precision': 0.970737099647522, 'test_recall': 0.9649192690849304, 'test_f1': 0.9672022461891174, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.32048389315605164, 'test_acc': 0.9700000286102295, 'test_precision': 0.9665924906730652, 'test_recall': 0.9718447327613831, 'test_f1': 0.9685314297676086, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_3 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.12188435345888138, 'test_acc': 0.9800000190734863, 'test_precision': 0.9804220795631409, 'test_recall': 0.9794616103172302, 'test_f1': 0.9794226884841919, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_21 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3040754795074463, 'test_acc': 0.9750000238418579, 'test_precision': 0.9725824594497681, 'test_recall': 0.976082444190979, 'test_f1': 0.9740682244300842, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_22 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-03-29 15:25:45 | node | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.33280041813850403, 'test_acc': 0.9700000286102295, 'test_precision': 0.9659121632575989, 'test_recall': 0.9702063798904419, 'test_f1': 0.9672229290008545, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.125646710395813, 'test_acc': 0.9700000286102295, 'test_precision': 0.9711806774139404, 'test_recall': 0.9735103845596313, 'test_f1': 0.9720150828361511, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_6 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_25 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22721700370311737, 'test_acc': 0.9750000238418579, 'test_precision': 0.9777733683586121, 'test_recall': 0.9743726849555969, 'test_f1': 0.975343644618988, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_25 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_6 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_5 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_38 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.15947455167770386, 'test_acc': 0.9850000143051147, 'test_precision': 0.9853073954582214, 'test_recall': 0.9862381815910339, 'test_f1': 0.9854047894477844, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_5 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_41 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_23 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_41 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19634909927845, 'test_acc': 0.9800000190734863, 'test_precision': 0.9804834127426147, 'test_recall': 0.981606125831604, 'test_f1': 0.9805142283439636, 'communication_cost': 46110666}
+[ 2026-03-29 15:25:45 | node_42 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_42 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.14617706835269928, 'test_acc': 0.9850000143051147, 'test_precision': 0.9823015332221985, 'test_recall': 0.9830158948898315, 'test_f1': 0.9822893738746643, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_7 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_39 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_27 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_6 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3333224356174469, 'test_acc': 0.9649999737739563, 'test_precision': 0.9616091251373291, 'test_recall': 0.9641080498695374, 'test_f1': 0.9615630507469177, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_26 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_25 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.00473194383084774, 'test_acc': 0.9950000047683716, 'test_precision': 0.994736909866333, 'test_recall': 0.9960001111030579, 'test_f1': 0.9952566027641296, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_27 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_5 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.28910204768180847, 'test_acc': 0.9800000190734863, 'test_precision': 0.9792046546936035, 'test_recall': 0.9796591997146606, 'test_f1': 0.9793149828910828, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_43 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_44 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_26 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_43 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_9 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_44 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_40 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_9 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_24 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_42 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.4417767822742462, 'test_acc': 0.9700000286102295, 'test_precision': 0.9670195579528809, 'test_recall': 0.9695330262184143, 'test_f1': 0.9675257205963135, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_41 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24027714133262634, 'test_acc': 0.9700000286102295, 'test_precision': 0.9714908599853516, 'test_recall': 0.9718254804611206, 'test_f1': 0.9710613489151001, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_8 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_28 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_10 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_1 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3956165313720703, 'test_acc': 0.9800000190734863, 'test_precision': 0.9794734120368958, 'test_recall': 0.979038417339325, 'test_f1': 0.9787504076957703, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_11 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_29 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_8 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_6 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_28 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_11 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_29 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.4255672097206116, 'test_acc': 0.9649999737739563, 'test_precision': 0.9702380895614624, 'test_recall': 0.9627811312675476, 'test_f1': 0.9650431275367737, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_10 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:45 | node_43 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.219303697347641, 'test_acc': 0.9800000190734863, 'test_precision': 0.9788517951965332, 'test_recall': 0.9776440262794495, 'test_f1': 0.9781202077865601, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_13 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_45 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17583508789539337, 'test_acc': 0.9800000190734863, 'test_precision': 0.9797208905220032, 'test_recall': 0.9790685772895813, 'test_f1': 0.9791041016578674, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_25 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_7 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.36870071291923523, 'test_acc': 0.9599999785423279, 'test_precision': 0.9590721130371094, 'test_recall': 0.959229588508606, 'test_f1': 0.9585989117622375, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_12 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_4 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:45 | node_30 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_45 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_12 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_44 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.32918891310691833, 'test_acc': 0.9549999833106995, 'test_precision': 0.9502668976783752, 'test_recall': 0.95389723777771, 'test_f1': 0.9503133893013, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_26 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2472662329673767, 'test_acc': 0.9750000238418579, 'test_precision': 0.9784767627716064, 'test_recall': 0.9749301075935364, 'test_f1': 0.9757557511329651, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_30 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_9 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3246796727180481, 'test_acc': 0.9700000286102295, 'test_precision': 0.9679114818572998, 'test_recall': 0.9747451543807983, 'test_f1': 0.970293402671814, 'communication_cost': 941034}
+[ 2026-03-29 15:25:45 | node_13 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:45 | node_46 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:45 | node_5 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:45 | node_28 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20119503140449524, 'test_acc': 0.9750000238418579, 'test_precision': 0.9788984060287476, 'test_recall': 0.974117636680603, 'test_f1': 0.9759000539779663, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_31 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_46 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_6 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_6 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_29 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.11076457798480988, 'test_acc': 0.9750000238418579, 'test_precision': 0.9701307415962219, 'test_recall': 0.9736573696136475, 'test_f1': 0.9705209136009216, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_8 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.42975470423698425, 'test_acc': 0.9599999785423279, 'test_precision': 0.9591467380523682, 'test_recall': 0.9600471258163452, 'test_f1': 0.9588428735733032, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.16080868244171143, 'test_acc': 0.9850000143051147, 'test_precision': 0.9855703115463257, 'test_recall': 0.9874618053436279, 'test_f1': 0.9863401055335999, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_31 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_16 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_17 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_12 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.39001980423927307, 'test_acc': 0.9599999785423279, 'test_precision': 0.9600369930267334, 'test_recall': 0.9579134583473206, 'test_f1': 0.9584915637969971, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_16 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_48 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_33 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_41 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_10 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22675400972366333, 'test_acc': 0.9800000190734863, 'test_precision': 0.9818903207778931, 'test_recall': 0.9767475128173828, 'test_f1': 0.9784520864486694, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_17 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_49 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_25 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_42 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_33 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_49 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_48 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_45 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3238332271575928, 'test_acc': 0.9549999833106995, 'test_precision': 0.9533656239509583, 'test_recall': 0.9529792666435242, 'test_f1': 0.9525563716888428, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_30 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2910066843032837, 'test_acc': 0.9649999737739563, 'test_precision': 0.9682130217552185, 'test_recall': 0.9638505578041077, 'test_f1': 0.9645729660987854, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_25 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_18 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_46 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.09959075599908829, 'test_acc': 0.9649999737739563, 'test_precision': 0.9606459736824036, 'test_recall': 0.9696649312973022, 'test_f1': 0.9637523889541626, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_5 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_35 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_34 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_13 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.40863102674484253, 'test_acc': 0.9599999785423279, 'test_precision': 0.9624406695365906, 'test_recall': 0.9588954448699951, 'test_f1': 0.959489107131958, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_18 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_34 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_19 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_35 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_5 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_36 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.16813607513904572, 'test_acc': 0.9850000143051147, 'test_precision': 0.984092652797699, 'test_recall': 0.9853070974349976, 'test_f1': 0.9844372272491455, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_19 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.4106503427028656, 'test_acc': 0.9649999737739563, 'test_precision': 0.9680219888687134, 'test_recall': 0.9622747302055359, 'test_f1': 0.9640041589736938, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2658534348011017, 'test_acc': 0.9649999737739563, 'test_precision': 0.9650540947914124, 'test_recall': 0.9685688614845276, 'test_f1': 0.9657589197158813, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_31 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.11436820030212402, 'test_acc': 0.9750000238418579, 'test_precision': 0.975485622882843, 'test_recall': 0.973941445350647, 'test_f1': 0.9745231866836548, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.05441706255078316, 'test_acc': 0.9850000143051147, 'test_precision': 0.9849207401275635, 'test_recall': 0.9831945300102234, 'test_f1': 0.9836546182632446, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_20 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_36 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_41 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_20 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_41 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_17 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3524056375026703, 'test_acc': 0.9700000286102295, 'test_precision': 0.9704450964927673, 'test_recall': 0.9663119316101074, 'test_f1': 0.9674932956695557, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_49 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.30089429020881653, 'test_acc': 0.9549999833106995, 'test_precision': 0.9506478309631348, 'test_recall': 0.9581413269042969, 'test_f1': 0.9516599774360657, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_42 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_42 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_16 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.186261847615242, 'test_acc': 0.9800000190734863, 'test_precision': 0.9805622100830078, 'test_recall': 0.9818862676620483, 'test_f1': 0.9810054302215576, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_43 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_37 | INFO ] 🤫 Gossip finished.
+[ 2026-03-29 15:25:46 | node_37 | INFO ] 🔬 Evaluating...
+[ 2026-03-29 15:25:46 | node_27 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_33 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17845578491687775, 'test_acc': 0.9700000286102295, 'test_precision': 0.972726583480835, 'test_recall': 0.9739388823509216, 'test_f1': 0.9729839563369751, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_1 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_35 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.47125738859176636, 'test_acc': 0.9750000238418579, 'test_precision': 0.9740586876869202, 'test_recall': 0.9741666913032532, 'test_f1': 0.9737609028816223, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_7 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_19 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3974769115447998, 'test_acc': 0.9599999785423279, 'test_precision': 0.9571335315704346, 'test_recall': 0.9590896368026733, 'test_f1': 0.9573310613632202, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_34 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3705254793167114, 'test_acc': 0.9599999785423279, 'test_precision': 0.9627525806427002, 'test_recall': 0.9537733197212219, 'test_f1': 0.9568864703178406, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_18 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.16680745780467987, 'test_acc': 0.9800000190734863, 'test_precision': 0.9817144274711609, 'test_recall': 0.9796905517578125, 'test_f1': 0.9804125428199768, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_48 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3371361792087555, 'test_acc': 0.9700000286102295, 'test_precision': 0.9708412885665894, 'test_recall': 0.96796053647995, 'test_f1': 0.9684827923774719, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_1 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_36 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.29916051030158997, 'test_acc': 0.9750000238418579, 'test_precision': 0.9744048118591309, 'test_recall': 0.9728755950927734, 'test_f1': 0.9730629920959473, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_20 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3365471661090851, 'test_acc': 0.9649999737739563, 'test_precision': 0.9676891565322876, 'test_recall': 0.9672687649726868, 'test_f1': 0.9667037129402161, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_2 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_44 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_2 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_43 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_43 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_27 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_7 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_7 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_27 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_26 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_37 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.4934491217136383, 'test_acc': 0.9700000286102295, 'test_precision': 0.9717072248458862, 'test_recall': 0.96732497215271, 'test_f1': 0.968950629234314, 'communication_cost': 941034}
+[ 2026-03-29 15:25:46 | node_44 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_9 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_44 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_26 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_26 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_28 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_9 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_29 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_9 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_8 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_28 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_28 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_29 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_29 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_8 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_8 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_12 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_11 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_11 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_10 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_45 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_12 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_12 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_30 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_10 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_10 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_46 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_45 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_45 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_30 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_13 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_30 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_46 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_46 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_13 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_13 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_15 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_14 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_32 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_31 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:46 | node_47 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:46 | node_17 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_31 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_31 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_49 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_17 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_17 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_16 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_49 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_33 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_49 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_16 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_16 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_35 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_33 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_33 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_19 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_35 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_18 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_35 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_19 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_34 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_19 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_18 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_36 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_18 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_48 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_34 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_34 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_36 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_20 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_36 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_37 | INFO ] 📢 Broadcasting metrics.
+[ 2026-03-29 15:25:47 | node_48 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_48 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_20 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_20 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node_37 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node_37 | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | node | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-03-29 15:25:47 | node | INFO ] 😋 Training finished!!
+[ 2026-03-29 15:25:47 | None | INFO ] 🏁 All nodes finished training. Waiting 10s for final synchronization...
+[ 2026-03-29 15:25:58 | node | INFO ] Stopping node...
+[ 2026-03-29 15:25:58 | node | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:58 | node | INFO ] InMemoryServer stopped at node
+[ 2026-03-29 15:25:58 | node_1 | INFO ] Stopping node...
+[ 2026-03-29 15:25:58 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:58 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2026-03-29 15:25:58 | node_2 | INFO ] Stopping node...
+[ 2026-03-29 15:25:58 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:58 | node_2 | INFO ] InMemoryServer stopped at node_2
+[ 2026-03-29 15:25:58 | node_3 | INFO ] Stopping node...
+[ 2026-03-29 15:25:58 | node_3 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:58 | node_3 | INFO ] InMemoryServer stopped at node_3
+[ 2026-03-29 15:25:58 | node_4 | INFO ] Stopping node...
+[ 2026-03-29 15:25:58 | node_4 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:58 | node_4 | INFO ] InMemoryServer stopped at node_4
+[ 2026-03-29 15:25:58 | node_5 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_5 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_5 | INFO ] InMemoryServer stopped at node_5
+[ 2026-03-29 15:25:59 | node_6 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_6 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_6 | INFO ] InMemoryServer stopped at node_6
+[ 2026-03-29 15:25:59 | node_7 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_7 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_7 | INFO ] InMemoryServer stopped at node_7
+[ 2026-03-29 15:25:59 | node_8 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_8 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_8 | INFO ] InMemoryServer stopped at node_8
+[ 2026-03-29 15:25:59 | node_9 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_9 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_9 | INFO ] InMemoryServer stopped at node_9
+[ 2026-03-29 15:25:59 | node_10 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_10 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_10 | INFO ] InMemoryServer stopped at node_10
+[ 2026-03-29 15:25:59 | node_11 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_11 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_11 | INFO ] InMemoryServer stopped at node_11
+[ 2026-03-29 15:25:59 | node_12 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_12 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_12 | INFO ] InMemoryServer stopped at node_12
+[ 2026-03-29 15:25:59 | node_13 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_13 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_13 | INFO ] InMemoryServer stopped at node_13
+[ 2026-03-29 15:25:59 | node_14 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_14 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_14 | INFO ] InMemoryServer stopped at node_14
+[ 2026-03-29 15:25:59 | node_15 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_15 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_15 | INFO ] InMemoryServer stopped at node_15
+[ 2026-03-29 15:25:59 | node_16 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_16 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_16 | INFO ] InMemoryServer stopped at node_16
+[ 2026-03-29 15:25:59 | node_17 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_17 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_17 | INFO ] InMemoryServer stopped at node_17
+[ 2026-03-29 15:25:59 | node_18 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_18 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_18 | INFO ] InMemoryServer stopped at node_18
+[ 2026-03-29 15:25:59 | node_19 | INFO ] Stopping node...
+[ 2026-03-29 15:25:59 | node_19 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:25:59 | node_19 | INFO ] InMemoryServer stopped at node_19
+[ 2026-03-29 15:26:00 | node_20 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_20 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_20 | INFO ] InMemoryServer stopped at node_20
+[ 2026-03-29 15:26:00 | node_21 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_21 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_21 | INFO ] InMemoryServer stopped at node_21
+[ 2026-03-29 15:26:00 | node_22 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_22 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_22 | INFO ] InMemoryServer stopped at node_22
+[ 2026-03-29 15:26:00 | node_23 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_23 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_23 | INFO ] InMemoryServer stopped at node_23
+[ 2026-03-29 15:26:00 | node_24 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_24 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_24 | INFO ] InMemoryServer stopped at node_24
+[ 2026-03-29 15:26:00 | node_25 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_25 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_25 | INFO ] InMemoryServer stopped at node_25
+[ 2026-03-29 15:26:00 | node_26 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_26 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_26 | INFO ] InMemoryServer stopped at node_26
+[ 2026-03-29 15:26:00 | node_27 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_27 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_27 | INFO ] InMemoryServer stopped at node_27
+[ 2026-03-29 15:26:00 | node_28 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_28 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_28 | INFO ] InMemoryServer stopped at node_28
+[ 2026-03-29 15:26:00 | node_29 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_29 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_29 | INFO ] InMemoryServer stopped at node_29
+[ 2026-03-29 15:26:00 | node_30 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_30 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_30 | INFO ] InMemoryServer stopped at node_30
+[ 2026-03-29 15:26:00 | node_31 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_31 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_31 | INFO ] InMemoryServer stopped at node_31
+[ 2026-03-29 15:26:00 | node_32 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_32 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_32 | INFO ] InMemoryServer stopped at node_32
+[ 2026-03-29 15:26:00 | node_33 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_33 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_33 | INFO ] InMemoryServer stopped at node_33
+[ 2026-03-29 15:26:00 | node_34 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_34 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_34 | INFO ] InMemoryServer stopped at node_34
+[ 2026-03-29 15:26:00 | node_35 | INFO ] Stopping node...
+[ 2026-03-29 15:26:00 | node_35 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:00 | node_35 | INFO ] InMemoryServer stopped at node_35
+[ 2026-03-29 15:26:01 | node_36 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_36 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_36 | INFO ] InMemoryServer stopped at node_36
+[ 2026-03-29 15:26:01 | node_37 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_37 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_37 | INFO ] InMemoryServer stopped at node_37
+[ 2026-03-29 15:26:01 | node_38 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_38 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_38 | INFO ] InMemoryServer stopped at node_38
+[ 2026-03-29 15:26:01 | node_39 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_39 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_39 | INFO ] InMemoryServer stopped at node_39
+[ 2026-03-29 15:26:01 | node_40 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_40 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_40 | INFO ] InMemoryServer stopped at node_40
+[ 2026-03-29 15:26:01 | node_41 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_41 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_41 | INFO ] InMemoryServer stopped at node_41
+[ 2026-03-29 15:26:01 | node_42 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_42 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_42 | INFO ] InMemoryServer stopped at node_42
+[ 2026-03-29 15:26:01 | node_43 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_43 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_43 | INFO ] InMemoryServer stopped at node_43
+[ 2026-03-29 15:26:01 | node_44 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_44 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_44 | INFO ] InMemoryServer stopped at node_44
+[ 2026-03-29 15:26:01 | node_45 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_45 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_45 | INFO ] InMemoryServer stopped at node_45
+[ 2026-03-29 15:26:01 | node_46 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_46 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_46 | INFO ] InMemoryServer stopped at node_46
+[ 2026-03-29 15:26:01 | node_47 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_47 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_47 | INFO ] InMemoryServer stopped at node_47
+[ 2026-03-29 15:26:01 | node_48 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_48 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_48 | INFO ] InMemoryServer stopped at node_48
+[ 2026-03-29 15:26:01 | node_49 | INFO ] Stopping node...
+[ 2026-03-29 15:26:01 | node_49 | INFO ] 🛑 Stopping gossiper...
+[ 2026-03-29 15:26:01 | node_49 | INFO ] InMemoryServer stopped at node_49

@@ -54,21 +54,21 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
-    params:
-      learning_rate: 0.001
-      decay_rate: 0.95
-      alpha: 0.5
+    # package: "p2pfl.learning.aggregators.dfedadp"
+    # aggregator: "DFedAdp"
+    # params:
+    #   learning_rate: 0.001
+    #   decay_rate: 0.95
+    #   alpha: 0.5
 
     # package: "p2pfl.learning.aggregators.fedavg"
     # aggregator: "FedAvg"
     # params: {}
  
-    # package: "p2pfl.learning.aggregators.psgd"
-    # aggregator: "PSGD"
-    # params: 
-    #   lr: 0.001
+    package: "p2pfl.learning.aggregators.psgd"
+    aggregator: "PSGD"
+    params: 
+      lr: 0.001
 
 # General experiment settings
 settings:

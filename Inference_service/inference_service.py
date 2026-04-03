@@ -17,7 +17,10 @@ from p2pfl.examples.fraud.model.mlp_fraud import FraudDetectionMLP
 from p2pfl.examples.fraud.transforms import fraud_transform, build_behavioral_lookup
 
 # Config
-CACHE_DIR = "is_model_cache"
+# Đảm bảo CACHE_DIR trỏ đúng vào thư mục is_model_cache bên trong Inference_service
+# cho dù bạn chạy uvicorn từ thư mục gốc hay thư mục Inference_service.
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CACHE_DIR = os.path.join(SCRIPT_DIR, "is_model_cache")
 os.makedirs(CACHE_DIR, exist_ok=True)
 DATASET_ID = "kartik2112/fraud-detection"
 TEST_FILE_NAME = "fraudTest.csv"
@@ -95,7 +98,13 @@ async def lifespan(app: FastAPI):
         
         # Khởi tạo lookup table global một lần duy nhất
         build_behavioral_lookup(global_lookup_data)
-        print("✅ Startup: Hệ thống Lookup hành vi đã sẵn sàng.")
+        
+        # MỚI: Khởi tạo FEATURE_STATS (mean/std) bằng cách chạy transform trên toàn bộ dataset
+        # Nếu không có bước này, request đầu tiên (single transaction) sẽ khiến FEATURE_STATS = [0,0,0...]
+        print("✨ Startup: Đang khởi tạo Feature Statistics (Standardization)...")
+        fraud_transform(global_lookup_data)
+        
+        print("✅ Startup: Hệ thống Lookup và Feature Stats đã sẵn sàng.")
     except Exception as e:
         print(f"⚠️ Startup Warning: Không thể khởi tạo database lookup: {e}")
 
@@ -135,7 +144,6 @@ async def predict(tx: Dict = Body(...)):
             "fraud_probability": round(probability, 4),
             "prediction": prediction,
             "model_round": current_round,
-            "lookup_status": "synced_with_kaggle_dataset"
         }
 
     except Exception as e:

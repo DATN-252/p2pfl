@@ -1,0 +1,56 @@
+# AID Scene Classification - DFedAdp Mode (Decentralized)
+network:
+  nodes: 5
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  topology: full
+  additional_connections: []
+
+experiment:
+  name: aid_resnet_dfedadp
+  rounds: 10
+  epochs: 1
+  trainset_size: 5
+  
+  dataset:
+    source: custom
+    name: AID
+    package: p2pfl.examples.aid.dataset
+    class: AIDDataset
+    params:
+      dataset_id: jiayuanchengala/aid-scene-classification-datasets
+      batch_size: 16
+    partitioning:
+      package: p2pfl.learning.dataset.partition_strategies
+      strategy: RandomIIDPartitionStrategy
+    transforms:
+      package: p2pfl.examples.aid.transforms
+      function: get_aid_transforms
+    params:
+      batch_size: 16
+
+  model:
+    package: p2pfl.examples.aid.model.resnet_aid
+    model_build_fn: model_build_fn
+    params:
+      num_classes: 30
+      learning_rate: 0.001
+      model_type: resnet18
+      freeze_backbone: True
+      alpha: 1.0 # Focal Loss Alpha
+      gamma: 2.0 # Focal Loss Gamma
+
+  aggregator:
+    package: p2pfl.learning.aggregators.dfedadp
+    aggregator: DFedAdp
+    params:
+      learning_rate: 0.001 # DFedAdp internal learning rate
+      decay_rate: 0.95
+      alpha: 1.0 # DFedAdp adaptive parameter
+
+settings:
+  training:
+    {}
+  general:
+    LOG_LEVEL: INFO
+    DISABLE_RAY: True

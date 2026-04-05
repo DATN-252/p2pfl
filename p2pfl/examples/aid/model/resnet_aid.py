@@ -3,7 +3,7 @@
 # (see https://github.com/pguijas/p2pfl).
 #
 
-"""Optimized ResNet model for AID Scene Classification."""
+"""Optimized ResNet model for AID Scene Classification with Focal Loss."""
 
 import torch
 import torch.nn as nn
@@ -16,9 +16,33 @@ from p2pfl.learning.frameworks.pytorch.lightning_model import LightningModel
 from p2pfl.settings import Settings
 from p2pfl.utils.seed import set_seed
 
+class FocalLoss(nn.Module):
+    """
+    Focal Loss for Multi-class classification.
+    FL(p_t) = -alpha * (1 - p_t)^gamma * log(p_t)
+    """
+    def __init__(self, alpha: float = 1.0, gamma: float = 2.0, reduction: str = 'mean'):
+        super(FocalLoss, self).__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, inputs: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
+        ce_loss = F.cross_entropy(inputs, targets, reduction='none')
+        pt = torch.exp(-ce_loss)
+        focal_loss = self.alpha * (1 - pt) ** self.gamma * ce_loss
+
+        if self.reduction == 'mean':
+            return focal_loss.mean()
+        elif self.reduction == 'sum':
+            return focal_loss.sum()
+        else:
+            return focal_loss
+
 class ResNetAID(LightningModule):
     def __init__(self, model_type: str = "resnet18", num_classes: int = 30, 
-                 learning_rate: float = 1e-3, freeze_backbone: bool = True):
+                 learning_rate: float = 1e-3, freeze_backbone: bool = True,
+                 alpha: float = 1.0, gamma: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
@@ -36,7 +60,6 @@ class ResNetAID(LightningModule):
                 param.requires_grad = False
             
             # Unfreeze the last layer group (layer4) to adapt to satellite features
-            # This is a middle ground between speed and accuracy
             for param in self.model.layer4.parameters():
                 param.requires_grad = True
 
@@ -45,7 +68,7 @@ class ResNetAID(LightningModule):
         self.model.fc = nn.Linear(num_ftrs, num_classes)
 
         # Loss & Metrics
-        self.criterion = nn.CrossEntropyLoss()
+        self.criterion = FocalLoss(alpha=alpha, gamma=gamma)
         self.train_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.val_acc = Accuracy(task="multiclass", num_classes=num_classes)
         self.test_acc = Accuracy(task="multiclass", num_classes=num_classes)
@@ -78,6 +101,21 @@ class ResNetAID(LightningModule):
     def configure_optimizers(self):
         trainable_params = [p for p in self.parameters() if p.requires_grad]
         return torch.optim.Adam(trainable_params, lr=self.learning_rate)
+
+    def state_dict(self, *args, **kwargs):
+        """
+        Override state_dict to ONLY return true parameters (excluding BatchNorm buffers).
+        This guarantees the shape exactly matches `pl_module.parameters()` used by 
+        DFedAdp's `gradient_delta_calculator`, preventing shape mismatch errors.
+        """
+        return {name: param for name, param in self.named_parameters()}
+
+    def load_state_dict(self, state_dict, strict=False):
+        """
+        Load only the parameters. strict=False is required because we explicitly
+        omitted the BatchNorm buffers from the state_dict above.
+        """
+        return super().load_state_dict(state_dict, strict=False)
 
 def model_build_fn(**kwargs) -> LightningModel:
     compression = kwargs.pop("compression", None)

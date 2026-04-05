@@ -41,7 +41,7 @@ class FullModelCommand(Command):
         """Get the command name."""
         return "add_model"
 
-    def execute(self, source: str, round: int, weights: bytes | None = None, **kwargs) -> None:
+    def execute(self, source: str, round: int, weights: bytes | None = None, num_samples: int = 1, **kwargs) -> None:
         """Execute the command (Non-blocking)."""
         if weights is None:
             return
@@ -57,8 +57,7 @@ class FullModelCommand(Command):
                 logger.error(self.state.addr, f"Error adding full model: {e}")
         else:
             try:
-                # Pass weight (num_samples) if provided in kwargs
-                num_samples = kwargs.get("weight", 0)
+                # Use explicitly passed num_samples (from ProtobuffServer)
                 model = self.learner.get_model().build_copy(params=weights, contributors=[source], num_samples=num_samples)
                 self.aggregator.add_model(model, round_num=round)
             except Exception as e:

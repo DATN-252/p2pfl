@@ -8,9 +8,9 @@ network:
 
 experiment:
   name: aid_resnet_5n_test
-  rounds: 3
+  rounds: 10 # Increased from 3
   epochs: 1
-  trainset_size: 5
+  trainset_size: 3
   
   dataset:
     source: custom
@@ -34,9 +34,9 @@ experiment:
     model_build_fn: model_build_fn
     params:
       num_classes: 30
-      learning_rate: 0.0001
-      gamma: 2.0
-      alpha: 1.0
+      learning_rate: 0.001 # Increased from 0.0001
+      model_type: resnet18
+      freeze_backbone: True # Will only unfreeze layer4 and FC
 
   aggregator:
     package: p2pfl.learning.aggregators.fedavg

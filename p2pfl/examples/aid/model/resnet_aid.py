@@ -79,6 +79,13 @@ class ResNetAID(LightningModule):
         self.log("val_loss", loss, prog_bar=True)
         self.log("val_acc", self.val_acc(y_hat, y), prog_bar=True)
 
+    def test_step(self, batch, batch_idx):
+        x, y = batch["features"], batch["label"]
+        y_hat = self(x)
+        loss = self.criterion(y_hat, y)
+        self.log("test_loss", loss, prog_bar=True)
+        self.log("test_accuracy", self.test_acc(y_hat, y), prog_bar=True)
+
     def configure_optimizers(self):
         # Only optimize parameters that require gradients
         trainable_params = [p for p in self.parameters() if p.requires_grad]

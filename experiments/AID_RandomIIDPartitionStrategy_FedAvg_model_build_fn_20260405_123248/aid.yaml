@@ -1,0 +1,47 @@
+# AID Scene Classification Experiment Config
+network:
+  nodes: 1
+  package: p2pfl.communication.protocols.protobuff.grpc
+  protocol: GrpcCommunicationProtocol
+
+experiment:
+  name: aid_resnet_test
+  rounds: 1
+  epochs: 1
+  trainset_size: 1
+  
+  dataset:
+    source: custom
+    name: AID
+    package: p2pfl.examples.aid.dataset
+    class: AIDDataset
+    params:
+      dataset_id: jiayuanchengala/aid-scene-classification-datasets
+      batch_size: 32
+    partitioning:
+      package: p2pfl.learning.dataset.partition_strategies
+      strategy: RandomIIDPartitionStrategy
+    transforms:
+      package: p2pfl.examples.aid.transforms
+      function: get_aid_transforms
+    params:
+      batch_size: 32
+
+  model:
+    package: p2pfl.examples.aid.model.resnet_aid
+    model_build_fn: model_build_fn
+    params:
+      num_classes: 30
+      learning_rate: 0.0001
+      gamma: 2.0
+      alpha: 1.0
+
+  aggregator:
+    package: p2pfl.learning.aggregators.fedavg
+    aggregator: FedAvg
+
+settings:
+  training: {}
+  general:
+    LOG_LEVEL: INFO
+    DISABLE_RAY: True

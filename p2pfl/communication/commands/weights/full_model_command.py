@@ -57,7 +57,9 @@ class FullModelCommand(Command):
                 logger.error(self.state.addr, f"Error adding full model: {e}")
         else:
             try:
-                model = self.learner.get_model().build_copy(params=weights, contributors=[source])
+                # Pass weight (num_samples) if provided in kwargs
+                num_samples = kwargs.get("weight", 0)
+                model = self.learner.get_model().build_copy(params=weights, contributors=[source], num_samples=num_samples)
                 self.aggregator.add_model(model, round_num=round)
             except Exception as e:
                 logger.error(self.state.addr, f"Error buffering full model: {e}")

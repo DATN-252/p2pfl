@@ -1,6 +1,6 @@
 # AID Scene Classification - DFedAdp Mode (Decentralized)
 network:
-  nodes: 5
+  nodes: 10
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   topology: full
@@ -8,9 +8,9 @@ network:
 
 experiment:
   name: aid_resnet_dfedadp
-  rounds: 10
+  rounds: 100
   epochs: 1
-  trainset_size: 5
+  trainset_size: 10
   
   dataset:
     source: custom

@@ -8,7 +8,7 @@ network:
 
 experiment:
   name: aid_resnet_centralized
-  rounds: 100
+  rounds: 10
   epochs: 1
   trainset_size: 5
   centralized: True # ACTIVATE CENTRALIZED MODE

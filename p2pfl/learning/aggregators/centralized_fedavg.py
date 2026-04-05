@@ -6,12 +6,43 @@
 """Centralized Federated Averaging (FedAvg) Aggregator."""
 
 import numpy as np
-from typing import Dict, List, Optional
-from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 import threading
 import time
-from collections import defaultdict
+from typing import Dict, List, Optional
+from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
+from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
+
+class CentralizedFedAvg(Aggregator):
+    """
+    Standard Aggregator wrapper for Centralized FedAvg.
+    This allows using centralized-like logic within the P2PFL framework.
+    """
+    def __init__(self, num_clients: int = 1, disable_partial_aggregation: bool = False):
+        super().__init__(disable_partial_aggregation=disable_partial_aggregation)
+        self.num_clients = num_clients
+
+    def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
+        if len(models) == 0:
+            raise NoModelsToAggregateError(f"({self.addr}) No models to aggregate")
+
+        # Total Samples
+        total_samples = sum([m.get_num_samples() for m in models])
+
+        # Weighted average
+        first_model_weights = models[0].get_parameters()
+        accum = [np.zeros_like(layer) for layer in first_model_weights]
+
+        for m in models:
+            weight = m.get_num_samples() / total_samples
+            for i, layer in enumerate(m.get_parameters()):
+                accum[i] += layer * weight
+
+        contributors: List[str] = []
+        for m in models:
+            contributors.extend(m.get_contributors())
+
+        return models[0].build_copy(params=accum, num_samples=total_samples, contributors=contributors)
 
 
 class CentralizedFedAvgServer:
@@ -243,44 +274,30 @@ class CentralizedFedAvgClient:
         logger.info(f"Node {self.client_id}", f"Client {self.client_id} training locally for {epochs} epochs...")
         
         # Introduce a realistic delay to simulate actual training computation time
-        # This makes the process feel more realistic compared to the near-instantaneous updates before
         import time
-        # Simulate computation time - scale with epochs and potentially dataset size
-        computation_delay = 0.5 * epochs  # 0.5 seconds per epoch as a base
+        computation_delay = 0.5 * epochs  
         if hasattr(self, 'local_dataset') and self.local_dataset is not None:
-            # Add time based on dataset size to make it more realistic
-            dataset_size_factor = min(2.0, self.local_dataset.get_num_samples() / 100.0)  # Cap at 2x
+            dataset_size_factor = min(2.0, self.local_dataset.get_num_samples() / 100.0)
             computation_delay *= dataset_size_factor
         
         time.sleep(computation_delay)
         
-        # Get the learner from the model to perform actual training
         updated_weights = []
         
-        # Try to access the dataset if it exists
         try:
-            # If local dataset exists, we could potentially use it for actual training
-            # For now, we'll focus on simulating the training process with more realistic parameters
-            # This simulates gradient descent by adjusting weights based on a loss function
             for layer in global_weights:
-                # Simulate gradient calculation (in real scenario, this comes from backpropagation)
-                # Using a simple simulation where gradients push weights toward better values
-                # Add some randomness to make it more realistic
-                noise_scale = 0.005  # Scale of random noise
-                # Make the simulated gradient more dependent on the current weights and layer properties
+                noise_scale = 0.005  
                 simulated_gradient = 0.01 * layer + np.random.normal(0, noise_scale, size=layer.shape)
                 updated_layer = layer - self.learning_rate * simulated_gradient
                 updated_weights.append(updated_layer)
         except Exception as e:
             logger.info(f"Node {self.client_id}", f"Warning: Error during local training simulation: {e}")
-            # Fallback to basic weight update
             for layer in global_weights:
                 noise_scale = 0.005
                 simulated_gradient = 0.01 * layer + np.random.normal(0, noise_scale, size=layer.shape)
                 updated_layer = layer - self.learning_rate * simulated_gradient
                 updated_weights.append(updated_layer)
         
-        # Update the model with trained weights
         updated_model = self.local_model.build_copy(
             params=updated_weights,
             num_samples=self.local_model.get_num_samples(),
@@ -298,13 +315,8 @@ class CentralizedFedAvgClient:
             server: The centralized server to send update to
             round_num: Current round number
         """
-        # Get current local model parameters
         local_weights = self.local_model.get_parameters()
-        
-        # Train locally
         updated_model = self.train_locally(local_weights)
-        
-        # Send update to server
         server.receive_client_update(self.client_id, updated_model, round_num)
         
     def get_client_id(self) -> str:

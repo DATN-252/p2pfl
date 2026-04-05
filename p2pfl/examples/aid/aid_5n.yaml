@@ -1,8 +1,8 @@
 # AID Scene Classification Experiment Config - 5 Nodes
 network:
   nodes: 5
-  package: p2pfl.communication.protocols.protobuff.grpc
-  protocol: GrpcCommunicationProtocol
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
   topology: full
   additional_connections: []
 
@@ -40,7 +40,9 @@ experiment:
 
   aggregator:
     package: p2pfl.learning.aggregators.centralized_fedavg
-    aggregator: CentralizedFedAvgServer
+    aggregator: CentralizedFedAvg
+    params:
+      num_clients: 5
 
 settings:
   training:

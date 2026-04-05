@@ -39,8 +39,8 @@ experiment:
       freeze_backbone: True # Will only unfreeze layer4 and FC
 
   aggregator:
-    package: p2pfl.learning.aggregators.fedavg
-    aggregator: FedAvg
+    package: p2pfl.learning.aggregators.centralized_fedavg
+    aggregator: CentralizedFedAvgServer
 
 settings:
   training:

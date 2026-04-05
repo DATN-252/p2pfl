@@ -58,3 +58,11 @@ class LearningWorkflow(StageWokflow):
     def __init__(self) -> None:
         """Initialize the federated learning workflow."""
         super().__init__(StageFactory.get_stage("StartLearningStage"))
+
+
+class CentralizedWorkflow(StageWokflow):
+    """Class to run a centralized federated learning workflow."""
+
+    def __init__(self) -> None:
+        """Initialize the centralized federated learning workflow."""
+        super().__init__(StageFactory.get_stage("CentralizedStartStage"))

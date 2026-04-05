@@ -109,6 +109,12 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
     if not n:
         raise ValueError("Missing 'n' under 'network' configuration in YAML file.")
 
+    # Check for centralized mode
+    experiment_config = config.get("experiment", {})
+    is_centralized = experiment_config.get("centralized", False)
+    if is_centralized:
+        logger.info(None, "🏗️ Running in CENTRALIZED mode.")
+
     #############
     # Profiling #
     #############
@@ -313,6 +319,8 @@ def run_from_yaml(yaml_path: str, debug: bool = False) -> None:
             protocol=protocol(),
             aggregator=node_aggregator,
             experiment_folder_path=experiment_folder_path, # NEW
+            is_server=(is_centralized and i == 0), # NEW
+            is_centralized=is_centralized # NEW
         )
         node.start()
         nodes.append(node)

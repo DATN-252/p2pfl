@@ -105,10 +105,10 @@ class ResNetAID(LightningModule):
     def state_dict(self, *args, **kwargs):
         """
         Override state_dict to ONLY return true parameters (excluding BatchNorm buffers).
-        This guarantees the shape exactly matches `pl_module.parameters()` used by 
-        DFedAdp's `gradient_delta_calculator`, preventing shape mismatch errors.
+        Ensures tensors are detached from the computation graph to avoid RuntimeError 
+        when converting to numpy.
         """
-        return {name: param for name, param in self.named_parameters()}
+        return {name: param.detach().cpu() for name, param in self.named_parameters()}
 
     def load_state_dict(self, state_dict, strict=False):
         """

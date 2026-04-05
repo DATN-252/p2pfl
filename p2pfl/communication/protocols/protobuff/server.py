@@ -167,12 +167,16 @@ class ProtobuffServer(ABC, node_pb2_grpc.NodeServicesServicer, NodeComponent):
                 elif request.HasField("direct_message"):
                     cmd_out = self.__commands[request.cmd].execute(request.source, request.round, *request.direct_message.args)
                 elif request.HasField("weights"):
+                    # Extract additional info from model if present
+                    # Note: You might need to decode it if it's stored in a specific field 
+                    # but for now we pass available weights metadata.
                     cmd_out = self.__commands[request.cmd].execute(
                         request.source,
                         request.round,
                         weights=request.weights.weights,
                         contributors=request.weights.contributors,
                         num_samples=request.weights.num_samples,
+                        additional_info=getattr(request.weights, "info", {}) # NEW: Pass info field
                     )
                 else:
                     error_text = f"Error while processing command: {request.cmd}: No message or weights."

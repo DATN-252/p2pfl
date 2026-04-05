@@ -49,16 +49,26 @@ class FullModelCommand(Command):
         if self.state.round is not None and round < self.state.round:
             return
 
+        # Extract additional info (like delta for DFedAdp)
+        additional_info = kwargs.get("additional_info", {})
+
         if self.state.round == round and not self.state.aggregated_model_event.is_set():
             try:
                 self.learner.set_model(weights)
+                # Also update additional info in the model if needed
+                self.learner.get_model().additional_info.update(additional_info)
                 self.state.aggregated_model_event.set()
             except Exception as e:
                 logger.error(self.state.addr, f"Error adding full model: {e}")
         else:
             try:
-                # Use explicitly passed num_samples (from ProtobuffServer)
-                model = self.learner.get_model().build_copy(params=weights, contributors=[source], num_samples=num_samples)
+                # Create model copy with weights, num_samples AND additional_info
+                model = self.learner.get_model().build_copy(
+                    params=weights, 
+                    contributors=[source], 
+                    num_samples=num_samples,
+                    additional_info=additional_info
+                )
                 self.aggregator.add_model(model, round_num=round)
             except Exception as e:
                 logger.error(self.state.addr, f"Error buffering full model: {e}")

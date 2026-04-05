@@ -18,8 +18,8 @@ NORMALIZE = transforms.Normalize(
 
 def get_train_transform():
     return transforms.Compose([
-        transforms.Resize(256),
-        transforms.RandomResizedCrop(224),
+        transforms.Resize(160),
+        transforms.RandomResizedCrop(128),
         transforms.RandomHorizontalFlip(),
         transforms.RandomVerticalFlip(),
         transforms.ToTensor(),
@@ -28,8 +28,8 @@ def get_train_transform():
 
 def get_test_transform():
     return transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
+        transforms.Resize(160),
+        transforms.CenterCrop(128),
         transforms.ToTensor(),
         NORMALIZE
     ])

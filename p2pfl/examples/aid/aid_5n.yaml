@@ -10,7 +10,7 @@ experiment:
   name: aid_resnet_5n_test
   rounds: 3
   epochs: 1
-  trainset_size: 3
+  trainset_size: 5
   
   dataset:
     source: custom

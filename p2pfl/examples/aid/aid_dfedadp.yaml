@@ -11,6 +11,7 @@ experiment:
   rounds: 100
   epochs: 1
   trainset_size: 10
+  wait_timeout: 36000 # 10 hours overall timeout
   
   dataset:
     source: custom
@@ -34,9 +35,9 @@ experiment:
     model_build_fn: model_build_fn
     params:
       num_classes: 30
-      learning_rate: 0.001
+      learning_rate: 0.0001 # Reduced LR for better stability with transfer learning
       model_type: resnet18
-      freeze_backbone: True
+      freeze_backbone: False # Unfreeze to allow full adaptation
       alpha: 1.0 # Focal Loss Alpha
       gamma: 2.0 # Focal Loss Gamma
 
@@ -44,13 +45,13 @@ experiment:
     package: p2pfl.learning.aggregators.dfedadp
     aggregator: DFedAdp
     params:
-      learning_rate: 0.001 # DFedAdp internal learning rate
+      learning_rate: 0.1 # Increased internal LR for DFedAdp
       decay_rate: 0.95
-      alpha: 1.0 # DFedAdp adaptive parameter
+      alpha: 0.5 # Softer Gompertz function for easier initial convergence
 
 settings:
   training:
-    {}
+    aggregation_timeout: 1800 # 30 minutes per round for aggregation
   general:
     LOG_LEVEL: INFO
-    DISABLE_RAY: True
+    DISABLE_RAY: True # Keep sequential to avoid OOM, but increased timeouts will help

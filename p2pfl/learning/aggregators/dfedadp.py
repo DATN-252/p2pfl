@@ -153,7 +153,7 @@ class DFedAdp(Aggregator):
     
     def _get_and_validate_model_info(self, model: P2PFLModel) -> dict[str, Any]:
         try:
-            info = model.get_info("gradient_delta_calculator")
+            info = model.get_info("fedadp")
         except KeyError:
             info = model.get_info()
         
@@ -162,4 +162,4 @@ class DFedAdp(Aggregator):
         return info
 
     def get_required_callbacks(self) -> list[str]:
-        return ["gradient_delta_calculator"]
+        return ["fedadp"]

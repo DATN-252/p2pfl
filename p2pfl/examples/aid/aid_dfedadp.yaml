@@ -58,4 +58,3 @@ settings:
   general:
     LOG_LEVEL: INFO
     DISABLE_RAY: True # Keep sequential to avoid OOM
-, but increased timeouts will help

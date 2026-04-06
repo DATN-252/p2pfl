@@ -52,6 +52,10 @@ experiment:
 settings:
   training:
     aggregation_timeout: 1800 # 30 minutes per round for aggregation
+  heartbeat:
+    timeout: 3600 # 1 hour timeout to prevent disconnection during heavy training
+    period: 30 # Send heartbeat less frequently (every 30s instead of 1s)
   general:
     LOG_LEVEL: INFO
-    DISABLE_RAY: True # Keep sequential to avoid OOM, but increased timeouts will help
+    DISABLE_RAY: True # Keep sequential to avoid OOM
+, but increased timeouts will help

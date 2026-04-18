@@ -4,6 +4,7 @@ from typing import Any, List, Dict
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
+import math
 
 class DFedAdp_2(Aggregator):
     SUPPORTS_PARTIAL_AGGREGATION: bool = False

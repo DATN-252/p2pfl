@@ -9,37 +9,42 @@ def get_latest_experiment(name_pattern):
     return exp_dirs[-1] if exp_dirs else None
 
 def load_metrics(exp_dir):
+    if not exp_dir: return None
     all_metrics = []
-    # Find all node jsonl files in the experiment directory
-    jsonl_files = glob(os.path.join(exp_dir, "node_*.jsonl"))
+    jsonl_files = glob(os.path.join(exp_dir, "*.jsonl"))
     
     for f in jsonl_files:
         with open(f, 'r') as file:
             for line in file:
                 try:
                     data = json.loads(line)
-                    if "round" in data and "test_acc" in data:
-                        all_metrics.append({
-                            "round": data["round"],
-                            "test_acc": data["test_acc"],
-                            "test_loss": data.get("test_loss", 0)
-                        })
+                    if "round" in data:
+                        # Extract any key that looks like accuracy or loss
+                        metrics = {"round": data["round"]}
+                        for k, v in data.items():
+                            if any(s in k.lower() for s in ["acc", "loss", "accuracy"]):
+                                metrics[k] = v
+                        all_metrics.append(metrics)
                 except:
                     continue
     
     df = pd.DataFrame(all_metrics)
-    if df.empty:
-        return None
-    # Group by round and take average across nodes
+    if df.empty: return None
     return df.groupby("round").mean().reset_index()
 
-# 1. Get directories
-dir_v2 = get_latest_experiment("p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_2")
-dir_orig = get_latest_experiment("p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_")
+# 1. Tìm thư mục theo tên experiment đã đặt trong YAML
+# Cải tiến: Tìm theo prefix của 'name' trong experiment config
+dir_v2 = get_latest_experiment("mnist_dirichlet_0.1_test_dfedadp2")
+dir_orig = get_latest_experiment("mnist_dirichlet_0.1_test_dfedadp_original")
 
 if not dir_v2 or not dir_orig:
-    print(f"Could not find experiment directories.\nV2: {dir_v2}\nOriginal: {dir_orig}")
-    print("Please run both experiments first.")
+    print("Trying alternative naming patterns...")
+    dir_v2 = get_latest_experiment("p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_2")
+    dir_orig = get_latest_experiment("p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_")
+
+if not dir_v2 or not dir_orig:
+    print(f"FAILED: Could not find experiment directories.\nV2: {dir_v2}\nOriginal: {dir_orig}")
+    print("Available folders in experiments/:", os.listdir("experiments")[:5])
     exit()
 
 print(f"Comparing:\n- V2: {dir_v2}\n- Original: {dir_orig}")
@@ -48,34 +53,47 @@ print(f"Comparing:\n- V2: {dir_v2}\n- Original: {dir_orig}")
 df_v2 = load_metrics(dir_v2)
 df_orig = load_metrics(dir_orig)
 
+if df_v2 is None or df_orig is None:
+    print("Error: One of the dataframes is empty. Check if .jsonl files exist and contain metrics.")
+    exit()
+
+# Identify metric columns (excluding 'round')
+metric_cols = [c for c in df_v2.columns if c != 'round']
+acc_col = next((c for c in metric_cols if "acc" in c.lower()), None)
+loss_col = next((c for c in metric_cols if "loss" in c.lower()), None)
+
+print(f"Found metrics: {metric_cols}")
+
 # 3. Plot
-plt.figure(figsize=(12, 5))
+plt.figure(figsize=(14, 6))
 
 # Accuracy Plot
 plt.subplot(1, 2, 1)
-if df_v2 is not None:
-    plt.plot(df_v2["round"], df_v2["test_acc"], label="DFedAdp_2 (Improved)", marker='o')
-if df_orig is not None:
-    plt.plot(df_orig["round"], df_orig["test_acc"], label="DFedAdp (Original)", marker='x')
-plt.title("Test Accuracy Comparison")
-plt.xlabel("Round")
-plt.ylabel("Accuracy")
-plt.legend()
-plt.grid(True)
+if acc_col:
+    if df_v2 is not None and acc_col in df_v2:
+        plt.plot(df_v2["round"], df_v2[acc_col], label=f"V2 ({acc_col})", marker='o', linewidth=2)
+    if df_orig is not None and acc_col in df_orig:
+        plt.plot(df_orig["round"], df_orig[acc_col], label=f"Original ({acc_col})", marker='x', linestyle='--')
+    plt.title("Accuracy Comparison")
+    plt.xlabel("Round")
+    plt.ylabel("Value")
+    plt.legend()
+plt.grid(True, alpha=0.3)
 
 # Loss Plot
 plt.subplot(1, 2, 2)
-if df_v2 is not None:
-    plt.plot(df_v2["round"], df_v2["test_loss"], label="DFedAdp_2 (Improved)", marker='o')
-if df_orig is not None:
-    plt.plot(df_orig["round"], df_orig["test_loss"], label="DFedAdp (Original)", marker='x')
-plt.title("Test Loss Comparison")
-plt.xlabel("Round")
-plt.ylabel("Loss")
-plt.legend()
-plt.grid(True)
+if loss_col:
+    if df_v2 is not None and loss_col in df_v2:
+        plt.plot(df_v2["round"], df_v2[loss_col], label=f"V2 ({loss_col})", marker='o', linewidth=2)
+    if df_orig is not None and loss_col in df_orig:
+        plt.plot(df_orig["round"], df_orig[loss_col], label=f"Original ({loss_col})", marker='x', linestyle='--')
+    plt.title("Loss Comparison")
+    plt.xlabel("Round")
+    plt.ylabel("Value")
+    plt.legend()
+plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("comparison_results.png")
-print("\nSuccess! Comparison plot saved as 'comparison_results.png'")
+plt.savefig("comparison_results.png", dpi=300)
+print(f"\nSUCCESS: Plot saved to 'comparison_results.png'")
 plt.show()

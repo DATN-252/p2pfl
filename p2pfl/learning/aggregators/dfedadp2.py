@@ -89,9 +89,8 @@ class DFedAdp_2(Aggregator):
         g_vec = np.concatenate([p.ravel() for p in tracking_delta])
         g_norm = np.linalg.norm(g_vec)
         
-        # Mathematical limit for convergence preservation
-        # Ensure safety_threshold doesn't exceed 1.0 to allow some similarity
-        safety_threshold = min(0.9, (self.B * self.beta * self.current_learning_rate) / 2.0)
+        # Soften the safety threshold impact
+        safety_threshold = (self.B * self.beta * self.current_learning_rate) / 2.0
         avg_cos_sim = 0.0
 
         for addr, m in model_map.items():
@@ -106,26 +105,31 @@ class DFedAdp_2(Aggregator):
             self.node_correlation[addr] = smoothed_cos
             avg_cos_sim += smoothed_cos
             
-            # Zero-Trust Filter: only trust nodes with similarity above threshold
-            margin = smoothed_cos - safety_threshold
-            fedadp_scores[addr] = max(0.0, m.get_num_samples() * margin)
+            # Use Exponential mapping for stability (similar to original but with cos_sim)
+            # This ensures no node gets exactly 0 weight, preserving network connectivity
+            score = math.exp(self.beta * (smoothed_cos - safety_threshold))
+            fedadp_scores[addr] = m.get_num_samples() * score
 
         # --- 5. Dynamic Learning Rate Control ---
         avg_cos_sim /= len(model_map)
-        dynamic_lr = (2.0 * max(0.1, avg_cos_sim)) / (self.B * self.beta)
-        self.current_learning_rate = max(self.min_learning_rate, min(self.base_learning_rate, dynamic_lr))
+        # More conservative dynamic LR: it scales the base_lr rather than replacing it with a large value
+        lr_scale = max(0.1, min(1.0, (2.0 * max(0.0, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
+        self.current_learning_rate = max(self.min_learning_rate, self.base_learning_rate * lr_scale)
 
         # --- 6. Final Model Mixing ---
         total_score = sum(fedadp_scores.values())
-        if total_score > 0:
-            psi = {addr: s / total_score for addr, s in fedadp_scores.items()}
-        else:
-            # Fallback to metro weights if all nodes filtered
-            psi = {addr: 1.0 / len(model_map) for addr in model_map}
+        psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
         
-        unnormalized_mix = {addr: psi[addr] * metro_weights[addr] for addr in model_map}
-        sum_mix = sum(unnormalized_mix.values())
-        final_mixing_weights = {addr: u / sum_mix if sum_mix > 0 else 1.0/len(model_map) for addr, u in unnormalized_mix.items()}
+        # Combine Adaptive Psi with Consensus Metro weights smoothly
+        # We use a 0.5-0.5 mix to ensure neither pure consensus nor pure adaptive dominates
+        final_mixing_weights = {}
+        for addr in model_map:
+            # Mixture of MH weights and adaptive similarity weights
+            final_mixing_weights[addr] = 0.5 * psi[addr] + 0.5 * metro_weights[addr]
+        
+        # Re-normalize to ensure sum is 1.0
+        total_final_w = sum(final_mixing_weights.values())
+        final_mixing_weights = {addr: w / total_final_w for addr, w in final_mixing_weights.items()}
         
         new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():

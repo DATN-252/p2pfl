@@ -112,20 +112,27 @@ class DFedAdp_2(Aggregator):
 
         # --- 5. Dynamic Learning Rate Control ---
         avg_cos_sim /= len(model_map)
-        # More conservative dynamic LR: it scales the base_lr rather than replacing it with a large value
-        lr_scale = max(0.1, min(1.0, (2.0 * max(0.0, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
-        self.current_learning_rate = max(self.min_learning_rate, self.base_learning_rate * lr_scale)
+        # More conservative dynamic LR with momentum
+        lr_scale = max(0.2, min(1.0, (2.0 * max(0.0, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
+        target_lr = self.base_learning_rate * lr_scale
+        
+        # Apply momentum to LR updates (keep 80% of previous LR)
+        self.current_learning_rate = 0.8 * self.current_learning_rate + 0.2 * target_lr
+        self.current_learning_rate = max(self.min_learning_rate, self.current_learning_rate)
 
         # --- 6. Final Model Mixing ---
         total_score = sum(fedadp_scores.values())
         psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
         
-        # Combine Adaptive Psi with Consensus Metro weights smoothly
-        # We use a 0.5-0.5 mix to ensure neither pure consensus nor pure adaptive dominates
+        # Warm-up mechanism: rely more on consensus in early rounds (round <= 3)
+        # This prevents the initial "shock" of Non-IID data
+        adaptive_weight = 0.5 if current_round > 3 else 0.2
+        consensus_weight = 1.0 - adaptive_weight
+        
         final_mixing_weights = {}
         for addr in model_map:
             # Mixture of MH weights and adaptive similarity weights
-            final_mixing_weights[addr] = 0.5 * psi[addr] + 0.5 * metro_weights[addr]
+            final_mixing_weights[addr] = adaptive_weight * psi[addr] + consensus_weight * metro_weights[addr]
         
         # Re-normalize to ensure sum is 1.0
         total_final_w = sum(final_mixing_weights.values())

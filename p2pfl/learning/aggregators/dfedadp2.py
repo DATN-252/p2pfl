@@ -125,9 +125,9 @@ class DFedAdp_2(Aggregator):
         total_score = sum(fedadp_scores.values())
         psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
         
-        # Warm-up mechanism: rely more on consensus in early rounds (round <= 3)
+        # Warm-up mechanism: rely more on consensus in early rounds (round <= 10)
         # This prevents the initial "shock" of Non-IID data
-        adaptive_weight = 0.5 if current_round > 3 else 0.2
+        adaptive_weight = 0.5 if current_round > 10 else 0.2
         consensus_weight = 1.0 - adaptive_weight
         
         final_mixing_weights = {}

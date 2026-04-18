@@ -1,14 +1,14 @@
-description: "MNIST Dirichlet 0.1 - Highly Non-IID"
+description: "MNIST Dirichlet 0.1 - Testing DFedAdp_2"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 50
+  nodes: 20
   topology: "custom"
 experiment:
-  name: "mnist_dirichlet_0.1"
-  rounds: 100
+  name: "mnist_dirichlet_0.1_test_dfedadp2"
+  rounds: 20
   epochs: 1
-  trainset_size: 50
+  trainset_size: 20
   seed: 666
   wait_timeout: 18000
   dataset:
@@ -26,12 +26,13 @@ experiment:
     params: 
       lr_rate: 0.0001
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.dfedadp2"
+    aggregator: "DFedAdp_2"
     params: 
-      learning_rate: 0.001
-      decay_rate: 0.95
-      alpha: 0.5
+      base_learning_rate: 0.001
+      min_learning_rate: 0.0001
+      B: 2.0
+      beta: 1.0
 settings:
   general:
     disable_ray: False

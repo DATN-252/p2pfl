@@ -38,6 +38,7 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
         self._apply_update = True
         self.additional_info: dict[str, Any] = {}
         self._weights_start = None
+        self._dynamic_lr = None
 
     @staticmethod
     def get_name() -> str:
@@ -47,10 +48,23 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
     def get_info(self) -> Any:
         """Get the additional information."""
         return self.additional_info
+    
+    def set_info(self, info: dict[str, Any]):
+        """Set the additional information (including dynamic_lr)."""
+        self.additional_info = info
+        self._dynamic_lr = info.get("dynamic_lr")
 
     def set_apply_update(self, apply_update: bool):
         """Set whether to apply the optimizer update."""
         self._apply_update = apply_update
+
+    def on_train_start(self, trainer: L.Trainer, pl_module: L.LightningModule):
+        """Update optimizer learning rate if a dynamic one is provided."""
+        if self._dynamic_lr is not None:
+            from p2pfl.management.logger import logger
+            logger.info(None, f"🚀 [OptimizerControl] Applying dynamic learning rate: {self._dynamic_lr}")
+            for param_group in trainer.optimizers[0].param_groups:
+                param_group['lr'] = self._dynamic_lr
 
     def on_train_epoch_start(self, trainer: L.Trainer, pl_module: L.LightningModule):
         """Store weights at the start of the epoch."""

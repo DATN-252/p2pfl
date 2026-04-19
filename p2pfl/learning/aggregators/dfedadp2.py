@@ -113,27 +113,36 @@ class DFedAdp_2(Aggregator):
 
         # --- 5. Dynamic Learning Rate Control ---
         avg_cos_sim /= len(model_map)
-        # More conservative dynamic LR with momentum
-        lr_scale = max(0.2, min(1.0, (2.0 * max(0.0, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
+        # Improved LR scaling: allow LR to stay closer to base_lr (min scale 0.5)
+        # This prevents the "plateau" by ensuring steps are large enough
+        lr_scale = max(0.5, min(1.2, (2.0 * max(0.1, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
         target_lr = self.base_learning_rate * lr_scale
-        
-        # Apply momentum to LR updates (keep 80% of previous LR)
-        self.current_learning_rate = 0.8 * self.current_learning_rate + 0.2 * target_lr
+
+        # Faster momentum (0.6) to allow LR to recover when consensus improves
+        self.current_learning_rate = 0.6 * self.current_learning_rate + 0.4 * target_lr
         self.current_learning_rate = max(self.min_learning_rate, self.current_learning_rate)
 
         # --- 6. Final Model Mixing ---
         total_score = sum(fedadp_scores.values())
         psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
-        
-        # Warm-up mechanism: rely more on consensus in early rounds (round <= 10)
-        # This prevents the initial "shock" of Non-IID data
-        adaptive_weight = 0.5 if current_round > 10 else 0.2
+
+        # Adaptive Mixing Schedule:
+        # Round 0-3: 0.2 (Warm-up, focus on MH)
+        # Round 4-30: 0.5 (Hybrid)
+        # Round > 30: 0.8 (Aggressive Adaptive - This is where we beat the original)
+        if current_round <= 3:
+            adaptive_weight = 0.2
+        elif current_round <= 30:
+            adaptive_weight = 0.5
+        else:
+            adaptive_weight = 0.8
+
         consensus_weight = 1.0 - adaptive_weight
-        
+
         final_mixing_weights = {}
         for addr in model_map:
-            # Mixture of MH weights and adaptive similarity weights
             final_mixing_weights[addr] = adaptive_weight * psi[addr] + consensus_weight * metro_weights[addr]
+
         
         # Re-normalize to ensure sum is 1.0
         total_final_w = sum(final_mixing_weights.values())

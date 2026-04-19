@@ -12,7 +12,7 @@ class DFedAdp_2(Aggregator):
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
 
     def __init__(self, disable_partial_aggregation: bool = False, base_learning_rate: float = 0.001, 
-                 min_learning_rate: float = 0.0001, B: float = 2.0, beta: float = 5.0) -> None:
+                 min_learning_rate: float = 0.0001, B: float = 1.0, beta: float = 2.0) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         
@@ -23,8 +23,8 @@ class DFedAdp_2(Aggregator):
         self.base_learning_rate = base_learning_rate
         self.current_learning_rate = base_learning_rate
         self.min_learning_rate = min_learning_rate
-        self.B = B # Decreased default B for better neighborhood inclusion
-        self.beta = beta # Increased beta for sharper node selection
+        self.B = B # Further decreased for better inclusion
+        self.beta = beta # Balanced beta for diversity
         
         self.prev_local_gradient: List[np.ndarray] = []
 

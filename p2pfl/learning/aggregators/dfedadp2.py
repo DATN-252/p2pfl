@@ -12,7 +12,7 @@ class DFedAdp_2(Aggregator):
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
 
     def __init__(self, disable_partial_aggregation: bool = False, base_learning_rate: float = 0.001, 
-                 min_learning_rate: float = 0.0001, B: float = 2.0, beta: float = 1.0) -> None:
+                 min_learning_rate: float = 0.0001, B: float = 2.0, beta: float = 5.0) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         
@@ -24,7 +24,7 @@ class DFedAdp_2(Aggregator):
         self.current_learning_rate = base_learning_rate
         self.min_learning_rate = min_learning_rate
         self.B = B # Decreased default B for better neighborhood inclusion
-        self.beta = beta
+        self.beta = beta # Increased beta for sharper node selection
         
         self.prev_local_gradient: List[np.ndarray] = []
 
@@ -129,13 +129,13 @@ class DFedAdp_2(Aggregator):
         # Adaptive Mixing Schedule:
         # Round 0-3: 0.2 (Warm-up, focus on MH)
         # Round 4-30: 0.5 (Hybrid)
-        # Round > 30: 0.8 (Aggressive Adaptive - This is where we beat the original)
+        # Round > 30: 1.0 (Pure Adaptive - Radical Optimization)
         if current_round <= 3:
             adaptive_weight = 0.2
         elif current_round <= 30:
             adaptive_weight = 0.5
         else:
-            adaptive_weight = 0.8
+            adaptive_weight = 1.0
 
         consensus_weight = 1.0 - adaptive_weight
 

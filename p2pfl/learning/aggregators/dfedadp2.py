@@ -1,4 +1,5 @@
 import numpy as np
+import math
 from collections import defaultdict
 from typing import Any, List, Dict
 from p2pfl.learning.aggregators.aggregator import Aggregator, NoModelsToAggregateError
@@ -6,18 +7,21 @@ from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.management.logger import logger
 
 class DFedAdp_2(Aggregator):
+    """
+    Improved Decentralized Federated Adaptive Aggregation (DFedAdp_2).
+    Features: Exponential Scoring, Dynamic LR Momentum, and Phased Mixing Schedule.
+    """
     SUPPORTS_PARTIAL_AGGREGATION: bool = False
     requires_gradient_only: bool = False
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
 
     def __init__(self, disable_partial_aggregation: bool = False, base_learning_rate: float = 0.001, 
-                 min_learning_rate: float = 0.0001, B: float = 2.0, beta: float = 1.0) -> None:
+                 min_learning_rate: float = 0.0001, B: float = 1.0, beta: float = 2.0) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         
-        # State-space memory
+        # Tracks smoothed cosine similarity
         self.node_correlation: Dict[str, float] = {}
-        self.prev_local_gradient: List[np.ndarray] = []
         
         # Hyperparameters
         self.base_learning_rate = base_learning_rate
@@ -25,6 +29,8 @@ class DFedAdp_2(Aggregator):
         self.min_learning_rate = min_learning_rate
         self.B = B 
         self.beta = beta
+        
+        self.prev_local_gradient: List[np.ndarray] = []
 
     def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         if not models:
@@ -66,6 +72,7 @@ class DFedAdp_2(Aggregator):
         # --- 3. Global Gradient Tracking (Consensus Vector) ---
         weighted_v_consensus = [np.zeros_like(p) for p in self.global_model_params]
         
+        # Shape safety check
         if len(self_delta) != len(weighted_v_consensus) or any(s.shape != g.shape for s, g in zip(self_delta, weighted_v_consensus)):
             self_delta = [np.zeros_like(p) for p in self.global_model_params]
             self.prev_local_gradient = [np.zeros_like(p) for p in self.global_model_params]
@@ -73,28 +80,25 @@ class DFedAdp_2(Aggregator):
         for addr, m in model_map.items():
             w_ij = metro_weights.get(addr, 0.0)
             v_j_prev = self._get_and_validate_model_info(m).get("tracking_v")
-            
-            if not v_j_prev or len(v_j_prev) != len(weighted_v_consensus) or any(np.array(v).shape != g.shape for v, g in zip(v_j_prev, weighted_v_consensus)):
+            if not v_j_prev or len(v_j_prev) != len(weighted_v_consensus):
                 v_j_prev = [np.zeros_like(p) for p in self.global_model_params]
-            
             weighted_v_consensus = [acc + w_ij * np.array(v) for acc, v in zip(weighted_v_consensus, v_j_prev)]
 
         tracking_delta = [wv + curr - prev for wv, curr, prev in zip(weighted_v_consensus, self_delta, self.prev_local_gradient)]
         self.prev_local_gradient = [d.copy() for d in self_delta]
 
-        # --- 4. Pure Analytic Weighting & Absolute Zero-Trust Filter ---
+        # --- 4. Adaptive Analytic Weighting & Zero-Trust Filter ---
         fedadp_scores = {}
         g_vec = np.concatenate([p.ravel() for p in tracking_delta])
         g_norm = np.linalg.norm(g_vec)
         
-        # Ranh giới vật lý của sự hội tụ
+        # Safety threshold with epsilon to prevent loss of selection power at low LR
         safety_threshold = (self.B * self.beta * self.current_learning_rate) / 2.0
         avg_cos_sim = 0.0
 
         for addr, m in model_map.items():
             l_vec = np.concatenate([p.ravel() for p in get_delta(m)])
             l_norm = np.linalg.norm(l_vec)
-
             cos_sim = 1.0 if g_norm == 0 or l_norm == 0 else np.clip(np.dot(g_vec, l_vec) / (g_norm * l_norm), -1.0, 1.0)
             
             prev_cos = self.node_correlation.get(addr, cos_sim)
@@ -102,42 +106,35 @@ class DFedAdp_2(Aggregator):
             self.node_correlation[addr] = smoothed_cos
             avg_cos_sim += smoothed_cos
             
-            # Cắt đứt hoàn toàn nếu vi phạm toán học (không dùng exp)
-            margin = smoothed_cos - safety_threshold
-            fedadp_scores[addr] = m.get_num_samples() * max(0.0, margin)
+            # Exponential scoring for smooth but selective weighting
+            score = math.exp(self.beta * (smoothed_cos - safety_threshold))
+            fedadp_scores[addr] = m.get_num_samples() * score
 
         # --- 5. Dynamic Learning Rate Control ---
-        avg_cos_sim /= len(model_map)
-        lr_scale = max(0.2, min(1.0, (2.0 * max(0.0, avg_cos_sim)) / (self.B * self.beta + 1e-6)))
+        avg_cos_sim_val = avg_cos_sim / len(model_map)
+        lr_scale = max(0.5, min(1.2, (2.0 * max(0.1, avg_cos_sim_val)) / (self.B * self.beta + 1e-6)))
         target_lr = self.base_learning_rate * lr_scale
-        
-        self.current_learning_rate = 0.8 * self.current_learning_rate + 0.2 * target_lr
+        self.current_learning_rate = 0.6 * self.current_learning_rate + 0.4 * target_lr
         self.current_learning_rate = max(self.min_learning_rate, self.current_learning_rate)
 
-        # --- 6. Final Model Mixing & Auto-Lockdown ---
+        # --- 6. Final Model Mixing ---
         total_score = sum(fedadp_scores.values())
-        
-        # Cơ chế Lockdown: Nếu toàn mạng bị drop, vector psi tự động bằng 0
-        if total_score > 0:
-            psi = {addr: s / total_score for addr, s in fedadp_scores.items()}
+        psi = {addr: s / total_score if total_score > 0 else 1.0/len(model_map) for addr, s in fedadp_scores.items()}
+
+        # Phased Mixing Schedule
+        if current_round <= 3:
+            adaptive_weight = 0.2
+        elif current_round <= 30:
+            adaptive_weight = 0.5
         else:
-            psi = {addr: 0.0 for addr in fedadp_scores.keys()}
-        
-        # Continuous Warm-up (trượt mượt tuyến tính thay vì giật cục)
-        # Giả định đường kính đồ thị cần ~8 vòng để thông tin lan truyền
-        warmup_rounds = 8.0 
-        progress = min(1.0, current_round / warmup_rounds)
-        adaptive_weight = 0.2 + 0.5 * progress # Đi từ 0.2 lên 0.7
+            adaptive_weight = 1.0
+
         consensus_weight = 1.0 - adaptive_weight
+        final_mixing_weights = {addr: adaptive_weight * psi[addr] + consensus_weight * metro_weights[addr] for addr in model_map}
         
-        final_mixing_weights = {}
-        for addr in model_map:
-            # Lưới an toàn: Dựa vào topology nếu thuật toán bị khóa
-            final_mixing_weights[addr] = adaptive_weight * psi.get(addr, 0.0) + consensus_weight * metro_weights[addr]
-        
-        # Re-normalize to ensure sum is 1.0
-        total_final_w = sum(final_mixing_weights.values())
-        final_mixing_weights = {addr: w / total_final_w for addr, w in final_mixing_weights.items()}
+        # Final normalization to handle floating point precision
+        sum_w = sum(final_mixing_weights.values())
+        final_mixing_weights = {addr: w / sum_w for addr, w in final_mixing_weights.items()}
         
         new_weights = [np.zeros_like(p, dtype=np.float64) for p in self.global_model_params]
         for addr, m in model_map.items():

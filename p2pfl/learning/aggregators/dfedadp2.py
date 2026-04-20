@@ -124,10 +124,10 @@ class DFedAdp_2(Aggregator):
         # Phased Mixing Schedule
         if current_round <= 3:
             adaptive_weight = 0.2
-        elif current_round <= 30:
-            adaptive_weight = 0.5
         else:
-            adaptive_weight = 1.0
+            # Sigmoid transition from 0.5 to 0.8, centered at round 30 with steepness 0.2
+            w_min, w_max, r_mid, k = 0.5, 0.8, 30, 0.2
+            adaptive_weight = w_min + (w_max - w_min) / (1.0 + math.exp(-k * (current_round - r_mid)))
 
         consensus_weight = 1.0 - adaptive_weight
         final_mixing_weights = {addr: adaptive_weight * psi[addr] + consensus_weight * metro_weights[addr] for addr in model_map}

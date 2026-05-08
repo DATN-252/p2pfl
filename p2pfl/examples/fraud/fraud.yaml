@@ -60,3 +60,4 @@ settings:
   training:
     vote_timeout: 120
     aggregation_timeout: 300
+    packaging_interval: 30

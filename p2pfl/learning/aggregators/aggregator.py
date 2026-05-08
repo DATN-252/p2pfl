@@ -65,7 +65,7 @@ class Aggregator(NodeComponent):
 
         # --- START MODEL PACKAGING ADDITION ---
         # Highly relaxed threshold for quick testing (epsilon 0.1, patience 1)
-        # self.packager = ModelPackager(epsilon=0.1, patience=1)
+        self.packager = ModelPackager(epsilon=0.1, patience=1)
         # --- END MODEL PACKAGING ADDITION ---
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
@@ -242,14 +242,14 @@ class Aggregator(NodeComponent):
                 result = self.aggregate(self.__models)
                 
                 # --- START MODEL PACKAGING ADDITION ---
-                # if state is not None and hasattr(state, "experiment_logger") and state.experiment_logger is not None:
-                #     self.packager.check_and_package(
-                #         models=self.__models, 
-                #         aggregated_model=result, 
-                #         round_num=self.__current_round or 0, 
-                #         output_path=state.experiment_logger.output_dir,
-                #         node_addr=self.normalize_addr(self.addr)
-                #     )
+                if state is not None and hasattr(state, "experiment_logger") and state.experiment_logger is not None:
+                    self.packager.check_and_package(
+                        models=self.__models, 
+                        aggregated_model=result, 
+                        round_num=self.__current_round or 0, 
+                        output_path=state.experiment_logger.output_dir,
+                        node_addr=self.normalize_addr(self.addr)
+                    )
                 # --- END MODEL PACKAGING ADDITION ---
                 
             finally:

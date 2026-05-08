@@ -27,6 +27,23 @@ class ModelPackager:
         if not models or aggregated_model is None:
             return
 
+        # --- OPTION 1: FIXED INTERVAL PACKAGING (Experiment mode) ---
+        interval = Settings.training.PACKAGING_INTERVAL
+        if interval > 0:
+            # Package if it's the right round (e.g., every 30 rounds)
+            # Use (round_num + 1) if round_num starts at 0 to package at 29, 59, etc.
+            # or just round_num % interval == 0
+            if (round_num + 1) % interval == 0:
+                logger.info("ModelPackager", f"Round {round_num}: Interval reached ({interval}). Starting packaging...")
+                if node_addr == Settings.training.AUTHORIZED_PUSH_NODE:
+                    logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Pushing to IS...")
+                    self._save_model_locally(aggregated_model, round_num, output_path)
+                    self._trigger_inference_service(aggregated_model, round_num)
+                else:
+                    logger.debug("ModelPackager", f"Node {node_addr} not authorized to push.")
+                return # Skip consensus logic if interval matched
+
+        # --- OPTION 2: CONSENSUS-BASED PACKAGING (Practical mode) ---
         # 1. Get aggregated parameters as a flat vector
         agg_params = np.concatenate([p.flatten() for p in aggregated_model.get_parameters()])
         
@@ -57,7 +74,7 @@ class ModelPackager:
                 self._trigger_inference_service(aggregated_model, round_num)
             else:
                 # Still save locally for backup, but don't push
-                # logger.debug("ModelPackager", f"Node {node_addr} not authorized to push.")
+                logger.debug("ModelPackager", f"Node {node_addr} not authorized to push.")
                 pass
             
             self.patience_counter = 0

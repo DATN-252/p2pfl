@@ -122,6 +122,8 @@ class Training:
     """Number of workers for data loading."""
     AUTHORIZED_PUSH_NODE: str = "node"
     """The node authorized to push models to the inference service."""
+    PACKAGING_INTERVAL: int = 0
+    """Interval (rounds) for model packaging. 0 means disabled (uses consensus)."""
 
 
 ###################

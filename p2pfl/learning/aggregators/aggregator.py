@@ -64,8 +64,11 @@ class Aggregator(NodeComponent):
         self.__last_comm_cost: int = 0
 
         # --- START MODEL PACKAGING ADDITION ---
-        # Highly relaxed threshold for quick testing (epsilon 0.1, patience 1)
-        self.packager = ModelPackager(epsilon=0.1, patience=1)
+        # Initialize with settings from configuration (Interval, Epsilon, Patience)
+        self.packager = ModelPackager(
+            epsilon=Settings.training.PACKAGING_EPSILON, 
+            patience=Settings.training.PACKAGING_PATIENCE
+        )
         # --- END MODEL PACKAGING ADDITION ---
 
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:

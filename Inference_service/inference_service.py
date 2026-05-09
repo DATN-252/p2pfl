@@ -50,22 +50,45 @@ async def load_model_logic(path_or_buffer, round_num: int, is_buffer=False):
     global model, current_round
     async with model_lock:
         try:
+            # 0. Check if file is empty (prevents EOFError/invalid load key)
+            if not is_buffer and os.path.exists(path_or_buffer) and os.path.getsize(path_or_buffer) == 0:
+                print(f"⚠️ SKIPPING: Model file {path_or_buffer} is empty (0 bytes).")
+                return False
+
             new_model = FraudDetectionMLP(input_size=12)
-            state_dict = torch.load(path_or_buffer)
+            
+            # 1. Load data from path or buffer
+            data = torch.load(path_or_buffer, map_location="cpu")
+            
+            # 2. Robust state_dict extraction
+            # Handles: pure state_dict, full model object, or dict with "state_dict" key
+            state_dict = None
+            if isinstance(data, dict):
+                state_dict = data.get("state_dict", data)
+            elif hasattr(data, "state_dict"):
+                state_dict = data.state_dict()
+            else:
+                state_dict = data # Fallback
+            
             new_model.load_state_dict(state_dict)
             new_model.eval()
 
             model = new_model
             current_round = round_num
 
+            # 3. Save to cache if it was pushed via buffer
             if is_buffer:
-                cache_path = os.path.abspath(os.path.join(CACHE_DIR, f"model_round_{round_num}.pt"))        
+                cache_path = os.path.abspath(os.path.join(CACHE_DIR, f"model_round_{round_num}.pt"))
+                # Use the original bytes from the buffer (getvalue() is safer than read() after torch.load)
+                model_bytes = path_or_buffer.getvalue()
                 with open(cache_path, "wb") as f:
-                    path_or_buffer.seek(0)
-                    f.write(path_or_buffer.read())
+                    f.write(model_bytes)
+                print(f"💾 Model Round {round_num} cached to {cache_path}")
+            
+            print(f"✅ LOAD SUCCESS: Model Round {round_num} is now active.")
             return True
         except Exception as e:
-            print(f"❌ LOAD ERROR: {e}")
+            print(f"❌ LOAD ERROR (Round {round_num}): {e}")
             return False
 
 @asynccontextmanager

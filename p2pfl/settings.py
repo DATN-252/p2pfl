@@ -124,6 +124,10 @@ class Training:
     """The node authorized to push models to the inference service."""
     PACKAGING_INTERVAL: int = 0
     """Interval (rounds) for model packaging. 0 means disabled (uses consensus)."""
+    PACKAGING_EPSILON: float = 0.001
+    """Maximum distance between models to consider consensus."""
+    PACKAGING_PATIENCE: int = 5
+    """Number of consecutive rounds to wait for consensus before packaging."""
 
 
 ###################

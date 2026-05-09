@@ -31,17 +31,14 @@ class ModelPackager:
         interval = Settings.training.PACKAGING_INTERVAL
         if interval > 0:
             if (round_num + 1) % interval == 0:
-                logger.info("ModelPackager", f"Round {round_num}: Interval reached ({interval}). Saving model...")
-                
-                # ALWAYS save locally for backup
-                self._save_model_locally(aggregated_model, round_num, output_path)
-
+                # ONLY the authorized node saves and pushes to avoid race conditions (50 nodes writing to the same file)
                 if node_addr == Settings.training.AUTHORIZED_PUSH_NODE:
-                    logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Pushing to IS...")
+                    logger.info("ModelPackager", f"Round {round_num}: Interval reached ({interval}). Authorized node saving & pushing...")
+                    self._save_model_locally(aggregated_model, round_num, output_path)
                     self._trigger_inference_service(aggregated_model, round_num)
                 else:
-                    logger.debug("ModelPackager", f"Node {node_addr} not authorized to push to Inference Service.")
-                return 
+                    logger.debug("ModelPackager", f"Round {round_num}: Interval reached. Node {node_addr} not authorized (skipping to avoid race).")
+            return # IMPORTANT: If interval is set, we skip consensus logic entirely to avoid extra saves
 
         # --- OPTION 2: CONSENSUS-BASED PACKAGING (Practical mode) ---
         # 1. Get aggregated parameters as a flat vector
@@ -65,16 +62,13 @@ class ModelPackager:
 
         # 4. Package if patience reached
         if self.patience_counter >= self.patience:
-            logger.info("ModelPackager", f"Round {round_num}: Consensus patience reached. Saving model...")
-            
-            # ALWAYS save locally for backup
-            self._save_model_locally(aggregated_model, round_num, output_path)
-
+            # ONLY the authorized node saves and pushes
             if node_addr == Settings.training.AUTHORIZED_PUSH_NODE:
-                logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Pushing to IS...")
+                logger.info("ModelPackager", f"Round {round_num}: Consensus patience reached. Authorized node saving & pushing...")
+                self._save_model_locally(aggregated_model, round_num, output_path)
                 self._trigger_inference_service(aggregated_model, round_num)
             else:
-                logger.debug("ModelPackager", f"Node {node_addr} not authorized to push to Inference Service.")
+                logger.debug("ModelPackager", f"Round {round_num}: Consensus reached. Node {node_addr} not authorized.")
             
             self.patience_counter = 0
 
@@ -124,24 +118,3 @@ class ModelPackager:
                 logger.debug("ModelPackager", f"Direct Push ignored: Service returned {response.status_code}")
         except Exception as e:
             logger.debug("ModelPackager", f"Inference service not reachable: {e}")
-
-    def _save_model(self, model: P2PFLModel, round_num: int, output_path: str, dist: float):
-        """Save the model weights locally and trigger direct push."""
-        try:
-            # Always save locally first for backup
-            log_dir = os.path.join(output_path, "logs")
-            os.makedirs(log_dir, exist_ok=True)
-            file_name = f"packaged_model_round_{round_num}.pt"
-            save_path = os.path.abspath(os.path.join(log_dir, file_name))
-            
-            torch_model = model.get_model()
-            if hasattr(torch_model, "state_dict"):
-                torch.save(torch_model.state_dict(), save_path)
-                logger.info("ModelPackager", f"✅ Model SAVED at round {round_num} to {save_path}")
-                
-                # --- DIRECT PUSH TRIGGER ---
-                self._trigger_inference_service(model, round_num)
-            else:
-                logger.error("ModelPackager", "Model does not have state_dict, skipping.")
-        except Exception as e:
-            logger.error("ModelPackager", f"Failed to save/push model: {e}")

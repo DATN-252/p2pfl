@@ -31,13 +31,16 @@ class ModelPackager:
         interval = Settings.training.PACKAGING_INTERVAL
         if interval > 0:
             if (round_num + 1) % interval == 0:
-                logger.info("ModelPackager", f"Round {round_num}: Interval reached ({interval}). Starting packaging...")
+                logger.info("ModelPackager", f"Round {round_num}: Interval reached ({interval}). Saving model...")
+                
+                # ALWAYS save locally for backup
+                self._save_model_locally(aggregated_model, round_num, output_path)
+
                 if node_addr == Settings.training.AUTHORIZED_PUSH_NODE:
                     logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Pushing to IS...")
-                    self._save_model_locally(aggregated_model, round_num, output_path)
                     self._trigger_inference_service(aggregated_model, round_num)
                 else:
-                    logger.debug("ModelPackager", f"Node {node_addr} not authorized to push.")
+                    logger.debug("ModelPackager", f"Node {node_addr} not authorized to push to Inference Service.")
                 return 
 
         # --- OPTION 2: CONSENSUS-BASED PACKAGING (Practical mode) ---
@@ -62,17 +65,16 @@ class ModelPackager:
 
         # 4. Package if patience reached
         if self.patience_counter >= self.patience:
-            # DEBUG: Show actual address to help configuration
-            logger.debug("ModelPackager", f"Consensus reached. Node: '{node_addr}', Authorized: '{Settings.training.AUTHORIZED_PUSH_NODE}'")
+            logger.info("ModelPackager", f"Round {round_num}: Consensus patience reached. Saving model...")
             
+            # ALWAYS save locally for backup
+            self._save_model_locally(aggregated_model, round_num, output_path)
+
             if node_addr == Settings.training.AUTHORIZED_PUSH_NODE:
-                logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Starting packaging & push...")
-                self._save_model_locally(aggregated_model, round_num, output_path)
+                logger.info("ModelPackager", f"🌟 Node {node_addr} is AUTHORIZED. Pushing to IS...")
                 self._trigger_inference_service(aggregated_model, round_num)
             else:
-                # Still save locally for backup, but don't push
-                logger.debug("ModelPackager", f"Node {node_addr} not authorized to push.")
-                pass
+                logger.debug("ModelPackager", f"Node {node_addr} not authorized to push to Inference Service.")
             
             self.patience_counter = 0
 

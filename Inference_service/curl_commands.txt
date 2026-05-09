@@ -1,0 +1,17 @@
+# --- Trang thai he thong ---
+curl -X GET http://localhost:8000/admin/status | jq
+
+# --- Cau hinh nhan cap nhat tu dong ---
+curl -X POST http://localhost:8000/admin/config -H "Content-Type: application/json" -d "{\"accept_triggers\": true}" | jq
+
+# --- Quay ve phien ban mo hinh cu (vi du round 10) ---
+curl -X POST http://localhost:8000/admin/rollback/10 | jq
+
+# --- Cap nhat mo hinh moi tu P2PFL ---
+curl -X POST http://localhost:8000/reload -H "Content-Type: application/json" -d "{\"model_data\": \"BASE64_STRING\", \"round\": 15}" | jq
+
+# --- Thuc hien du doan giao dich (Test sample - Michael Williams - Shopping POS) ---
+curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d "{\"cc_num\": 4292743669224718067, \"amt\": 3204.98, \"lat\": 38.2674, \"long\": -76.4954, \"city_pop\": 5927, \"merch_lat\": 37.480372, \"merch_long\": -77.34958, \"dob\": \"1973-06-09\", \"trans_date_trans_time\": \"2020-06-21 17:40:54\", \"category\": \"shopping_pos\", \"unix_time\": 1371836454}" | jq
+
+# --- Thuc hien du doan giao dich (Generic template) ---
+curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d "{\"amt\": 125.50, \"lat\": 40.7128, \"long\": -74.0060, \"city_pop\": 8000000, \"merch_lat\": 40.7589, \"merch_long\": -73.9851, \"dob\": \"1990-01-01\", \"trans_date_trans_time\": \"2023-10-27 14:30:00\", \"category\": \"gas_transport\", \"unix_time\": 1698417000}" | jq

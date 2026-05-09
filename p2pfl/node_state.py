@@ -21,6 +21,7 @@ import threading
 
 from p2pfl.experiment import Experiment
 from p2pfl.management.logger import logger
+from p2pfl.management.experiment_logger import ExperimentLogger # NEW IMPORT
 
 
 class NodeState:
@@ -32,6 +33,9 @@ class NodeState:
         """Initialize the node state."""
         self.addr = addr
         self.status = "Idle"
+
+        # Reference to the logger for path retrieval
+        self.experiment_logger: ExperimentLogger | None = None # NEW
 
         # Aggregator
         self.models_aggregated_lock = threading.Lock()

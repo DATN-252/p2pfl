@@ -60,7 +60,7 @@ experiment:
       learning_rate: 0.001
       decay_rate: 0.95
       alpha: 0.5
-      beta: 0.9
+      beta: 0.7
 
     # package: "p2pfl.learning.aggregators.fedavg"
     # aggregator: "FedAvg"

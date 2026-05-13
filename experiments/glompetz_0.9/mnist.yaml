@@ -1,0 +1,109 @@
+description: "Example of using P2PFL with the MNIST dataset, a collection of handwritten digits commonly used for training image processing systems."
+
+# Remote loggers configuration (optional)
+remote_loggers:
+  # wandb_api_key: "your-api-key"
+  # wandb_project: "p2pfl-mnist"
+  # p2pfl_web_url: "https://your-server.com"
+  # p2pfl_web_key: "your-api-key"
+
+# Defines network setup
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 50
+  topology: "custom"   # Network topology: "line", "ring", "star", "full", "random_8", "custom", null for custom
+  additional_connections: []
+
+# Defines experimsettings
+experiment:
+  name: "my_experiment"
+  rounds: 50
+  epochs: 1
+  trainset_size: 50
+  seed: 666
+  wait_timeout: 18000
+
+  # Dataset settings
+  dataset:
+    source: "huggingface" # Dataset source: "huggingface", "csv", etc.
+    name: "p2pfl/MNIST"
+    batch_size: 256
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "RandomIIDPartitionStrategy"
+      reduced_dataset: false # For testing purposes
+      reduction_factor: 10
+
+      params: {}
+
+  # Learning algorithm configuration
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch" # mlp_pytorch | mlp_tensorflow
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.001
+    # Learning algorithm parameters (algorithm-specific)
+    #compression:
+    #ptq:
+    #  dtype: "int8"
+    #topk:
+    #  k: 0.1
+    #zlib:
+    #  level: 6
+
+  # Aggregation algorithm configuration
+  aggregator:
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params:
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
+      beta: 0.9
+
+    # package: "p2pfl.learning.aggregators.fedavg"
+    # aggregator: "FedAvg"
+    # params: {}
+ 
+    # package: "p2pfl.learning.aggregators.psgd"
+    # aggregator: "PSGD"
+    # params: 
+    #   lr: 0.001
+
+# General experiment settings
+settings:
+  general:
+    log_level: "INFO" # Logging verbosity: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
+    grpc_timeout: 2
+    disable_ray: False
+
+  SSL:
+    use_ssl: false
+    CA_CRT: None
+    SERVER_CRT: None
+    CLIENT_CRT: None
+    SERVER_KEY: None
+    CLIENT_KEY: None
+  heartbeat:
+    period: 10
+    timeout: 99999 
+    wait_convergence: 20
+    exclude_beat_logs: true
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300
+
+# Profiling configuration
+profiling:
+  enabled: false
+  measure_time: true
+  output_dir: "profile/mnist"

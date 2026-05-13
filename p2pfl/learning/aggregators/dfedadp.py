@@ -12,7 +12,7 @@ class DFedAdp(Aggregator):
     REQUIRED_INFO_KEYS = ["delta", "degrees"] 
     
 
-    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False, decay_rate: float = 0.95, min_learning_rate: float = 0.0001,alpha : float = 1.0) -> None:
+    def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.001, log_dfedadp_params: bool = False, decay_rate: float = 0.95, min_learning_rate: float = 0.0001,alpha : float = 1.0, beta: float = 0.9) -> None:
         super().__init__(disable_partial_aggregation=disable_partial_aggregation)
         self.global_model_params: List[np.ndarray] = []
         # Map contributor_id -> smoothed_angle history
@@ -27,6 +27,7 @@ class DFedAdp(Aggregator):
         self.log_dfedadp_params = log_dfedadp_params
         # ALPHA for glompetz function
         self.ALPHA = alpha
+        self.BETA = beta
 
     def aggregate(self, models: List[P2PFLModel]) -> P2PFLModel:
         # Validate input
@@ -117,7 +118,7 @@ class DFedAdp(Aggregator):
             angle = float(np.arccos(cos_sim))
 
             prev_angle = self.node_correlation.get(addr, 0.0)
-            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else 0.9 * prev_angle + 0.1 * angle
+            smoothed_angle = angle if current_round <= 1 or prev_angle == 0.0 else self.BETA * prev_angle + (1.0-self.BETA) * angle
             self.node_correlation[addr] = smoothed_angle
             
             f_val = self._gompertz_function(smoothed_angle)

@@ -18,7 +18,7 @@ network:
 # Defines experimsettings
 experiment:
   name: "my_experiment"
-  rounds: 100
+  rounds: 50
   epochs: 1
   trainset_size: 50
   seed: 666
@@ -54,21 +54,22 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    # package: "p2pfl.learning.aggregators.dfedadp"
-    # aggregator: "DFedAdp"
-    # params:
-    #   learning_rate: 0.001
-    #   decay_rate: 0.95
-    #   alpha: 0.5
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params:
+      learning_rate: 0.001
+      decay_rate: 0.95
+      alpha: 0.5
+      beta: 0.9
 
     # package: "p2pfl.learning.aggregators.fedavg"
     # aggregator: "FedAvg"
     # params: {}
  
-    package: "p2pfl.learning.aggregators.psgd"
-    aggregator: "PSGD"
-    params: 
-      lr: 0.001
+    # package: "p2pfl.learning.aggregators.psgd"
+    # aggregator: "PSGD"
+    # params: 
+    #   lr: 0.001
 
 # General experiment settings
 settings:

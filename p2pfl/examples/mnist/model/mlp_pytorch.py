@@ -41,6 +41,7 @@ class MLP(L.LightningModule):
         out_channels: int = 10,
         activation: str = "relu",
         lr_rate: float = 0.001,
+        momentum: float = 0.9,
     ) -> None:
         """Initialize the MLP."""
         super().__init__()
@@ -48,6 +49,7 @@ class MLP(L.LightningModule):
         if hidden_sizes is None:
             hidden_sizes = [256, 128]
         self.lr_rate = lr_rate
+        self.momentum = momentum
         if out_channels == 1:
             self.accuracy = Accuracy(task="binary")
             self.precision = Precision(task="binary")

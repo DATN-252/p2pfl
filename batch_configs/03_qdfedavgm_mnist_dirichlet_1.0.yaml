@@ -1,13 +1,13 @@
-description: "MNIST Dirichlet 10.0 - Near IID"
+description: "Q-DFedAvgM - MNIST Dirichlet 1.0"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 50
   topology: "custom"
 experiment:
-  name: "mnist_dirichlet_10.0"
+  name: "qdfedavgm_mnist_dirichlet_1.0"
   rounds: 100
-  epochs: 1
+  epochs: 2
   trainset_size: 50
   seed: 666
   wait_timeout: 18000
@@ -19,19 +19,20 @@ experiment:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"
       params:
-        alpha: 10.0
+        alpha: 1.0
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
+    learner_package: "p2pfl.learning.frameworks.pytorch.momentum_learner"
+    learner_class: "MomentumLearner"
     params: 
-      lr_rate: 0.0001
+      lr_rate: 0.01
+      momentum: 0.9
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.qdfedavgm"
+    aggregator: "QDFedAvgMAggregator"
     params: 
-      learning_rate: 0.001
-      decay_rate: 0.95
-      alpha: 0.5
+      bits: 8
 settings:
   general:
     disable_ray: False
@@ -43,4 +44,3 @@ settings:
   training:
     vote_timeout: 120
     aggregation_timeout: 300
-    packaging_interval: 100

@@ -2,13 +2,13 @@ description: "DSGT Verification Test"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
-  nodes: 5
-  topology: "full"
+  nodes: 50
+  topology: "custom"
 experiment:
   name: "dsgt_verify"
-  rounds: 20
+  rounds: 100
   epochs: 1
-  trainset_size: 5
+  trainset_size: 50
   seed: 42
   wait_timeout: 30
   dataset:

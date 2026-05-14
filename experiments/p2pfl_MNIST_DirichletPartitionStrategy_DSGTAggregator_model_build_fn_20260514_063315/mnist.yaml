@@ -1,0 +1,45 @@
+description: "DSGT Verification Test"
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 50
+  topology: "custom"
+experiment:
+  name: "dsgt_verify"
+  rounds: 100
+  epochs: 1
+  trainset_size: 50
+  seed: 42
+  wait_timeout: 900
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 64
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "DirichletPartitionStrategy"
+      params:
+        alpha: 0.1
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.01
+  aggregator:
+    package: "p2pfl.learning.aggregators.dsgt"
+    aggregator: "DSGTAggregator"
+    params: 
+      alpha: 0.01
+      beta: 0.9
+settings:
+  general:
+    disable_ray: False
+    grpc_timeout: 120
+  heartbeat:
+    timeout: 99999
+    period: 10
+    wait_convergence: 180
+  training:
+    vote_timeout: 120
+    aggregation_timeout: 300
+    packaging_interval: 50

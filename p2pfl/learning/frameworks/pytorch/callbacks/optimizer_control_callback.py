@@ -69,13 +69,18 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
                 delta.append((start_val - end_val).numpy())
             
             self.additional_info["delta"] = delta
+
+            # If we don't want to apply the update, revert to original weights
+            # We do this AFTER calculating delta
+            if not self._apply_update:
+                pl_module.load_state_dict(self._weights_start)
+
             self._weights_start = None
 
     def on_before_optimizer_step(self, trainer: L.Trainer, pl_module: L.LightningModule, optimizer: Any):
         """
-        Prevent the local update ONLY if explicitly requested.
-        For Accumulated Gradient Tracking, we usually want this to be TRUE.
+        DO NOT zero the grad here anymore.
+        We need the optimizer to step so we can calculate 'delta' (weights_start - weights_end).
+        If apply_update is False, we revert the weights in on_train_epoch_end.
         """
-        if trainer.state.fn == TrainerFn.FITTING and not self._apply_update:
-            optimizer.zero_grad()
-
+        pass

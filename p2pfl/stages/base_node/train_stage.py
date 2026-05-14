@@ -83,15 +83,16 @@ class TrainStage(Stage):
                 n_s = learner.get_data().get_num_samples()
                 current_model.set_contribution([state.addr], n_s) 
             
-            # Use force_add_local_model instead of add_model for the local node
-            logger.info(state.addr, "🛠️ Calling force_add_local_model...")
-
-            aggregator.force_add_local_model(current_model)
-
             import time
             time.sleep(5) # wait for continuous voting
 
             pre_model = aggregator.preprocess_local_model(current_model)
+            
+            # Use force_add_local_model instead of add_model for the local node
+            # Added AFTER preprocess to include metadata
+            logger.info(state.addr, "🛠️ Calling force_add_local_model...")
+            aggregator.force_add_local_model(pre_model)
+
             TrainStage.__send_model_direct(state, communication_protocol, pre_model)
             check_early_stop(state)
             

@@ -102,6 +102,8 @@ class TrainStage(Stage):
             logger.info(state.addr, "🧠 Aggregation complete. Setting new model.")
             learner.set_model(agg_model)
 
+            check_early_stop(state)
+
             # Share that aggregation is done
             communication_protocol.broadcast(communication_protocol.build_msg(ModelsReadyCommand.get_name(), [], round=state.round))
 

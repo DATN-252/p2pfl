@@ -10,7 +10,7 @@ experiment:
   epochs: 1
   trainset_size: 50
   seed: 42
-  wait_timeout: 30
+  wait_timeout: 999
   dataset:
     source: "huggingface"
     name: "p2pfl/MNIST"

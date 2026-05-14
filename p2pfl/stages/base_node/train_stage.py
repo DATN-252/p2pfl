@@ -91,10 +91,7 @@ class TrainStage(Stage):
             import time
             time.sleep(5) # wait for continuous voting
 
-            if aggregator is QDFedAvgMAggregator:
-                pre_model = aggregator.preprocess_local_model(current_model)
-            else:
-                pre_model = current_model
+            pre_model = aggregator.preprocess_local_model(current_model)
             TrainStage.__send_model_direct(state, communication_protocol, pre_model)
             check_early_stop(state)
             

@@ -84,7 +84,8 @@ class MemoryServer(ProtobuffServer):
 
         # Server
         self.__singleton_dict = SingletonDict()
-        self.__terminated = threading.Event()
+        self.__stop_event = threading.Event()
+        self.__is_running = False
 
     def set_addr(self, addr: str) -> str:
         """Set the addr of the node."""
@@ -105,18 +106,23 @@ class MemoryServer(ProtobuffServer):
         if self.__singleton_dict is None:
             raise Exception("ServerSingleton instance not created")
         self.__singleton_dict[self.addr] = self
-        self.__terminated.set()
+        self.__is_running = True
+        self.__stop_event.clear()
         logger.info(self.addr, f"InMemoryServer started at {self.addr}")
+        if wait:
+            self.wait_for_termination()
 
     def stop(self) -> None:
         """Stop the in-memory server."""
-        del self.__singleton_dict[self.addr]
-        self.__terminated.clear()
+        if self.addr in self.__singleton_dict:
+            del self.__singleton_dict[self.addr]
+        self.__is_running = False
+        self.__stop_event.set()
         logger.info(self.addr, f"InMemoryServer stopped at {self.addr}")
 
     def wait_for_termination(self) -> None:
         """Wait for termination."""
-        self.__terminated.wait()
+        self.__stop_event.wait()
 
     def is_running(self) -> bool:
         """
@@ -126,4 +132,4 @@ class MemoryServer(ProtobuffServer):
             True if the server is running, False otherwise.
 
         """
-        return self.__terminated.is_set()
+        return self.__is_running

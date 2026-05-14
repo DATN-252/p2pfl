@@ -54,17 +54,21 @@ class OptimizerControlCallback(Callback, P2PFLCallback):
 
     def on_train_epoch_start(self, trainer: L.Trainer, pl_module: L.LightningModule):
         """Store weights at the start of the epoch."""
-        self._weights_start = [p.detach().cpu().clone() for p in pl_module.parameters()]
+        # Use state_dict to ensure alignment with LightningModel.get_parameters()
+        self._weights_start = {k: v.detach().cpu().clone() for k, v in pl_module.state_dict().items()}
 
     def on_train_epoch_end(self, trainer: L.Trainer, pl_module: L.LightningModule):
         """Calculate the accumulated delta at the end of the epoch."""
         if self._weights_start is not None:
-            weights_end = [p.detach().cpu() for p in pl_module.parameters()]
+            weights_end = pl_module.state_dict()
+            delta = []
             
-            # Delta = weights_start - weights_end
-            delta = [s - e for s, e in zip(self._weights_start, weights_end)]
+            for k, start_val in self._weights_start.items():
+                end_val = weights_end[k].detach().cpu()
+                # Delta = weights_start - weights_end
+                delta.append((start_val - end_val).numpy())
             
-            self.additional_info["delta"] = [d.numpy() for d in delta]
+            self.additional_info["delta"] = delta
             self._weights_start = None
 
     def on_before_optimizer_step(self, trainer: L.Trainer, pl_module: L.LightningModule, optimizer: Any):

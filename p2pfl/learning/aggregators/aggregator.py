@@ -71,6 +71,11 @@ class Aggregator(NodeComponent):
         )
         # --- END MODEL PACKAGING ADDITION ---
 
+    @property
+    def train_set(self) -> list[str]:
+        """Get the nodes in the train set."""
+        return self.__train_set
+
     def aggregate(self, models: list[P2PFLModel]) -> P2PFLModel:
         raise NotImplementedError
 

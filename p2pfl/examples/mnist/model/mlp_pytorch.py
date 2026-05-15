@@ -41,6 +41,7 @@ class MLP(L.LightningModule):
         out_channels: int = 10,
         activation: str = "relu",
         lr_rate: float = 0.001,
+        **kwargs,
     ) -> None:
         """Initialize the MLP."""
         super().__init__()
@@ -137,4 +138,3 @@ def model_build_fn(*args, **kwargs) -> LightningModel:
     """Export the model build function."""
     compression = kwargs.pop("compression", None)
     return LightningModel(MLP(*args, **kwargs), compression=compression)
-ion=compression)

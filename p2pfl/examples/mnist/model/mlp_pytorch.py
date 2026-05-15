@@ -97,7 +97,7 @@ class MLP(L.LightningModule):
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
         """Configure the optimizer."""
-        return torch.optim.SGD(self.parameters(), lr=self.lr_rate)
+        return torch.optim.Adam(self.parameters(), lr=self.lr_rate)
 
     def training_step(self, batch: dict[str, torch.Tensor], batch_id: int) -> torch.Tensor:
         """Training step of the MLP."""
@@ -137,3 +137,4 @@ def model_build_fn(*args, **kwargs) -> LightningModel:
     """Export the model build function."""
     compression = kwargs.pop("compression", None)
     return LightningModel(MLP(*args, **kwargs), compression=compression)
+ion=compression)

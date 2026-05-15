@@ -1,0 +1,2 @@
+{"round": 0, "metrics": {"test_loss": 2.0219576358795166, "test_acc": 0.5, "test_precision": 0.49956250190734863, "test_recall": 0.4073011875152588, "test_f1": 0.3593907356262207, "communication_cost": 9409660, "system_cpu_usage": 44.4, "system_ram_usage": 59.6}}
+{"round": 1, "metrics": {"test_loss": 1.3024307489395142, "test_acc": 0.6008771657943726, "test_precision": 0.4092995226383209, "test_recall": 0.3088631331920624, "test_f1": 0.3431762754917145, "communication_cost": 14113890, "system_cpu_usage": 58.9, "system_ram_usage": 74.2}}

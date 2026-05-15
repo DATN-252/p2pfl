@@ -7,7 +7,7 @@ network:
 experiment:
   name: "mnist_dirichlet_1.0"
   rounds: 100
-  epochs: 1
+  epochs: 2
   trainset_size: 50
   seed: 666
   wait_timeout: 18000
@@ -24,7 +24,7 @@ experiment:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
-      lr_rate: 0.0001
+      lr_rate: 0.001
   aggregator:
     package: "p2pfl.learning.aggregators.dfedadp"
     aggregator: "DFedAdp"
@@ -44,3 +44,4 @@ settings:
     vote_timeout: 120
     aggregation_timeout: 300
     packaging_interval: 100
+

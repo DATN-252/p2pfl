@@ -1,11 +1,11 @@
-description: "MNIST Dirichlet 10.0 - Near IID"
+description: "MNIST Dirichlet 0.5 - Strong Non-IID"
 network:
   package: "p2pfl.communication.protocols.protobuff.memory"
   protocol: "MemoryCommunicationProtocol"
   nodes: 50
   topology: "custom"
 experiment:
-  name: "mnist_dirichlet_10.0"
+  name: "mnist_dirichlet_0.5"
   rounds: 100
   epochs: 2
   trainset_size: 50
@@ -19,7 +19,7 @@ experiment:
       package: "p2pfl.learning.dataset.partition_strategies"
       strategy: "DirichletPartitionStrategy"
       params:
-        alpha: 10.0
+        alpha: 0.1
   model:
     package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"

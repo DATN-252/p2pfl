@@ -104,7 +104,7 @@ class MLP(L.LightningModule):
         """Training step of the MLP."""
         x = batch["image"].float()
         y = batch["label"]
-        loss = torch.nn.functional.cross_entropy(self(x), y)
+        loss = torch.nn.functional.cross_entropy(self(x), y, label_smoothing=0.1)
         self.log("train_loss", loss, prog_bar=True)
         return loss
 

@@ -1,0 +1,64 @@
+description: "MNIST Dirichlet 0.1 Experiment with DFedAdp (Fixed) - MLP"
+
+# Defines network setup
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 10
+  topology: "full"
+  additional_connections: []
+
+# Defines experiment settings
+experiment:
+  name: "mnist_dirichlet_0.1_dfedadp"
+  rounds: 10
+  epochs: 1
+  trainset_size: 10
+  seed: 666
+  wait_timeout: 18000
+
+  # Dataset settings
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 32
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "DirichletPartitionStrategy"
+      reduced_dataset: false
+      params:
+        alpha: 0.1
+
+  # Learning algorithm configuration
+  model:
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.001
+
+  # Aggregation algorithm configuration
+  aggregator:
+    package: "p2pfl.learning.aggregators.dfedadp"
+    aggregator: "DFedAdp"
+    params:
+      learning_rate: 0.001
+      alpha: 1.0
+      log_dfedadp_params: true
+
+# General experiment settings
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: False
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50

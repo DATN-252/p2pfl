@@ -1,0 +1,29 @@
+description: "MNIST Dirichlet 0.1 Experiment with DSGT (Fixed)"
+
+# --- Experiment Settings ---
+experiment:
+  name: "mnist_dirichlet_0.1_dsgt"
+  rounds: 100
+  epochs: 1
+  batch_size: 32
+
+# --- Dataset Settings ---
+dataset:
+  name: "MNIST"
+  partition_strategy: "DirichletPartitionStrategy"
+  partition_params:
+    alpha: 0.1
+    num_nodes: 10
+
+# --- Model Settings ---
+model:
+  package: "p2pfl.examples.mnist.model.cnn_mnist"
+  model_class: "CNNMNIST"
+
+# --- Aggregator Settings ---
+aggregator:
+  package: "p2pfl.learning.aggregators.dsgt"
+  aggregator_class: "DSGTAggregator"
+  params:
+    alpha: 0.001
+    beta: 0.0

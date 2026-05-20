@@ -62,7 +62,8 @@ class DFedAdp(Aggregator):
         # --- Initial Round (Round 0) ---
         if not self.global_model_params:
             self.global_model_params = [p.copy() for p in self_model.get_parameters()]
-            self.prev_local_gradient = [d.copy() for d in self_delta]
+            # Initialize prev_local_gradient to zeros to ensure tracking_delta starts as the first local gradient (v0 = g0)
+            self.prev_local_gradient = [np.zeros_like(d) for d in self_delta]
             self_model.gradients_estimate = [d.copy() for d in self_delta]
 
         # --- 3. Calculate Metropolis-Hastings Weights ---

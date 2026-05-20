@@ -33,15 +33,21 @@ from p2pfl.learning.frameworks import Framework
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.learning.frameworks.pytorch.lightning_dataset import PyTorchExportStrategy
-from p2pfl.learning.frameworks.pytorch.lightning_logger import FederatedLogger
 from p2pfl.learning.frameworks.pytorch.callbacks.optimizer_control_callback import OptimizerControlCallback
-from p2pfl.management.logger import logger
-from p2pfl.settings import Settings
-from p2pfl.utils.check_ray import ray_installed
-from p2pfl.utils.seed import set_seed
+from lightning.pytorch.callbacks import Callback
 
-torch.set_num_threads(1)
+class OptimizerStateCallback(Callback):
+    """Callback to persist optimizer state across multiple fit calls."""
+    def __init__(self, learner):
+        self.learner = learner
 
+    def on_train_start(self, trainer, pl_module):
+        if self.learner._optimizer_states:
+            for opt, state in zip(trainer.optimizers, self.learner._optimizer_states):
+                opt.load_state_dict(state)
+
+    def on_train_end(self, trainer, pl_module):
+        self.learner._optimizer_states = [opt.state_dict() for opt in trainer.optimizers]
 
 class LightningLearner(Learner):
     """
@@ -59,6 +65,7 @@ class LightningLearner(Learner):
         super().__init__(model, data, aggregator)
         self.__trainer: Trainer | None = None
         self.experiment: Experiment | None = None
+        self._optimizer_states = []  # Persist optimizer state across rounds
 
         # Start logging
         # To avoid GPU/TPU printings
@@ -105,6 +112,9 @@ class LightningLearner(Learner):
                     opt_ctrl_callback = OptimizerControlCallback()
                     opt_ctrl_callback.set_apply_update(apply_update)
                     all_callbacks = self.callbacks.copy() + [opt_ctrl_callback]
+                
+                # Add the state persistence callback
+                all_callbacks = list(all_callbacks) + [OptimizerStateCallback(self)]
 
                 self.__trainer = Trainer(
                     max_epochs=self.epochs,
@@ -114,7 +124,7 @@ class LightningLearner(Learner):
                     enable_model_summary=False,
                     enable_progress_bar=False,
                     callbacks=all_callbacks,  # type: ignore
-                    gradient_clip_val=1.0,
+                    gradient_clip_val=5.0,
                 )
                 pt_model, pt_data = self.__get_pt_model_data()
                 self.__trainer.fit(pt_model, pt_data)

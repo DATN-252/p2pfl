@@ -11,7 +11,7 @@ network:
 # Defines experiment settings
 experiment:
   name: "mnist_dirichlet_0.1_dfedadp"
-  rounds: 100
+  rounds: 10
   epochs: 1
   trainset_size: 10
   seed: 666

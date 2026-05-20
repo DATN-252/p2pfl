@@ -42,7 +42,7 @@ class Aggregator(NodeComponent):
 
     def __init__(self, disable_partial_aggregation: bool = False, learning_rate: float = 0.01) -> None:
         """Initialize the aggregator."""
-        self.__train_set: list[str] = []
+        self._train_set: list[str] = []
         self.__models: list[P2PFLModel] = []
         self.partial_aggregation: bool = self.__class__.SUPPORTS_PARTIAL_AGGREGATION
         if self.partial_aggregation and disable_partial_aggregation:
@@ -104,7 +104,7 @@ class Aggregator(NodeComponent):
                 logger.warning(self.addr, f"Force clearing aggregator state to start new round (Current: {self.__current_round}, New: {round_num}).")
                 self.clear()
 
-            self.__train_set = nodes_to_aggregate
+            self._train_set = nodes_to_aggregate
             self.__current_round = round_num
             self._finish_aggregation_event.clear()
             
@@ -125,7 +125,7 @@ class Aggregator(NodeComponent):
         with self.__agg_lock:
             if self.__current_round is not None:
                 self.__last_comm_cost = self.__comm_cost
-            self.__train_set = []
+            self._train_set = []
             self.__models = []
             self.__current_round = None
             self.__comm_cost = 0
@@ -151,8 +151,8 @@ class Aggregator(NodeComponent):
             
             if not already_present:
                 self.__models.append(model)
-                logger.info(self.addr, f"✅ [FORCE] Local model added for round {self.__current_round}. ({len(self.__models)}/{len(self.__train_set)})")
-                if self.__train_set and len(self.__models) >= len(self.__train_set):
+                logger.info(self.addr, f"✅ [FORCE] Local model added for round {self.__current_round}. ({len(self.__models)}/{len(self._train_set)})")
+                if self._train_set and len(self.__models) >= len(self._train_set):
                     self._finish_aggregation_event.set()
 
     def add_model(self, model: P2PFLModel, round_num: int | None = None) -> list[str]:
@@ -181,19 +181,19 @@ class Aggregator(NodeComponent):
                     return []
 
             # If current_round is not set yet or matches
-            if not self.__train_set:
+            if not self._train_set:
                 if round_num is not None:
                     self.__unhandled_models[round_num].append(model)
                 return []
 
-            norm_train_set = {self.normalize_addr(t) for t in self.__train_set}
+            norm_train_set = {self.normalize_addr(t) for t in self._train_set}
             if all(c in norm_train_set for c in norm_contributors):
                 current_contributors = {self.normalize_addr(c) for m in self.__models for c in m.get_contributors()}
                 if not any(c in current_contributors for c in norm_contributors):
                     self.__models.append(model)
                     self.__comm_cost += model.size
-                    logger.info(self.addr, f"🧩 Model added for round {self.__current_round} ({len(self.__models)}/{len(self.__train_set)}) from {contributors}")
-                    if len(self.__models) >= len(self.__train_set):
+                    logger.info(self.addr, f"🧩 Model added for round {self.__current_round} ({len(self.__models)}/{len(self._train_set)}) from {contributors}")
+                    if len(self.__models) >= len(self._train_set):
                         self._finish_aggregation_event.set()
                     return self.get_aggregated_models()
                 else:
@@ -270,7 +270,7 @@ class Aggregator(NodeComponent):
         agg_models = []
         for m in self.__models:
             agg_models += m.get_contributors()
-        return set(self.__train_set) - set(agg_models)
+        return set(self._train_set) - set(agg_models)
 
     def __get_partial_aggregation(self, except_nodes: list[str]) -> P2PFLModel:
         models_to_aggregate = [m for m in self.__models if all(n not in except_nodes for n in m.get_contributors())]

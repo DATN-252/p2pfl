@@ -71,9 +71,9 @@ class DSGTAggregator(Aggregator):
                     self.y_tracker[i] = self.consensus_y[i] + (g_k[i] - self.prev_g[i])
 
         # 4. Prepare Pushed Message (Column-stochastic weighting)
-        # BUG FIX: out_degree must include self (len(self.train_set) + 1)
+        # BUG FIX: out_degree must include self (len(self._train_set) + 1)
         # as the tracker value is shared among self and all out-neighbors.
-        out_degree_plus_1 = len(self.train_set) + 1
+        out_degree_plus_1 = len(self._train_set) + 1
         dsgt_y_msg = [y / out_degree_plus_1 for y in self.y_tracker]
         
         # Attach the weighted tracker to the model's additional info
@@ -117,7 +117,7 @@ class DSGTAggregator(Aggregator):
                 # Fallback for self model: Use the same column-stochastic weight
                 if m.get_contributors()[0] == self.addr:
                     # BUG FIX: Same as preprocess, must be len + 1
-                    n_p = len(self.train_set) + 1
+                    n_p = len(self._train_set) + 1
                     for i, y in enumerate(self.y_tracker):
                         self.consensus_y[i] += y / n_p
 

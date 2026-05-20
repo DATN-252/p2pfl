@@ -1,4 +1,4 @@
-description: "MNIST Dirichlet 0.1 Experiment with DFedAdp (Fixed) - MLP"
+description: "MNIST Dirichlet 0.1 Experiment with DSGT (Fixed) - MLP"
 
 # Defines network setup
 network:
@@ -10,7 +10,7 @@ network:
 
 # Defines experiment settings
 experiment:
-  name: "mnist_dirichlet_0.1_dfedadp"
+  name: "mnist_dirichlet_0.1_dsgt"
   rounds: 10
   epochs: 1
   trainset_size: 10
@@ -38,12 +38,11 @@ experiment:
 
   # Aggregation algorithm configuration
   aggregator:
-    package: "p2pfl.learning.aggregators.dfedadp"
-    aggregator: "DFedAdp"
+    package: "p2pfl.learning.aggregators.dsgt"
+    aggregator: "DSGTAggregator"
     params:
-      learning_rate: 0.001
-      alpha: 1.0
-      log_dfedadp_params: true
+      alpha: 0.001
+      beta: 0.0
 
 # General experiment settings
 settings:

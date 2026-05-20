@@ -1,0 +1,2051 @@
+[ 2026-05-15 07:54:54 | node_13 | INFO ] 🧩 Model added for round 97 (3/6) from ['node_46']
+[ 2026-05-15 07:54:54 | node_30 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_45']
+[ 2026-05-15 07:54:55 | node_16 | INFO ] 🧩 Model added for round 97 (3/5) from ['node_6']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:55 | node_45 | INFO ] 🧩 Model added for round 97 (5/9) from ['node_39']
+[ 2026-05-15 07:54:55 | node_39 | INFO ] 🧩 Model added for round 97 (4/8) from ['node_25']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] ♻️ Proactively processing 5 early models for round 97.
+[ 2026-05-15 07:54:55 | node_30 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:54:55 | node_12 | INFO ] ♻️ Proactively processing 5 early models for round 97.
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🧩 Model added for round 97 (1/10) from ['node_18']
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🧩 Model added for round 97 (1/7) from ['node_13']
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🧩 Model added for round 97 (2/7) from ['node_24']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🧩 Model added for round 97 (2/10) from ['node']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🧩 Model added for round 97 (3/10) from ['node_41']
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_28']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🧩 Model added for round 97 (4/10) from ['node_14']
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_25']
+[ 2026-05-15 07:54:55 | node_29 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_48']
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🧩 Model added for round 97 (5/10) from ['node_3']
+[ 2026-05-15 07:54:55 | node_29 | INFO ] 🧩 Model added for round 97 (2/7) from ['node_3']
+[ 2026-05-15 07:54:55 | node_12 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:55 | node_9 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:55 | node_16 | INFO ] 🧩 Model added for round 97 (4/5) from ['node_46']
+[ 2026-05-15 07:54:55 | node_21 | INFO ] 🧩 Model added for round 97 (4/8) from ['node_6']
+[ 2026-05-15 07:54:55 | node_8 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:54:55 | node_8 | INFO ] ✅ [FORCE] Local model added for round 97. (2/5)
+[ 2026-05-15 07:54:55 | node_7 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:55 | node_8 | INFO ] 📤 Sending model to 4 direct neighbors: ['node', 'node_7', 'node_15', 'node_29']
+[ 2026-05-15 07:54:55 | node_30 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:54:55 | node_46 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_48']
+[ 2026-05-15 07:54:55 | node_7 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:56 | node_7 | INFO ] ♻️ Proactively processing 2 early models for round 97.
+[ 2026-05-15 07:54:56 | node_39 | INFO ] 🧩 Model added for round 97 (5/8) from ['node_45']
+[ 2026-05-15 07:54:56 | node_7 | INFO ] 🧩 Model added for round 97 (1/4) from ['node_41']
+[ 2026-05-15 07:54:56 | node_22 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:56 | node_7 | INFO ] 🧩 Model added for round 97 (2/4) from ['node_45']
+[ 2026-05-15 07:54:56 | node | INFO ] 🧩 Model added for round 97 (3/7) from ['node_8']
+[ 2026-05-15 07:54:56 | node_7 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:56 | node_10 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:54:56 | node_22 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:56 | node_18 | INFO ] 🧩 Model added for round 97 (3/6) from ['node_46']
+[ 2026-05-15 07:54:56 | node_9 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:56 | node_12 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:56 | node_21 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:54:56 | node_10 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:54:56 | node_22 | INFO ] ♻️ Proactively processing 2 early models for round 97.
+[ 2026-05-15 07:54:56 | node_21 | INFO ] ✅ [FORCE] Local model added for round 97. (5/8)
+[ 2026-05-15 07:54:56 | node_22 | INFO ] 🧩 Model added for round 97 (1/7) from ['node_4']
+[ 2026-05-15 07:54:56 | node_21 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_6', 'node_9', 'node_14', 'node_19', 'node_28', 'node_36', 'node_46']
+[ 2026-05-15 07:54:56 | node_22 | INFO ] 🧩 Model added for round 97 (2/7) from ['node_25']
+[ 2026-05-15 07:54:56 | node_22 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:56 | node_10 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18790912628173828, 'test_acc': 0.9906103014945984, 'test_precision': 0.866457998752594, 'test_recall': 0.8606076240539551, 'test_f1': 0.8634667992591858, 'communication_cost': 33870564}
+[ 2026-05-15 07:54:56 | node_10 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:56 | node_6 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_21']
+[ 2026-05-15 07:54:56 | node_7 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:56 | node_42 | INFO ] ♻️ Proactively processing 3 early models for round 97.
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🧩 Model added for round 97 (1/6) from ['node']
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🧩 Model added for round 97 (2/6) from ['node_5']
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🧩 Model added for round 97 (3/6) from ['node_39']
+[ 2026-05-15 07:54:56 | node_42 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:57 | node_42 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_6']
+[ 2026-05-15 07:54:57 | node_7 | INFO ] 🧩 Model added for round 97 (3/4) from ['node_8']
+[ 2026-05-15 07:54:57 | node_19 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_46']
+[ 2026-05-15 07:54:57 | node_22 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:57 | node_9 | INFO ] 🧩 Model added for round 97 (6/10) from ['node_21']
+[ 2026-05-15 07:54:57 | node_21 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_46']
+[ 2026-05-15 07:54:57 | node_42 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:54:57 | node_29 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_8']
+[ 2026-05-15 07:54:57 | node_27 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:54:58 | node_27 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:54:58 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.31088706851005554, 'test_acc': 0.9313725233078003, 'test_precision': 0.6264188885688782, 'test_recall': 0.6252071261405945, 'test_f1': 0.6233729720115662, 'communication_cost': 15053584}
+[ 2026-05-15 07:54:58 | node_36 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:54:58 | node_27 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:54:58 | node_36 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:54:58 | node_14 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_21']
+[ 2026-05-15 07:54:58 | node_23 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_46']
+[ 2026-05-15 07:54:58 | node_36 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23948562145233154, 'test_acc': 0.9591836929321289, 'test_precision': 0.793688178062439, 'test_recall': 0.7795469164848328, 'test_f1': 0.7860936522483826, 'communication_cost': 26343772}
+[ 2026-05-15 07:54:58 | node_36 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:54:58 | node_2 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:54:58 | node_26 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:54:58 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:54:58 | node_26 | INFO ] ✅ [FORCE] Local model added for round 97. (3/6)
+[ 2026-05-15 07:54:58 | node_19 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_21']
+[ 2026-05-15 07:54:58 | node_26 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_9', 'node_10', 'node_17', 'node_22', 'node_25']
+[ 2026-05-15 07:54:59 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19242997467517853, 'test_acc': 0.9862385392189026, 'test_precision': 0.9132281541824341, 'test_recall': 0.904990017414093, 'test_f1': 0.9089972972869873, 'communication_cost': 26343772}
+[ 2026-05-15 07:54:59 | node_48 | INFO ] 🧩 Model added for round 97 (4/8) from ['node_46']
+[ 2026-05-15 07:54:59 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:54:59 | node_9 | INFO ] 🧩 Model added for round 97 (7/10) from ['node_26']
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:59 | node_10 | INFO ] ♻️ Proactively processing 7 early models for round 97.
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (1/10) from ['node_19']
+[ 2026-05-15 07:54:59 | node_23 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (2/10) from ['node_13']
+[ 2026-05-15 07:54:59 | node_23 | INFO ] ✅ [FORCE] Local model added for round 97. (4/7)
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (3/10) from ['node_4']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:54:59 | node_23 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_5', 'node_11', 'node_29', 'node_42', 'node_46']
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (4/10) from ['node_45']
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (5/10) from ['node_48']
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (6/10) from ['node_3']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] ♻️ Proactively processing 3 early models for round 97.
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🧩 Model added for round 97 (7/10) from ['node_6']
+[ 2026-05-15 07:54:59 | node_28 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_21']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🧩 Model added for round 97 (1/5) from ['node_4']
+[ 2026-05-15 07:54:59 | node_10 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:54:59 | node | INFO ] 🧩 Model added for round 97 (4/7) from ['node_23']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🧩 Model added for round 97 (2/5) from ['node_48']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🧩 Model added for round 97 (3/5) from ['node_6']
+[ 2026-05-15 07:54:59 | node_27 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:00 | node_10 | INFO ] 🧩 Model added for round 97 (8/10) from ['node_26']
+[ 2026-05-15 07:55:00 | node_5 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_23']
+[ 2026-05-15 07:55:00 | node_10 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:00 | node_46 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_21']
+[ 2026-05-15 07:55:00 | node_27 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:00 | node_29 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:00 | node_29 | INFO ] ✅ [FORCE] Local model added for round 97. (4/7)
+[ 2026-05-15 07:55:00 | node_29 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_2', 'node_3', 'node_8', 'node_10', 'node_23']
+[ 2026-05-15 07:55:00 | node_36 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:55:00 | node_36 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:00 | node | INFO ] 🧩 Model added for round 97 (5/7) from ['node_29']
+[ 2026-05-15 07:55:00 | node_36 | INFO ] ♻️ Proactively processing 6 early models for round 97.
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (1/8) from ['node_28']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (2/8) from ['node_4']
+[ 2026-05-15 07:55:01 | node_17 | INFO ] 🧩 Model added for round 97 (4/5) from ['node_26']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (3/8) from ['node_14']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (4/8) from ['node_48']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (5/8) from ['node_45']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_21']
+[ 2026-05-15 07:55:01 | node_29 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_23']
+[ 2026-05-15 07:55:01 | node_36 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:55:01 | node_9 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:01 | node_12 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:01 | node_9 | INFO ] ✅ [FORCE] Local model added for round 97. (8/10)
+[ 2026-05-15 07:55:01 | node_12 | INFO ] ✅ [FORCE] Local model added for round 97. (6/7)
+[ 2026-05-15 07:55:01 | node_9 | INFO ] 📤 Sending model to 9 direct neighbors: ['node', 'node_3', 'node_14', 'node_15', 'node_18', 'node_21', 'node_22', 'node_26', 'node_41']
+[ 2026-05-15 07:55:01 | node_12 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_13', 'node_24', 'node_25', 'node_28', 'node_48']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] ♻️ Proactively processing 4 early models for round 97.
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (1/8) from ['node_39']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (2/8) from ['node_14']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (3/8) from ['node_5']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (4/8) from ['node_3']
+[ 2026-05-15 07:55:01 | node_22 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_26']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (5/8) from ['node_12']
+[ 2026-05-15 07:55:01 | node_2 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_29']
+[ 2026-05-15 07:55:01 | node | INFO ] 🧩 Model added for round 97 (6/7) from ['node_9']
+[ 2026-05-15 07:55:01 | node_7 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:01 | node_7 | INFO ] ✅ [FORCE] Local model added for round 97. (4/4)
+[ 2026-05-15 07:55:01 | node_7 | INFO ] 📤 Sending model to 3 direct neighbors: ['node_8', 'node_41', 'node_45']
+[ 2026-05-15 07:55:01 | node_42 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_23']
+[ 2026-05-15 07:55:02 | node_36 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:02 | node_8 | INFO ] 🧩 Model added for round 97 (3/5) from ['node_7']
+[ 2026-05-15 07:55:02 | node_22 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:02 | node_22 | INFO ] ✅ [FORCE] Local model added for round 97. (4/7)
+[ 2026-05-15 07:55:02 | node_11 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:02 | node_22 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_4', 'node_9', 'node_11', 'node_25', 'node_26', 'node_36']
+[ 2026-05-15 07:55:02 | node_25 | INFO ] 🧩 Model added for round 97 (6/9) from ['node_26']
+[ 2026-05-15 07:55:02 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:02 | node_11 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:02 | node_13 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_12']
+[ 2026-05-15 07:55:02 | node_3 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_29']
+[ 2026-05-15 07:55:02 | node_3 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_9']
+[ 2026-05-15 07:55:02 | node_46 | INFO ] 🧩 Model added for round 97 (8/8) from ['node_23']
+[ 2026-05-15 07:55:02 | node_4 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_22']
+[ 2026-05-15 07:55:02 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2011798918247223, 'test_acc': 0.9796954393386841, 'test_precision': 0.8449118137359619, 'test_recall': 0.8335644006729126, 'test_f1': 0.8384000658988953, 'communication_cost': 30107168}
+[ 2026-05-15 07:55:02 | node_41 | INFO ] 🧩 Model added for round 97 (4/5) from ['node_7']
+[ 2026-05-15 07:55:02 | node_42 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:02 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:02 | node_42 | INFO ] ✅ [FORCE] Local model added for round 97. (6/6)
+[ 2026-05-15 07:55:02 | node_42 | INFO ] 📤 Sending model to 5 direct neighbors: ['node', 'node_5', 'node_6', 'node_23', 'node_39']
+[ 2026-05-15 07:55:03 | node_46 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:03 | node | INFO ] 🧩 Model added for round 97 (7/7) from ['node_42']
+[ 2026-05-15 07:55:03 | node_8 | INFO ] 🧩 Model added for round 97 (4/5) from ['node_29']
+[ 2026-05-15 07:55:03 | node_24 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_12']
+[ 2026-05-15 07:55:03 | node_46 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:03 | node_14 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_9']
+[ 2026-05-15 07:55:03 | node_45 | INFO ] 🧩 Model added for round 97 (6/9) from ['node_7']
+[ 2026-05-15 07:55:03 | node_9 | INFO ] 🧩 Model added for round 97 (9/10) from ['node_22']
+[ 2026-05-15 07:55:04 | node_25 | INFO ] 🧩 Model added for round 97 (7/9) from ['node_12']
+[ 2026-05-15 07:55:04 | node_5 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_42']
+[ 2026-05-15 07:55:04 | node_10 | INFO ] 🧩 Model added for round 97 (9/10) from ['node_29']
+[ 2026-05-15 07:55:04 | node_7 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:04 | node_24 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:04 | node | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:04 | node_15 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:04 | node_15 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:04 | node_20 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:04 | node_7 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:04 | node_20 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:04 | node_24 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:04 | node_18 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_9']
+[ 2026-05-15 07:55:04 | node_15 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19582898914813995, 'test_acc': 0.9821428656578064, 'test_precision': 0.9047942757606506, 'test_recall': 0.8918840289115906, 'test_f1': 0.897038459777832, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:04 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:04 | node_11 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:55:04 | node_20 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18812978267669678, 'test_acc': 0.9642857313156128, 'test_precision': 0.812698483467102, 'test_recall': 0.8040816187858582, 'test_f1': 0.8073757886886597, 'communication_cost': 7526792}
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:05 | node_11 | INFO ] ♻️ Proactively processing 8 early models for round 97.
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (1/9) from ['node_16']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (2/9) from ['node_18']
+[ 2026-05-15 07:55:05 | node_15 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (3/9) from ['node_19']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (4/9) from ['node_13']
+[ 2026-05-15 07:55:05 | node_28 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_12']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (5/9) from ['node_39']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (6/9) from ['node_14']
+[ 2026-05-15 07:55:05 | node_6 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_42']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (7/9) from ['node_23']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🧩 Model added for round 97 (8/9) from ['node_22']
+[ 2026-05-15 07:55:05 | node_11 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:05 | node_20 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:05 | node_10 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:05 | node_25 | INFO ] 🧩 Model added for round 97 (8/9) from ['node_22']
+[ 2026-05-15 07:55:05 | node_10 | INFO ] ✅ [FORCE] Local model added for round 97. (10/10)
+[ 2026-05-15 07:55:05 | node_10 | INFO ] 📤 Sending model to 9 direct neighbors: ['node_3', 'node_4', 'node_6', 'node_13', 'node_19', 'node_26', 'node_29', 'node_45', 'node_48']
+[ 2026-05-15 07:55:05 | node_23 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_29']
+[ 2026-05-15 07:55:05 | node_27 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:05 | node_27 | INFO ] ✅ [FORCE] Local model added for round 97. (4/5)
+[ 2026-05-15 07:55:05 | node_27 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_2', 'node_4', 'node_6', 'node_48']
+[ 2026-05-15 07:55:05 | node_20 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:05 | node_20 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:05 | node_21 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_9']
+[ 2026-05-15 07:55:05 | node_1 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:05 | node_20 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:05 | node_48 | INFO ] 🧩 Model added for round 97 (5/8) from ['node_12']
+[ 2026-05-15 07:55:06 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:06 | node_3 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_10']
+[ 2026-05-15 07:55:06 | node_23 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_42']
+[ 2026-05-15 07:55:06 | node_2 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_27']
+[ 2026-05-15 07:55:06 | node_11 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:06 | node_1 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24667564034461975, 'test_acc': 0.9623655676841736, 'test_precision': 0.7183725237846375, 'test_recall': 0.7066507935523987, 'test_f1': 0.7121106386184692, 'communication_cost': 7526792}
+[ 2026-05-15 07:55:06 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:06 | node_26 | INFO ] 🧩 Model added for round 97 (4/6) from ['node_22']
+[ 2026-05-15 07:55:06 | node_22 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_9']
+[ 2026-05-15 07:55:06 | node_20 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:06 | node_4 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_10']
+[ 2026-05-15 07:55:06 | node_15 | INFO ] 🎉 Round 97 of 100 finished.
+[ 2026-05-15 07:55:06 | node_15 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:06 | node_39 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_42']
+[ 2026-05-15 07:55:06 | node_4 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_27']
+[ 2026-05-15 07:55:06 | node_15 | INFO ] ♻️ Proactively processing 6 early models for round 97.
+[ 2026-05-15 07:55:06 | node_15 | INFO ] 🧩 Model added for round 97 (1/7) from ['node_17']
+[ 2026-05-15 07:55:06 | node_36 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_22']
+[ 2026-05-15 07:55:07 | node_1 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🧩 Model added for round 97 (2/7) from ['node_18']
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🧩 Model added for round 97 (3/7) from ['node_25']
+[ 2026-05-15 07:55:07 | node_1 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:07 | node_36 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🧩 Model added for round 97 (4/7) from ['node_45']
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_8']
+[ 2026-05-15 07:55:07 | node_36 | INFO ] ✅ [FORCE] Local model added for round 97. (8/8)
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_9']
+[ 2026-05-15 07:55:07 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:07 | node_36 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_4', 'node_14', 'node_21', 'node_22', 'node_28', 'node_45', 'node_48']
+[ 2026-05-15 07:55:07 | node_15 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:07 | node_26 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_9']
+[ 2026-05-15 07:55:07 | node_4 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_36']
+[ 2026-05-15 07:55:07 | node_2 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:07 | node_6 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_10']
+[ 2026-05-15 07:55:07 | node_2 | INFO ] ✅ [FORCE] Local model added for round 97. (8/8)
+[ 2026-05-15 07:55:07 | node_2 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_3', 'node_5', 'node_12', 'node_14', 'node_27', 'node_29', 'node_39']
+[ 2026-05-15 07:55:07 | node_6 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_27']
+[ 2026-05-15 07:55:07 | node_3 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_2']
+[ 2026-05-15 07:55:07 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:08 | node_42 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:08 | node_4 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:08 | node_3 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:08 | node_6 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:08 | node_15 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:08 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:08 | node_42 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:08 | node_6 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:08 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:08 | node_41 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_9']
+[ 2026-05-15 07:55:08 | node_13 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_10']
+[ 2026-05-15 07:55:08 | node_14 | INFO ] 🧩 Model added for round 97 (5/7) from ['node_36']
+[ 2026-05-15 07:55:09 | node_48 | INFO ] 🧩 Model added for round 97 (6/8) from ['node_27']
+[ 2026-05-15 07:55:09 | node_5 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_2']
+[ 2026-05-15 07:55:09 | node_19 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_10']
+[ 2026-05-15 07:55:09 | node_21 | INFO ] 🧩 Model added for round 97 (8/8) from ['node_36']
+[ 2026-05-15 07:55:09 | node_5 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:09 | node_12 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_2']
+[ 2026-05-15 07:55:09 | node_41 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:09 | node_21 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:10 | node_41 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:10 | node_26 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_10']
+[ 2026-05-15 07:55:10 | node_12 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:10 | node_26 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:10 | node_5 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:10 | node_21 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:10 | node_14 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_2']
+[ 2026-05-15 07:55:10 | node_22 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_36']
+[ 2026-05-15 07:55:10 | node_26 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:10 | node_12 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:11 | node_29 | INFO ] 🧩 Model added for round 97 (6/7) from ['node_10']
+[ 2026-05-15 07:55:11 | node_11 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:11 | node_11 | INFO ] ✅ [FORCE] Local model added for round 97. (9/9)
+[ 2026-05-15 07:55:11 | node_11 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_13', 'node_14', 'node_16', 'node_18', 'node_19', 'node_22', 'node_23', 'node_39']
+[ 2026-05-15 07:55:11 | node_28 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_36']
+[ 2026-05-15 07:55:11 | node_27 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_2']
+[ 2026-05-15 07:55:11 | node_13 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_11']
+[ 2026-05-15 07:55:11 | node_27 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:11 | node_13 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:11 | node_28 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:11 | node_20 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:11 | node_27 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:11 | node_20 | INFO ] ✅ [FORCE] Local model added for round 98. (1/3)
+[ 2026-05-15 07:55:11 | node_20 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_18', 'node_41']
+[ 2026-05-15 07:55:12 | node_28 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:12 | node_13 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:12 | node_45 | INFO ] 🧩 Model added for round 97 (7/9) from ['node_10']
+[ 2026-05-15 07:55:12 | node_45 | INFO ] 🧩 Model added for round 97 (8/9) from ['node_36']
+[ 2026-05-15 07:55:12 | node_29 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_2']
+[ 2026-05-15 07:55:12 | node_14 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_11']
+[ 2026-05-15 07:55:12 | node_1 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:13 | node_1 | INFO ] ✅ [FORCE] Local model added for round 98. (1/3)
+[ 2026-05-15 07:55:13 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_13', 'node_17']
+[ 2026-05-15 07:55:13 | node_15 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:13 | node_15 | INFO ] ✅ [FORCE] Local model added for round 97. (7/7)
+[ 2026-05-15 07:55:13 | node_15 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_8', 'node_9', 'node_17', 'node_18', 'node_25', 'node_45']
+[ 2026-05-15 07:55:13 | node_16 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_11']
+[ 2026-05-15 07:55:13 | node_48 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_36']
+[ 2026-05-15 07:55:13 | node_8 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_15']
+[ 2026-05-15 07:55:13 | node_48 | INFO ] 🧩 Model added for round 97 (8/8) from ['node_10']
+[ 2026-05-15 07:55:13 | node_39 | INFO ] 🧩 Model added for round 97 (7/8) from ['node_2']
+[ 2026-05-15 07:55:14 | node_18 | INFO ] 🧩 Model added for round 97 (5/6) from ['node_11']
+[ 2026-05-15 07:55:14 | node_16 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:14 | node_29 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:14 | node_14 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:14 | node_9 | INFO ] 🧩 Model added for round 97 (10/10) from ['node_15']
+[ 2026-05-15 07:55:15 | node_8 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:15 | node_16 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:15 | node_14 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:15 | node_29 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:15 | node_8 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:15 | node_19 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_11']
+[ 2026-05-15 07:55:15 | node_48 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_10 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_17 | INFO ] 🧩 Model added for round 97 (5/5) from ['node_15']
+[ 2026-05-15 07:55:16 | node_36 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_2 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_19 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_9 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_17 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:16 | node_22 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_11']
+[ 2026-05-15 07:55:16 | node_48 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:16 | node_17 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:16 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:16 | node_19 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:16 | node_3 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:16 | node_10 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:16 | node_36 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:16 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:17 | node_6 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:17 | node_9 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:17 | node_6 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:17 | node_18 | INFO ] 🧩 Model added for round 97 (6/6) from ['node_15']
+[ 2026-05-15 07:55:17 | node_3 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21801163256168365, 'test_acc': 0.9729729890823364, 'test_precision': 0.8310796618461609, 'test_recall': 0.8301913142204285, 'test_f1': 0.8293907642364502, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:17 | node_6 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19403314590454102, 'test_acc': 0.9864253401756287, 'test_precision': 0.8779455423355103, 'test_recall': 0.8667420744895935, 'test_f1': 0.8720734715461731, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:17 | node_23 | INFO ] 🧩 Model added for round 97 (7/7) from ['node_11']
+[ 2026-05-15 07:55:17 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:17 | node_6 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:17 | node_25 | INFO ] 🧩 Model added for round 97 (9/9) from ['node_15']
+[ 2026-05-15 07:55:17 | node_18 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:17 | node_22 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:17 | node_23 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:18 | node_27 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:18 | node_27 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:18 | node_39 | INFO ] 🧩 Model added for round 97 (8/8) from ['node_11']
+[ 2026-05-15 07:55:18 | node_25 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:18 | node_39 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:18 | node_22 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:18 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.30138158798217773, 'test_acc': 0.9411764740943909, 'test_precision': 0.6780215501785278, 'test_recall': 0.6872622966766357, 'test_f1': 0.6796927452087402, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:18 | node_18 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:18 | node_23 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:18 | node_29 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:18 | node_29 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:18 | node_27 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:18 | node_28 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:18 | node_39 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:19 | node_29 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.25847864151000977, 'test_acc': 0.9558823704719543, 'test_precision': 0.7761951684951782, 'test_recall': 0.7683628797531128, 'test_f1': 0.7716546058654785, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:19 | node_28 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:19 | node_25 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:19 | node | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:19 | node | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:19 | node_28 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2064189612865448, 'test_acc': 0.9729729890823364, 'test_precision': 0.8668578267097473, 'test_recall': 0.8626277446746826, 'test_f1': 0.8644244074821472, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:19 | node_45 | INFO ] 🧩 Model added for round 97 (9/9) from ['node_15']
+[ 2026-05-15 07:55:19 | node_29 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:19 | node_5 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:19 | node_5 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:19 | node | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22493338584899902, 'test_acc': 0.9729729890823364, 'test_precision': 0.7930725812911987, 'test_recall': 0.7760511040687561, 'test_f1': 0.7841914892196655, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:19 | node_27 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:19 | node_12 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:19 | node_27 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:19 | node_3 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:19 | node_28 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:19 | node_27 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:19 | node_3 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:19 | node_12 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:19 | node_5 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17242933809757233, 'test_acc': 0.9802371263504028, 'test_precision': 0.7802327871322632, 'test_recall': 0.7737383842468262, 'test_f1': 0.7766908407211304, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:19 | node_26 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:19 | node_3 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:19 | node_26 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:19 | node_6 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:19 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:20 | node_6 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:20 | node_46 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_5 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:20 | node_15 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:20 | node_11 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:20 | node_45 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:20 | node_6 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:20 | node_46 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:20 | node_26 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24299578368663788, 'test_acc': 0.9756097793579102, 'test_precision': 0.8331201076507568, 'test_recall': 0.8277103900909424, 'test_f1': 0.8298972249031067, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:20 | node_12 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24705280363559723, 'test_acc': 0.9637305736541748, 'test_precision': 0.7622337341308594, 'test_recall': 0.7472484111785889, 'test_f1': 0.7542206645011902, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:20 | node_46 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19265161454677582, 'test_acc': 0.957317054271698, 'test_precision': 0.7922115921974182, 'test_recall': 0.7716342210769653, 'test_f1': 0.7806204557418823, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:20 | node_26 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:20 | node_15 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:20 | node_12 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:20 | node_27 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:20 | node_15 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_46 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:20 | node_3 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:20 | node_45 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:20 | node_11 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:20 | node_45 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_15 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:20 | node_11 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_39 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_14 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:20 | node_45 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:20 | node_11 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_39 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_8 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:21 | node_14 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_29 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:21 | node_13 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:21 | node_8 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_15 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1881166696548462, 'test_acc': 0.9732142686843872, 'test_precision': 0.8344994783401489, 'test_recall': 0.817712128162384, 'test_f1': 0.8247913718223572, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:21 | node_29 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:21 | node_13 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_6 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:21 | node_45 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.14215701818466187, 'test_acc': 0.9781420826911926, 'test_precision': 0.9115968942642212, 'test_recall': 0.8998305797576904, 'test_f1': 0.9049415588378906, 'communication_cost': 30107168}
+[ 2026-05-15 07:55:21 | node_15 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_39 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1681564450263977, 'test_acc': 0.9839572310447693, 'test_precision': 0.8896842002868652, 'test_recall': 0.8788368105888367, 'test_f1': 0.8838348984718323, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:21 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21857936680316925, 'test_acc': 0.9746192693710327, 'test_precision': 0.8414739370346069, 'test_recall': 0.8308343887329102, 'test_f1': 0.8352213501930237, 'communication_cost': 30107168}
+[ 2026-05-15 07:55:21 | node_29 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:21 | node_14 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23077881336212158, 'test_acc': 0.9563106894493103, 'test_precision': 0.750899076461792, 'test_recall': 0.7275964021682739, 'test_f1': 0.7382645010948181, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:21 | node_45 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_8 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1832246482372284, 'test_acc': 0.9681817889213562, 'test_precision': 0.6865801215171814, 'test_recall': 0.6641150116920471, 'test_f1': 0.6749217510223389, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:21 | node_28 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:21 | node_39 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_13 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.25095242261886597, 'test_acc': 0.9476743936538696, 'test_precision': 0.7811923623085022, 'test_recall': 0.7648769021034241, 'test_f1': 0.7725251913070679, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:21 | node_14 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_28 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:21 | node_8 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_13 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:21 | node_28 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:21 | node_19 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:21 | node_30 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:21 | node_19 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_30 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:21 | node_24 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:22 | node | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:22 | node_5 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:22 | node_19 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19683493673801422, 'test_acc': 0.9743589758872986, 'test_precision': 0.8282926678657532, 'test_recall': 0.818168044090271, 'test_f1': 0.8226437568664551, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:22 | node_30 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1771753579378128, 'test_acc': 0.9740932583808899, 'test_precision': 0.9084217548370361, 'test_recall': 0.907362699508667, 'test_f1': 0.9073750972747803, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:22 | node_24 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:22 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:22 | node | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:22 | node_19 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:22 | node_30 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:22 | node_29 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:22 | node_5 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:22 | node_7 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:22 | node_26 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:22 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:22 | node_5 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:22 | node_24 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2637721300125122, 'test_acc': 0.9637305736541748, 'test_precision': 0.8300766944885254, 'test_recall': 0.8143676519393921, 'test_f1': 0.8213104009628296, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:22 | node_28 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:22 | node_26 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:22 | node_24 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:22 | node_7 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21227681636810303, 'test_acc': 0.9730941653251648, 'test_precision': 0.7765297889709473, 'test_recall': 0.7644398808479309, 'test_f1': 0.7699460387229919, 'communication_cost': 11290188}
+[ 2026-05-15 07:55:22 | node_26 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:22 | node_7 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:22 | node_5 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:23 | node | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:23 | node_12 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_8 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_12 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_26 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:23 | node_8 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_12 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_8 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_46 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_46 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_13 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_15 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_13 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_15 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_46 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_13 | INFO ] ♻️ Proactively processing 1 early models for round 98.
+[ 2026-05-15 07:55:23 | node_15 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_13 | INFO ] 🧩 Model added for round 98 (1/6) from ['node_1']
+[ 2026-05-15 07:55:23 | node_7 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_14 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_13 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_7 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_24 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:23 | node_14 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_24 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:23 | node_7 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:23 | node_39 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:24 | node_14 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_30 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:24 | node_39 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:24 | node_24 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_30 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:24 | node_8 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_12 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_39 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_45 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:24 | node_30 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_45 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:24 | node_11 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:24 | node_19 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:24 | node_11 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:24 | node_45 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_19 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:24 | node_19 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_11 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:24 | node_46 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_13 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_15 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_7 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:24 | node_14 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_24 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_39 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_30 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_45 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_19 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_11 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:25 | node_27 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:25 | node_27 | INFO ] ✅ [FORCE] Local model added for round 98. (1/5)
+[ 2026-05-15 07:55:25 | node_3 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:25 | node_27 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_2', 'node_4', 'node_6', 'node_48']
+[ 2026-05-15 07:55:25 | node_3 | INFO ] ✅ [FORCE] Local model added for round 98. (1/7)
+[ 2026-05-15 07:55:25 | node_3 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_6', 'node_9', 'node_10', 'node_19', 'node_29']
+[ 2026-05-15 07:55:26 | node_6 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:26 | node_6 | INFO ] ✅ [FORCE] Local model added for round 98. (1/7)
+[ 2026-05-15 07:55:26 | node_6 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_3', 'node_10', 'node_16', 'node_21', 'node_27', 'node_42']
+[ 2026-05-15 07:55:26 | node_6 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_3']
+[ 2026-05-15 07:55:26 | node_3 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_6']
+[ 2026-05-15 07:55:26 | node_6 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_27']
+[ 2026-05-15 07:55:27 | node_29 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:27 | node_29 | INFO ] ✅ [FORCE] Local model added for round 98. (1/7)
+[ 2026-05-15 07:55:27 | node_29 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_2', 'node_3', 'node_8', 'node_10', 'node_23']
+[ 2026-05-15 07:55:27 | node_28 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:27 | node | INFO ] 🧩 Model added for round 98 (1/7) from ['node_29']
+[ 2026-05-15 07:55:27 | node_28 | INFO ] ✅ [FORCE] Local model added for round 98. (1/6)
+[ 2026-05-15 07:55:27 | node_28 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_12', 'node_21', 'node_30', 'node_36', 'node_39']
+[ 2026-05-15 07:55:27 | node_19 | INFO ] 🧩 Model added for round 98 (1/7) from ['node_3']
+[ 2026-05-15 07:55:27 | node_12 | INFO ] 🧩 Model added for round 98 (1/7) from ['node_28']
+[ 2026-05-15 07:55:27 | node_27 | INFO ] 🧩 Model added for round 98 (2/5) from ['node_6']
+[ 2026-05-15 07:55:27 | node_5 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:28 | node_5 | INFO ] ✅ [FORCE] Local model added for round 98. (1/6)
+[ 2026-05-15 07:55:28 | node_5 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_2', 'node_16', 'node_23', 'node_42', 'node_48']
+[ 2026-05-15 07:55:28 | node | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:28 | node | INFO ] ✅ [FORCE] Local model added for round 98. (2/7)
+[ 2026-05-15 07:55:28 | node | INFO ] 📤 Sending model to 6 direct neighbors: ['node_8', 'node_9', 'node_23', 'node_29', 'node_41', 'node_42']
+[ 2026-05-15 07:55:28 | node_26 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:28 | node_29 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_3']
+[ 2026-05-15 07:55:28 | node_26 | INFO ] ✅ [FORCE] Local model added for round 98. (1/6)
+[ 2026-05-15 07:55:28 | node_3 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_29']
+[ 2026-05-15 07:55:28 | node_26 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_9', 'node_10', 'node_17', 'node_22', 'node_25']
+[ 2026-05-15 07:55:28 | node_8 | INFO ] 🧩 Model added for round 98 (1/5) from ['node']
+[ 2026-05-15 07:55:28 | node_30 | INFO ] 🧩 Model added for round 98 (1/6) from ['node_28']
+[ 2026-05-15 07:55:29 | node_8 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_12 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_8 | INFO ] ✅ [FORCE] Local model added for round 98. (2/5)
+[ 2026-05-15 07:55:29 | node_8 | INFO ] 📤 Sending model to 4 direct neighbors: ['node', 'node_7', 'node_15', 'node_29']
+[ 2026-05-15 07:55:29 | node_8 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_29']
+[ 2026-05-15 07:55:29 | node_12 | INFO ] ✅ [FORCE] Local model added for round 98. (2/7)
+[ 2026-05-15 07:55:29 | node_12 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_13', 'node_24', 'node_25', 'node_28', 'node_48']
+[ 2026-05-15 07:55:29 | node | INFO ] 🧩 Model added for round 98 (3/7) from ['node_8']
+[ 2026-05-15 07:55:29 | node_46 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_46 | INFO ] ✅ [FORCE] Local model added for round 98. (1/8)
+[ 2026-05-15 07:55:29 | node_46 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_13', 'node_16', 'node_18', 'node_19', 'node_21', 'node_23', 'node_48']
+[ 2026-05-15 07:55:29 | node_29 | INFO ] 🧩 Model added for round 98 (3/7) from ['node']
+[ 2026-05-15 07:55:29 | node_13 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_15 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_13 | INFO ] ✅ [FORCE] Local model added for round 98. (2/6)
+[ 2026-05-15 07:55:29 | node_15 | INFO ] ✅ [FORCE] Local model added for round 98. (1/7)
+[ 2026-05-15 07:55:29 | node_13 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_1', 'node_10', 'node_11', 'node_12', 'node_46']
+[ 2026-05-15 07:55:29 | node_15 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_8', 'node_9', 'node_17', 'node_18', 'node_25', 'node_45']
+[ 2026-05-15 07:55:29 | node_7 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_14 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:29 | node_13 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_12']
+[ 2026-05-15 07:55:29 | node_39 | INFO ] 🧩 Model added for round 98 (1/8) from ['node_28']
+[ 2026-05-15 07:55:30 | node_14 | INFO ] ✅ [FORCE] Local model added for round 98. (1/7)
+[ 2026-05-15 07:55:30 | node_7 | INFO ] ✅ [FORCE] Local model added for round 98. (1/4)
+[ 2026-05-15 07:55:30 | node_14 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_9', 'node_11', 'node_21', 'node_30', 'node_36']
+[ 2026-05-15 07:55:30 | node_13 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_46']
+[ 2026-05-15 07:55:30 | node_7 | INFO ] 📤 Sending model to 3 direct neighbors: ['node_8', 'node_41', 'node_45']
+[ 2026-05-15 07:55:30 | node_42 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:30 | node_24 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_1 | INFO ] 🧩 Model added for round 98 (2/3) from ['node_13']
+[ 2026-05-15 07:55:30 | node_39 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_8 | INFO ] 🧩 Model added for round 98 (4/5) from ['node_15']
+[ 2026-05-15 07:55:30 | node_24 | INFO ] ✅ [FORCE] Local model added for round 98. (1/5)
+[ 2026-05-15 07:55:30 | node_24 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_12', 'node_25', 'node_45', 'node_48']
+[ 2026-05-15 07:55:30 | node_42 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:30 | node_39 | INFO ] ✅ [FORCE] Local model added for round 98. (2/8)
+[ 2026-05-15 07:55:30 | node_30 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_39 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_2', 'node_11', 'node_19', 'node_25', 'node_28', 'node_42', 'node_45']
+[ 2026-05-15 07:55:30 | node_45 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_30 | INFO ] ✅ [FORCE] Local model added for round 98. (2/6)
+[ 2026-05-15 07:55:30 | node_8 | INFO ] 🧩 Model added for round 98 (5/5) from ['node_7']
+[ 2026-05-15 07:55:30 | node_45 | INFO ] ✅ [FORCE] Local model added for round 98. (1/9)
+[ 2026-05-15 07:55:30 | node_19 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_30 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_14', 'node_17', 'node_25', 'node_28', 'node_45']
+[ 2026-05-15 07:55:30 | node_11 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:30 | node_45 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_4', 'node_7', 'node_10', 'node_15', 'node_24', 'node_30', 'node_36', 'node_39']
+[ 2026-05-15 07:55:30 | node_19 | INFO ] ✅ [FORCE] Local model added for round 98. (2/7)
+[ 2026-05-15 07:55:30 | node_11 | INFO ] ✅ [FORCE] Local model added for round 98. (1/9)
+[ 2026-05-15 07:55:30 | node_19 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_3', 'node_10', 'node_11', 'node_21', 'node_39', 'node_46']
+[ 2026-05-15 07:55:30 | node_12 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_24']
+[ 2026-05-15 07:55:30 | node_42 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17114193737506866, 'test_acc': 0.9764150977134705, 'test_precision': 0.8234481811523438, 'test_recall': 0.8182521462440491, 'test_f1': 0.8205735087394714, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:30 | node_7 | INFO ] 🧩 Model added for round 98 (2/4) from ['node_8']
+[ 2026-05-15 07:55:30 | node_11 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_13', 'node_14', 'node_16', 'node_18', 'node_19', 'node_22', 'node_23', 'node_39']
+[ 2026-05-15 07:55:30 | node_42 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:30 | node_14 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_30']
+[ 2026-05-15 07:55:30 | node_3 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_19']
+[ 2026-05-15 07:55:31 | node_11 | INFO ] 🧩 Model added for round 98 (2/9) from ['node_39']
+[ 2026-05-15 07:55:31 | node_24 | INFO ] 🧩 Model added for round 98 (2/5) from ['node_12']
+[ 2026-05-15 07:55:31 | node_13 | INFO ] 🧩 Model added for round 98 (5/6) from ['node_11']
+[ 2026-05-15 07:55:31 | node_11 | INFO ] 🧩 Model added for round 98 (3/9) from ['node_14']
+[ 2026-05-15 07:55:31 | node_11 | INFO ] 🧩 Model added for round 98 (4/9) from ['node_13']
+[ 2026-05-15 07:55:31 | node_7 | INFO ] 🧩 Model added for round 98 (3/4) from ['node_45']
+[ 2026-05-15 07:55:31 | node_15 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_8']
+[ 2026-05-15 07:55:31 | node_45 | INFO ] 🧩 Model added for round 98 (2/9) from ['node_7']
+[ 2026-05-15 07:55:31 | node_19 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_46']
+[ 2026-05-15 07:55:31 | node_21 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:32 | node_14 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_11']
+[ 2026-05-15 07:55:32 | node_45 | INFO ] 🧩 Model added for round 98 (3/9) from ['node_24']
+[ 2026-05-15 07:55:32 | node_21 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:32 | node_28 | INFO ] 🧩 Model added for round 98 (2/6) from ['node_12']
+[ 2026-05-15 07:55:32 | node_19 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_39']
+[ 2026-05-15 07:55:32 | node_11 | INFO ] 🧩 Model added for round 98 (5/9) from ['node_19']
+[ 2026-05-15 07:55:32 | node_21 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20913664996623993, 'test_acc': 0.9615384340286255, 'test_precision': 0.7168091535568237, 'test_recall': 0.7119737863540649, 'test_f1': 0.7135314345359802, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:32 | node_29 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_8']
+[ 2026-05-15 07:55:32 | node_15 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_45']
+[ 2026-05-15 07:55:32 | node_21 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:32 | node_45 | INFO ] 🧩 Model added for round 98 (4/9) from ['node_15']
+[ 2026-05-15 07:55:32 | node_12 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_13']
+[ 2026-05-15 07:55:32 | node_28 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_30']
+[ 2026-05-15 07:55:32 | node_30 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_14']
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:33 | node_42 | INFO ] ♻️ Proactively processing 3 early models for round 98.
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🧩 Model added for round 98 (1/6) from ['node_6']
+[ 2026-05-15 07:55:33 | node_45 | INFO ] 🧩 Model added for round 98 (5/9) from ['node_30']
+[ 2026-05-15 07:55:33 | node_24 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_45']
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🧩 Model added for round 98 (2/6) from ['node_5']
+[ 2026-05-15 07:55:33 | node_46 | INFO ] 🧩 Model added for round 98 (2/8) from ['node_13']
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🧩 Model added for round 98 (3/6) from ['node']
+[ 2026-05-15 07:55:33 | node_8 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:33 | node_42 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:33 | node_28 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_39']
+[ 2026-05-15 07:55:33 | node_19 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_11']
+[ 2026-05-15 07:55:33 | node_39 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_19']
+[ 2026-05-15 07:55:34 | node_8 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:34 | node_30 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_45']
+[ 2026-05-15 07:55:34 | node_10 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:34 | node_10 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:34 | node_42 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:34 | node_42 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_39']
+[ 2026-05-15 07:55:34 | node_10 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1913408488035202, 'test_acc': 0.9906103014945984, 'test_precision': 0.8450704216957092, 'test_recall': 0.8385373950004578, 'test_f1': 0.841732382774353, 'communication_cost': 33870564}
+[ 2026-05-15 07:55:34 | node_10 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:34 | node_46 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_19']
+[ 2026-05-15 07:55:34 | node_22 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:35 | node_22 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:35 | node_22 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19130182266235352, 'test_acc': 0.9647058844566345, 'test_precision': 0.8395103812217712, 'test_recall': 0.8274426460266113, 'test_f1': 0.8326322436332703, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:35 | node_39 | INFO ] 🧩 Model added for round 98 (4/8) from ['node_11']
+[ 2026-05-15 07:55:35 | node_39 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_45']
+[ 2026-05-15 07:55:35 | node_45 | INFO ] 🧩 Model added for round 98 (6/9) from ['node_39']
+[ 2026-05-15 07:55:35 | node_22 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:35 | node_21 | INFO ] ♻️ Proactively processing 5 early models for round 98.
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🧩 Model added for round 98 (1/8) from ['node_6']
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🧩 Model added for round 98 (2/8) from ['node_28']
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_14']
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🧩 Model added for round 98 (4/8) from ['node_46']
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_19']
+[ 2026-05-15 07:55:35 | node_2 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:35 | node_21 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:35 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:36 | node_36 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:36 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17971201241016388, 'test_acc': 0.9862385392189026, 'test_precision': 0.9041378498077393, 'test_recall': 0.9073401093482971, 'test_f1': 0.9051474928855896, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:36 | node_36 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:36 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:36 | node_36 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21437738835811615, 'test_acc': 0.9744898080825806, 'test_precision': 0.842700183391571, 'test_recall': 0.8338238596916199, 'test_f1': 0.8378446698188782, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:36 | node_36 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:36 | node_21 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:37 | node_22 | INFO ] ♻️ Proactively processing 2 early models for round 98.
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🧩 Model added for round 98 (1/7) from ['node_26']
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_11']
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:37 | node_48 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:37 | node_10 | INFO ] ♻️ Proactively processing 7 early models for round 98.
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (1/10) from ['node_6']
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (2/10) from ['node_3']
+[ 2026-05-15 07:55:37 | node_48 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:37 | node_17 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (3/10) from ['node_26']
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (4/10) from ['node_29']
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (5/10) from ['node_13']
+[ 2026-05-15 07:55:37 | node_17 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (6/10) from ['node_19']
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🧩 Model added for round 98 (7/10) from ['node_45']
+[ 2026-05-15 07:55:37 | node_10 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:37 | node_48 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17264093458652496, 'test_acc': 0.9819276928901672, 'test_precision': 0.9612311124801636, 'test_recall': 0.9740071296691895, 'test_f1': 0.9638025760650635, 'communication_cost': 26343772}
+[ 2026-05-15 07:55:37 | node_48 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:37 | node_17 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21188071370124817, 'test_acc': 0.9665071964263916, 'test_precision': 0.8351173400878906, 'test_recall': 0.8238162994384766, 'test_f1': 0.8291106820106506, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:37 | node_17 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:37 | node_22 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:38 | node_2 | INFO ] ♻️ Proactively processing 7 early models for round 98.
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (1/8) from ['node_27']
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (2/8) from ['node_3']
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_29']
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (4/8) from ['node_5']
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_12']
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (6/8) from ['node_14']
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_39']
+[ 2026-05-15 07:55:38 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:38 | node_36 | INFO ] ♻️ Proactively processing 3 early models for round 98.
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🧩 Model added for round 98 (1/8) from ['node_28']
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🧩 Model added for round 98 (2/8) from ['node_14']
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_45']
+[ 2026-05-15 07:55:38 | node_36 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:38 | node_10 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:38 | node_25 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:38 | node_25 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:38 | node_23 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:39 | node_25 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20367589592933655, 'test_acc': 0.9726775884628296, 'test_precision': 0.893567681312561, 'test_recall': 0.8932613730430603, 'test_f1': 0.8930820822715759, 'communication_cost': 30107168}
+[ 2026-05-15 07:55:39 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:39 | node_23 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:39 | node_25 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:39 | node_17 | INFO ] ♻️ Proactively processing 4 early models for round 98.
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🧩 Model added for round 98 (1/5) from ['node_1']
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🧩 Model added for round 98 (2/5) from ['node_26']
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_15']
+[ 2026-05-15 07:55:39 | node_36 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:39 | node_23 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20684652030467987, 'test_acc': 0.9569377899169922, 'test_precision': 0.7459821701049805, 'test_recall': 0.7244985699653625, 'test_f1': 0.7347623705863953, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🧩 Model added for round 98 (4/5) from ['node_30']
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:39 | node_23 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:39 | node_42 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:39 | node_42 | INFO ] ✅ [FORCE] Local model added for round 98. (5/6)
+[ 2026-05-15 07:55:39 | node_42 | INFO ] 📤 Sending model to 5 direct neighbors: ['node', 'node_5', 'node_6', 'node_23', 'node_39']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:39 | node_48 | INFO ] ♻️ Proactively processing 5 early models for round 98.
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🧩 Model added for round 98 (1/8) from ['node_27']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🧩 Model added for round 98 (2/8) from ['node_5']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🧩 Model added for round 98 (3/8) from ['node_12']
+[ 2026-05-15 07:55:39 | node | INFO ] 🧩 Model added for round 98 (4/7) from ['node_42']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🧩 Model added for round 98 (4/8) from ['node_24']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_46']
+[ 2026-05-15 07:55:39 | node_48 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:39 | node_17 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:40 | node_48 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:40 | node_5 | INFO ] 🧩 Model added for round 98 (2/6) from ['node_42']
+[ 2026-05-15 07:55:40 | node_23 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:40 | node_23 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:40 | node_23 | INFO ] ♻️ Proactively processing 5 early models for round 98.
+[ 2026-05-15 07:55:40 | node_25 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:40 | node_23 | INFO ] 🧩 Model added for round 98 (1/7) from ['node_5']
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🧩 Model added for round 98 (2/7) from ['node']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_29']
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_46']
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_11']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] ♻️ Proactively processing 6 early models for round 98.
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (1/9) from ['node_26']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (2/9) from ['node_24']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (3/9) from ['node_12']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (4/9) from ['node_15']
+[ 2026-05-15 07:55:41 | node_6 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_42']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (5/9) from ['node_30']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🧩 Model added for round 98 (6/9) from ['node_39']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:41 | node_21 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_42']
+[ 2026-05-15 07:55:41 | node_21 | INFO ] ✅ [FORCE] Local model added for round 98. (6/8)
+[ 2026-05-15 07:55:41 | node_21 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_6', 'node_9', 'node_14', 'node_19', 'node_28', 'node_36', 'node_46']
+[ 2026-05-15 07:55:41 | node_23 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:41 | node_6 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_21']
+[ 2026-05-15 07:55:41 | node_25 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:42 | node_39 | INFO ] 🧩 Model added for round 98 (6/8) from ['node_42']
+[ 2026-05-15 07:55:42 | node_14 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_21']
+[ 2026-05-15 07:55:43 | node_22 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:43 | node_22 | INFO ] ✅ [FORCE] Local model added for round 98. (3/7)
+[ 2026-05-15 07:55:43 | node_22 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_4', 'node_9', 'node_11', 'node_25', 'node_26', 'node_36']
+[ 2026-05-15 07:55:43 | node_19 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_21']
+[ 2026-05-15 07:55:43 | node_10 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:43 | node_10 | INFO ] ✅ [FORCE] Local model added for round 98. (8/10)
+[ 2026-05-15 07:55:43 | node_10 | INFO ] 📤 Sending model to 9 direct neighbors: ['node_3', 'node_4', 'node_6', 'node_13', 'node_19', 'node_26', 'node_29', 'node_45', 'node_48']
+[ 2026-05-15 07:55:43 | node_11 | INFO ] 🧩 Model added for round 98 (6/9) from ['node_22']
+[ 2026-05-15 07:55:43 | node_3 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_10']
+[ 2026-05-15 07:55:43 | node_28 | INFO ] 🧩 Model added for round 98 (5/6) from ['node_21']
+[ 2026-05-15 07:55:44 | node_2 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:44 | node_2 | INFO ] ✅ [FORCE] Local model added for round 98. (8/8)
+[ 2026-05-15 07:55:44 | node_2 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_3', 'node_5', 'node_12', 'node_14', 'node_27', 'node_29', 'node_39']
+[ 2026-05-15 07:55:44 | node_36 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:44 | node_36 | INFO ] ✅ [FORCE] Local model added for round 98. (4/8)
+[ 2026-05-15 07:55:44 | node_36 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_4', 'node_14', 'node_21', 'node_22', 'node_28', 'node_45', 'node_48']
+[ 2026-05-15 07:55:44 | node_3 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_2']
+[ 2026-05-15 07:55:44 | node_25 | INFO ] 🧩 Model added for round 98 (7/9) from ['node_22']
+[ 2026-05-15 07:55:44 | node_36 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_21']
+[ 2026-05-15 07:55:44 | node_6 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_10']
+[ 2026-05-15 07:55:44 | node_14 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_36']
+[ 2026-05-15 07:55:44 | node_17 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:44 | node_17 | INFO ] ✅ [FORCE] Local model added for round 98. (5/5)
+[ 2026-05-15 07:55:45 | node_17 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_1', 'node_15', 'node_26', 'node_30']
+[ 2026-05-15 07:55:45 | node_5 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_2']
+[ 2026-05-15 07:55:45 | node_1 | INFO ] 🧩 Model added for round 98 (3/3) from ['node_17']
+[ 2026-05-15 07:55:45 | node_46 | INFO ] 🧩 Model added for round 98 (4/8) from ['node_21']
+[ 2026-05-15 07:55:45 | node_26 | INFO ] 🧩 Model added for round 98 (2/6) from ['node_22']
+[ 2026-05-15 07:55:45 | node_41 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:45 | node_21 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_36']
+[ 2026-05-15 07:55:45 | node_13 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_10']
+[ 2026-05-15 07:55:45 | node_41 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:45 | node_1 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:45 | node_48 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:45 | node_13 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:45 | node_48 | INFO ] ✅ [FORCE] Local model added for round 98. (6/8)
+[ 2026-05-15 07:55:45 | node_15 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_17']
+[ 2026-05-15 07:55:45 | node_48 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_5', 'node_10', 'node_12', 'node_24', 'node_27', 'node_36', 'node_46']
+[ 2026-05-15 07:55:45 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:45 | node_41 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19857214391231537, 'test_acc': 0.9665071964263916, 'test_precision': 0.7578287124633789, 'test_recall': 0.745435893535614, 'test_f1': 0.7508888244628906, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:46 | node_13 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:46 | node_41 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:46 | node_12 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_2']
+[ 2026-05-15 07:55:46 | node_5 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_48']
+[ 2026-05-15 07:55:46 | node_19 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_10']
+[ 2026-05-15 07:55:46 | node_26 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_17']
+[ 2026-05-15 07:55:46 | node_36 | INFO ] 🧩 Model added for round 98 (6/8) from ['node_22']
+[ 2026-05-15 07:55:46 | node_22 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_36']
+[ 2026-05-15 07:55:46 | node_23 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:46 | node_25 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:46 | node_23 | INFO ] ✅ [FORCE] Local model added for round 98. (7/7)
+[ 2026-05-15 07:55:47 | node_30 | INFO ] 🧩 Model added for round 98 (5/6) from ['node_17']
+[ 2026-05-15 07:55:47 | node_23 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_5', 'node_11', 'node_29', 'node_42', 'node_46']
+[ 2026-05-15 07:55:47 | node_25 | INFO ] ✅ [FORCE] Local model added for round 98. (8/9)
+[ 2026-05-15 07:55:47 | node_26 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_10']
+[ 2026-05-15 07:55:47 | node_25 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_4', 'node_12', 'node_15', 'node_22', 'node_24', 'node_26', 'node_30', 'node_39']
+[ 2026-05-15 07:55:47 | node_10 | INFO ] 🧩 Model added for round 98 (9/10) from ['node_48']
+[ 2026-05-15 07:55:47 | node_14 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_2']
+[ 2026-05-15 07:55:47 | node_19 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:47 | node | INFO ] 🧩 Model added for round 98 (5/7) from ['node_23']
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:47 | node_4 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:47 | node_41 | INFO ] ♻️ Proactively processing 3 early models for round 98.
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🧩 Model added for round 98 (1/5) from ['node_20']
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🧩 Model added for round 98 (2/5) from ['node']
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_7']
+[ 2026-05-15 07:55:47 | node_41 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:47 | node_4 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:47 | node_28 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_36']
+[ 2026-05-15 07:55:47 | node_19 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:47 | node_4 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21706253290176392, 'test_acc': 0.9587156176567078, 'test_precision': 0.6786795854568481, 'test_recall': 0.6551045179367065, 'test_f1': 0.6660475134849548, 'communication_cost': 22580376}
+[ 2026-05-15 07:55:48 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:48 | node_29 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_10']
+[ 2026-05-15 07:55:48 | node_5 | INFO ] 🧩 Model added for round 98 (5/6) from ['node_23']
+[ 2026-05-15 07:55:48 | node_12 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_48']
+[ 2026-05-15 07:55:48 | node_27 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_2']
+[ 2026-05-15 07:55:48 | node_41 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:48 | node_12 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_25']
+[ 2026-05-15 07:55:48 | node_17 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:48 | node_45 | INFO ] 🧩 Model added for round 98 (7/9) from ['node_36']
+[ 2026-05-15 07:55:48 | node_12 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:48 | node_28 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:48 | node_17 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:48 | node_12 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:48 | node_28 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:49 | node_45 | INFO ] 🧩 Model added for round 98 (8/9) from ['node_10']
+[ 2026-05-15 07:55:49 | node_29 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_2']
+[ 2026-05-15 07:55:49 | node_11 | INFO ] 🧩 Model added for round 98 (7/9) from ['node_23']
+[ 2026-05-15 07:55:49 | node_24 | INFO ] 🧩 Model added for round 98 (4/5) from ['node_48']
+[ 2026-05-15 07:55:49 | node_15 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_25']
+[ 2026-05-15 07:55:49 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:55:49 | node_4 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:49 | node_48 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_36']
+[ 2026-05-15 07:55:49 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:49 | node_4 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:50 | node_4 | INFO ] ♻️ Proactively processing 6 early models for round 98.
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (1/7) from ['node_27']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (2/7) from ['node_45']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (3/7) from ['node_22']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (4/7) from ['node_10']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_36']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_25']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:50 | node_1 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.29380640387535095, 'test_acc': 0.9731183052062988, 'test_precision': 0.8421284556388855, 'test_recall': 0.828434944152832, 'test_f1': 0.8346508145332336, 'communication_cost': 7526792}
+[ 2026-05-15 07:55:50 | node_48 | INFO ] 🧩 Model added for round 98 (8/8) from ['node_10']
+[ 2026-05-15 07:55:50 | node_27 | INFO ] 🧩 Model added for round 98 (4/5) from ['node_48']
+[ 2026-05-15 07:55:50 | node_39 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_2']
+[ 2026-05-15 07:55:50 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:50 | node_29 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_23']
+[ 2026-05-15 07:55:50 | node_22 | INFO ] 🧩 Model added for round 98 (5/7) from ['node_25']
+[ 2026-05-15 07:55:50 | node_1 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:55:50 | node_1 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:50 | node_36 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_48']
+[ 2026-05-15 07:55:50 | node_4 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:50 | node_16 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:51 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:51 | node_16 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:51 | node_42 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_23']
+[ 2026-05-15 07:55:51 | node_29 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:51 | node_2 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:51 | node_42 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:51 | node_24 | INFO ] 🧩 Model added for round 98 (5/5) from ['node_25']
+[ 2026-05-15 07:55:51 | node_16 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18603932857513428, 'test_acc': 0.9819819927215576, 'test_precision': 0.8403230905532837, 'test_recall': 0.8294461369514465, 'test_f1': 0.8346297740936279, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:51 | node_16 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:51 | node_46 | INFO ] 🧩 Model added for round 98 (5/8) from ['node_23']
+[ 2026-05-15 07:55:51 | node_24 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:51 | node_46 | INFO ] 🧩 Model added for round 98 (6/8) from ['node_48']
+[ 2026-05-15 07:55:51 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:52 | node_29 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:52 | node_42 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:52 | node_26 | INFO ] 🧩 Model added for round 98 (5/6) from ['node_25']
+[ 2026-05-15 07:55:52 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:52 | node_24 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:52 | node_30 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_25']
+[ 2026-05-15 07:55:53 | node_23 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:53 | node_48 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:53 | node_30 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:53 | node_16 | INFO ] ♻️ Proactively processing 4 early models for round 98.
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🧩 Model added for round 98 (1/5) from ['node_6']
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🧩 Model added for round 98 (2/5) from ['node_5']
+[ 2026-05-15 07:55:53 | node_41 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🧩 Model added for round 98 (3/5) from ['node_46']
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🧩 Model added for round 98 (4/5) from ['node_11']
+[ 2026-05-15 07:55:53 | node_16 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:53 | node_41 | INFO ] ✅ [FORCE] Local model added for round 98. (4/5)
+[ 2026-05-15 07:55:53 | node_23 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:53 | node_41 | INFO ] 📤 Sending model to 4 direct neighbors: ['node', 'node_7', 'node_9', 'node_20']
+[ 2026-05-15 07:55:53 | node_30 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:53 | node_48 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:53 | node_39 | INFO ] 🧩 Model added for round 98 (8/8) from ['node_25']
+[ 2026-05-15 07:55:53 | node | INFO ] 🧩 Model added for round 98 (6/7) from ['node_41']
+[ 2026-05-15 07:55:54 | node_16 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:54 | node_39 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:54 | node_8 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:54 | node_8 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:54 | node_39 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:54 | node_7 | INFO ] 🧩 Model added for round 98 (4/4) from ['node_41']
+[ 2026-05-15 07:55:55 | node_8 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.27631741762161255, 'test_acc': 0.949999988079071, 'test_precision': 0.6750360727310181, 'test_recall': 0.646080732345581, 'test_f1': 0.6595518589019775, 'communication_cost': 15053584}
+[ 2026-05-15 07:55:55 | node_8 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:55 | node_7 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:55 | node_18 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:55 | node_9 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:55:55 | node_9 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:55 | node_18 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:55:55 | node_7 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:56 | node_4 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:56 | node_4 | INFO ] ✅ [FORCE] Local model added for round 98. (7/7)
+[ 2026-05-15 07:55:56 | node_9 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2072959989309311, 'test_acc': 0.9668508172035217, 'test_precision': 0.7712064385414124, 'test_recall': 0.7628877758979797, 'test_f1': 0.7666290402412415, 'communication_cost': 33870564}
+[ 2026-05-15 07:55:56 | node_4 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_10', 'node_22', 'node_25', 'node_27', 'node_36', 'node_45']
+[ 2026-05-15 07:55:56 | node_18 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.16167734563350677, 'test_acc': 0.9647576808929443, 'test_precision': 0.7395820021629333, 'test_recall': 0.7323638796806335, 'test_f1': 0.7354394793510437, 'communication_cost': 18816980}
+[ 2026-05-15 07:55:56 | node_20 | INFO ] 🧩 Model added for round 98 (2/3) from ['node_41']
+[ 2026-05-15 07:55:56 | node_9 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:56 | node_8 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:55:56 | node_8 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:56 | node_8 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:56 | node_18 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:55:56 | node_10 | INFO ] 🧩 Model added for round 98 (10/10) from ['node_4']
+[ 2026-05-15 07:55:57 | node_1 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:57 | node_1 | INFO ] ✅ [FORCE] Local model added for round 99. (1/3)
+[ 2026-05-15 07:55:57 | node_1 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_13', 'node_17']
+[ 2026-05-15 07:55:57 | node_8 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:57 | node_10 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:55:57 | node_18 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:58 | node_18 | INFO ] ♻️ Proactively processing 4 early models for round 98.
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🧩 Model added for round 98 (1/6) from ['node_20']
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🧩 Model added for round 98 (2/6) from ['node_46']
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🧩 Model added for round 98 (3/6) from ['node_15']
+[ 2026-05-15 07:55:58 | node_22 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_4']
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🧩 Model added for round 98 (4/6) from ['node_11']
+[ 2026-05-15 07:55:58 | node_18 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🎉 Round 98 of 100 finished.
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:55:58 | node_9 | INFO ] ♻️ Proactively processing 8 early models for round 98.
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (1/10) from ['node_3']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (2/10) from ['node_26']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (3/10) from ['node']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (4/10) from ['node_14']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (5/10) from ['node_15']
+[ 2026-05-15 07:55:58 | node_10 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (6/10) from ['node_21']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (7/10) from ['node_22']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🧩 Model added for round 98 (8/10) from ['node_41']
+[ 2026-05-15 07:55:58 | node_9 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:55:59 | node_18 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:59 | node_25 | INFO ] 🧩 Model added for round 98 (9/9) from ['node_4']
+[ 2026-05-15 07:55:59 | node_16 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:55:59 | node_16 | INFO ] ✅ [FORCE] Local model added for round 98. (5/5)
+[ 2026-05-15 07:55:59 | node_16 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_5', 'node_6', 'node_11', 'node_46']
+[ 2026-05-15 07:55:59 | node_9 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:55:59 | node_5 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_16']
+[ 2026-05-15 07:55:59 | node_27 | INFO ] 🧩 Model added for round 98 (5/5) from ['node_4']
+[ 2026-05-15 07:55:59 | node_25 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:00 | node_5 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:00 | node_27 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:00 | node_36 | INFO ] 🧩 Model added for round 98 (8/8) from ['node_4']
+[ 2026-05-15 07:56:00 | node_6 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_16']
+[ 2026-05-15 07:56:00 | node_27 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:00 | node_5 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:00 | node_25 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:01 | node_6 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:01 | node_36 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:01 | node_11 | INFO ] 🧩 Model added for round 98 (8/9) from ['node_16']
+[ 2026-05-15 07:56:01 | node_45 | INFO ] 🧩 Model added for round 98 (9/9) from ['node_4']
+[ 2026-05-15 07:56:01 | node_6 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:01 | node_36 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:02 | node_45 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:02 | node_8 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:02 | node_45 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:02 | node_8 | INFO ] ✅ [FORCE] Local model added for round 99. (1/5)
+[ 2026-05-15 07:56:02 | node_8 | INFO ] 📤 Sending model to 4 direct neighbors: ['node', 'node_7', 'node_15', 'node_29']
+[ 2026-05-15 07:56:02 | node_46 | INFO ] 🧩 Model added for round 98 (7/8) from ['node_16']
+[ 2026-05-15 07:56:02 | node_24 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:02 | node_24 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:03 | node_24 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24040578305721283, 'test_acc': 0.9533678889274597, 'test_precision': 0.6911917328834534, 'test_recall': 0.6687217950820923, 'test_f1': 0.6785051226615906, 'communication_cost': 15053584}
+[ 2026-05-15 07:56:03 | node_24 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:04 | node_18 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:04 | node_18 | INFO ] ✅ [FORCE] Local model added for round 98. (5/6)
+[ 2026-05-15 07:56:04 | node_16 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:04 | node_4 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:04 | node_18 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_9', 'node_11', 'node_15', 'node_20', 'node_46']
+[ 2026-05-15 07:56:04 | node_16 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:04 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:04 | node_9 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:04 | node_9 | INFO ] ✅ [FORCE] Local model added for round 98. (9/10)
+[ 2026-05-15 07:56:04 | node_9 | INFO ] 📤 Sending model to 9 direct neighbors: ['node', 'node_3', 'node_14', 'node_15', 'node_18', 'node_21', 'node_22', 'node_26', 'node_41']
+[ 2026-05-15 07:56:04 | node_9 | INFO ] 🧩 Model added for round 98 (10/10) from ['node_18']
+[ 2026-05-15 07:56:04 | node_24 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:04 | node_24 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:05 | node_24 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:05 | node_27 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:05 | node_27 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:05 | node | INFO ] 🧩 Model added for round 98 (7/7) from ['node_9']
+[ 2026-05-15 07:56:05 | node_5 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:05 | node_5 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:05 | node_11 | INFO ] 🧩 Model added for round 98 (9/9) from ['node_18']
+[ 2026-05-15 07:56:05 | node_24 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:05 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.30064916610717773, 'test_acc': 0.9411764740943909, 'test_precision': 0.6113787293434143, 'test_recall': 0.6110316514968872, 'test_f1': 0.6091912984848022, 'communication_cost': 15053584}
+[ 2026-05-15 07:56:05 | node_5 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2022087424993515, 'test_acc': 0.9802371263504028, 'test_precision': 0.7833040952682495, 'test_recall': 0.778045654296875, 'test_f1': 0.7804259061813354, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:06 | node_27 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:06 | node_5 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:06 | node | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:06 | node_11 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:06 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:06 | node_3 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_9']
+[ 2026-05-15 07:56:06 | node_11 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:07 | node_27 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:07 | node_12 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:07 | node_27 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:07 | node_27 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:07 | node_15 | INFO ] 🧩 Model added for round 98 (6/7) from ['node_18']
+[ 2026-05-15 07:56:07 | node_12 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:07 | node_5 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:07 | node_5 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:07 | node_5 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:07 | node_14 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_9']
+[ 2026-05-15 07:56:07 | node_12 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2477109581232071, 'test_acc': 0.9792746305465698, 'test_precision': 0.9177152514457703, 'test_recall': 0.9111632704734802, 'test_f1': 0.9137648344039917, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:08 | node_12 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:08 | node_20 | INFO ] 🧩 Model added for round 98 (3/3) from ['node_18']
+[ 2026-05-15 07:56:08 | node_3 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:08 | node_14 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:08 | node_27 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:08 | node_15 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_9']
+[ 2026-05-15 07:56:08 | node_13 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:08 | node_5 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:08 | node_13 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:08 | node_20 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:08 | node_46 | INFO ] 🧩 Model added for round 98 (8/8) from ['node_18']
+[ 2026-05-15 07:56:08 | node_15 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:08 | node_20 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:08 | node_13 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.28658172488212585, 'test_acc': 0.9651162624359131, 'test_precision': 0.8812530040740967, 'test_recall': 0.8635618686676025, 'test_f1': 0.8711376786231995, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:09 | node_14 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:09 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:09 | node_28 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:09 | node_28 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:09 | node_13 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:09 | node_15 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:09 | node_18 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_9']
+[ 2026-05-15 07:56:09 | node_28 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.26280659437179565, 'test_acc': 0.954954981803894, 'test_precision': 0.6860263347625732, 'test_recall': 0.6734241247177124, 'test_f1': 0.6789465546607971, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:10 | node_28 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:10 | node_46 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:10 | node_18 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:10 | node_21 | INFO ] 🧩 Model added for round 98 (8/8) from ['node_9']
+[ 2026-05-15 07:56:10 | node_12 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:10 | node_12 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:10 | node_12 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:10 | node_18 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:10 | node_46 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:10 | node_13 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:10 | node_13 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:10 | node_13 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:10 | node_13 | INFO ] 🧩 Model added for round 99 (1/6) from ['node_1']
+[ 2026-05-15 07:56:10 | node_13 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:10 | node_24 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:10 | node_24 | INFO ] ✅ [FORCE] Local model added for round 99. (1/5)
+[ 2026-05-15 07:56:11 | node_17 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:11 | node_24 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_12', 'node_25', 'node_45', 'node_48']
+[ 2026-05-15 07:56:11 | node_17 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:11 | node_12 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:11 | node_22 | INFO ] 🧩 Model added for round 98 (7/7) from ['node_9']
+[ 2026-05-15 07:56:11 | node_12 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_24']
+[ 2026-05-15 07:56:11 | node_28 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:11 | node_17 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2621183693408966, 'test_acc': 0.9665071964263916, 'test_precision': 0.8346972465515137, 'test_recall': 0.8231783509254456, 'test_f1': 0.8285172581672668, 'communication_cost': 15053584}
+[ 2026-05-15 07:56:11 | node_28 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:11 | node_22 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:11 | node_21 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:11 | node_17 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:11 | node_29 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:11 | node_13 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:11 | node_28 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:12 | node_29 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:12 | node_29 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3311671316623688, 'test_acc': 0.9313725233078003, 'test_precision': 0.7658136487007141, 'test_recall': 0.740240216255188, 'test_f1': 0.7516829371452332, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:12 | node_26 | INFO ] 🧩 Model added for round 98 (6/6) from ['node_9']
+[ 2026-05-15 07:56:12 | node_29 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:12 | node_22 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:12 | node_21 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:12 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:12 | node_28 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:12 | node_4 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:12 | node_26 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:13 | node_4 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.26242727041244507, 'test_acc': 0.9587156176567078, 'test_precision': 0.7220115065574646, 'test_recall': 0.7029668092727661, 'test_f1': 0.7112216949462891, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:13 | node_17 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:13 | node_17 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:13 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:13 | node_26 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:13 | node_17 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:13 | node_17 | INFO ] 🧩 Model added for round 99 (1/5) from ['node_1']
+[ 2026-05-15 07:56:13 | node_2 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:13 | node_41 | INFO ] 🧩 Model added for round 98 (5/5) from ['node_9']
+[ 2026-05-15 07:56:13 | node_17 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:13 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:13 | node_27 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:13 | node_5 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:13 | node_27 | INFO ] ✅ [FORCE] Local model added for round 99. (1/5)
+[ 2026-05-15 07:56:13 | node_5 | INFO ] ✅ [FORCE] Local model added for round 99. (1/6)
+[ 2026-05-15 07:56:13 | node_27 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_2', 'node_4', 'node_6', 'node_48']
+[ 2026-05-15 07:56:13 | node_5 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_2', 'node_16', 'node_23', 'node_42', 'node_48']
+[ 2026-05-15 07:56:13 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.207318976521492, 'test_acc': 0.9724770784378052, 'test_precision': 0.8270922899246216, 'test_recall': 0.8252485990524292, 'test_f1': 0.8255478143692017, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:13 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:13 | node_41 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:13 | node_42 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:14 | node_9 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:14 | node_48 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:14 | node_42 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:14 | node_30 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:14 | node_17 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:14 | node_48 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:14 | node_30 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:14 | node_42 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20261427760124207, 'test_acc': 0.9764150977134705, 'test_precision': 0.7594859004020691, 'test_recall': 0.7561156153678894, 'test_f1': 0.7575128078460693, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:14 | node_41 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:14 | node_42 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:14 | node_48 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20611703395843506, 'test_acc': 0.9759036302566528, 'test_precision': 0.8867427706718445, 'test_recall': 0.8955822587013245, 'test_f1': 0.8872095942497253, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:14 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:14 | node_48 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:14 | node_30 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21163088083267212, 'test_acc': 0.9689119458198547, 'test_precision': 0.7775721549987793, 'test_recall': 0.7709844708442688, 'test_f1': 0.7737719416618347, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:14 | node_7 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:14 | node_30 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:14 | node_29 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:14 | node_20 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:14 | node_20 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:14 | node_29 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:14 | node_7 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22967545688152313, 'test_acc': 0.9641255736351013, 'test_precision': 0.8384866118431091, 'test_recall': 0.8293296098709106, 'test_f1': 0.8328678011894226, 'communication_cost': 11290188}
+[ 2026-05-15 07:56:15 | node_7 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:15 | node_29 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:15 | node_29 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_8']
+[ 2026-05-15 07:56:15 | node_29 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:15 | node_9 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:15 | node_20 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2175503522157669, 'test_acc': 0.9642857313156128, 'test_precision': 0.7925170063972473, 'test_recall': 0.7862078547477722, 'test_f1': 0.7888684272766113, 'communication_cost': 7526792}
+[ 2026-05-15 07:56:15 | node_20 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:15 | node_14 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:15 | node_14 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:15 | node_39 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:15 | node_39 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:15 | node_14 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2550191879272461, 'test_acc': 0.9563106894493103, 'test_precision': 0.7774145007133484, 'test_recall': 0.7601196765899658, 'test_f1': 0.7677512764930725, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:15 | node_22 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:15 | node_4 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:15 | node_14 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:15 | node_22 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:15 | node_4 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_29 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:16 | node_39 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2023485153913498, 'test_acc': 0.9839572310447693, 'test_precision': 0.8465834856033325, 'test_recall': 0.8368468284606934, 'test_f1': 0.8415430784225464, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:16 | node_4 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:16 | node_4 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_27']
+[ 2026-05-15 07:56:16 | node_4 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:16 | node_20 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:16 | node_39 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:16 | node_22 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2283722311258316, 'test_acc': 0.9764705896377563, 'test_precision': 0.8434203863143921, 'test_recall': 0.8410617709159851, 'test_f1': 0.8414849638938904, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:16 | node_20 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_22 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:16 | node_12 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:16 | node_7 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:16 | node_20 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:16 | node_12 | INFO ] ✅ [FORCE] Local model added for round 99. (2/7)
+[ 2026-05-15 07:56:16 | node_12 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_13', 'node_24', 'node_25', 'node_28', 'node_48']
+[ 2026-05-15 07:56:16 | node_7 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_42 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:16 | node_7 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:16 | node_42 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_7 | INFO ] 🧩 Model added for round 99 (1/4) from ['node_8']
+[ 2026-05-15 07:56:16 | node_7 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:16 | node_30 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:16 | node_2 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:16 | node_42 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:16 | node_30 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_42 | INFO ] 🧩 Model added for round 99 (1/6) from ['node_5']
+[ 2026-05-15 07:56:16 | node_4 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:16 | node_2 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:16 | node_42 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:16 | node_13 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:16 | node_30 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:16 | node_2 | INFO ] ♻️ Proactively processing 3 early models for round 99.
+[ 2026-05-15 07:56:16 | node_13 | INFO ] ✅ [FORCE] Local model added for round 99. (2/6)
+[ 2026-05-15 07:56:16 | node_20 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:17 | node_2 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_27']
+[ 2026-05-15 07:56:17 | node_13 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_1', 'node_10', 'node_11', 'node_12', 'node_46']
+[ 2026-05-15 07:56:17 | node_13 | INFO ] 🧩 Model added for round 99 (3/6) from ['node_12']
+[ 2026-05-15 07:56:17 | node_2 | INFO ] 🧩 Model added for round 99 (2/8) from ['node_5']
+[ 2026-05-15 07:56:17 | node_2 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_12']
+[ 2026-05-15 07:56:17 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:17 | node_1 | INFO ] 🧩 Model added for round 99 (2/3) from ['node_13']
+[ 2026-05-15 07:56:17 | node_7 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:17 | node_48 | INFO ] ♻️ Proactively processing 3 early models for round 99.
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_24']
+[ 2026-05-15 07:56:17 | node_42 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:17 | node_28 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🧩 Model added for round 99 (2/8) from ['node_27']
+[ 2026-05-15 07:56:17 | node_30 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_5']
+[ 2026-05-15 07:56:17 | node_28 | INFO ] ✅ [FORCE] Local model added for round 99. (1/6)
+[ 2026-05-15 07:56:17 | node_48 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:17 | node_28 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_12', 'node_21', 'node_30', 'node_36', 'node_39']
+[ 2026-05-15 07:56:17 | node_24 | INFO ] 🧩 Model added for round 99 (2/5) from ['node_12']
+[ 2026-05-15 07:56:17 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:18 | node_12 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_28']
+[ 2026-05-15 07:56:18 | node_14 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:18 | node_14 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:18 | node_14 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:18 | node_12 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_13']
+[ 2026-05-15 07:56:18 | node_48 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:18 | node_22 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:18 | node_28 | INFO ] 🧩 Model added for round 99 (2/6) from ['node_12']
+[ 2026-05-15 07:56:18 | node_22 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:18 | node_22 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:18 | node_39 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:18 | node_39 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:18 | node_14 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:19 | node_30 | INFO ] 🧩 Model added for round 99 (1/6) from ['node_28']
+[ 2026-05-15 07:56:19 | node_39 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:19 | node_17 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:19 | node_17 | INFO ] ✅ [FORCE] Local model added for round 99. (2/5)
+[ 2026-05-15 07:56:19 | node_17 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_1', 'node_15', 'node_26', 'node_30']
+[ 2026-05-15 07:56:19 | node_48 | INFO ] 🧩 Model added for round 99 (4/8) from ['node_12']
+[ 2026-05-15 07:56:19 | node_22 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:19 | node_1 | INFO ] 🧩 Model added for round 99 (3/3) from ['node_17']
+[ 2026-05-15 07:56:19 | node_39 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:19 | node_1 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:19 | node_39 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_28']
+[ 2026-05-15 07:56:20 | node_1 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:21 | node_10 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:21 | node_29 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:21 | node_10 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:21 | node_29 | INFO ] ✅ [FORCE] Local model added for round 99. (2/7)
+[ 2026-05-15 07:56:21 | node_29 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_2', 'node_3', 'node_8', 'node_10', 'node_23']
+[ 2026-05-15 07:56:21 | node_30 | INFO ] 🧩 Model added for round 99 (2/6) from ['node_17']
+[ 2026-05-15 07:56:21 | node_10 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19533735513687134, 'test_acc': 0.9906103014945984, 'test_precision': 0.866457998752594, 'test_recall': 0.8606076240539551, 'test_f1': 0.8634667992591858, 'communication_cost': 33870564}
+[ 2026-05-15 07:56:21 | node_10 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:21 | node_4 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:21 | node_36 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:21 | node_4 | INFO ] ✅ [FORCE] Local model added for round 99. (2/7)
+[ 2026-05-15 07:56:21 | node_4 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_10', 'node_22', 'node_25', 'node_27', 'node_36', 'node_45']
+[ 2026-05-15 07:56:22 | node_36 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:22 | node_20 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:22 | node_20 | INFO ] ✅ [FORCE] Local model added for round 99. (1/3)
+[ 2026-05-15 07:56:22 | node_20 | INFO ] 📤 Sending model to 2 direct neighbors: ['node_18', 'node_41']
+[ 2026-05-15 07:56:22 | node_36 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2377571314573288, 'test_acc': 0.9795918464660645, 'test_precision': 0.8811366558074951, 'test_recall': 0.8682245016098022, 'test_f1': 0.8743789792060852, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:22 | node_7 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:22 | node_2 | INFO ] 🧩 Model added for round 99 (4/8) from ['node_29']
+[ 2026-05-15 07:56:22 | node_7 | INFO ] ✅ [FORCE] Local model added for round 99. (2/4)
+[ 2026-05-15 07:56:22 | node_25 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:22 | node_7 | INFO ] 📤 Sending model to 3 direct neighbors: ['node_8', 'node_41', 'node_45']
+[ 2026-05-15 07:56:22 | node_25 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:22 | node_36 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:22 | node_42 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:22 | node_42 | INFO ] ✅ [FORCE] Local model added for round 99. (2/6)
+[ 2026-05-15 07:56:22 | node_30 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:22 | node_25 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2232849895954132, 'test_acc': 0.9781420826911926, 'test_precision': 0.8436939716339111, 'test_recall': 0.8374900817871094, 'test_f1': 0.8403987288475037, 'communication_cost': 30107168}
+[ 2026-05-15 07:56:22 | node_42 | INFO ] 📤 Sending model to 5 direct neighbors: ['node', 'node_5', 'node_6', 'node_23', 'node_39']
+[ 2026-05-15 07:56:22 | node_30 | INFO ] ✅ [FORCE] Local model added for round 99. (3/6)
+[ 2026-05-15 07:56:22 | node_30 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_14', 'node_17', 'node_25', 'node_28', 'node_45']
+[ 2026-05-15 07:56:22 | node_2 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:22 | node_25 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:22 | node_8 | INFO ] 🧩 Model added for round 99 (2/5) from ['node_7']
+[ 2026-05-15 07:56:22 | node_22 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_4']
+[ 2026-05-15 07:56:22 | node_2 | INFO ] ✅ [FORCE] Local model added for round 99. (5/8)
+[ 2026-05-15 07:56:23 | node_2 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_3', 'node_5', 'node_12', 'node_14', 'node_27', 'node_29', 'node_39']
+[ 2026-05-15 07:56:23 | node_45 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:23 | node_14 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_30']
+[ 2026-05-15 07:56:23 | node_48 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:23 | node_45 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:23 | node_48 | INFO ] ✅ [FORCE] Local model added for round 99. (5/8)
+[ 2026-05-15 07:56:23 | node_5 | INFO ] 🧩 Model added for round 99 (2/6) from ['node_42']
+[ 2026-05-15 07:56:23 | node_48 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_5', 'node_10', 'node_12', 'node_24', 'node_27', 'node_36', 'node_46']
+[ 2026-05-15 07:56:23 | node_8 | INFO ] 🧩 Model added for round 99 (3/5) from ['node_29']
+[ 2026-05-15 07:56:23 | node_5 | INFO ] 🧩 Model added for round 99 (3/6) from ['node_2']
+[ 2026-05-15 07:56:23 | node_45 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1764780431985855, 'test_acc': 0.9890710115432739, 'test_precision': 0.9908925890922546, 'test_recall': 0.9857316017150879, 'test_f1': 0.9878411889076233, 'communication_cost': 30107168}
+[ 2026-05-15 07:56:23 | node_45 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:23 | node_5 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_48']
+[ 2026-05-15 07:56:24 | node_14 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:24 | node_14 | INFO ] ✅ [FORCE] Local model added for round 99. (2/7)
+[ 2026-05-15 07:56:24 | node_14 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_9', 'node_11', 'node_21', 'node_30', 'node_36']
+[ 2026-05-15 07:56:24 | node_27 | INFO ] 🧩 Model added for round 99 (2/5) from ['node_4']
+[ 2026-05-15 07:56:24 | node_17 | INFO ] 🧩 Model added for round 99 (3/5) from ['node_30']
+[ 2026-05-15 07:56:24 | node_2 | INFO ] 🧩 Model added for round 99 (6/8) from ['node_14']
+[ 2026-05-15 07:56:24 | node_12 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_2']
+[ 2026-05-15 07:56:24 | node_22 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:24 | node_22 | INFO ] ✅ [FORCE] Local model added for round 99. (2/7)
+[ 2026-05-15 07:56:24 | node_22 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_4', 'node_9', 'node_11', 'node_25', 'node_26', 'node_36']
+[ 2026-05-15 07:56:24 | node_10 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:24 | node_39 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:24 | node_10 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:24 | node_39 | INFO ] ✅ [FORCE] Local model added for round 99. (2/8)
+[ 2026-05-15 07:56:24 | node_12 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_48']
+[ 2026-05-15 07:56:24 | node_39 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_2', 'node_11', 'node_19', 'node_25', 'node_28', 'node_42', 'node_45']
+[ 2026-05-15 07:56:24 | node_39 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_42']
+[ 2026-05-15 07:56:24 | node_10 | INFO ] ♻️ Proactively processing 4 early models for round 99.
+[ 2026-05-15 07:56:24 | node_4 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_22']
+[ 2026-05-15 07:56:24 | node_10 | INFO ] 🧩 Model added for round 99 (1/10) from ['node_13']
+[ 2026-05-15 07:56:25 | node_10 | INFO ] 🧩 Model added for round 99 (2/10) from ['node_4']
+[ 2026-05-15 07:56:25 | node_10 | INFO ] 🧩 Model added for round 99 (3/10) from ['node_29']
+[ 2026-05-15 07:56:25 | node_16 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:25 | node_2 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_39']
+[ 2026-05-15 07:56:25 | node_10 | INFO ] 🧩 Model added for round 99 (4/10) from ['node_48']
+[ 2026-05-15 07:56:25 | node_10 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:25 | node_28 | INFO ] 🧩 Model added for round 99 (3/6) from ['node_30']
+[ 2026-05-15 07:56:25 | node_16 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:25 | node_14 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_2']
+[ 2026-05-15 07:56:25 | node_36 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:25 | node_36 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:25 | node_16 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22563868761062622, 'test_acc': 0.9729729890823364, 'test_precision': 0.725007176399231, 'test_recall': 0.7127887606620789, 'test_f1': 0.718597412109375, 'communication_cost': 15053584}
+[ 2026-05-15 07:56:25 | node_36 | INFO ] ♻️ Proactively processing 2 early models for round 99.
+[ 2026-05-15 07:56:25 | node_36 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_28']
+[ 2026-05-15 07:56:25 | node_16 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:25 | node_24 | INFO ] 🧩 Model added for round 99 (3/5) from ['node_48']
+[ 2026-05-15 07:56:25 | node_36 | INFO ] 🧩 Model added for round 99 (2/8) from ['node_4']
+[ 2026-05-15 07:56:25 | node_36 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:26 | node_10 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:26 | node_30 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_14']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:26 | node_27 | INFO ] 🧩 Model added for round 99 (3/5) from ['node_2']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] ♻️ Proactively processing 4 early models for round 99.
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (1/9) from ['node_24']
+[ 2026-05-15 07:56:26 | node_27 | INFO ] 🧩 Model added for round 99 (4/5) from ['node_48']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (2/9) from ['node_12']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (3/9) from ['node_4']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (4/9) from ['node_30']
+[ 2026-05-15 07:56:26 | node_36 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (5/9) from ['node_22']
+[ 2026-05-15 07:56:26 | node_25 | INFO ] 🧩 Model added for round 99 (6/9) from ['node_39']
+[ 2026-05-15 07:56:26 | node_45 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:26 | node_36 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_14']
+[ 2026-05-15 07:56:26 | node_45 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:26 | node_15 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:26 | node_29 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_2']
+[ 2026-05-15 07:56:27 | node_45 | INFO ] ♻️ Proactively processing 4 early models for round 99.
+[ 2026-05-15 07:56:27 | node_15 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:27 | node_45 | INFO ] 🧩 Model added for round 99 (1/9) from ['node_24']
+[ 2026-05-15 07:56:27 | node_45 | INFO ] 🧩 Model added for round 99 (2/9) from ['node_7']
+[ 2026-05-15 07:56:27 | node_45 | INFO ] 🧩 Model added for round 99 (3/9) from ['node_4']
+[ 2026-05-15 07:56:27 | node_19 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:27 | node_45 | INFO ] 🧩 Model added for round 99 (4/9) from ['node_30']
+[ 2026-05-15 07:56:27 | node_11 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:27 | node_16 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:27 | node_36 | INFO ] 🧩 Model added for round 99 (4/8) from ['node_48']
+[ 2026-05-15 07:56:27 | node_45 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:27 | node_15 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.213092640042305, 'test_acc': 0.9821428656578064, 'test_precision': 0.9047942757606506, 'test_recall': 0.8918840289115906, 'test_f1': 0.897038459777832, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:27 | node_25 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:27 | node_16 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:27 | node_19 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:27 | node_11 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:27 | node_15 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:27 | node_16 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:27 | node_16 | INFO ] 🧩 Model added for round 99 (1/5) from ['node_5']
+[ 2026-05-15 07:56:27 | node_16 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:27 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24845707416534424, 'test_acc': 0.9695431590080261, 'test_precision': 0.7723773717880249, 'test_recall': 0.7554150223731995, 'test_f1': 0.7627779841423035, 'communication_cost': 30107168}
+[ 2026-05-15 07:56:27 | node_19 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23078976571559906, 'test_acc': 0.9743589758872986, 'test_precision': 0.7816354036331177, 'test_recall': 0.7727898955345154, 'test_f1': 0.776801347732544, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:27 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:27 | node_19 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:27 | node_39 | INFO ] 🧩 Model added for round 99 (4/8) from ['node_2']
+[ 2026-05-15 07:56:27 | node_28 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_39']
+[ 2026-05-15 07:56:27 | node_36 | INFO ] 🧩 Model added for round 99 (5/8) from ['node_22']
+[ 2026-05-15 07:56:28 | node_45 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:28 | node | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:28 | node_16 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:28 | node | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:28 | node_42 | INFO ] 🧩 Model added for round 99 (3/6) from ['node_39']
+[ 2026-05-15 07:56:28 | node | INFO ] 📈 Evaluated. Results: {'test_loss': 0.24035607278347015, 'test_acc': 0.9729729890823364, 'test_precision': 0.7904426455497742, 'test_recall': 0.7763847708702087, 'test_f1': 0.7831265330314636, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:28 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:28 | node_45 | INFO ] 🧩 Model added for round 99 (5/9) from ['node_39']
+[ 2026-05-15 07:56:29 | node_15 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:29 | node_15 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:29 | node_15 | INFO ] ♻️ Proactively processing 2 early models for round 99.
+[ 2026-05-15 07:56:29 | node_15 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_8']
+[ 2026-05-15 07:56:29 | node_19 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:29 | node_15 | INFO ] 🧩 Model added for round 99 (2/7) from ['node_17']
+[ 2026-05-15 07:56:29 | node_15 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:29 | node_19 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:29 | node_19 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:29 | node_19 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_39']
+[ 2026-05-15 07:56:29 | node_19 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:29 | node_11 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:30 | node_11 | INFO ] ♻️ Proactively processing 4 early models for round 99.
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🧩 Model added for round 99 (1/9) from ['node_13']
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🧩 Model added for round 99 (2/9) from ['node_14']
+[ 2026-05-15 07:56:30 | node_15 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🧩 Model added for round 99 (3/9) from ['node_39']
+[ 2026-05-15 07:56:30 | node | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🧩 Model added for round 99 (4/9) from ['node_22']
+[ 2026-05-15 07:56:30 | node_11 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:30 | node | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:30 | node | INFO ] ♻️ Proactively processing 3 early models for round 99.
+[ 2026-05-15 07:56:30 | node_19 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:30 | node | INFO ] 🧩 Model added for round 99 (1/7) from ['node_8']
+[ 2026-05-15 07:56:30 | node | INFO ] 🧩 Model added for round 99 (2/7) from ['node_29']
+[ 2026-05-15 07:56:30 | node | INFO ] 🧩 Model added for round 99 (3/7) from ['node_42']
+[ 2026-05-15 07:56:30 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:30 | node_46 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:30 | node_18 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:30 | node_46 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:30 | node_18 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:31 | node_11 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:31 | node_46 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2303490787744522, 'test_acc': 0.9695122241973877, 'test_precision': 0.8858093619346619, 'test_recall': 0.87413090467453, 'test_f1': 0.8794234395027161, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:31 | node_10 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:31 | node_18 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21550841629505157, 'test_acc': 0.9735682606697083, 'test_precision': 0.8251050114631653, 'test_recall': 0.8176209330558777, 'test_f1': 0.8207115530967712, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:31 | node_10 | INFO ] ✅ [FORCE] Local model added for round 99. (5/10)
+[ 2026-05-15 07:56:31 | node_10 | INFO ] 📤 Sending model to 9 direct neighbors: ['node_3', 'node_4', 'node_6', 'node_13', 'node_19', 'node_26', 'node_29', 'node_45', 'node_48']
+[ 2026-05-15 07:56:31 | node_46 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:31 | node_18 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:31 | node | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:31 | node_4 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_10']
+[ 2026-05-15 07:56:31 | node_36 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:31 | node_36 | INFO ] ✅ [FORCE] Local model added for round 99. (6/8)
+[ 2026-05-15 07:56:31 | node_36 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_4', 'node_14', 'node_21', 'node_22', 'node_28', 'node_45', 'node_48']
+[ 2026-05-15 07:56:31 | node_4 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_36']
+[ 2026-05-15 07:56:32 | node_18 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:32 | node_18 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:32 | node_18 | INFO ] ♻️ Proactively processing 1 early models for round 99.
+[ 2026-05-15 07:56:32 | node_18 | INFO ] 🧩 Model added for round 99 (1/6) from ['node_20']
+[ 2026-05-15 07:56:32 | node_25 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:32 | node_18 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:32 | node_25 | INFO ] ✅ [FORCE] Local model added for round 99. (7/9)
+[ 2026-05-15 07:56:32 | node_25 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_4', 'node_12', 'node_15', 'node_22', 'node_24', 'node_26', 'node_30', 'node_39']
+[ 2026-05-15 07:56:32 | node_46 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:32 | node_13 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_10']
+[ 2026-05-15 07:56:32 | node_46 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:32 | node_14 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_36']
+[ 2026-05-15 07:56:32 | node_46 | INFO ] ♻️ Proactively processing 2 early models for round 99.
+[ 2026-05-15 07:56:32 | node_46 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_13']
+[ 2026-05-15 07:56:33 | node_46 | INFO ] 🧩 Model added for round 99 (2/8) from ['node_48']
+[ 2026-05-15 07:56:33 | node_46 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:33 | node_45 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:33 | node_41 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:33 | node_4 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_25']
+[ 2026-05-15 07:56:33 | node_41 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:33 | node_45 | INFO ] ✅ [FORCE] Local model added for round 99. (6/9)
+[ 2026-05-15 07:56:33 | node_45 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_4', 'node_7', 'node_10', 'node_15', 'node_24', 'node_30', 'node_36', 'node_39']
+[ 2026-05-15 07:56:33 | node_18 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:33 | node_16 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:33 | node_16 | INFO ] ✅ [FORCE] Local model added for round 99. (2/5)
+[ 2026-05-15 07:56:33 | node_16 | INFO ] 📤 Sending model to 4 direct neighbors: ['node_5', 'node_6', 'node_11', 'node_46']
+[ 2026-05-15 07:56:33 | node_19 | INFO ] 🧩 Model added for round 99 (2/7) from ['node_10']
+[ 2026-05-15 07:56:33 | node_41 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20605333149433136, 'test_acc': 0.980861246585846, 'test_precision': 0.9313696026802063, 'test_recall': 0.9206040501594543, 'test_f1': 0.9256891012191772, 'communication_cost': 15053584}
+[ 2026-05-15 07:56:33 | node_4 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_45']
+[ 2026-05-15 07:56:33 | node_41 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:33 | node_5 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_16']
+[ 2026-05-15 07:56:33 | node_22 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_36']
+[ 2026-05-15 07:56:33 | node_46 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:33 | node_12 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_25']
+[ 2026-05-15 07:56:34 | node_4 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:34 | node_12 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:34 | node_4 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:34 | node_12 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:34 | node_29 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_10']
+[ 2026-05-15 07:56:34 | node_41 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:34 | node_28 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_36']
+[ 2026-05-15 07:56:34 | node_41 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:34 | node_7 | INFO ] 🧩 Model added for round 99 (3/4) from ['node_45']
+[ 2026-05-15 07:56:34 | node_41 | INFO ] ♻️ Proactively processing 2 early models for round 99.
+[ 2026-05-15 07:56:34 | node_41 | INFO ] 🧩 Model added for round 99 (1/5) from ['node_20']
+[ 2026-05-15 07:56:34 | node_41 | INFO ] 🧩 Model added for round 99 (2/5) from ['node_7']
+[ 2026-05-15 07:56:34 | node_41 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:35 | node_11 | INFO ] 🧩 Model added for round 99 (5/9) from ['node_16']
+[ 2026-05-15 07:56:35 | node_15 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:35 | node_15 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_25']
+[ 2026-05-15 07:56:35 | node_15 | INFO ] ✅ [FORCE] Local model added for round 99. (4/7)
+[ 2026-05-15 07:56:35 | node_15 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_8', 'node_9', 'node_17', 'node_18', 'node_25', 'node_45']
+[ 2026-05-15 07:56:35 | node_19 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:35 | node_19 | INFO ] ✅ [FORCE] Local model added for round 99. (3/7)
+[ 2026-05-15 07:56:35 | node_10 | INFO ] 🧩 Model added for round 99 (6/10) from ['node_45']
+[ 2026-05-15 07:56:35 | node_9 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:35 | node_19 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_3', 'node_10', 'node_11', 'node_21', 'node_39', 'node_46']
+[ 2026-05-15 07:56:35 | node_9 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:35 | node_45 | INFO ] 🧩 Model added for round 99 (7/9) from ['node_10']
+[ 2026-05-15 07:56:35 | node_45 | INFO ] 🧩 Model added for round 99 (8/9) from ['node_36']
+[ 2026-05-15 07:56:36 | node_9 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21492497622966766, 'test_acc': 0.9834254384040833, 'test_precision': 0.8502498865127563, 'test_recall': 0.8414143323898315, 'test_f1': 0.8456917405128479, 'communication_cost': 33870564}
+[ 2026-05-15 07:56:36 | node_11 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:36 | node_8 | INFO ] 🧩 Model added for round 99 (4/5) from ['node_15']
+[ 2026-05-15 07:56:36 | node_11 | INFO ] ✅ [FORCE] Local model added for round 99. (6/9)
+[ 2026-05-15 07:56:36 | node_11 | INFO ] 📤 Sending model to 8 direct neighbors: ['node_13', 'node_14', 'node_16', 'node_18', 'node_19', 'node_22', 'node_23', 'node_39']
+[ 2026-05-15 07:56:36 | node | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:36 | node_9 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:36 | node_46 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_16']
+[ 2026-05-15 07:56:36 | node | INFO ] ✅ [FORCE] Local model added for round 99. (4/7)
+[ 2026-05-15 07:56:36 | node | INFO ] 📤 Sending model to 6 direct neighbors: ['node_8', 'node_9', 'node_23', 'node_29', 'node_41', 'node_42']
+[ 2026-05-15 07:56:36 | node_22 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_25']
+[ 2026-05-15 07:56:36 | node_48 | INFO ] 🧩 Model added for round 99 (6/8) from ['node_10']
+[ 2026-05-15 07:56:36 | node_41 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:36 | node_13 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_11']
+[ 2026-05-15 07:56:36 | node_15 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_45']
+[ 2026-05-15 07:56:36 | node_10 | INFO ] 🧩 Model added for round 99 (7/10) from ['node_19']
+[ 2026-05-15 07:56:36 | node_8 | INFO ] 🧩 Model added for round 99 (5/5) from ['node']
+[ 2026-05-15 07:56:36 | node_48 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_36']
+[ 2026-05-15 07:56:37 | node_17 | INFO ] 🧩 Model added for round 99 (4/5) from ['node_15']
+[ 2026-05-15 07:56:37 | node_8 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:37 | node_8 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:37 | node_24 | INFO ] 🧩 Model added for round 99 (4/5) from ['node_25']
+[ 2026-05-15 07:56:37 | node_14 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_11']
+[ 2026-05-15 07:56:37 | node_24 | INFO ] 🧩 Model added for round 99 (5/5) from ['node_45']
+[ 2026-05-15 07:56:37 | node_18 | INFO ] 🧩 Model added for round 99 (2/6) from ['node_15']
+[ 2026-05-15 07:56:38 | node_18 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:38 | node_18 | INFO ] ✅ [FORCE] Local model added for round 99. (3/6)
+[ 2026-05-15 07:56:38 | node_18 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_9', 'node_11', 'node_15', 'node_20', 'node_46']
+[ 2026-05-15 07:56:38 | node_30 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_45']
+[ 2026-05-15 07:56:38 | node_16 | INFO ] 🧩 Model added for round 99 (3/5) from ['node_11']
+[ 2026-05-15 07:56:38 | node_25 | INFO ] 🧩 Model added for round 99 (8/9) from ['node_15']
+[ 2026-05-15 07:56:38 | node_46 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:38 | node_46 | INFO ] ✅ [FORCE] Local model added for round 99. (4/8)
+[ 2026-05-15 07:56:38 | node_46 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_13', 'node_16', 'node_18', 'node_19', 'node_21', 'node_23', 'node_48']
+[ 2026-05-15 07:56:39 | node_29 | INFO ] 🧩 Model added for round 99 (5/7) from ['node']
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:39 | node_9 | INFO ] ♻️ Proactively processing 5 early models for round 99.
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🧩 Model added for round 99 (1/10) from ['node_14']
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🧩 Model added for round 99 (2/10) from ['node_22']
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🧩 Model added for round 99 (3/10) from ['node_15']
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🧩 Model added for round 99 (4/10) from ['node']
+[ 2026-05-15 07:56:39 | node_11 | INFO ] 🧩 Model added for round 99 (7/9) from ['node_19']
+[ 2026-05-15 07:56:39 | node_36 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_45']
+[ 2026-05-15 07:56:39 | node_18 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_11']
+[ 2026-05-15 07:56:39 | node_30 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_25']
+[ 2026-05-15 07:56:39 | node_13 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_46']
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🧩 Model added for round 99 (5/10) from ['node_18']
+[ 2026-05-15 07:56:39 | node_11 | INFO ] 🧩 Model added for round 99 (8/9) from ['node_18']
+[ 2026-05-15 07:56:39 | node_24 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:39 | node_9 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:39 | node_30 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:39 | node_13 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:39 | node_45 | INFO ] 🧩 Model added for round 99 (9/9) from ['node_15']
+[ 2026-05-15 07:56:39 | node_6 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:39 | node_6 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:39 | node_24 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:40 | node_30 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:40 | node_9 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:40 | node_41 | INFO ] 🧩 Model added for round 99 (3/5) from ['node']
+[ 2026-05-15 07:56:40 | node_39 | INFO ] 🧩 Model added for round 99 (5/8) from ['node_25']
+[ 2026-05-15 07:56:40 | node_6 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22513514757156372, 'test_acc': 0.9819004535675049, 'test_precision': 0.8728789687156677, 'test_recall': 0.8648634552955627, 'test_f1': 0.8687237501144409, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:40 | node_15 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_18']
+[ 2026-05-15 07:56:40 | node_39 | INFO ] 🧩 Model added for round 99 (6/8) from ['node_45']
+[ 2026-05-15 07:56:40 | node_19 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_11']
+[ 2026-05-15 07:56:40 | node_16 | INFO ] 🧩 Model added for round 99 (4/5) from ['node_46']
+[ 2026-05-15 07:56:40 | node_6 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:40 | node_13 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:40 | node_39 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_19']
+[ 2026-05-15 07:56:41 | node_42 | INFO ] 🧩 Model added for round 99 (4/6) from ['node']
+[ 2026-05-15 07:56:41 | node_18 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_46']
+[ 2026-05-15 07:56:41 | node_22 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_11']
+[ 2026-05-15 07:56:41 | node_20 | INFO ] 🧩 Model added for round 99 (2/3) from ['node_18']
+[ 2026-05-15 07:56:41 | node_45 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:41 | node_41 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:41 | node_1 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:41 | node_1 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:41 | node_41 | INFO ] ✅ [FORCE] Local model added for round 99. (4/5)
+[ 2026-05-15 07:56:41 | node_46 | INFO ] 🧩 Model added for round 99 (5/8) from ['node_19']
+[ 2026-05-15 07:56:42 | node_45 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:42 | node_41 | INFO ] 📤 Sending model to 4 direct neighbors: ['node', 'node_7', 'node_9', 'node_20']
+[ 2026-05-15 07:56:42 | node_46 | INFO ] 🧩 Model added for round 99 (6/8) from ['node_18']
+[ 2026-05-15 07:56:42 | node_19 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_46']
+[ 2026-05-15 07:56:42 | node_1 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2375381886959076, 'test_acc': 0.9569892287254333, 'test_precision': 0.7718959450721741, 'test_recall': 0.7559272050857544, 'test_f1': 0.763309121131897, 'communication_cost': 7526792}
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:42 | node_6 | INFO ] ♻️ Proactively processing 4 early models for round 99.
+[ 2026-05-15 07:56:42 | node_1 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_27']
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🧩 Model added for round 99 (2/7) from ['node_42']
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_10']
+[ 2026-05-15 07:56:42 | node | INFO ] 🧩 Model added for round 99 (5/7) from ['node_41']
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_16']
+[ 2026-05-15 07:56:42 | node_6 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:42 | node_39 | INFO ] 🧩 Model added for round 99 (8/8) from ['node_11']
+[ 2026-05-15 07:56:43 | node_1 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:56:43 | node_1 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:56:43 | node_7 | INFO ] 🧩 Model added for round 99 (4/4) from ['node_41']
+[ 2026-05-15 07:56:43 | node_6 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:43 | node_48 | INFO ] 🧩 Model added for round 99 (8/8) from ['node_46']
+[ 2026-05-15 07:56:43 | node_7 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:43 | node_39 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:43 | node_48 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:43 | node_9 | INFO ] 🧩 Model added for round 99 (6/10) from ['node_41']
+[ 2026-05-15 07:56:44 | node_7 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:44 | node_39 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:44 | node_48 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:44 | node_20 | INFO ] 🧩 Model added for round 99 (3/3) from ['node_41']
+[ 2026-05-15 07:56:45 | node_9 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:45 | node_9 | INFO ] ✅ [FORCE] Local model added for round 99. (7/10)
+[ 2026-05-15 07:56:45 | node_9 | INFO ] 📤 Sending model to 9 direct neighbors: ['node', 'node_3', 'node_14', 'node_15', 'node_18', 'node_21', 'node_22', 'node_26', 'node_41']
+[ 2026-05-15 07:56:45 | node_20 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:45 | node_20 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:45 | node_3 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:45 | node | INFO ] 🧩 Model added for round 99 (6/7) from ['node_9']
+[ 2026-05-15 07:56:45 | node_3 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:46 | node_3 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2339024692773819, 'test_acc': 0.9837837815284729, 'test_precision': 0.8495544195175171, 'test_recall': 0.8383594155311584, 'test_f1': 0.8437346816062927, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:46 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:47 | node_14 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_9']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:47 | node_3 | INFO ] ♻️ Proactively processing 5 early models for round 99.
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_29']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🧩 Model added for round 99 (2/7) from ['node_2']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_10']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🧩 Model added for round 99 (4/7) from ['node_19']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_9']
+[ 2026-05-15 07:56:47 | node_3 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:48 | node_15 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_9']
+[ 2026-05-15 07:56:48 | node_6 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:48 | node_6 | INFO ] ✅ [FORCE] Local model added for round 99. (5/7)
+[ 2026-05-15 07:56:48 | node_3 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:48 | node_6 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_3', 'node_10', 'node_16', 'node_21', 'node_27', 'node_42']
+[ 2026-05-15 07:56:48 | node_21 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:48 | node_3 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_6']
+[ 2026-05-15 07:56:49 | node_18 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_9']
+[ 2026-05-15 07:56:49 | node_21 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:49 | node_18 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:49 | node_15 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:49 | node_21 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23952482640743256, 'test_acc': 0.9663461446762085, 'test_precision': 0.8890421986579895, 'test_recall': 0.8964694142341614, 'test_f1': 0.8916533589363098, 'communication_cost': 26343772}
+[ 2026-05-15 07:56:49 | node_15 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:49 | node_21 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:49 | node_18 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:49 | node_23 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:49 | node_23 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:49 | node_10 | INFO ] 🧩 Model added for round 99 (8/10) from ['node_6']
+[ 2026-05-15 07:56:50 | node_23 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23801006376743317, 'test_acc': 0.9712918400764465, 'test_precision': 0.7326534390449524, 'test_recall': 0.7083231806755066, 'test_f1': 0.719875693321228, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:50 | node_22 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_9']
+[ 2026-05-15 07:56:50 | node_23 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:50 | node_16 | INFO ] 🧩 Model added for round 99 (5/5) from ['node_6']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:51 | node_21 | INFO ] ♻️ Proactively processing 6 early models for round 99.
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (1/8) from ['node_28']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (2/8) from ['node_14']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (3/8) from ['node_36']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (4/8) from ['node_19']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (5/8) from ['node_46']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (6/8) from ['node_9']
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:51 | node_21 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_6']
+[ 2026-05-15 07:56:51 | node_41 | INFO ] 🧩 Model added for round 99 (5/5) from ['node_9']
+[ 2026-05-15 07:56:51 | node_26 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:51 | node_26 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:51 | node_41 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:51 | node_23 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:51 | node_16 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:52 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:56:52 | node_23 | INFO ] ♻️ Proactively processing 6 early models for round 99.
+[ 2026-05-15 07:56:52 | node_7 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (1/7) from ['node_5']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (2/7) from ['node_42']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (3/7) from ['node_29']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (4/7) from ['node']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (5/7) from ['node_11']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_46']
+[ 2026-05-15 07:56:52 | node_23 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:52 | node_41 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:52 | node_16 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:52 | node_26 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2958384156227112, 'test_acc': 0.9365853667259216, 'test_precision': 0.6834907531738281, 'test_recall': 0.6630207896232605, 'test_f1': 0.6717774868011475, 'communication_cost': 18816980}
+[ 2026-05-15 07:56:52 | node_21 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:52 | node_26 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:52 | node_7 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18848498165607452, 'test_acc': 0.9641255736351013, 'test_precision': 0.7699176073074341, 'test_recall': 0.7589207291603088, 'test_f1': 0.7635339498519897, 'communication_cost': 11290188}
+[ 2026-05-15 07:56:52 | node_7 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:52 | node_27 | INFO ] 🧩 Model added for round 99 (5/5) from ['node_6']
+[ 2026-05-15 07:56:53 | node_23 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:53 | node_27 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:53 | node_42 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_6']
+[ 2026-05-15 07:56:53 | node_27 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:53 | node_7 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:56:53 | node_7 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:56:53 | node_3 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:53 | node_3 | INFO ] ✅ [FORCE] Local model added for round 99. (7/7)
+[ 2026-05-15 07:56:53 | node_3 | INFO ] 📤 Sending model to 6 direct neighbors: ['node_2', 'node_6', 'node_9', 'node_10', 'node_19', 'node_29']
+[ 2026-05-15 07:56:53 | node_2 | INFO ] 🧩 Model added for round 99 (8/8) from ['node_3']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🎉 Round 99 of 100 finished.
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🗳️ [DETERMINISTIC] Train set assigned (No Voting). Size: 50
+[ 2026-05-15 07:56:54 | node_26 | INFO ] ♻️ Proactively processing 5 early models for round 99.
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🧩 Model added for round 99 (1/6) from ['node_17']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🧩 Model added for round 99 (2/6) from ['node_22']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🧩 Model added for round 99 (3/6) from ['node_10']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🧩 Model added for round 99 (4/6) from ['node_25']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🧩 Model added for round 99 (5/6) from ['node_9']
+[ 2026-05-15 07:56:54 | node_26 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-15 07:56:55 | node_6 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_3']
+[ 2026-05-15 07:56:55 | node_26 | INFO ] 🎓 Training step done.
+[ 2026-05-15 07:56:55 | node_2 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:55 | node_9 | INFO ] 🧩 Model added for round 99 (8/10) from ['node_3']
+[ 2026-05-15 07:56:56 | node_2 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:56 | node_10 | INFO ] 🧩 Model added for round 99 (9/10) from ['node_3']
+[ 2026-05-15 07:56:57 | node_21 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:57 | node_21 | INFO ] ✅ [FORCE] Local model added for round 99. (8/8)
+[ 2026-05-15 07:56:57 | node_21 | INFO ] 📤 Sending model to 7 direct neighbors: ['node_6', 'node_9', 'node_14', 'node_19', 'node_28', 'node_36', 'node_46']
+[ 2026-05-15 07:56:57 | node_19 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_3']
+[ 2026-05-15 07:56:57 | node_6 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_21']
+[ 2026-05-15 07:56:58 | node_23 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:56:58 | node_23 | INFO ] ✅ [FORCE] Local model added for round 99. (7/7)
+[ 2026-05-15 07:56:58 | node_23 | INFO ] 📤 Sending model to 6 direct neighbors: ['node', 'node_5', 'node_11', 'node_29', 'node_42', 'node_46']
+[ 2026-05-15 07:56:58 | node_4 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:56:58 | node_6 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:58 | node_4 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:56:58 | node | INFO ] 🧩 Model added for round 99 (7/7) from ['node_23']
+[ 2026-05-15 07:56:58 | node_29 | INFO ] 🧩 Model added for round 99 (6/7) from ['node_3']
+[ 2026-05-15 07:56:58 | node_9 | INFO ] 🧩 Model added for round 99 (9/10) from ['node_21']
+[ 2026-05-15 07:56:58 | node_4 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.22407010197639465, 'test_acc': 0.963302731513977, 'test_precision': 0.772826611995697, 'test_recall': 0.7528613209724426, 'test_f1': 0.7617191672325134, 'communication_cost': 22580376}
+[ 2026-05-15 07:56:59 | node_4 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:56:59 | node_6 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:56:59 | ModelPackager | INFO ] Round 99: Interval reached (100). Authorized node saving & pushing...
+[ 2026-05-15 07:56:59 | node | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:56:59 | node_5 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_23']
+[ 2026-05-15 07:56:59 | node | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:00 | node_14 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_21']
+[ 2026-05-15 07:57:00 | node_24 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:00 | node_26 | INFO ] 🛠️ Calling force_add_local_model...
+[ 2026-05-15 07:57:00 | node_11 | INFO ] 🧩 Model added for round 99 (9/9) from ['node_23']
+[ 2026-05-15 07:57:00 | node_24 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:00 | node_26 | INFO ] ✅ [FORCE] Local model added for round 99. (6/6)
+[ 2026-05-15 07:57:00 | node_3 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:00 | node_5 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:00 | node_14 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:00 | node_4 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:00 | node_26 | INFO ] 📤 Sending model to 5 direct neighbors: ['node_9', 'node_10', 'node_17', 'node_22', 'node_25']
+[ 2026-05-15 07:57:00 | node_4 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:00 | node_30 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:00 | node_30 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:01 | node_24 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2206212431192398, 'test_acc': 0.9740932583808899, 'test_precision': 0.7854538559913635, 'test_recall': 0.773323655128479, 'test_f1': 0.7787922024726868, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:01 | node_11 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:01 | node_3 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:01 | node_5 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:01 | node_14 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:01 | node_24 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:01 | node_30 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18896864354610443, 'test_acc': 0.984455943107605, 'test_precision': 0.9139562249183655, 'test_recall': 0.9151410460472107, 'test_f1': 0.9141942858695984, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:01 | node_9 | INFO ] 🧩 Model added for round 99 (10/10) from ['node_26']
+[ 2026-05-15 07:57:01 | node_19 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_21']
+[ 2026-05-15 07:57:01 | node_30 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:01 | node_11 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:01 | node_29 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_23']
+[ 2026-05-15 07:57:02 | node_28 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_21']
+[ 2026-05-15 07:57:02 | node_24 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:02 | node_24 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:02 | node_10 | INFO ] 🧩 Model added for round 99 (10/10) from ['node_26']
+[ 2026-05-15 07:57:02 | node_42 | INFO ] 🧩 Model added for round 99 (6/6) from ['node_23']
+[ 2026-05-15 07:57:02 | node_36 | INFO ] 🧩 Model added for round 99 (8/8) from ['node_21']
+[ 2026-05-15 07:57:03 | node_30 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:03 | node_30 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:05 | node_20 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:06 | node_20 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:06 | node_29 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:06 | node_17 | INFO ] 🧩 Model added for round 99 (5/5) from ['node_26']
+[ 2026-05-15 07:57:06 | node_46 | INFO ] 🧩 Model added for round 99 (7/8) from ['node_23']
+[ 2026-05-15 07:57:06 | node_46 | INFO ] 🧩 Model added for round 99 (8/8) from ['node_21']
+[ 2026-05-15 07:57:06 | node_28 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:06 | node_19 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:06 | node_20 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1836930513381958, 'test_acc': 0.9702380895614624, 'test_precision': 0.9299319982528687, 'test_recall': 0.9297322034835815, 'test_f1': 0.9289694428443909, 'communication_cost': 7526792}
+[ 2026-05-15 07:57:06 | node_9 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:06 | node_29 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_20 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:07 | node_22 | INFO ] 🧩 Model added for round 99 (7/7) from ['node_26']
+[ 2026-05-15 07:57:07 | node_10 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_42 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_36 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_17 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_28 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_22 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_8 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:07 | node_19 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_46 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:07 | node_8 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:07 | node_42 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_17 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_9 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_20 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:07 | node_20 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:07 | node_36 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:07 | node_10 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:08 | node_8 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17723916471004486, 'test_acc': 0.9772727489471436, 'test_precision': 0.7974026203155518, 'test_recall': 0.7731900215148926, 'test_f1': 0.7844598889350891, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:08 | node_25 | INFO ] 🧩 Model added for round 99 (9/9) from ['node_26']
+[ 2026-05-15 07:57:08 | node_8 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:08 | node_22 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:08 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:08 | node_18 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:08 | node_46 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:08 | node_3 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:08 | node_18 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:08 | node_21 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:08 | node_25 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:08 | node_23 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:08 | node_18 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1873321235179901, 'test_acc': 0.9779735803604126, 'test_precision': 0.792762815952301, 'test_recall': 0.7775689363479614, 'test_f1': 0.7847445607185364, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:08 | node_41 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:08 | node_3 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2115555852651596, 'test_acc': 0.9891892075538635, 'test_precision': 0.9328871369361877, 'test_recall': 0.9329535365104675, 'test_f1': 0.9327928423881531, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:08 | node_41 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:09 | node_18 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:09 | node_21 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:09 | node_21 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:09 | node_41 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19571642577648163, 'test_acc': 0.9760765433311462, 'test_precision': 0.7326982021331787, 'test_recall': 0.7214758992195129, 'test_f1': 0.7269547581672668, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:09 | node_23 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:09 | node_23 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:09 | node_21 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:09 | node_23 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:09 | node_25 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:09 | node_3 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:09 | node | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:09 | node | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:09 | node_21 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20791612565517426, 'test_acc': 0.9711538553237915, 'test_precision': 0.7320699095726013, 'test_recall': 0.7170386910438538, 'test_f1': 0.7242695093154907, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:09 | node_8 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:09 | node_41 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:09 | node_8 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:09 | node_23 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20092523097991943, 'test_acc': 0.9712918400764465, 'test_precision': 0.7885388731956482, 'test_recall': 0.7679803967475891, 'test_f1': 0.7776058316230774, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:09 | node | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2152634710073471, 'test_acc': 0.977477490901947, 'test_precision': 0.7930725812911987, 'test_recall': 0.7786250710487366, 'test_f1': 0.7854989767074585, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:09 | node_21 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:10 | node_23 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:10 | node | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:10 | node_26 | INFO ] 🧠 Aggregation complete. Setting new model.
+[ 2026-05-15 07:57:10 | node_18 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:10 | node_18 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:10 | node_41 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:10 | node_41 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:10 | node_26 | INFO ] 🗣️ Gossiping aggregated model.
+[ 2026-05-15 07:57:10 | node_26 | INFO ] 🤫 Gossip finished.
+[ 2026-05-15 07:57:10 | node_26 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:11 | node_3 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:11 | node_3 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:11 | node_26 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2613270878791809, 'test_acc': 0.9560975432395935, 'test_precision': 0.7289509773254395, 'test_recall': 0.7085829377174377, 'test_f1': 0.7180023193359375, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:11 | node_26 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:11 | node | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:11 | node | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:11 | node_23 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:11 | node_23 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:11 | node_21 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:11 | node_21 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:12 | node_26 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:12 | node_26 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:13 | node_15 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:13 | node_15 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:13 | node_15 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18893776834011078, 'test_acc': 0.9821428656578064, 'test_precision': 0.8389212489128113, 'test_recall': 0.8236645460128784, 'test_f1': 0.830288827419281, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:14 | node_15 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:15 | node_16 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:15 | node_16 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:15 | node_15 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:15 | node_15 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:15 | node_16 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1856262981891632, 'test_acc': 0.9819819927215576, 'test_precision': 0.8367194533348083, 'test_recall': 0.8287893533706665, 'test_f1': 0.8325241208076477, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:15 | node_16 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:17 | node_16 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:17 | node_16 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:19 | node_2 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:19 | node_2 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:19 | node_2 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17696323990821838, 'test_acc': 0.9816513657569885, 'test_precision': 0.8427261114120483, 'test_recall': 0.8420330882072449, 'test_f1': 0.8418195247650146, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:19 | node_2 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:21 | node_13 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:21 | node_13 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:21 | node_13 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2314525842666626, 'test_acc': 0.9709302186965942, 'test_precision': 0.8844591975212097, 'test_recall': 0.8767165541648865, 'test_f1': 0.8802037835121155, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:21 | node_13 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:21 | node_2 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:21 | node_2 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:22 | node_6 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:22 | node_6 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:22 | node_14 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:22 | node_39 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:22 | node_6 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18606863915920258, 'test_acc': 0.9773755669593811, 'test_precision': 0.8204179406166077, 'test_recall': 0.8105641603469849, 'test_f1': 0.8151098489761353, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:22 | node_14 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:22 | node_39 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:22 | node_6 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:22 | node_39 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17715559899806976, 'test_acc': 0.9839572310447693, 'test_precision': 0.8896842002868652, 'test_recall': 0.8788368105888367, 'test_f1': 0.8838348984718323, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:22 | node_14 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23829613626003265, 'test_acc': 0.9563106894493103, 'test_precision': 0.7834424376487732, 'test_recall': 0.7559009790420532, 'test_f1': 0.7682021856307983, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:22 | node_11 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:22 | node_14 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:22 | node_39 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:22 | node_11 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:23 | node_11 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1986830234527588, 'test_acc': 0.9746192693710327, 'test_precision': 0.8414739370346069, 'test_recall': 0.8308343887329102, 'test_f1': 0.8352213501930237, 'communication_cost': 30107168}
+[ 2026-05-15 07:57:23 | node_13 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:23 | node_11 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:23 | node_13 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:24 | node_6 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:24 | node_6 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:24 | node_5 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:24 | node_14 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:24 | node_5 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:24 | node_14 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:24 | node_39 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:24 | node_5 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.1780882179737091, 'test_acc': 0.9762845635414124, 'test_precision': 0.7267653346061707, 'test_recall': 0.7174426913261414, 'test_f1': 0.7219357490539551, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:24 | node_39 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:24 | node_5 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:25 | node_11 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:25 | node_11 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:25 | node_48 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:25 | node_48 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:25 | node_48 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.170545756816864, 'test_acc': 0.9819276928901672, 'test_precision': 0.963254451751709, 'test_recall': 0.9737754464149475, 'test_f1': 0.9646889567375183, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:25 | node_48 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:25 | node_28 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:25 | node_28 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:26 | node_5 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:26 | node_28 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23223519325256348, 'test_acc': 0.9594594836235046, 'test_precision': 0.7170845866203308, 'test_recall': 0.7099556922912598, 'test_f1': 0.7130191326141357, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:26 | node_5 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:26 | node_28 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:26 | node_10 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:26 | node_10 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:26 | node_36 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:26 | node_10 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17647626996040344, 'test_acc': 0.98591548204422, 'test_precision': 0.8422883152961731, 'test_recall': 0.8349603414535522, 'test_f1': 0.8383913636207581, 'communication_cost': 33870564}
+[ 2026-05-15 07:57:26 | node_36 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:26 | node_10 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:26 | node_19 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:26 | node_36 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2159581333398819, 'test_acc': 0.9744898080825806, 'test_precision': 0.7768824100494385, 'test_recall': 0.7698942422866821, 'test_f1': 0.7729209661483765, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:26 | node_19 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:26 | node_36 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:26 | node_42 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:26 | node_19 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.17500856518745422, 'test_acc': 0.9794871807098389, 'test_precision': 0.9001546502113342, 'test_recall': 0.8950725793838501, 'test_f1': 0.8970668911933899, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:26 | node_46 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:27 | node_22 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:27 | node_42 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:27 | node_19 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:27 | node_22 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:27 | node_46 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:27 | node_29 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:27 | node_42 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19120006263256073, 'test_acc': 0.9811320900917053, 'test_precision': 0.8271983861923218, 'test_recall': 0.821569561958313, 'test_f1': 0.8242491483688354, 'communication_cost': 18816980}
+[ 2026-05-15 07:57:27 | node_25 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:27 | node_46 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.18658281862735748, 'test_acc': 0.9634146094322205, 'test_precision': 0.8756836652755737, 'test_recall': 0.8861995935440063, 'test_f1': 0.8781224489212036, 'communication_cost': 26343772}
+[ 2026-05-15 07:57:27 | node_42 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:27 | node_29 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:27 | node_22 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.21339690685272217, 'test_acc': 0.9823529124259949, 'test_precision': 0.9350981116294861, 'test_recall': 0.9245220422744751, 'test_f1': 0.929548978805542, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:27 | node_25 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:27 | node_46 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:27 | node_28 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:27 | node_22 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:27 | node_28 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:27 | node_29 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2701767086982727, 'test_acc': 0.9460784196853638, 'test_precision': 0.7160276770591736, 'test_recall': 0.7036258578300476, 'test_f1': 0.7092164158821106, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:27 | node_25 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2218274027109146, 'test_acc': 0.9726775884628296, 'test_precision': 0.8044378757476807, 'test_recall': 0.7970420122146606, 'test_f1': 0.8004568815231323, 'communication_cost': 30107168}
+[ 2026-05-15 07:57:27 | node_48 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:27 | node_29 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:27 | node_48 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:27 | node_25 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:28 | node_36 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:28 | node_42 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:28 | node_36 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:28 | node_42 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:28 | node_19 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:28 | node_19 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:29 | node_10 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:29 | node_10 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:29 | node_22 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:29 | node_22 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:29 | node_29 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:29 | node_29 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:29 | node_46 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:29 | node_46 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:29 | node_25 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:29 | node_25 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:31 | node_27 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:31 | node_27 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:31 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.3024422526359558, 'test_acc': 0.936274528503418, 'test_precision': 0.6300621032714844, 'test_recall': 0.6261817812919617, 'test_f1': 0.6259472966194153, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:32 | node_27 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:32 | node_27 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:32 | node_27 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:34 | node_12 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:34 | node_12 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:34 | node_12 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.2315167486667633, 'test_acc': 0.9792746305465698, 'test_precision': 0.9154946804046631, 'test_recall': 0.9120815992355347, 'test_f1': 0.9133639335632324, 'communication_cost': 22580376}
+[ 2026-05-15 07:57:34 | node_12 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:35 | node_12 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:35 | node_12 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:39 | node_45 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:39 | node_45 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:39 | node_45 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.13113875687122345, 'test_acc': 0.9890710115432739, 'test_precision': 0.9908925890922546, 'test_recall': 0.9857316017150879, 'test_f1': 0.9878411889076233, 'communication_cost': 30107168}
+[ 2026-05-15 07:57:40 | node_45 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:41 | node_45 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:41 | node_45 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:44 | node_17 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:44 | node_9 | INFO ] ⏹️  Gossiping exited for 10 equal rounds.
+[ 2026-05-15 07:57:44 | node_17 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:44 | node_9 | INFO ] 🔬 Evaluating...
+[ 2026-05-15 07:57:44 | node_17 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.23026348650455475, 'test_acc': 0.9617224931716919, 'test_precision': 0.7849354147911072, 'test_recall': 0.7703535556793213, 'test_f1': 0.7772374749183655, 'communication_cost': 15053584}
+[ 2026-05-15 07:57:44 | node_9 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.20870041847229004, 'test_acc': 0.9779005646705627, 'test_precision': 0.8115561604499817, 'test_recall': 0.8012099862098694, 'test_f1': 0.8062286972999573, 'communication_cost': 33870564}
+[ 2026-05-15 07:57:45 | node_9 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:45 | node_17 | INFO ] 📢 Broadcasting metrics.
+[ 2026-05-15 07:57:45 | node_17 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:45 | node_17 | INFO ] 😋 Training finished!!
+[ 2026-05-15 07:57:46 | node_9 | INFO ] 🎉 Round 100 of 100 finished.
+[ 2026-05-15 07:57:46 | node_9 | INFO ] 😋 Training finished!!

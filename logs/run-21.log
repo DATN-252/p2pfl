@@ -1,0 +1,340 @@
+[ 2026-05-20 15:16:20 | None | INFO ] Created experiment folder: /home/hoap/p2pfl/experiments/p2pfl_MNIST_DirichletPartitionStrategy_DSGTAggregator_model_build_fn_20260520_151620 and copied 02_mnist_dirichlet_0.1_dsgt.yaml
+[ 2026-05-20 15:16:20 | None | INFO ] Set simulation heartbeat: timeout=300.0s, period=1.0s
+[ 2026-05-20 15:16:22 | node | INFO ] InMemoryServer started at node
+[ 2026-05-20 15:16:22 | node | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:22 | None | INFO ] 🚀 Created 0/10 nodes, waiting 1.00s for CPU to breathe...
+[ 2026-05-20 15:16:23 | node_1 | INFO ] InMemoryServer started at node_1
+[ 2026-05-20 15:16:23 | node_1 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:24 | node_2 | INFO ] InMemoryServer started at node_2
+[ 2026-05-20 15:16:24 | node_2 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:25 | node_3 | INFO ] InMemoryServer started at node_3
+[ 2026-05-20 15:16:25 | node_3 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:27 | node_4 | INFO ] InMemoryServer started at node_4
+[ 2026-05-20 15:16:27 | node_4 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:28 | node_5 | INFO ] InMemoryServer started at node_5
+[ 2026-05-20 15:16:28 | node_5 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:28 | None | INFO ] 🚀 Created 5/10 nodes, waiting 1.50s for CPU to breathe...
+[ 2026-05-20 15:16:30 | node_6 | INFO ] InMemoryServer started at node_6
+[ 2026-05-20 15:16:30 | node_6 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:31 | node_7 | INFO ] InMemoryServer started at node_7
+[ 2026-05-20 15:16:31 | node_7 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:33 | node_8 | INFO ] InMemoryServer started at node_8
+[ 2026-05-20 15:16:33 | node_8 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:35 | node_9 | INFO ] InMemoryServer started at node_9
+[ 2026-05-20 15:16:35 | node_9 | INFO ] 🏁 Starting gossiper...
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_1
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_2
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_3
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_4
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_5
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_2
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_3
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_4
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_5
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_1 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_3
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_4
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_5
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_2 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_4
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_5
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_3 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_4 and node_5
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_4 and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_4 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_4 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_4 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_5 and node_6
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_5 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_5 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_5 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_6 and node_7
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_6 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_6 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_7 and node_8
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_7 and node_9
+[ 2026-05-20 15:16:37 |  | INFO ] Connected nodes node_8 and node_9
+[ 2026-05-20 15:16:37 | None | INFO ] 📡 Performing global simulation discovery for 10 nodes...
+[ 2026-05-20 15:16:37 | None | INFO ] ⌛ Waiting for direct topology connections (9-9 per node)...
+[ 2026-05-20 15:16:37 | None | INFO ] ✅ Network topology ready.
+[ 2026-05-20 15:16:37 | node | INFO ] 🚀 Broadcasting start learning to 10 nodes...
+[ 2026-05-20 15:16:37 | node_1 | INFO ] 🔍 Neighbors found: ['node', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_2 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_1 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_3 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_2 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_4 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_3 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_5 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_4 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_6 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_5 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_7 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_6 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_8 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_7 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_9 | INFO ] 🔍 Neighbors found: ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8'] | Degree: 9
+[ 2026-05-20 15:16:37 | node_8 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node_9 | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:37 | node | INFO ] 🔍 Neighbors found: ['node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9'] | Degree: 9
+[ 2026-05-20 15:16:37 | node | INFO ] ⏳ Waiting initialization.
+[ 2026-05-20 15:16:38 | node | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:39 | node_1 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:39 | node_2 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:39 | node_3 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:39 | node_7 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:41 | node_5 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:41 | node_4 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:41 | node_6 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:41 | node_8 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:41 | node_9 | INFO ] 🗣️ Gossiping model initialization.
+[ 2026-05-20 15:16:42 | node_4 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_5 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_4 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9', 'node_4']
+[ 2026-05-20 15:16:42 | node_5 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_6', 'node_7', 'node_8', 'node_9', 'node_5']
+[ 2026-05-20 15:16:42 | node_5 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_4 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_6 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_6 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_7', 'node_8', 'node_9', 'node_6']
+[ 2026-05-20 15:16:42 | node_8 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_8 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_9', 'node_8']
+[ 2026-05-20 15:16:42 | node_6 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_8 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_9 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_9 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9']
+[ 2026-05-20 15:16:42 | node_9 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_7 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_7 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_8', 'node_9', 'node_7']
+[ 2026-05-20 15:16:42 | node_7 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_3 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_3 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_2', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9', 'node_3']
+[ 2026-05-20 15:16:42 | node_3 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node_1', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9', 'node']
+[ 2026-05-20 15:16:42 | node | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_2 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_2 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_1', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9', 'node_2']
+[ 2026-05-20 15:16:42 | node_2 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:42 | node_1 | INFO ] 🤫 Gossip finished.
+[ 2026-05-20 15:16:42 | node_1 | INFO ] 🚂 Train set of 10 nodes (all available nodes): ['node', 'node_2', 'node_3', 'node_4', 'node_5', 'node_6', 'node_7', 'node_8', 'node_9', 'node_1']
+[ 2026-05-20 15:16:42 | node_1 | INFO ] 🏋️‍♀️ Preparing training...
+[ 2026-05-20 15:16:44 | node_4 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:44 | node_4 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:44 | node_4 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:44 | node_4 | INFO ] Stopping node...
+[ 2026-05-20 15:16:44 | node_4 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:44 | node_3 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:44 | node_4 | INFO ] InMemoryServer stopped at node_4
+[ 2026-05-20 15:16:44 | node_3 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:44 | node_3 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:44 | node_3 | INFO ] Stopping node...
+[ 2026-05-20 15:16:44 | node_3 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:44 | node_3 | INFO ] InMemoryServer stopped at node_3
+[ 2026-05-20 15:16:45 | node_2 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:45 | node_2 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:45 | node_2 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:45 | node_2 | INFO ] Stopping node...
+[ 2026-05-20 15:16:45 | node_2 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:45 | node_2 | INFO ] InMemoryServer stopped at node_2
+[ 2026-05-20 15:16:45 | node_5 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:45 | node_5 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:45 | node_5 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:45 | node_5 | INFO ] Stopping node...
+[ 2026-05-20 15:16:45 | node_5 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:45 | node_5 | INFO ] InMemoryServer stopped at node_5
+[ 2026-05-20 15:16:47 | node_6 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:47 | node_6 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:47 | node_6 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:47 | node_6 | INFO ] Stopping node...
+[ 2026-05-20 15:16:47 | node_6 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:47 | node_6 | INFO ] InMemoryServer stopped at node_6
+[ 2026-05-20 15:16:47 | node | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:47 | node | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:47 | node | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:47 | node | INFO ] Stopping node...
+[ 2026-05-20 15:16:47 | node | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:47 | node | INFO ] InMemoryServer stopped at node
+[ 2026-05-20 15:16:48 | node_1 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:48 | node_1 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:48 | node_1 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:48 | node_1 | INFO ] Stopping node...
+[ 2026-05-20 15:16:48 | node_1 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:48 | node_1 | INFO ] InMemoryServer stopped at node_1
+[ 2026-05-20 15:16:49 | node_7 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:49 | node_7 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:49 | node_7 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:49 | node_7 | INFO ] Stopping node...
+[ 2026-05-20 15:16:49 | node_7 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:49 | node_7 | INFO ] InMemoryServer stopped at node_7
+[ 2026-05-20 15:16:49 | node_8 | INFO ] 🎓 Training step done.
+[ 2026-05-20 15:16:49 | node_8 | INFO ] DSGTm-TV initialized. Alpha: 0.001, Beta: 0.0
+[ 2026-05-20 15:16:49 | node_8 | ERROR ] Error AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+Traceback (most recent call last):
+  File "/home/hoap/p2pfl/p2pfl/node.py", line 418, in __start_learning
+    self.learning_workflow.run(
+  File "/home/hoap/p2pfl/p2pfl/stages/workflows.py", line 46, in run
+    next_stage = self.current_stage.execute(**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/stages/base_node/train_stage.py", line 88, in execute
+    pre_model = aggregator.preprocess_local_model(current_model)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/utils/node_component.py", line 36, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hoap/p2pfl/p2pfl/learning/aggregators/dsgt.py", line 76, in preprocess_local_model
+    out_degree_plus_1 = len(self.train_set) + 1
+                            ^^^^^^^^^^^^^^
+AttributeError: 'DSGTAggregator' object has no attribute 'train_set'
+
+[ 2026-05-20 15:16:49 | node_8 | INFO ] Stopping node...
+[ 2026-05-20 15:16:49 | node_8 | INFO ] 🛑 Stopping gossiper...
+[ 2026-05-20 15:16:49 | node_8 | INFO ] InMemoryServer stopped at node_8

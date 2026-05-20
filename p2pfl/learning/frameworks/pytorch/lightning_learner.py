@@ -33,8 +33,15 @@ from p2pfl.learning.frameworks import Framework
 from p2pfl.learning.frameworks.learner import Learner
 from p2pfl.learning.frameworks.p2pfl_model import P2PFLModel
 from p2pfl.learning.frameworks.pytorch.lightning_dataset import PyTorchExportStrategy
+from p2pfl.learning.frameworks.pytorch.lightning_logger import FederatedLogger
 from p2pfl.learning.frameworks.pytorch.callbacks.optimizer_control_callback import OptimizerControlCallback
+from p2pfl.management.logger import logger
+from p2pfl.settings import Settings
+from p2pfl.utils.check_ray import ray_installed
+from p2pfl.utils.seed import set_seed
 from lightning.pytorch.callbacks import Callback
+
+torch.set_num_threads(1)
 
 class OptimizerStateCallback(Callback):
     """Callback to persist optimizer state across multiple fit calls."""

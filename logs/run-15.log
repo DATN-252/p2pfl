@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [ 2026-05-15 05:45:54 | node_27 | INFO ] 📈 Evaluated. Results: {'test_loss': 0.19780761003494263, 'test_acc': 0.9750000238418579, 'test_precision': 0.9782730937004089, 'test_recall': 0.9720668196678162, 'test_f1': 0.9737797379493713, 'communication_cost': 18816980}
 [ 2026-05-15 05:45:54 | node_10 | INFO ] 🎓 Training step done.
 [ 2026-05-15 05:45:54 | node_23 | INFO ] 🧩 Model added for round 87 (12/12) from ['node_29']
@@ -8776,3 +8777,7 @@
 [ 2026-05-15 05:57:01 | node_35 | INFO ] 📢 Broadcasting metrics.
 [ 2026-05-15 05:57:02 | node_35 | INFO ] 🎉 Round 100 of 100 finished.
 [ 2026-05-15 05:57:02 | node_35 | INFO ] 😋 Training finished!!
+=======
+[ 2026-05-20 15:19:09 | None | INFO ] Created experiment folder: /home/hoap/p2pfl/experiments/p2pfl_MNIST_DirichletPartitionStrategy_DSGTAggregator_model_build_fn_20260520_151909 and copied 02_mnist_dirichlet_0.1_dsgt.yaml
+[ 2026-05-20 15:19:09 | None | INFO ] Set simulation heartbeat: timeout=300.0s, period=1.0s
+>>>>>>> 8c9e1efa (DFedADP 10n10r)

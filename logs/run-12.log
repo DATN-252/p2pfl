@@ -1,0 +1,2 @@
+[ 2026-05-20 15:11:37 | None | INFO ] Created experiment folder: /home/hoap/p2pfl/experiments/p2pfl_MNIST_DirichletPartitionStrategy_DFedAdp_model_build_fn_20260520_151137 and copied 01_mnist_dirichlet_0.1_dfedadp.yaml
+[ 2026-05-20 15:11:37 | None | INFO ] Set simulation heartbeat: timeout=300.0s, period=1.0s

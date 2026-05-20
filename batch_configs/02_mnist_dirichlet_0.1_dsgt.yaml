@@ -1,4 +1,4 @@
-description: "MNIST Dirichlet 0.1 Experiment with DSGT (Fixed)"
+description: "MNIST Dirichlet 0.1 Experiment with DSGT (Fixed) - MLP"
 
 # Defines network setup
 network:
@@ -31,7 +31,7 @@ experiment:
 
   # Learning algorithm configuration
   model:
-    package: "p2pfl.examples.mnist.model.cnn_mnist"
+    package: "p2pfl.examples.mnist.model.mlp_pytorch"
     model_build_fn: "model_build_fn"
     params: 
       lr_rate: 0.001

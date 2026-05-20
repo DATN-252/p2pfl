@@ -1,29 +1,63 @@
 description: "MNIST Dirichlet 0.1 Experiment with DSGT (Fixed)"
 
-# --- Experiment Settings ---
+# Defines network setup
+network:
+  package: "p2pfl.communication.protocols.protobuff.memory"
+  protocol: "MemoryCommunicationProtocol"
+  nodes: 10
+  topology: "full"
+  additional_connections: []
+
+# Defines experiment settings
 experiment:
   name: "mnist_dirichlet_0.1_dsgt"
   rounds: 100
   epochs: 1
-  batch_size: 32
+  trainset_size: 10
+  seed: 666
+  wait_timeout: 18000
 
-# --- Dataset Settings ---
-dataset:
-  name: "MNIST"
-  partition_strategy: "DirichletPartitionStrategy"
-  partition_params:
-    alpha: 0.1
-    num_nodes: 10
+  # Dataset settings
+  dataset:
+    source: "huggingface"
+    name: "p2pfl/MNIST"
+    batch_size: 32
+    partitioning:
+      package: "p2pfl.learning.dataset.partition_strategies"
+      strategy: "DirichletPartitionStrategy"
+      reduced_dataset: false
+      params:
+        alpha: 0.1
 
-# --- Model Settings ---
-model:
-  package: "p2pfl.examples.mnist.model.cnn_mnist"
-  model_class: "CNNMNIST"
+  # Learning algorithm configuration
+  model:
+    package: "p2pfl.examples.mnist.model.cnn_mnist"
+    model_build_fn: "model_build_fn"
+    params: 
+      lr_rate: 0.001
 
-# --- Aggregator Settings ---
-aggregator:
-  package: "p2pfl.learning.aggregators.dsgt"
-  aggregator_class: "DSGTAggregator"
-  params:
-    alpha: 0.001
-    beta: 0.0
+  # Aggregation algorithm configuration
+  aggregator:
+    package: "p2pfl.learning.aggregators.dsgt"
+    aggregator: "DSGTAggregator"
+    params:
+      alpha: 0.001
+      beta: 0.0
+
+# General experiment settings
+settings:
+  general:
+    log_level: "INFO"
+    grpc_timeout: 2
+    disable_ray: False
+  training:
+    vote_timeout: 30
+    aggregation_timeout: 300
+  gossip:
+    period: 0.5
+    ttl: 50
+    messages_per_period: 200
+    amount_last_messages_saved: 1000
+    models_period: 1
+    models_per_round: 4
+    exit_on_x_equal_rounds: 50

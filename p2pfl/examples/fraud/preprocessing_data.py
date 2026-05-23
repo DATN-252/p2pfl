@@ -16,7 +16,7 @@ def preprocess(dataset_id="kartik2112/fraud-detection", output_dir="p2pfl/exampl
     
     # Feature Engineering
     print("Performing feature engineering ...")
-    train_df, test_df = transforms.preprocess_transform(train_df, test_df)
+    train_df, test_df = transforms.preprocess_transform(train_df, test_df) # type: ignore
     
     # Shuffle data trực tiếp (không cần tách X, y nếu không dùng SMOTE)
     train_final = train_df.sample(frac=1, random_state=42).reset_index(drop=True)

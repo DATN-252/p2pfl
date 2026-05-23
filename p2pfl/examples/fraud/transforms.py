@@ -79,7 +79,7 @@ def build_behavioral_lookup(examples):
     dist_to_prev = 6371 * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
     
     time_diff_h = (df['unix_time'] - df['prev_time']).fillna(3600) / 3600.0
-    df['distance_velocity'] = (dist_to_prev / time_diff_h).replace([np.inf, -np.inf], 0).fillna(0)
+    df['distance_velocity'] = (dist_to_prev / time_diff_h).replace([np.inf, -np.inf], 0).fillna(0) # type: ignore
     
     # Fill lookup table
     for _, row in df.iterrows():

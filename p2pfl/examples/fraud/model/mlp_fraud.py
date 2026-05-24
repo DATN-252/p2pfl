@@ -67,13 +67,16 @@ class FraudDetectionMLP(LightningModule):
     """Efficient MLP for fraud detection with Extreme Alpha-Balanced Focal Loss."""
 
     def __init__(self, input_size: int = 23, hidden_size: int = 256, 
-                 learning_rate: float = 0.001, alpha: float = 0.95, gamma: float = 2.0):
+                 learning_rate: float = 0.001, alpha: float = 0.95, gamma: float = 0.5):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
         self.save_hyperparameters()
         self.learning_rate = learning_rate
         self.alpha = alpha
         self.gamma = gamma
+        
+        # Example input for ONNX export tracing
+        self.example_input_array = torch.randn(1, input_size)
 
         # Using LayerNorm instead of BatchNorm for better stability with imbalanced classes
         self.model = nn.Sequential(

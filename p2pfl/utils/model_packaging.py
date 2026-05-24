@@ -75,7 +75,8 @@ class ModelPackager:
     def _save_model_locally(self, model: P2PFLModel, round_num: int, output_path: str):
         """Save model to local experiment folder."""
         try:
-            log_dir = os.path.join(output_path, "logs")
+            # log_dir = os.path.join(output_path, "logs")
+            log_dir = output_path
             os.makedirs(log_dir, exist_ok=True)
             
             # 1. Save PyTorch State Dict (Original)

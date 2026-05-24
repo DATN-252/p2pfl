@@ -15,24 +15,26 @@ import numpy as np
 from datetime import datetime
 from math import radians, sin, cos, sqrt, atan2
 
-# Features to use (15 total)
-NUMERIC_FEATURES = [
-    "city_pop", "merch_lat", "merch_long", 
-    "distance", "hour", "day_of_week", "category_idx", "age", "unix_time",
-    "amt_diff_avg_30d", "trans_count_24h", "distance_velocity"
+# Categories for One-Hot Encoding
+CATEGORIES = [
+    'misc_net', 'grocery_pos', 'entertainment', 'gas_transport',
+    'misc_pos', 'grocery_net', 'shopping_net', 'shopping_pos',
+    'food_dining', 'personal_care', 'health_fitness', 'travel',
+    'kids_pets', 'home'
 ]
+CATEGORY_FEATURES = [f"cat_{c}" for c in CATEGORIES]
 
-# Mapping for categories
-CATEGORY_MAP = {
-    'misc_net': 0, 'grocery_pos': 1, 'entertainment': 2, 'gas_transport': 3,
-    'misc_pos': 4, 'grocery_net': 5, 'shopping_net': 6, 'shopping_pos': 7,
-    'food_dining': 8, 'personal_care': 9, 'health_fitness': 10, 'travel': 11,
-    'kids_pets': 12, 'home': 13
-}
+# Features to use (9 numeric + 14 one-hot = 23 total)
+NUMERIC_FEATURES = [
+    "city_pop", "hour", "age", "unix_time",
+    "amt_diff_avg_30d", "trans_count_24h", "distance_velocity", 
+    "merchant_risk_score", "merchant_freq_30d"
+] + CATEGORY_FEATURES
 
 # Global lookups for behavioral features
 FEATURE_STATS = {}
 BEHAVIORAL_LOOKUP = {} # Key: (cc_num, unix_time), Value: {features}
+MERCHANT_LOOKUP = {}  # Key: (merchant, unix_time), Value: {features}
 
 def haversine(lat1, lon1, lat2, lon2):
     """Calculate distance between two coordinates."""
@@ -52,8 +54,8 @@ def calculate_age(dob_str):
     except: return 40.0
 
 def build_behavioral_lookup(examples):
-    """Pre-calculate advanced behavioral features including velocity."""
-    global BEHAVIORAL_LOOKUP
+    """Pre-calculate advanced behavioral features including velocity and merchant risk."""
+    global BEHAVIORAL_LOOKUP, MERCHANT_LOOKUP
     import gc
     
     df = pd.DataFrame(examples)
@@ -61,9 +63,17 @@ def build_behavioral_lookup(examples):
     df['trans_date_trans_time'] = pd.to_datetime(df['trans_date_trans_time'], format='mixed')
     df = df.sort_values(by=['cc_num', 'trans_date_trans_time'])
     
-    # 1. Rolling windows
+    # 1. User Rolling windows
     temp_df = df.set_index('trans_date_trans_time')
-    df['avg_amt_30d'] = temp_df.groupby('cc_num')['amt'].transform(lambda x: x.rolling(window='30D', min_periods=1).mean()).values
+    
+    # Calculate rolling mean using only non-fraud transactions as baseline
+    amt_baseline = temp_df['amt'].copy()
+    if 'is_fraud' in temp_df.columns:
+        amt_baseline[temp_df['is_fraud'] == 1] = np.nan
+        
+    df['avg_amt_30d'] = amt_baseline.groupby(temp_df['cc_num']).transform(
+        lambda x: x.rolling(window='30D', min_periods=1).mean()
+    ).values
     df['trans_count_24h'] = temp_df.groupby('cc_num')['amt'].transform(lambda x: x.rolling(window='24h', min_periods=1).count()).values
     
     # 2. Distance Velocity (km/h)
@@ -81,7 +91,18 @@ def build_behavioral_lookup(examples):
     time_diff_h = (df['unix_time'] - df['prev_time']).fillna(3600) / 3600.0
     df['distance_velocity'] = (dist_to_prev / time_diff_h).replace([np.inf, -np.inf], 0).fillna(0) # type: ignore
     
-    # Fill lookup table
+    # 3. Global Merchant Risk Score (proportion of total fraud)
+    total_fraud = df['is_fraud'].sum() if 'is_fraud' in df.columns else 1.0
+    if total_fraud == 0: total_fraud = 1.0
+    merchant_fraud_counts = df.groupby('merchant')['is_fraud'].sum() if 'is_fraud' in df.columns else pd.Series(0, index=df['merchant'].unique())
+    merchant_risk_map = (merchant_fraud_counts / total_fraud).to_dict()
+    
+    # 4. Global Merchant Frequency (Rolling 30d)
+    df_sorted_merch = df.sort_values(by=['merchant', 'trans_date_trans_time'])
+    temp_df_merch = df_sorted_merch.set_index('trans_date_trans_time')
+    df_sorted_merch['merchant_freq_30d'] = temp_df_merch.groupby('merchant')['amt'].transform(lambda x: x.rolling(window='30D', min_periods=1).count()).values
+    
+    # Fill lookup tables
     for _, row in df.iterrows():
         key = (row['cc_num'], int(row['unix_time']))
         BEHAVIORAL_LOOKUP[key] = {
@@ -90,14 +111,20 @@ def build_behavioral_lookup(examples):
             'distance_velocity': float(row['distance_velocity'])
         }
     
+    for _, row in df_sorted_merch.iterrows():
+        key = (row['merchant'], int(row['unix_time']))
+        MERCHANT_LOOKUP[key] = {
+            'merchant_risk_score': float(merchant_risk_map.get(row['merchant'], 0.0)),
+            'merchant_freq_30d': float(row['merchant_freq_30d'])
+        }
+    
     # Explicitly clear large objects and trigger GC
-    del df
-    del temp_df
+    del df, df_sorted_merch, temp_df, temp_df_merch
     gc.collect()
 
 def fraud_transform(examples):
-    """Transform batch using 15 optimized features."""
-    global FEATURE_STATS, BEHAVIORAL_LOOKUP
+    """Transform batch using optimized features."""
+    global FEATURE_STATS, BEHAVIORAL_LOOKUP, MERCHANT_LOOKUP
     batch_size = len(examples.get("amt", []))
     
     # Initialize behavioral lookup once per Node lifecycle
@@ -108,28 +135,34 @@ def fraud_transform(examples):
     
     for idx in range(batch_size):
         # 1. Raw numeric
-        for f in ["city_pop", "merch_lat", "merch_long", "unix_time"]:
-            data_dict[f].append(float(examples.get(f, [0])[idx] or 0))
+        data_dict["city_pop"].append(float(examples.get("city_pop", [0])[idx] or 0))
+        data_dict["unix_time"].append(float(examples.get("unix_time", [0])[idx] or 0))
         
-        # 2. Geospatial & Temporal
-        data_dict["distance"].append(haversine(examples["lat"][idx], examples["long"][idx], 
-                                             examples["merch_lat"][idx], examples["merch_long"][idx]))
+        # 2. Temporal
         try:
             dt = datetime.strptime(examples["trans_date_trans_time"][idx], '%Y-%m-%d %H:%M:%S')
             data_dict["hour"].append(float(dt.hour))
-            data_dict["day_of_week"].append(float(dt.weekday()))
         except:
-            data_dict["hour"].append(0.0); data_dict["day_of_week"].append(0.0)
+            data_dict["hour"].append(0.0)
             
-        data_dict["category_idx"].append(float(CATEGORY_MAP.get(examples.get("category", [""])[idx], 14)))
+        # One-Hot Encoding for Category
+        cat_val = examples.get("category", [""])[idx]
+        for c in CATEGORIES:
+            data_dict[f"cat_{c}"].append(1.0 if cat_val == c else 0.0)
+            
         data_dict["age"].append(calculate_age(examples.get("dob", ["1980-01-01"])[idx]))
         
-        # 3. Behavioral Lookup
+        # 3. Behavioral & Merchant Lookup
         key = (examples['cc_num'][idx], int(examples['unix_time'][idx]))
         beh = BEHAVIORAL_LOOKUP.get(key, {'amt_diff_avg_30d': 0.0, 'trans_count_24h': 1.0, 'distance_velocity': 0.0})
         data_dict['amt_diff_avg_30d'].append(beh['amt_diff_avg_30d'])
         data_dict['trans_count_24h'].append(beh['trans_count_24h'])
         data_dict['distance_velocity'].append(beh['distance_velocity'])
+        
+        merch_key = (examples['merchant'][idx], int(examples['unix_time'][idx]))
+        merch_beh = MERCHANT_LOOKUP.get(merch_key, {'merchant_risk_score': 0.0, 'merchant_freq_30d': 1.0})
+        data_dict['merchant_risk_score'].append(merch_beh['merchant_risk_score'])
+        data_dict['merchant_freq_30d'].append(merch_beh['merchant_freq_30d'])
 
     df = pd.DataFrame(data_dict)
     
@@ -189,7 +222,7 @@ def preprocess_transform(train, test):
 def processed_fraud_transform(examples):
     """Transform for data that is already processed (standardized and engineered)."""
     # Use torch.tensor on lists directly for efficiency
-    # features is (batch_size, 12)
+    # features is (batch_size, 10)
     feature_cols = [torch.tensor(examples[feat], dtype=torch.float32) for feat in NUMERIC_FEATURES]
     features = torch.stack(feature_cols, dim=1)
     

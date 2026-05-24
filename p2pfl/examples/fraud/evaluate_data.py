@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
+import numpy as np
+from sklearn.feature_selection import mutual_info_classif
 
 def generate_and_save_charts(train_path, test_path, label_col="is_fraud", output_dir="p2pfl/examples/fraud/evaluate_charts"):
     # 1. Tạo thư mục lưu ảnh nếu chưa có
@@ -85,10 +87,59 @@ def generate_and_save_charts(train_path, test_path, label_col="is_fraud", output
         plt.savefig(os.path.join(output_dir, "3_feature_distribution_comparison.png"), dpi=300)
         plt.close()
 
-    print(f"✅ Đã hoàn tất! Các hình ảnh so sánh được lưu tại thư mục: '{output_dir}/'")
+    # 5. Đánh giá đặc trưng bằng Mutual Information (MI)
+    print("Đang đánh giá Mutual Information...")
+    target_features = [
+        "city_pop", "unix_time", "merch_lat", "merch_long", "distance",
+        "hour", "day_of_week", "category_idx", "age", "amt_diff_avg_30d",
+        "trans_count_24h", "distance_velocity", "merchant_risk_score", "merchant_freq_30d"
+    ]
+    
+    # Lọc những cột thực sự tồn tại trong dữ liệu
+    available_features = [f for f in target_features if f in train_df.columns]
+    X = train_df[available_features].fillna(0)
+    y = train_df[label_col]
+    
+    # Xác định đặc trưng rời rạc (Discrete Features) cho MI
+    # Theo danh sách: hour, day_of_week, category_idx là các biến phân loại/rời rạc
+    discrete_cols = ["hour", "day_of_week", "category_idx"]
+    discrete_mask = [col in discrete_cols for col in available_features]
+    
+    # Tính toán MI score
+    mi_scores = mutual_info_classif(X, y, discrete_features=discrete_mask, random_state=42)
+    mi_series = pd.Series(mi_scores, index=available_features).sort_values(ascending=False)
+    
+    # Vẽ biểu đồ MI Bar Chart
+    plt.figure(figsize=(12, 8))
+    sns.barplot(x=mi_series.values, y=mi_series.index, hue=mi_series.index, palette='viridis', legend=False)
+    plt.title("Mutual Information Scores (Đánh giá mức độ quan trọng của đặc trưng)")
+    plt.xlabel("Mutual Information Score")
+    plt.ylabel("Features")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "4_mutual_information_ranking.png"), dpi=300)
+    plt.close()
+    
+    # Tự động lọc các cột có MI <= 0.001
+    final_features = mi_series[mi_series > 0.001].index.tolist()
+    removed_features = mi_series[mi_series <= 0.001].index.tolist()
+    
+    print("-" * 30)
+    print(f"MI Analysis Results (Threshold > 0.001):")
+    print(f"✅ Giữ lại ({len(final_features)}): {final_features}")
+    if removed_features:
+        print(f"❌ Loại bỏ ({len(removed_features)}): {removed_features}")
+    print("-" * 30)
+
+    print(f"✅ Đã hoàn tất! Các hình ảnh so sánh và đánh giá được lưu tại thư mục: '{output_dir}/'")
 
 if __name__ == "__main__":
-    TRAIN_CSV = "p2pfl/examples/fraud/processed_data/train_processed.csv"
-    TEST_CSV = "p2pfl/examples/fraud/processed_data/test_processed.csv"
+    
+    # TRAIN_CSV = "p2pfl/examples/fraud/processed_data/train_processed.csv"
+    # TEST_CSV = "p2pfl/examples/fraud/processed_data/test_processed.csv"
+    
+    # generate_and_save_charts(TRAIN_CSV, TEST_CSV, label_col="is_fraud")
+
+    TRAIN_CSV = "p2pfl/examples/fraud/processed_data/test_preview.csv"
+    TEST_CSV = "p2pfl/examples/fraud/processed_data/test_preview.csv"
     
     generate_and_save_charts(TRAIN_CSV, TEST_CSV, label_col="is_fraud")

@@ -74,6 +74,11 @@ def build_behavioral_lookup(examples):
     df['avg_amt_30d'] = amt_baseline.groupby(temp_df['cc_num']).transform(
         lambda x: x.rolling(window='30D', min_periods=1).mean()
     ).values
+    
+    # Fill NaN in avg_amt_30d (occurs if only fraud transactions exist in window)
+    # We fill with 0.0 per user request
+    df['avg_amt_30d'] = df['avg_amt_30d'].fillna(0.0)
+    
     df['trans_count_24h'] = temp_df.groupby('cc_num')['amt'].transform(lambda x: x.rolling(window='24h', min_periods=1).count()).values
     
     # 2. Distance Velocity (km/h)
@@ -105,8 +110,12 @@ def build_behavioral_lookup(examples):
     # Fill lookup tables
     for _, row in df.iterrows():
         key = (row['cc_num'], int(row['unix_time']))
+        # Calculate diff and ensure it's not NaN
+        diff = float(row['amt'] - row['avg_amt_30d'])
+        if np.isnan(diff): diff = 0.0
+        
         BEHAVIORAL_LOOKUP[key] = {
-            'amt_diff_avg_30d': float(row['amt'] - row['avg_amt_30d']),
+            'amt_diff_avg_30d': diff,
             'trans_count_24h': float(row['trans_count_24h']),
             'distance_velocity': float(row['distance_velocity'])
         }

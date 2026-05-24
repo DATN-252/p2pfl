@@ -66,7 +66,7 @@ def focal_loss(logits, targets, alpha=0.95, gamma=2.0, reduction='mean'):
 class FraudDetectionMLP(LightningModule):
     """Efficient MLP for fraud detection with Extreme Alpha-Balanced Focal Loss."""
 
-    def __init__(self, input_size: int = 12, hidden_size: int = 256, 
+    def __init__(self, input_size: int = 23, hidden_size: int = 256, 
                  learning_rate: float = 0.001, alpha: float = 0.95, gamma: float = 2.0):
         super().__init__()
         set_seed(Settings.general.SEED, "pytorch")
@@ -150,9 +150,9 @@ def model_build_fn(**kwargs) -> LightningModel:
     # Separate compression from other parameters
     compression = kwargs.pop("compression", None)
 
-    # Ensure input_size matches updated transforms (12 features)
+    # Ensure input_size matches updated transforms (23 features)
     if "input_size" not in kwargs:
-        kwargs["input_size"] = 12
+        kwargs["input_size"] = 23
 
     # Initialize the core MLP
     mlp_model = FraudDetectionMLP(**kwargs)

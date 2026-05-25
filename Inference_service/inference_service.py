@@ -55,7 +55,7 @@ async def load_model_logic(path_or_buffer, round_num: int, is_buffer=False):
                 print(f"⚠️ SKIPPING: Model file {path_or_buffer} is empty (0 bytes).")
                 return False
 
-            new_model = FraudDetectionMLP(input_size=12)
+            new_model = FraudDetectionMLP(input_size=23)
             
             # 1. Load data from path or buffer
             data = torch.load(path_or_buffer, map_location="cpu")

@@ -183,7 +183,8 @@ def fraud_transform(examples):
 
     # Apply standardization
     for feat in NUMERIC_FEATURES:
-        df[feat] = (df[feat] - FEATURE_STATS[feat]["mean"]) / FEATURE_STATS[feat]["std"]
+        if feat not in CATEGORY_FEATURES:
+            df[feat] = (df[feat] - FEATURE_STATS[feat]["mean"]) / FEATURE_STATS[feat]["std"]
 
     features_list = [torch.tensor(row, dtype=torch.float32) for row in df.values]
     

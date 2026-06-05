@@ -11,7 +11,8 @@ def save_combined_csv(df_raw, df_processed, output_path):
     print(f"Đang kết hợp và lưu file preview tại {output_path}...")
     
     # Chỉ lấy các cột trong df_processed mà CHƯA CÓ trong df_raw (các đặc trưng mới)
-    new_cols = [col for col in df_processed.columns if col not in df_raw.columns]
+    # Loại bỏ các cột One-Hot Encoding (bắt đầu bằng 'cat_') để preview sạch hơn
+    new_cols = [col for col in df_processed.columns if col not in df_raw.columns and not col.startswith('cat_')]
     df_new = df_processed[new_cols]
     
     # Ghép dữ liệu gốc với các đặc trưng mới
@@ -31,6 +32,10 @@ def preprocess(dataset_id="kartik2112/fraud-detection", output_dir="p2pfl/exampl
     print("Loading CSV files...")
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
+
+    # Drop garbage columns
+    train_df = train_df.drop(columns=['Unnamed: 0'], errors='ignore')
+    test_df = test_df.drop(columns=['Unnamed: 0'], errors='ignore')
     
     # Feature Engineering
     print("Performing feature engineering ...")
@@ -60,10 +65,27 @@ def preprocess(dataset_id="kartik2112/fraud-detection", output_dir="p2pfl/exampl
     # Save Processed
     train_processed_final.to_csv(os.path.join(output_dir, "train_processed.csv"), index=False)
     test_processed_final.to_csv(os.path.join(output_dir, "test_processed.csv"), index=False)
+
+    # Add evaluation columns to the preview (not to the saved processed CSVs to keep them clean for training)
+    def add_eval_features(raw_df, processed_df):
+        eval_df = processed_df.copy()
+        log_amts = []
+        amt_zscores = []
+        for _, row in raw_df.iterrows():
+            key = (row['cc_num'], int(row['unix_time']))
+            beh = transforms.BEHAVIORAL_LOOKUP.get(key, {})
+            log_amts.append(beh.get('log_amt', 0.0))
+            amt_zscores.append(beh.get('amt_zscore', 0.0))
+        eval_df['log_amt'] = log_amts
+        eval_df['amt_zscore'] = amt_zscores
+        return eval_df
+
+    train_preview_processed = add_eval_features(train_raw_final, train_processed_final)
+    test_preview_processed = add_eval_features(test_raw_final, test_processed_final)
     
     # Save Combined Previews (CSV instead of XLSX)
-    save_combined_csv(train_raw_final, train_processed_final, os.path.join(output_dir, "train_preview.csv"))
-    save_combined_csv(test_raw_final, test_processed_final, os.path.join(output_dir, "test_preview.csv"))
+    save_combined_csv(train_raw_final, train_preview_processed, os.path.join(output_dir, "train_preview.csv"))
+    save_combined_csv(test_raw_final, test_preview_processed, os.path.join(output_dir, "test_preview.csv"))
     
     print("✅ Pre-processing complete! (Raw, Processed, and Preview CSVs saved)")
 

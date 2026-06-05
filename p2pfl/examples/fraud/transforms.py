@@ -107,6 +107,12 @@ def build_behavioral_lookup(examples):
     temp_df_merch = df_sorted_merch.set_index('trans_date_trans_time')
     df_sorted_merch['merchant_freq_30d'] = temp_df_merch.groupby('merchant')['amt'].transform(lambda x: x.rolling(window='30D', min_periods=1).count()).values
     
+    # Calculate additional metrics for evaluation (not for training)
+    df['log_amt'] = np.log1p(df['amt'])
+    amt_mean = df['amt'].mean()
+    amt_std = df['amt'].std()
+    df['amt_zscore'] = (df['amt'] - amt_mean) / amt_std if amt_std > 0 else 0.0
+    
     # Fill lookup tables
     for _, row in df.iterrows():
         key = (row['cc_num'], int(row['unix_time']))
@@ -117,7 +123,9 @@ def build_behavioral_lookup(examples):
         BEHAVIORAL_LOOKUP[key] = {
             'amt_diff_avg_30d': diff,
             'trans_count_24h': float(row['trans_count_24h']),
-            'distance_velocity': float(row['distance_velocity'])
+            'distance_velocity': float(row['distance_velocity']),
+            'log_amt': float(row['log_amt']),
+            'amt_zscore': float(row['amt_zscore'])
         }
     
     for _, row in df_sorted_merch.iterrows():
